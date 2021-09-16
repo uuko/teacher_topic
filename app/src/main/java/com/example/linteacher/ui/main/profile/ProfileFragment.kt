@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.linteacher.databinding.FragmentProfileBinding
+import com.example.linteacher.ui.adminedituser.AdminEditActivity
+import com.example.linteacher.util.ActivityNavigator
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.preference.LoginPreferences
 
@@ -52,6 +54,18 @@ class ProfileFragment : Fragment() {
         }
         else if (loginPreferences.getTeacherGrade().equals(Config.TEACHER)){
 
+        }
+
+        adminChoose()
+    }
+
+    private fun adminChoose() {
+        binding.manageAccount.setOnClickListener {
+            getActivity()?.let { it1 ->
+                ActivityNavigator.startActivity(AdminEditActivity::class.java,
+                    it1
+                )
+            }
         }
     }
 

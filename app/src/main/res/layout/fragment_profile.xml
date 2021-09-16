@@ -51,14 +51,19 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-            android:visibility="gone"
-            android:id="@+id/gradeC_choose"
+            android:visibility="visible"
+            android:id="@+id/gradeA_choose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline2">
-
+        <TextView
+                android:id="@+id/manage_account"
+                android:textSize="50dp"
+                android:text="管理帳號"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"

@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
                             { t ->
                                 viewModel.isLoading.value=(false)
                                 if (!(t.error.isNotEmpty())){
-
+                                    logiSharePreferences.setTeacherGrade(t?.grade.toString())
                                     logiSharePreferences.setTeacherId(t?.tchNumber.toString())
                                     ActivityNavigator.startActivity(MainActivity::class.java,this@LoginActivity)
                                 }

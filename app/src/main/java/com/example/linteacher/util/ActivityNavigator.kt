@@ -5,11 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.example.linteacher.ui.main.MainActivity
 
 object ActivityNavigator{
 
-
+    fun startActivity(activityClass: Class<out Activity>, activity: FragmentActivity) {
+        val intent = Intent(activity, activityClass)
+        activity.startActivity(intent)
+    }
     fun startActivity(activityClass: Class<out Activity>, activity: Activity) {
         val intent = Intent(activity, activityClass)
         activity.startActivity(intent)

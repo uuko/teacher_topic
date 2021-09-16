@@ -8,19 +8,19 @@ class LoginPreferences(context: Context) :PreferencesHelper(context),LoginPrefer
         get() = LoginPreferences::class.java.name
     private val TEACHER_ID = "TEACHER_ID"
     private val TEACHER_GRADE = "TEACHER_GRADE"
-    override fun setTeacherId(mTeacherId: String?) {
+    override fun setTeacherId(mTeacherId: String) {
         save(Type.STRING, TEACHER_ID, mTeacherId)
     }
 
-    override fun getTeacherId(): String? {
-        return get(Type.STRING, TEACHER_ID) as String?
+    override fun getTeacherId(): String {
+        return get(Type.STRING, TEACHER_ID) as String
     }
 
-    override fun setTeacherGrade(mTeacherGrade: String?) {
+    override fun setTeacherGrade(mTeacherGrade: String) {
         save(Type.STRING, TEACHER_GRADE, mTeacherGrade)
     }
 
-    override fun getTeacherGrade(): String? {
-        return get(Type.STRING, TEACHER_GRADE) as String?
+    override fun getTeacherGrade(): String {
+        return get(Type.STRING, TEACHER_GRADE) as String
     }
 }

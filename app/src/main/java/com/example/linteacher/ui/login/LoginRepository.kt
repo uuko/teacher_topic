@@ -21,11 +21,11 @@ class LoginRepository {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<LoginResponse>(){
                     override fun onNext(t: LoginResponse) {
-                        data.value= LoginAllResponse(t.tchNumber)
+                        data.value= LoginAllResponse(t.tchNumber,t.grade)
                     }
 
                     override fun onError(e: Throwable) {
-                        data.value= LoginAllResponse(-1,e.toString())
+                        data.value= LoginAllResponse(-1,"",e.toString())
                     }
 
                     override fun onComplete() {
