@@ -2,6 +2,7 @@ package com.example.linteacher.ui.main.teacherline
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -9,10 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.linteacher.api.pojo.TeacherLineResponse
 import com.example.linteacher.databinding.ItemTeacherlineBinding
 
-class TeacherLineAdapter constructor(private val items: MutableList<TeacherLineResponse>) : RecyclerView.Adapter<TeacherLineAdapter.ViewHolder>() {
-
-
-
+class TeacherLineAdapter constructor( val items: MutableList<TeacherLineResponse>,val listener: TeacherFragment.OnItemClickListener) : RecyclerView.Adapter<TeacherLineAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         Log.d("onBindViewHolder", "onCreateViewHolder: ")
@@ -23,7 +21,7 @@ class TeacherLineAdapter constructor(private val items: MutableList<TeacherLineR
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.d("onBindViewHolder", "onBindViewHolder: "+items.get(position).tchName)
         val itemData= items[position]
-        holder.bind(itemData)
+        holder.bind(itemData, listener)
     }
 
     override fun getItemCount(): Int {
@@ -45,11 +43,17 @@ class TeacherLineAdapter constructor(private val items: MutableList<TeacherLineR
         result.dispatchUpdatesTo(this)
     }
     class ViewHolder(private val itemBinding: ItemTeacherlineBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(items: TeacherLineResponse) {
+        fun bind(items: TeacherLineResponse, listener: TeacherFragment.OnItemClickListener) {
             Glide.with(itemBinding.root)
                 .load(items.tchPicUrl)
                 .into(itemBinding.teacherTchPicUrl)
             itemBinding.teacherContent.text=items.tchName
+
+            itemView.setOnClickListener(object : View.OnClickListener{
+                override fun onClick(v: View?) {
+                    listener.onItemClick(items)
+                }
+            })
 //            itemBinding.desc.text=items.description
 //            itemBinding.stars.text=items.forks_count.toString()
         }

@@ -1,19 +1,22 @@
 package com.example.linteacher.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.linteacher.R
+import com.example.linteacher.api.pojo.TeacherLineResponse
 import com.example.linteacher.databinding.ActivityMainBinding
 import com.example.linteacher.ui.main.announce.AnnounceFragment
 import com.example.linteacher.ui.main.profile.ProfileFragment
 import com.example.linteacher.ui.main.teacherline.TeacherFragment
+import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSencondFragment
 import com.example.linteacher.util.Config
 import com.google.android.material.navigation.NavigationBarView
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -22,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     val announceFragment = AnnounceFragment()
     val profileFragment = ProfileFragment()
     val teacherFragment = TeacherFragment()
+    val teacherSecondFragment=TeacherSencondFragment();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +40,23 @@ class MainActivity : AppCompatActivity() {
         binding.navigationView.setOnItemSelectedListener(mOnNavigationItemSelectedListener)
 
 
+    }
+
+    fun getActivityChangeFragmentTeacher(item: TeacherLineResponse){
+        manager = supportFragmentManager
+        transaction = manager.beginTransaction()
+        hideSpeficFragment(teacherFragment)
+        val bundle = Bundle()
+        bundle.putSerializable("items",item)
+        teacherSecondFragment.setArguments(bundle)
+        showFragment(teacherSecondFragment,Config.TEACHER_SECOND_FRAGMENT)
+
+
+    }
+
+    private fun hideSpeficFragment(frag: Fragment) {
+        if (manager.findFragmentByTag(frag.tag) != null) transaction.hide(frag)
+        transaction.commit()
     }
 
     //fragment

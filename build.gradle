@@ -2,7 +2,7 @@
 buildscript {
     ext.kotlin_version = "1.5.0"
     ext.retrofitVersion = '2.6.2'
-    ext.okHttpVersion = '4.2.0'
+    ext.okHttpVersion = '4.4.0'
     ext.daggerVersion = '2.27'
     ext.rxVersion = '2.2.11'
     ext.rxAndroidVersion = '2.1.1'

@@ -6,4 +6,83 @@
         android:layout_height="match_parent"
         tools:context=".ui.login.LoginActivity">
 
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+
+            android:id="@+id/linearLayoutCompat2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="245dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/account"
+                >
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/account"
+                    android:background="#2196F3"
+                    android:layout_width="245dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="30dp"
+
+                android:layout_width="245dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/content_description_end_icon"
+                app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwd"
+                    android:background="#2196F3"
+                    android:layout_width="245dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/loginBtn"
+                android:layout_width="245dp"
+                android:layout_height="wrap_content"
+                android:text="submit" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="遊客"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutCompat2"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutCompat2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="遊客"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutCompat2"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutCompat2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

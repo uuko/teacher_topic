@@ -1,18 +1,20 @@
 package com.example.linteacher.api.pojo
 
+import java.io.Serializable
 
 
 data class TeacherLineResponse(
-    val eMail: String,
-    val introduce: Any,
-    val tchCoeDepartment: String,
-    val tchDepartment: Any,
-    val tchDiploma: Any,
-    val tchMainDepartment: String,
-    val tchName: String,
-    val tchNameEN: String,
-    val tchNumber: Int,
-    val tchPicUrl: Any,
-    val tchRireRank: Any,
-    val tchSchool: Any
-)
+    val eMail: String="",
+    val introduce:  String="",
+    val tchCoeDepartment: String="",
+    val tchDepartment:  String="",
+    val tchDiploma:  String="",
+    val tchMainDepartment:  String="",
+    val tchName:  String="",
+    val tchNameEN:  String="",
+    val tchNumber: Int=0,
+    val tchPicUrl:  String="",
+    val tchRireRank:  String="",
+    val tchSchool:  String=""
+
+):Serializable
