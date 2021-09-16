@@ -4,7 +4,10 @@ import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
+import android.widget.CompoundButton
 import androidx.activity.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -31,6 +34,26 @@ class AddTeacherActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 //        TextUtils.isEmpty(edit.getText())
+
+        binding.checkBox.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
+                if (p1){
+                    binding.teacherCheckPasswd.transformationMethod =
+                        HideReturnsTransformationMethod.getInstance();
+                    binding.teacherPwd.transformationMethod=
+                        HideReturnsTransformationMethod.getInstance();
+                }
+                else{
+                    binding.teacherCheckPasswd.transformationMethod =
+                        PasswordTransformationMethod.getInstance();
+                    binding.teacherPwd.transformationMethod =
+                        PasswordTransformationMethod.getInstance();
+                }
+
+
+            }
+
+        })
         binding.addTeacher.setOnClickListener {
             if (checkTextEmpty()){
                 viewModel.registerTeacher(
