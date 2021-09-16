@@ -1,6 +1,7 @@
 package com.example.linteacher.api
 
 import com.example.linteacher.api.pojo.TeacherLineResponse
+import com.example.linteacher.api.pojo.admin.addteacher.AddTeacherRequest
 import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthorityRequest
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.api.pojo.login.LoginRequest
@@ -24,10 +25,17 @@ interface ApiServices {
     fun adminListUser(
         @Url url: String,
     ): Observable<List<AdminListTeacherResponse>>
-
+    //管理員改單一使用者權限
     @POST
     fun adminChangeUserAuthority(
         @Url url: String,
         @Body adminChangeAuthorityRequest: AdminChangeAuthorityRequest
+    ): Observable<Unit>
+
+    //管理員改單一使用者權限
+    @POST
+    fun adminRegisterTeacher(
+        @Url url: String,
+        @Body addTeacherRequest: AddTeacherRequest
     ): Observable<Unit>
 }

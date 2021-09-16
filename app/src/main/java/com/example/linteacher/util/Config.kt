@@ -9,9 +9,11 @@ object Config {
     const val TEACHER_SECOND_FRAGMENT="TEACHER_SECOND_FRAGMENT"
     const val ADMIN= "A"
     const val TEACHER= "B"
-
+    const val ADDUSER="ADDUSER"
     //api
     const val LOGIN_URL="teacher/login"
     const val ADMIN_LIST_USER="/admin/teacher/list"
     const val ADMIN_CHANGE_USER_AUTHORITY="/admin/change/user/authority"
+    const val RESULT_OK="200"
+    const val ADMIN_REGISTER_="/teacher/register"
 }
