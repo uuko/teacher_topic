@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_gravity="center_horizontal"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ImageView
+                android:id="@+id/teacher_tchPicUrl"
+                android:src="@drawable/ic_launcher_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+      <LinearLayout
+              android:layout_gravity="center_vertical"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+          <TextView
+                  android:id="@+id/teacher_content"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+          <Button
+                  android:layout_gravity="right"
+                  android:id="@+id/teacher_more"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+
+      </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
