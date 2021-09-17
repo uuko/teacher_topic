@@ -54,7 +54,7 @@ class AddTeacherActivity : AppCompatActivity() {
                 viewModel.registerTeacher(
                     name = binding.teacherName.text.toString(),
                     pwd = binding.teacherPwd.text.toString(),
-                    email = binding.teacherEmail.toString()
+                    email = binding.teacherEmail.text.toString()
                 )
                     .observe(owner,object :Observer<AddTeacherAllResponse>{
                         override fun onChanged(t: AddTeacherAllResponse) {

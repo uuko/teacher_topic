@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="exp_expcategory_array">
+        <item>業界專兼職工作經驗</item>
+        <item>產學合作計畫案</item>
+        <item>產業實地服務或研究</item>
+        <item>深度實務研習</item>
+    </string-array>
+    <string-array name="exp_pftime_array">
+        <item>專職</item>
+        <item>兼職</item>
+    </string-array>
+
+    <string-array name="exp_mechanismsort_array">
+        <item>政府機關</item>
+        <item>企業</item>
+        <item>財團法人或社團法人</item>
+        <item>公私立醫療機構或護理機構</item>
+        <item>執行業務之事務所</item>
+        <item>其他單位</item>
+    </string-array>
+</resources>

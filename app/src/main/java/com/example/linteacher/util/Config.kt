@@ -10,10 +10,16 @@ object Config {
     const val ADMIN= "A"
     const val TEACHER= "B"
     const val ADDUSER="ADDUSER"
+
+    //viewType
+    const val ORIGIN_VIEW_TYPE=0
+    const val ADD_VIEW_TYPE=1
     //api
     const val LOGIN_URL="teacher/login"
     const val ADMIN_LIST_USER="/admin/teacher/list"
     const val ADMIN_CHANGE_USER_AUTHORITY="/admin/change/user/authority"
     const val RESULT_OK="200"
     const val ADMIN_REGISTER_="/teacher/register"
+    const val POST_EXP="/teacher/one_dash_two"
+    const val GET_EXP="/teacher/one_dash_two/loginId/%s"
 }

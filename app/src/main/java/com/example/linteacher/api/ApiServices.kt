@@ -6,6 +6,8 @@ import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthority
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
+import com.example.linteacher.api.pojo.teacherdata.exp.ExpAddRequest
+import com.example.linteacher.api.pojo.teacherdata.exp.ExpGetResponse
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -38,4 +40,15 @@ interface ApiServices {
         @Url url: String,
         @Body addTeacherRequest: AddTeacherRequest
     ): Observable<Unit>
+
+
+    //老師實務經驗
+    @POST
+    fun postExpData(
+        @Url url: String,
+        @Body addTeacherRequest: ExpAddRequest
+    ): Observable<Unit>
+
+    @GET
+    fun getExpData(@Url string: String): Observable<List<ExpGetResponse>>
 }

@@ -10,7 +10,8 @@ import com.bumptech.glide.Glide
 import com.example.linteacher.api.pojo.TeacherLineResponse
 import com.example.linteacher.databinding.ItemTeacherlineBinding
 
-class TeacherLineAdapter constructor( val items: MutableList<TeacherLineResponse>,val listener: TeacherFragment.OnItemClickListener) : RecyclerView.Adapter<TeacherLineAdapter.ViewHolder>() {
+class TeacherLineAdapter constructor( val items: MutableList<TeacherLineResponse>,val listener: TeacherFragment.OnItemClickListener)
+    : RecyclerView.Adapter<TeacherLineAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         Log.d("onBindViewHolder", "onCreateViewHolder: ")
