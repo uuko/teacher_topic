@@ -14,6 +14,7 @@ object Config {
     //viewType
     const val ORIGIN_VIEW_TYPE=0
     const val ADD_VIEW_TYPE=1
+    const val EdIT_VIEW_TYPE=2
     //api
     const val LOGIN_URL="teacher/login"
     const val ADMIN_LIST_USER="/admin/teacher/list"
@@ -21,5 +22,7 @@ object Config {
     const val RESULT_OK="200"
     const val ADMIN_REGISTER_="/teacher/register"
     const val POST_EXP="/teacher/one_dash_two"
+    const val UPDATE_EXP="/teacher/update/one_dash_two"
     const val GET_EXP="/teacher/one_dash_two/loginId/%s"
+    const val GET_EXP_BY_EXP_NUMBER="/teacher/one_dash_two/expNumber/%s"
 }

@@ -6,8 +6,8 @@ import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthority
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
-import com.example.linteacher.api.pojo.teacherdata.exp.ExpAddRequest
-import com.example.linteacher.api.pojo.teacherdata.exp.ExpGetResponse
+import com.example.linteacher.api.pojo.teacherdata.exp.*
+import com.example.linteacher.util.Config
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -48,7 +48,18 @@ interface ApiServices {
         @Url url: String,
         @Body addTeacherRequest: ExpAddRequest
     ): Observable<Unit>
-
+    @POST
+    fun updateExpData(
+        @Url url: String,
+        @Body addTeacherRequest: ExpUpdateRequest
+    ): Observable<Unit>
+    @HTTP(method = "DELETE", path = Config.POST_EXP, hasBody = true)
+    fun deleteExpData(
+        @Body deleteRequest: ExpDeleteRequest
+    ): Observable<Unit>
     @GET
     fun getExpData(@Url string: String): Observable<List<ExpGetResponse>>
+    @GET
+    fun getExpDataByExpNumber(@Url string: String): Observable<ExpOneGetResponse>
+
 }
