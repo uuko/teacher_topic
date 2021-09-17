@@ -26,6 +26,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/account"
+                    android:text="linlin@gmail.com"
                     android:background="#2196F3"
                     android:layout_width="245dp"
                     android:layout_height="wrap_content"
@@ -43,6 +44,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwd"
+                    android:text="5678"
                     android:background="#2196F3"
                     android:layout_width="245dp"
                     android:layout_height="wrap_content"

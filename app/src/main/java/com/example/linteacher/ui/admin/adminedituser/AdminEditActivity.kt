@@ -1,4 +1,4 @@
-package com.example.linteacher.ui.adminedituser
+package com.example.linteacher.ui.admin.adminedituser
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -16,7 +16,9 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.databinding.ActivityAdminEditBinding
-import com.example.linteacher.ui.adminaddteacher.AddTeacherActivity
+import com.example.linteacher.ui.admin.adminaddteacher.AddTeacherActivity
+import com.example.linteacher.ui.teacherdata.TeacherInformationFirstActivity
+import com.example.linteacher.util.ActivityNavigator
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.preference.LoginPreferences
 
@@ -24,7 +26,7 @@ import com.example.linteacher.util.preference.LoginPreferences
 class AdminEditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAdminEditBinding
     private lateinit var adapter: AdminEditAdapter
-
+    private lateinit var resultLauncher:ActivityResultLauncher<Intent>
     private val factory = AdminEditViewModelFactory(AdminEditRepository())
     private val viewModel: AdminEditViewModel by viewModels {
         factory
@@ -36,7 +38,7 @@ class AdminEditActivity : AppCompatActivity() {
         binding = ActivityAdminEditBinding.inflate(layoutInflater)
         owner=this
         setContentView(binding.root)
-        var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 // There are no request codes
@@ -56,7 +58,8 @@ class AdminEditActivity : AppCompatActivity() {
             object :View.OnClickListener{
                 override fun onClick(p0: View?) {
 
-                    openActivity(resultLauncher)
+                    ActivityNavigator
+                        .openActivity(resultLauncher,AddTeacherActivity::class.java,this@AdminEditActivity)
 
 
                 }
@@ -74,11 +77,7 @@ class AdminEditActivity : AppCompatActivity() {
 
     }
 
-    private fun openActivity(resultLauncher: ActivityResultLauncher<Intent>) {
-        val intent = Intent(this, AddTeacherActivity::class.java)
-        resultLauncher.launch(intent)
 
-    }
 
     private fun initRecycleView() {
         val layoutManager = LinearLayoutManager(this)
@@ -107,6 +106,15 @@ class AdminEditActivity : AppCompatActivity() {
                 })
             }
 
+            override fun onMoreClick(name: AdminListTeacherResponse, position: Int) {
+                val bundle=Bundle()
+                bundle.putInt("loginId",name.loginId)
+                ActivityNavigator
+                    .openActivityWithData(resultLauncher
+                        , TeacherInformationFirstActivity::class.java,this@AdminEditActivity
+                        ,bundle)
+            }
+
         })
         binding.adminTeacherRecycleView.adapter=adapter
     }
@@ -131,5 +139,6 @@ class AdminEditActivity : AppCompatActivity() {
     }
     interface OnHideClickListener {
         fun onHideClick(name: AdminListTeacherResponse, position: Int)
+        fun onMoreClick(name: AdminListTeacherResponse, position: Int)
     }
 }

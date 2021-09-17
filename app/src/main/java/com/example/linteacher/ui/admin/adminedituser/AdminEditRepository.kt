@@ -1,4 +1,4 @@
-package com.example.linteacher.ui.adminedituser
+package com.example.linteacher.ui.admin.adminedituser
 
 import androidx.lifecycle.MutableLiveData
 import com.example.linteacher.api.RetrofitManager

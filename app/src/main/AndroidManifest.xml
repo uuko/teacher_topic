@@ -12,12 +12,21 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.Linteacher">
-        <activity android:name=".ui.adminaddteacher.AddTeacherActivity"></activity>
+        <activity
+                android:name=".ui.teacherdata.TeacherInformationFirstActivity"
+                android:label="@string/title_activity_teacher_information_first"
+                android:theme="@style/Theme.Linteacher.NoActionBar"></activity>
+        <activity android:name=".ui.main.teacherline.tchsencondline.TeacherSecondLineActivity" />
+        <activity
+                android:name=".ui.main.teacherline.tchsencondline.FragmentSecondLine"
+                android:label="@string/title_activity_fragment_second_line"
+                android:theme="@style/Theme.Linteacher.NoActionBar" />
+        <activity android:name=".ui.admin.adminaddteacher.AddTeacherActivity" />
         <activity
                 android:name=".api.pojo.admin.addteacher.AddTeacherActivity"
                 android:label="@string/title_activity_add_teacher"
                 android:theme="@style/Theme.Linteacher.NoActionBar" />
-        <activity android:name=".ui.adminedituser.AdminEditActivity" />
+        <activity android:name=".ui.admin.adminedituser.AdminEditActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>

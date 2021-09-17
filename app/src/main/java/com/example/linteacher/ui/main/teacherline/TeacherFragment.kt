@@ -1,5 +1,6 @@
 package com.example.linteacher.ui.main.teacherline
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.api.pojo.TeacherLineResponse
 import com.example.linteacher.databinding.FragmentTeacherBinding
 import com.example.linteacher.ui.main.MainActivity
+import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondLineActivity
+import com.example.linteacher.util.ActivityNavigator
 import com.example.linteacher.util.Config
 
 // TODO: Rename parameter arguments, choose names that match
@@ -90,7 +93,14 @@ class TeacherFragment : Fragment() {
         _binding?.teacherListRecycleView?.layoutManager =layoutManager
         teacherLineAdapter= TeacherLineAdapter(ArrayList(),listener = object :OnItemClickListener{
             override fun onItemClick(item: TeacherLineResponse) {
-                (activity as MainActivity).getActivityChangeFragmentTeacher(item)
+                activity?.let {
+                    val bundle=Bundle()
+                    bundle.putSerializable("item",item)
+                    ActivityNavigator.startActivityWithData(TeacherSecondLineActivity::class.java,
+                        bundle,
+                        it
+                    )
+                }
             }
 
         })

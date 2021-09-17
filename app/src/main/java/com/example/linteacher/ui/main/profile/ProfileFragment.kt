@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.linteacher.databinding.FragmentProfileBinding
-import com.example.linteacher.ui.adminedituser.AdminEditActivity
+import com.example.linteacher.ui.admin.adminedituser.AdminEditActivity
 import com.example.linteacher.util.ActivityNavigator
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.preference.LoginPreferences

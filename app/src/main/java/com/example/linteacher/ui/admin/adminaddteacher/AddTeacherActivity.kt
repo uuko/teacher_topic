@@ -1,4 +1,4 @@
-package com.example.linteacher.ui.adminaddteacher
+package com.example.linteacher.ui.admin.adminaddteacher
 
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
@@ -11,13 +11,8 @@ import android.widget.CompoundButton
 import androidx.activity.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import com.example.linteacher.R
 import com.example.linteacher.api.pojo.admin.addteacher.AddTeacherAllResponse
 import com.example.linteacher.databinding.ActivityAddTeacherBinding
-import com.example.linteacher.databinding.ActivityAdminEditBinding
-import com.example.linteacher.ui.login.LoginRepository
-import com.example.linteacher.ui.login.LoginViewModel
-import com.example.linteacher.ui.login.LoginViewModelFactory
 import com.example.linteacher.util.Config
 
 class AddTeacherActivity : AppCompatActivity() {

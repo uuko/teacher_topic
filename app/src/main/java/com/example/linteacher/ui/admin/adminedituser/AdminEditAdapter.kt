@@ -1,4 +1,4 @@
-package com.example.linteacher.ui.adminedituser
+package com.example.linteacher.ui.admin.adminedituser
 
 import android.graphics.Color
 import android.util.Log
@@ -87,6 +87,9 @@ class AdminEditAdapter constructor(val items: MutableList<AdminListTeacherRespon
                     listener.onHideClick(items,position)
                 }
             })
+            itemBinding.teacherMore.setOnClickListener {
+                listener.onMoreClick(items,position)
+            }
 //            itemBinding.desc.text=items.description
 //            itemBinding.stars.text=items.forks_count.toString()
         }

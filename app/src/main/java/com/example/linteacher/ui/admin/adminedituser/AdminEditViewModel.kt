@@ -1,4 +1,4 @@
-package com.example.linteacher.ui.adminedituser
+package com.example.linteacher.ui.admin.adminedituser
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -6,7 +6,6 @@ import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthority
 import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthorityResponse
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherAllResponse
 import com.example.linteacher.util.preference.LoginPreferences
-import kotlin.math.log
 
 class AdminEditViewModel constructor(var repository:AdminEditRepository): ViewModel(){
     val isLoading: MutableLiveData<Boolean> = MutableLiveData(true)

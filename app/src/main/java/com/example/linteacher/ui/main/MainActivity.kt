@@ -13,7 +13,7 @@ import com.example.linteacher.databinding.ActivityMainBinding
 import com.example.linteacher.ui.main.announce.AnnounceFragment
 import com.example.linteacher.ui.main.profile.ProfileFragment
 import com.example.linteacher.ui.main.teacherline.TeacherFragment
-import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSencondFragment
+
 import com.example.linteacher.util.Config
 import com.google.android.material.navigation.NavigationBarView
 
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     val announceFragment = AnnounceFragment()
     val profileFragment = ProfileFragment()
     val teacherFragment = TeacherFragment()
-    val teacherSecondFragment=TeacherSencondFragment();
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,17 +42,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun getActivityChangeFragmentTeacher(item: TeacherLineResponse){
-        manager = supportFragmentManager
-        transaction = manager.beginTransaction()
-        hideSpeficFragment(teacherFragment)
-        val bundle = Bundle()
-        bundle.putSerializable("items",item)
-        teacherSecondFragment.setArguments(bundle)
-        showFragment(teacherSecondFragment,Config.TEACHER_SECOND_FRAGMENT)
-
-
-    }
+//    fun getActivityChangeFragmentTeacher(item: TeacherLineResponse){
+//        manager = supportFragmentManager
+//        transaction = manager.beginTransaction()
+//        hideSpeficFragment(teacherFragment)
+//        val bundle = Bundle()
+//        bundle.putSerializable("items",item)
+//        teacherSecondFragment.setArguments(bundle)
+//        showFragment(teacherSecondFragment,Config.TEACHER_SECOND_FRAGMENT)
+//
+//
+//    }
 
     private fun hideSpeficFragment(frag: Fragment) {
         if (manager.findFragmentByTag(frag.tag) != null) transaction.hide(frag)
