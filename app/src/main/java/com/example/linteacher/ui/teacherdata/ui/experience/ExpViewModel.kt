@@ -1,15 +1,13 @@
 package com.example.linteacher.ui.teacherdata.ui.experience
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.linteacher.api.pojo.UnitResponse
-import com.example.linteacher.api.pojo.teacherdata.ExpGetAllResponse
+import com.example.linteacher.api.pojo.teacherdata.exp.ui.ExpGetAllResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpAddRequest
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpDeleteRequest
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpOneGetResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpUpdateRequest
-import com.example.linteacher.ui.main.teacherline.TeacherLineRepository
 
 class ExpViewModel constructor(var repository: ExpRepository): ViewModel() {
 

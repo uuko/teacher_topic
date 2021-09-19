@@ -3,9 +3,7 @@ package com.example.linteacher.ui.teacherdata.ui.experience
 import androidx.lifecycle.MutableLiveData
 import com.example.linteacher.api.RetrofitManager
 import com.example.linteacher.api.pojo.UnitResponse
-import com.example.linteacher.api.pojo.admin.addteacher.AddTeacherAllResponse
-import com.example.linteacher.api.pojo.admin.addteacher.AddTeacherRequest
-import com.example.linteacher.api.pojo.teacherdata.ExpGetAllResponse
+import com.example.linteacher.api.pojo.teacherdata.exp.ui.ExpGetAllResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.*
 import com.example.linteacher.util.Config
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -11,10 +11,10 @@ import android.widget.EditText
 import android.widget.Spinner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.linteacher.R
-import com.example.linteacher.api.pojo.teacherdata.ExpAddData
-import com.example.linteacher.api.pojo.teacherdata.ExpBaseData
-import com.example.linteacher.api.pojo.teacherdata.ExpEditData
-import com.example.linteacher.api.pojo.teacherdata.ExpOriginData
+import com.example.linteacher.api.pojo.teacherdata.exp.ui.ExpAddData
+import com.example.linteacher.api.pojo.teacherdata.exp.ui.ExpBaseData
+import com.example.linteacher.api.pojo.teacherdata.exp.ui.ExpEditData
+import com.example.linteacher.api.pojo.teacherdata.exp.ui.ExpOriginData
 import com.example.linteacher.databinding.ItemExpAddBinding
 import com.example.linteacher.databinding.ItemExpEditBinding
 import com.example.linteacher.databinding.ItemExpOriginBinding
@@ -154,7 +154,7 @@ class ExpAdapter(
             binding.saveBtn.setOnClickListener {
 
                 if(  validateData()){
-                    val itemData=ExpEditData(
+                    val itemData= ExpEditData(
                         expNumber=items.expNumber,
                         company=binding.expCompany.text.toString(),
                         job = binding.expJob.text.toString(),
@@ -360,7 +360,7 @@ class ExpAdapter(
             binding.saveBtn.setOnClickListener {
 
                 if(  validateData()){
-                    var itemData=ExpAddData(
+                    var itemData= ExpAddData(
                         company=binding.expCompany.text.toString(),
                         job = binding.expJob.text.toString(),
                         startDate=binding.expStartDate.text.toString(),

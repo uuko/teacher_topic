@@ -7,8 +7,11 @@ import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.*
+import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
+import com.example.linteacher.api.pojo.teacherdata.profile.pic.ProfilePicResponse
 import com.example.linteacher.util.Config
 import io.reactivex.Observable
+import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ApiServices {
@@ -16,6 +19,16 @@ interface ApiServices {
     @GET("teacher/teacherLine/list")
     fun getTeacherLineList(): Observable<List<TeacherLineResponse>>
 
+    //教師個資
+    @GET
+    fun getTeacherProfileData(@Url string: String): Observable<TeacherProfileResponse>
+    //選擇頭像
+    @POST
+    @JvmSuppressWildcards
+    @Multipart
+    fun uploadPic(@Url url: String,
+                  @PartMap params: Map<String,RequestBody>
+    ):Observable<ProfilePicResponse>
     //登入
     @POST
     fun login(

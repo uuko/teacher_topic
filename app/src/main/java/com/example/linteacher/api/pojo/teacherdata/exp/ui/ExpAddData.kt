@@ -1,4 +1,4 @@
-package com.example.linteacher.api.pojo.teacherdata
+package com.example.linteacher.api.pojo.teacherdata.exp.ui
 
 import com.example.linteacher.util.Config
 
@@ -12,4 +12,4 @@ data class ExpAddData(
     override var coopAgency:String="",
     override var isPublic:Boolean=false,
     var isPartTime: String=""
-):ExpBaseData()
+): ExpBaseData()

@@ -1,4 +1,4 @@
-package com.example.linteacher.api.pojo.teacherdata
+package com.example.linteacher.api.pojo.teacherdata.exp.ui
 
 import com.example.linteacher.util.Config
 
@@ -12,4 +12,4 @@ class ExpOriginData (
     override var expType:String="",
     override var coopAgency:String="",
     override var isPublic:Boolean=false,
-):ExpBaseData()
+): ExpBaseData()

@@ -1,4 +1,4 @@
-package com.example.linteacher.api.pojo.teacherdata
+package com.example.linteacher.api.pojo.teacherdata.exp.ui
 
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpGetResponse
 

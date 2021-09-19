@@ -9,10 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.api.pojo.UnitResponse
-import com.example.linteacher.api.pojo.teacherdata.*
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpAddRequest
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpGetResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpUpdateRequest
+import com.example.linteacher.api.pojo.teacherdata.exp.ui.*
 import com.example.linteacher.databinding.FragmentGalleryBinding
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.preference.LoginPreferences
@@ -77,7 +77,8 @@ class ExperienceFragment : Fragment() {
                                     endDate = r.expStopDate,
                                     coopAgency = r.expMechanismSort,
                                     expType = r.expCategory
-                                ))
+                                )
+                            )
                         }
                         adapter.setDataList(valueLst)
                     }
@@ -183,7 +184,7 @@ class ExperienceFragment : Fragment() {
             }
 
             override fun onEditCancelClick(position: Int,name: ExpEditData) {
-                val data=ExpOriginData(
+                val data= ExpOriginData(
                     name.expNumber,
                     company = name.company,
                     job = name.job,
