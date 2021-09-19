@@ -42,7 +42,7 @@ class ExpAdapter(
             EditViewHolder(itemBinding,parent.context)
         } else{
             val itemBinding = ItemExpOriginBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            OriginViewHolder(itemBinding)
+            OriginViewHolder(itemBinding,parent.context)
         }
     }
 
@@ -81,7 +81,7 @@ class ExpAdapter(
         return list[position].itemType
     }
 
-    class OriginViewHolder(private val binding:  ItemExpOriginBinding) : RecyclerView.ViewHolder(binding.root) {
+    class OriginViewHolder(private val binding:  ItemExpOriginBinding,private val context: Context) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
             items: ExpOriginData,
             position: Int,
@@ -89,9 +89,9 @@ class ExpAdapter(
         ){
             binding.positionId.text=position.toString()
             binding.expCompany.text=items.company
-            binding.expCategory.text=items.expType
+            binding.expCategory.text=compareCategory(items.expType)
             binding.expJob.text=items.job
-            binding.expMechanismsort.text=items.coopAgency
+            binding.expMechanismsort.text=compareMachanisSort(items.coopAgency)
             binding.expStartDate.text=items.startDate
             binding.expEndDate.text=items.endDate
 
@@ -100,7 +100,30 @@ class ExpAdapter(
                 listener.onEditClick(items,position)
             }
         }
+        fun compareCategory(company:String):String{
+            val array= context.resources.getStringArray(R.array.exp_expcategory_array)
+            val arrayEn= context.resources.getStringArray(R.array.exp_expcategory_array_en)
+            for (i in array.indices){
+                if (company == array[i]){
+                    return arrayEn[i]
+                }
+            }
+            return arrayEn[0]
+        }
+
+        fun compareMachanisSort(company:String):String{
+            val array= context.resources.getStringArray(R.array.exp_mechanismsort_array)
+            val arrayEn= context.resources.getStringArray(R.array.exp_mechanismsort_array_en)
+            for (i in array.indices){
+                if (company == array[i]){
+                    return arrayEn[i]
+                }
+            }
+            return arrayEn[0]
+        }
     }
+
+
     class EditViewHolder(private val binding:  ItemExpEditBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
             items: ExpEditData,
@@ -115,7 +138,7 @@ class ExpAdapter(
             binding.expCompany.setText(items.company)
             binding.expCategory.setSelection( changeExpCateGory(items.expType),false)
             binding.expJob.setText(items.job)
-            binding.expCategory.setSelection( changeExpMechan(items.coopAgency))
+            binding.expMechanismsort.setSelection( changeExpMechan(items.coopAgency),false)
             binding.expStartDate.setText(items.startDate)
             binding.expEndDate.setText(items.endDate)
             binding.expPftime.setSelection(changeExpPf(items.isPartTime))
@@ -137,8 +160,8 @@ class ExpAdapter(
                         job = binding.expJob.text.toString(),
                         startDate=binding.expStartDate.text.toString(),
                         endDate=binding.expEndDate.text.toString(),
-                        expType=binding.expCategory.selectedItem.toString(),
-                        coopAgency=binding.expMechanismsort.selectedItem.toString(),
+                        expType=getExpCateGory(binding.expCategory.selectedItem.toString()),
+                        coopAgency=getExpMeachen(binding.expMechanismsort.selectedItem.toString()),
                         isPublic=false,
                         isPartTime=binding.expPftime.selectedItem.toString()
                     )
@@ -170,9 +193,19 @@ class ExpAdapter(
             }
             return 0
         }
-
+        private fun getExpMeachen(expType: String):String {
+            val array= context.resources.getStringArray(R.array.exp_mechanismsort_array_en)
+            val arrayCN= context.resources.getStringArray(R.array.exp_mechanismsort_array)
+            for (i in array.indices){
+                if (expType == array[i]){
+                    return arrayCN[i]
+                }
+            }
+            return arrayCN[0]
+        }
         private fun changeExpCateGory(expType: String):Int {
            val array= context.resources.getStringArray(R.array.exp_expcategory_array)
+
             for (i in array.indices){
                 if (expType == array[i]){
                     return i
@@ -180,7 +213,16 @@ class ExpAdapter(
             }
             return 0
         }
-
+        private fun getExpCateGory(expType: String):String {
+            val array= context.resources.getStringArray(R.array.exp_expcategory_array_en)
+            val arrayCN= context.resources.getStringArray(R.array.exp_expcategory_array)
+            for (i in array.indices){
+                if (expType == array[i]){
+                    return arrayCN[i]
+                }
+            }
+            return arrayCN[0]
+        }
         private fun setDate() {
 
             binding.expStartDate.setOnClickListener {
@@ -213,7 +255,7 @@ class ExpAdapter(
             val spinner: Spinner = binding.expMechanismsort
             ArrayAdapter.createFromResource(
                 context,
-                R.array.exp_mechanismsort_array,
+                R.array.exp_mechanismsort_array_en,
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -234,7 +276,7 @@ class ExpAdapter(
             val spinner: Spinner = binding.expCategory
             ArrayAdapter.createFromResource(
                 context,
-                R.array.exp_expcategory_array,
+                R.array.exp_expcategory_array_en,
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

@@ -6,6 +6,12 @@
         <item>產業實地服務或研究</item>
         <item>深度實務研習</item>
     </string-array>
+    <string-array name="exp_expcategory_array_en">
+        <item>WE</item>
+        <item>CP</item>
+        <item>SE</item>
+        <item>DE</item>
+    </string-array>
     <string-array name="exp_pftime_array">
         <item>專職</item>
         <item>兼職</item>
@@ -18,5 +24,14 @@
         <item>公私立醫療機構或護理機構</item>
         <item>執行業務之事務所</item>
         <item>其他單位</item>
+    </string-array>
+
+    <string-array name="exp_mechanismsort_array_en">
+        <item>GOV</item>
+        <item>BUS</item>
+        <item>GRO</item>
+        <item>MED</item>
+        <item>FIR</item>
+        <item>OTH</item>
     </string-array>
 </resources>
