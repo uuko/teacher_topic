@@ -12,6 +12,58 @@
         <item>SE</item>
         <item>DE</item>
     </string-array>
+<string-array name="tch_person_array_en">
+
+</string-array>
+    <string-array name="exp_gender_array_en">
+        <item>男生</item>
+        <item>女生</item>
+    </string-array>
+    <string-array name="exp_id_px_array_en">
+        <item>身分證</item>
+        <item>居留證</item>
+        <item>護照號</item>
+    </string-array>
+    <string-array name="tch_country_en">
+        <item>中華民國</item>
+        <item>阿富汗伊斯蘭國</item>
+        <item>伊朗伊斯蘭共和國</item>
+    </string-array>
+    <string-array name="tch_abor_en">
+        <item>是</item>
+        <item>否</item>
+
+    </string-array>
+    <string-array name="tch_clan_en">
+        <item>阿美族</item>
+        <item>泰雅族</item>
+        <item>排灣族</item>
+        <item>布農族</item>
+        <item>卑南族</item>
+        <item>排灣族</item>
+        <item>鄒(曹)族</item>
+        <item>魯凱族</item>
+        <item>賽夏族</item>
+        <item>達悟族(雅美族)</item>
+        <item>邵族</item>
+        <item>噶瑪蘭族</item>
+        <item>太魯閣族</item>
+        <item>撒奇萊雅族</item>
+        <item>賽德克族</item>
+
+    </string-array>
+    <string-array name="exp_school_type_array_en">
+        <item>國內公立</item>
+        <item>國內私立</item>
+        <item>境外</item>
+    </string-array>
+    <string-array name="exp_phd_array_en">
+        <item>博士</item>
+        <item>碩士</item>
+        <item>學士</item>
+        <item>專科</item>
+        <item>其他</item>
+    </string-array>
     <string-array name="exp_pftime_array">
         <item>專職</item>
         <item>兼職</item>

@@ -2,9 +2,11 @@ package com.example.linteacher.ui.teacherdata.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import com.example.linteacher.api.RetrofitManager
+import com.example.linteacher.api.pojo.UnitResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileAllResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.pic.ProfilePicResponse
+import com.example.linteacher.api.pojo.teacherdata.profile.update.TeacherUpdateRequest
 import com.example.linteacher.util.Config
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
@@ -14,8 +16,35 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
-class HomeRepository {
+class HomeRepository
+{
 
+    fun updateTeacherProfileData
+                (teacherUpdateRequest: TeacherUpdateRequest,loginId: String,tchYear:String,tchSemester:String)
+    :MutableLiveData<UnitResponse>{
+        val data= MutableLiveData<UnitResponse>()
+        val url=String.format(Config. UPDATE_TEACHER_PROFILE,loginId,tchYear,tchSemester);
+        RetrofitManager.compositeDisposable.add(
+            RetrofitManager.apiServices.updateTeacherProfileData(url,teacherUpdateRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<Unit>(){
+                    override fun onNext(t: Unit) {
+                        data.value= UnitResponse(Config.RESULT_OK)
+                    }
+
+                    override fun onError(e: Throwable) {
+                        data.value= UnitResponse(e.toString())
+                    }
+
+                    override fun onComplete() {
+
+                    }
+
+                })
+        )
+        return data
+    }
     fun getTeacherProfileAllData(loginId:String): MutableLiveData<TeacherProfileAllResponse> {
         val data= MutableLiveData<TeacherProfileAllResponse>()
         val url=String.format(Config.GET_TEACHER_PROFILE,loginId);

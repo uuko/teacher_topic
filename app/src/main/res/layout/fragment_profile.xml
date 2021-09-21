@@ -22,7 +22,7 @@
                 android:layout_height="100dp" />
 
         <TextView
-                android:id="@+id/teacher_name"
+                android:id="@+id/teacher_country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
     </androidx.appcompat.widget.LinearLayoutCompat>

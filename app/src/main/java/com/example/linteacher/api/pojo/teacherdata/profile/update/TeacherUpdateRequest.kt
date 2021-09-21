@@ -1,10 +1,6 @@
-package com.example.linteacher.api.pojo.teacherdata.profile
+package com.example.linteacher.api.pojo.teacherdata.profile.update
 
-import java.io.Serializable
-
-data class TeacherProfileResponse(
-    val eMail: String="",
-    val introduce: Any?=null,
+data class TeacherUpdateRequest(
     val sex: Any?=null,
     val tch106PaySalary: Any?=null,
     val tch107PaySalary: Any?=null,
@@ -14,9 +10,9 @@ data class TeacherProfileResponse(
     val tchBirthday: Any?=null,
     val tchCertificateNumber: Any?=null,
     val tchCertificateRank: Any?=null,
-    val tchCoeDepartment: Any?=null,
+    val tchCoeDepartment: String?=null,
     val tchComplyLaw: Any?=null,
-    val tchCountry: Any?=null,
+    val tchCountry: String?=null,
     val tchDepartment: Any?=null,
     val tchDiploma: Any?=null,
     val tchEstablishment: Any?=null,
@@ -27,21 +23,19 @@ data class TeacherProfileResponse(
     val tchFullTime: Any?=null,
     val tchHireNumber: Any?=null,
     val tchHureDate: Any?=null,
-    val tchIdNumberI: Any?=null,
+    val tchIdNumberI: String?=null,
     val tchIdNumberP: Any?=null,
     val tchIdNumberR: Any?=null,
-    val tchIdType: Any?=null,
+    val tchIdType: String?=null,
     val tchIsAboriginal: Any?=null,
     val tchKind: Any?=null,
     val tchKindDepartment: Any?=null,
     val tchKindIndustry: Any?=null,
-    val tchMainDepartment: Any?=null,
+    val tchMainDepartment: String?=null,
     val tchName: String?=null,
-    val tchNameEN: Any?=null,
-    val tchNumber: Int=0,
-    val tchOriginalUnit: Any?=null,
+    val tchNameEN: String?=null,
+    val tchOriginalUnit: String?=null,
     val tchPartAdmini: Any?=null,
-    val tchPicUrl: String?="",
     val tchReinstateDate: Any?=null,
     val tchResignDate: Any?=null,
     val tchRireRank: Any?=null,
@@ -52,16 +46,12 @@ data class TeacherProfileResponse(
     val tchSchool: Any?=null,
     val tchSchoolType: Any?=null,
     val tchSecUnit: Any?=null,
-    val tchSemester: Int=0,
     val tchSixtyFive: Any?=null,
     val tchState: Any?=null,
     val tchStopDate: Any?=null,
-    val tchTow: Any="",
-    val tchTwoFour: Any="",
-    val tchType: Any="",
-    val tchValidationStatus: Any="",
-    val tchYear: Int=0,
-    val tchmain_licenseNumber: Any=""
-):Serializable{
-
-}
+    val tchTow: Any?=null,
+    val tchTwoFour: Any?=null,
+    val tchType: Any?=null,
+    val tchValidationStatus: Any?=null,
+    val tchmain_licenseNumber: Any?=null
+)

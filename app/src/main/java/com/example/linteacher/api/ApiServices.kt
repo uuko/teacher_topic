@@ -9,6 +9,7 @@ import com.example.linteacher.api.pojo.login.LoginResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.*
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.pic.ProfilePicResponse
+import com.example.linteacher.api.pojo.teacherdata.profile.update.TeacherUpdateRequest
 import com.example.linteacher.util.Config
 import io.reactivex.Observable
 import okhttp3.RequestBody
@@ -22,6 +23,9 @@ interface ApiServices {
     //教師個資
     @GET
     fun getTeacherProfileData(@Url string: String): Observable<TeacherProfileResponse>
+
+    @POST
+    fun updateTeacherProfileData(@Url url: String,@Body requestBody: TeacherUpdateRequest):Observable<Unit>
     //選擇頭像
     @POST
     @JvmSuppressWildcards

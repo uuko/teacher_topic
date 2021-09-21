@@ -4,6 +4,9 @@ object Config {
     const val BASE_URL="http://192.168.1.135:8080/"
     const val GITHUB_URL="https://api.github.com/"
     const val ANNOUNCE_FRAGMENT="ANNOUNCE_FRAGMENT"
+    const val PROFLE_SECOND_FRAGMENT="PROFLE_SECOND_FRAGMENT"
+    const val WORK_INFORM_FRAGMENT="WORK_INFORM_FRAGMENT"
+    const val TEACHER_DETAIL_FRAGMENT="TEACHER_DETAIL_FRAGMENT"
     const val PROFILE_FRAGMENT="PROFILE_FRAGMENT"
     const val TEACHER_FRAGMENT="TEACHER_FRAGMENT"
     const val TEACHER_SECOND_FRAGMENT="TEACHER_SECOND_FRAGMENT"
@@ -30,4 +33,6 @@ object Config {
 
     const val GET_TEACHER_PROFILE="/teacher/%s"
     const val POST_PROFILE_PIC="/teacher/uploadFile?tchNumber=%s"
+    const val UPDATE_TEACHER_PROFILE="/teacher/update/%s/%s/%s"
+
 }
