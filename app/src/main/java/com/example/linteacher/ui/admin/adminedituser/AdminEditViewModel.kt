@@ -5,24 +5,24 @@ import androidx.lifecycle.ViewModel
 import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthorityRequest
 import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthorityResponse
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherAllResponse
-import com.example.linteacher.util.preference.LoginPreferences
+import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 
 class AdminEditViewModel constructor(var repository:AdminEditRepository): ViewModel(){
     val isLoading: MutableLiveData<Boolean> = MutableLiveData(true)
     fun listAllTeacher():MutableLiveData<AdminListTeacherAllResponse>{
         return repository.adminListUsers()
     }
-    fun changeUserAuthority(loginPreferences: LoginPreferences):MutableLiveData<AdminChangeAuthorityResponse>{
-        var grade:String=loginPreferences.getTeacherGrade()
-        if (loginPreferences.getTeacherGrade().equals("B")){
+    fun changeUserAuthority(item: AdminListTeacherResponse):MutableLiveData<AdminChangeAuthorityResponse>{
+        var grade:String=item.grade
+        if (grade.equals("B")){
             grade="C"
         }
-        else if (loginPreferences.getTeacherGrade().equals("C")){
+        else if (grade.equals("C")){
             grade="B"
         }
         val adminChangeAuthorityRequest=
             AdminChangeAuthorityRequest(grade,
-            loginId = loginPreferences.getTeacherId().toInt())
+            loginId = item.loginId)
         return repository.changeUserAuthority(adminChangeAuthorityRequest)
     }
 

@@ -1,6 +1,5 @@
 package com.example.linteacher.ui.admin.adminedituser
 
-import android.R
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -15,7 +14,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.databinding.ActivityAdminEditBinding
@@ -118,7 +116,7 @@ class AdminEditActivity : AppCompatActivity() {
             override fun onHideClick(item: AdminListTeacherResponse, position: Int) {
                 showDialog(item.teacherName, item.teacherName+""+item.isVisible,object :DialogInterface.OnClickListener{
                     override fun onClick(p0: DialogInterface?, p1: Int) {
-                        viewModel.changeUserAuthority(loginPreferences).observe(owner,
+                        viewModel.changeUserAuthority(item).observe(owner,
                             { t ->
                                 if (t.result.equals(Config.RESULT_OK)){
                                     Log.d("isVisble", "onClick: "+item.isVisible)
