@@ -25,7 +25,44 @@ class TeacherDetailFragment : NestedBaseFragment() {
 
     private  var response: TeacherProfileResponse = TeacherProfileResponse()
     override fun getSubmitData():TeacherProfileResponse {
-        TODO("Not yet implemented")
+        val result=response
+
+        if (binding.tchHireNumber.text.isNotEmpty())result.tchHireNumber=binding.tchHireNumber.text.toString()
+        if (binding.tchCertificateNumber.text.isNotEmpty())result.tchCertificateNumber=binding.tchCertificateNumber.text.toString()
+        if (binding.tchmainLicenseNumber.text.isNotEmpty())result.tchmain_licenseNumber=binding.tchmainLicenseNumber.text.toString()
+
+        val tchTypeArray= context?.resources?.getStringArray(R.array.tchType_array_en)
+        if (binding.tchType.selectedItemPosition!=-1){
+            result.tchType= tchTypeArray?.get(binding.tchType.selectedItemPosition).toString()
+        }
+
+        val tchRireRankArray= context?.resources?.getStringArray(R.array.tch_tchcertificaterank_array_en)
+        if (binding.tchRireRank.selectedItemPosition!=-1){
+            result.tchRireRank = tchRireRankArray?.get(binding.tchRireRank.selectedItemPosition).toString()
+        }
+
+        val yesNoArray= context?.resources?.getStringArray(R.array.tch_abor_en)
+        if (binding.tchRireYear.selectedItemPosition!=-1){
+            result.tchRireYear=yesNoArray?.get(binding.tchRireYear.selectedItemPosition).toString()
+        }
+        if (binding.tch107PaySalary.selectedItemPosition!=-1){
+            result.tch107PaySalary=yesNoArray?.get(binding.tch107PaySalary.selectedItemPosition).toString()
+        }
+        if (binding.tchFiestAssistant.selectedItemPosition!=-1){
+            result.tchFiestAssistant=yesNoArray?.get(binding.tchFiestAssistant.selectedItemPosition).toString()
+        }
+        if (binding.tchFullTime.selectedItemPosition!=-1){
+            result.tchFullTime=yesNoArray?.get(binding.tchFullTime.selectedItemPosition).toString()
+        }
+        if (binding.tchComplyLaw.selectedItemPosition!=-1){
+            result.tchComplyLaw=yesNoArray?.get(binding.tchComplyLaw.selectedItemPosition).toString()
+        }
+        val tchCertificateRankRankArray= context?.resources?.getStringArray(R.array.tch_tchcertificaterank_array_en)
+        if (binding.tchCertificateRank.selectedItemPosition!=-1){
+            result.tchCertificateRank = tchCertificateRankRankArray?.get(binding.tchCertificateRank.selectedItemPosition).toString()
+        }
+
+        return result
     }
 
     override fun setResponse(response: TeacherProfileResponse) {
