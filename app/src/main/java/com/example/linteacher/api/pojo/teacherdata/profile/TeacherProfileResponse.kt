@@ -41,7 +41,7 @@ data class TeacherProfileResponse(
     val tchNumber: Int=0,
     val tchOriginalUnit: Any?=null,
     val tchPartAdmini: Any?=null,
-    val tchPicUrl: String?="",
+    var tchPicUrl: String?="",
     val tchReinstateDate: Any?=null,
     val tchResignDate: Any?=null,
     val tchRireRank: Any?=null,

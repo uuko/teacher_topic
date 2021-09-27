@@ -11,12 +11,15 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.transition.Fade
 import androidx.transition.TransitionManager
 import com.example.linteacher.R
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
 import com.example.linteacher.databinding.FragmentProfileSecondBinding
+import com.example.linteacher.util.BaseFragment
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,16 +31,13 @@ private const val ARG_PARAM2 = "param2"
 
 class ProfileSecondFragment : NestedBaseFragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
+    private var param1: TeacherProfileResponse? = null
     private var param2: String? = null
     private  var response: TeacherProfileResponse = TeacherProfileResponse()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
     private var _binding: FragmentProfileSecondBinding? = null
     private val binding get() = _binding!!
@@ -52,6 +52,11 @@ class ProfileSecondFragment : NestedBaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        Log.d("ProfileSecondFragment", "onCreateView: ")
+        arguments?.let {
+            Log.d("ProfileSecondFragment", "onCreateView param1: ")
+            param1 = it.getSerializable(ARG_PARAM1) as? TeacherProfileResponse
+        }
         _binding = FragmentProfileSecondBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -98,15 +103,33 @@ class ProfileSecondFragment : NestedBaseFragment() {
     }
 
     override fun setResponse( response: TeacherProfileResponse ){
+        Log.d("ProfileSecondFragment", "setResponse: ")
         this.response =response
         context?.let { init(it) }
     }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.d("ProfileSecondFragment", "onViewCreated: ")
         super.onViewCreated(view, savedInstanceState)
         val context=view.context
         init(context)
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    Log.d("ProfileSecondFragment", "Fragment back pressed invoked")
+                    // Do custom work here
+//                    childFragmentManager.popBackStack()
+//                    (parentFragment as? BaseFragment)?.onFragmentBackPressed()
+                    // if you want onBackPressed() to be called as normal afterwards
+                    if (isEnabled) {
+                        isEnabled = false
+                        requireActivity().onBackPressed()
+                    }
+                }
+            }
+            )
 
     }
 
@@ -488,13 +511,24 @@ class ProfileSecondFragment : NestedBaseFragment() {
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        Log.d("ProfileSecondFragment", "onPause: ")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("ProfileSecondFragment", "onStop: ")
+    }
+
+
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: TeacherProfileResponse) =
             ProfileSecondFragment().apply {
+                Log.d("ProfileSecondFragment", "newInstance: ")
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putSerializable(ARG_PARAM1, param1)
                 }
             }
     }

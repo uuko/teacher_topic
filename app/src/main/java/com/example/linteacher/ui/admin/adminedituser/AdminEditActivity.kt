@@ -31,19 +31,25 @@ class AdminEditActivity : AppCompatActivity() {
     private val viewModel: AdminEditViewModel by viewModels {
         factory
     }
+    private final val TAG="AdminEditActivity"
     private lateinit var owner: LifecycleOwner
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume: ")
+
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val context=this
-        binding = ActivityAdminEditBinding.inflate(layoutInflater)
-        owner=this
-        setContentView(binding.root)
+        Log.d(TAG, "onCreate: ")
         resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+
                 result ->
+            Log.d(TAG, "registerForActivityResult0000000: "+result.resultCode)
             if (result.resultCode == Activity.RESULT_OK) {
                 // There are no request codes
                 val data: Intent? = result.data
-                Log.d("addTeacher", "resultCode ok : ")
+                Log.d(TAG, "registerForActivityResult: ")
                 viewModel.listAllTeacher().observe(owner,
                     { t ->
                         if (t.list.isNotEmpty()){
@@ -54,6 +60,11 @@ class AdminEditActivity : AppCompatActivity() {
                     })
             }
         }
+        val context=this
+        binding = ActivityAdminEditBinding.inflate(layoutInflater)
+        owner=this
+        setContentView(binding.root)
+
         binding.addBtn.setOnClickListener(
             object :View.OnClickListener{
                 override fun onClick(p0: View?) {
@@ -77,7 +88,10 @@ class AdminEditActivity : AppCompatActivity() {
 
     }
 
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Log.d(TAG, "onBackPressed: ")
+    }
 
     private fun initRecycleView() {
         val layoutManager = LinearLayoutManager(this)
@@ -108,6 +122,7 @@ class AdminEditActivity : AppCompatActivity() {
 
             override fun onMoreClick(name: AdminListTeacherResponse, position: Int) {
                 val bundle=Bundle()
+                Log.d("onMoreClick", "loginId: ${name.loginId}")
                 bundle.putInt("loginId",name.loginId)
                 ActivityNavigator
                     .openActivityWithData(resultLauncher

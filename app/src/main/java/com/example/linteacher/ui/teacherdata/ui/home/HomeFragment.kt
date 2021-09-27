@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -28,6 +29,7 @@ import com.example.linteacher.ui.teacherdata.ui.home.second.NestedBaseFragment
 import com.example.linteacher.ui.teacherdata.ui.home.second.ProfileSecondFragment
 import com.example.linteacher.ui.teacherdata.ui.home.second.TeacherDetailFragment
 import com.example.linteacher.ui.teacherdata.ui.home.second.WorkInformationFragment
+import com.example.linteacher.util.BaseFragment
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.preference.LoginPreferences
 import io.reactivex.Observer
@@ -35,7 +37,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -48,6 +50,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels {
         factory
     }
+    var loginId :Int?=0
     private  var response: TeacherProfileResponse= TeacherProfileResponse()
     private lateinit var loginPreferences:LoginPreferences
     private var profileSecondFragment:ProfileSecondFragment=ProfileSecondFragment()
@@ -62,10 +65,12 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         manager = childFragmentManager
 
+
         transaction = manager.beginTransaction()
 
-        transaction.add(R.id.forFragment, profileSecondFragment, Config.PROFLE_SECOND_FRAGMENT)
-        transaction.commit()
+        showFragment(profileSecondFragment, Config.PROFLE_SECOND_FRAGMENT)
+        hideFragment(workInformationFragment,teacherDetailFragment)
+
         return binding.root
     }
 
@@ -82,7 +87,8 @@ class HomeFragment : Fragment() {
                 sendDataToNestedFragment()
             }
 
-
+        loginId= arguments?.getInt("loginId")
+        Log.d("loginId", "onCreateView: $loginId")
         binding.teacherProfileButton.setOnClickListener {
             showFragment(profileSecondFragment,Config.PROFLE_SECOND_FRAGMENT)
             hideFragment(workInformationFragment,teacherDetailFragment)
@@ -98,10 +104,12 @@ class HomeFragment : Fragment() {
             hideFragment(profileSecondFragment,teacherDetailFragment)
 
         }
-        viewModel.getTeacherProfile(loginPreferences.getTeacherId())
+        viewModel.getTeacherProfile(loginId.toString())
             .observe(viewLifecycleOwner, {
                 if (it.result == Config.RESULT_OK){
                     response=it.data
+                    Log.d("ProfileSecondFragment", "setResponse before : "+it.data)
+                    ProfileSecondFragment.newInstance(response)
                     profileSecondFragment.setResponse(response)
                     if (!it.data.tchPicUrl.isNullOrEmpty()){
                         Glide.with(view.context)
@@ -115,9 +123,11 @@ class HomeFragment : Fragment() {
 
     private fun sendDataToNestedFragment() {
         val currentFragment = childFragmentManager.fragments.last() as NestedBaseFragment
+        val submitData=currentFragment.getSubmitData()
+        submitData.tchPicUrl=response.tchPicUrl
         viewModel.updateTeacherProfile(
-            currentFragment.getSubmitData(),
-            loginPreferences.getTeacherId()
+            submitData,
+            loginId = loginId.toString()
         ).observe(viewLifecycleOwner,{
             if (it.result == Config.RESULT_OK){
                 Toast.makeText(context, "ok", Toast.LENGTH_SHORT).show()
@@ -146,7 +156,8 @@ class HomeFragment : Fragment() {
             if (null != selectedImageUri) {
                 // update the preview image in the layout
 
-                viewModel.uploadFile(getFile(requireView().context,selectedImageUri),loginPreferences.getTeacherId())
+                viewModel.uploadFile(getFile(requireView().context,selectedImageUri)
+                    ,loginId.toString())
                     .observe(viewLifecycleOwner,{
                         if (it.result==Config.RESULT_OK){
                             view?.let { viewR ->
@@ -203,6 +214,27 @@ class HomeFragment : Fragment() {
         if (manager.findFragmentByTag(hfrag_2.tag) != null) transaction.hide(hfrag_2)
 
         transaction.commit()
+    }
+
+    override fun onFragmentBackPressed() {
+        // add code in super class when override
+        Log.d("HomeFragment", "onFragmentBackPressed")
+//        requireActivity()
+//            .onBackPressedDispatcher
+//            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+//                override fun handleOnBackPressed() {
+//                    Log.d("HomeFragment", "Fragment back pressed invoked")
+//                    // Do custom work here
+//                    // if you want onBackPressed() to be called as normal afterwards
+//
+//
+//                    if (isEnabled) {
+//                        isEnabled = false
+//                        requireActivity().onBackPressed()
+//                    }
+//                }
+//            }
+//            )
     }
     override fun onDestroyView() {
         super.onDestroyView()
