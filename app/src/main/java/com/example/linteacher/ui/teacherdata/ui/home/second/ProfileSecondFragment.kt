@@ -58,8 +58,9 @@ class ProfileSecondFragment : NestedBaseFragment() {
 
     override fun getSubmitData():TeacherProfileResponse {
         val result=response
-        result.tchName=binding.cnName.text.toString()
-        result.tchNameEN=binding.enName.text.toString()
+        if (binding.cnName.text.isNotEmpty()) result.tchName=binding.cnName.text.toString()
+        if (binding.enName.text.isNotEmpty())  result.tchNameEN=binding.enName.text.toString()
+
         val sexArray= context?.resources?.getStringArray(R.array.exp_gender_array_en)
         if (binding.tchGenderSpinner.selectedItemPosition!=-1){
             result.sex= sexArray?.get(binding.tchGenderSpinner.selectedItemPosition).toString()
@@ -91,8 +92,8 @@ class ProfileSecondFragment : NestedBaseFragment() {
         if (binding.tchAborSpinner.selectedItemPosition!=-1){
             result.tchIsAboriginal=aborArray?.get(binding.tchAborSpinner.selectedItemPosition).toString()
         }
+        if (binding.tchBirthdaySpinner.text.isNotEmpty())result.tchBirthday=binding.tchBirthdaySpinner.text.toString()
 
-//        result.tchBirthday=binding.teacherBirthday.text.toString()
         return result
     }
 
@@ -118,7 +119,7 @@ class ProfileSecondFragment : NestedBaseFragment() {
         binding.tchDepart.setText(response.tchDepartment.toString())
         binding.teacherName.text="${response.tchName}(${response.tchNameEN})"
         binding.teacherGender.text = "${response.sex}"
-        binding.teacherBirthday.text=response.tchBirthday.toString()
+        binding.teacherBirthday.text=response.tchBirthday.toString().substringBefore("T")
         binding.teacherCountry.text="${response.tchIdNumberI.toString()}:${response.tchCountry}"
         binding.tchNameView.setOnClickListener {
             isTchNameVisible=!isTchNameVisible
@@ -166,64 +167,67 @@ class ProfileSecondFragment : NestedBaseFragment() {
         val tchPersonId=ingText[0]
         var country=ingText[1]
         //
-        val adapter = ArrayAdapter.createFromResource(
-            context,
-            R.array.exp_id_px_array_en,
-            android.R.layout.simple_spinner_item
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.tchPersonSpinner.adapter = adapter
-        binding.tchPersonSpinner.setSelection(getTchPerson(response.tchIdType.toString()), false)
-        //
-        val countryAdapter = ArrayAdapter.createFromResource(
-            context,
-            R.array.tch_country_en,
-            android.R.layout.simple_spinner_item
-        )
-        countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.tchCountrySpinner.adapter = countryAdapter
-        binding.tchCountrySpinner.setSelection(getCountry(response.tchCountry .toString()), false)
-        binding.tchPhdSpinner.onItemSelectedListener = object :AdapterView.OnItemClickListener,
-            AdapterView.OnItemSelectedListener {
-            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                TODO("Not yet implemented")
-            }
 
-            override fun onItemSelected(parent: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
-                country=parent?.getItemAtPosition(pos).toString()
-                binding.tchCountrySpinner.setSelection(pos, false)
-            }
+        if (isTchPersonVisible){
+            binding.tchPersonId.setText(response.tchIdNumberI.toString())
+            val adapter = ArrayAdapter.createFromResource(
+                context,
+                R.array.exp_id_px_array_en,
+                android.R.layout.simple_spinner_item
+            )
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.tchPersonSpinner.adapter = adapter
+            binding.tchPersonSpinner.setSelection(getTchPerson(response.tchIdType.toString()), false)
+            //
+            val countryAdapter = ArrayAdapter.createFromResource(
+                context,
+                R.array.tch_country_en,
+                android.R.layout.simple_spinner_item
+            )
+            countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.tchCountrySpinner.adapter = countryAdapter
+            binding.tchCountrySpinner.setSelection(getCountry(response.tchCountry .toString()), false)
+            binding.tchPhdSpinner.onItemSelectedListener = object :AdapterView.OnItemClickListener,
+                AdapterView.OnItemSelectedListener {
+                override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    TODO("Not yet implemented")
+                }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
+                override fun onItemSelected(parent: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
+                    country=parent?.getItemAtPosition(pos).toString()
+                    binding.tchCountrySpinner.setSelection(pos, false)
+                }
 
-        }
-        //
-        val clanAdapter = ArrayAdapter.createFromResource(
-            context,
-            R.array.tch_clan_en,
-            android.R.layout.simple_spinner_item
-        )
-        clanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        //
-        binding.tchClanSpinner.adapter = clanAdapter
-        binding.tchClanSpinner.setSelection(getClan(response.tchAboriginal .toString()), false)
-        val aborAdapter = ArrayAdapter.createFromResource(
-            context,
-            R.array.tch_abor_en,
-            android.R.layout.simple_spinner_item
-        )
-        aborAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.tchAborSpinner.adapter = adapter
-        binding.tchAborSpinner.setSelection(getAbor(response.tchIsAboriginal .toString()), false)
-        if (isTchPhoneVisible){
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+
+            }
+            //
+            val clanAdapter = ArrayAdapter.createFromResource(
+                context,
+                R.array.tch_clan_en,
+                android.R.layout.simple_spinner_item
+            )
+            clanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            //
+            binding.tchClanSpinner.adapter = clanAdapter
+            binding.tchClanSpinner.setSelection(getClan(response.tchAboriginal .toString()), false)
+            val aborAdapter = ArrayAdapter.createFromResource(
+                context,
+                R.array.tch_abor_en,
+                android.R.layout.simple_spinner_item
+            )
+            aborAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.tchAborSpinner.adapter = adapter
+            binding.tchAborSpinner.setSelection(getAbor(response.tchIsAboriginal .toString()), false)
             binding.teacherCountry.text= " $tchPersonId:${country}"
         }
         else{
-
+            val array= context.resources?.getStringArray(R.array.tch_country_en)
+            Log.d("TAG", "tchCountrySpinner: "+binding.tchCountrySpinner.selectedItemPosition)
             val responseText=" $tchPersonId:${country}"
-            val text=" $tchPersonId:${country}"
+            val text=" ${binding.tchPersonId.text.toString()}:${ array?.get(binding.tchCountrySpinner.selectedItemPosition)}"
             if (text == responseText)binding.teacherCountry.text=responseText
             else binding.teacherCountry.text=text
         }
@@ -270,19 +274,23 @@ class ProfileSecondFragment : NestedBaseFragment() {
     }
 
     private fun setTchBirtday(context: Context) {
-        if (isTchPhoneVisible){
-            datePicker(binding.tchBirthdaySpinner)
-            binding.tchBirthdaySpinner.setText(response.tchBirthday.toString())
+        if (isTchBirthdayVisible){
 
+            binding.teacherBirthday.text = response.tchBirthday.toString().substringBefore("T")
+            datePicker(binding.tchBirthdaySpinner)
+            Log.d("aaaaaaa", "setTchBirtday111: "+response.tchBirthday.toString().substringBefore("T"))
 
         }
         else{
+
+
             binding.teacherBirthday.text=response.tchBirthday.toString()
 
             val text = "${binding.tchBirthdaySpinner.text}"
             val responseText = "${response.tchBirthday}"
-            if (text == responseText)binding.tchBirthdaySpinner.setText(responseText)
-            else binding.tchBirthdaySpinner.setText(text)
+            Log.d("aaaaaaa", "setTchBirtday2222: $text + : $responseText")
+            if (text == responseText) binding.teacherBirthday.text = responseText
+            else binding.teacherBirthday.text = text
         }
     }
 
@@ -458,7 +466,7 @@ class ProfileSecondFragment : NestedBaseFragment() {
                 val calendar = Calendar.getInstance()
                 calendar[year, month] = day
 
-                val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")
+                val format = SimpleDateFormat("yyyy-MM-dd")
                 val strDate = format.format(calendar.time)
                 (v as EditText).setText(strDate)
             }, year, month, day
