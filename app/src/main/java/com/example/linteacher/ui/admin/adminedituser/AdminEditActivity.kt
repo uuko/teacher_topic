@@ -1,5 +1,6 @@
 package com.example.linteacher.ui.admin.adminedituser
 
+import android.R
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -14,6 +15,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.databinding.ActivityAdminEditBinding
 import com.example.linteacher.ui.admin.adminaddteacher.AddTeacherActivity
@@ -77,6 +80,18 @@ class AdminEditActivity : AppCompatActivity() {
             }
         )
         initRecycleView()
+        listAllTeacher()
+        binding.refreshLayout.setOnRefreshListener(OnRefreshListener {
+            binding.refreshLayout.isRefreshing = false
+            listAllTeacher()
+        })
+
+
+
+
+    }
+
+    private fun listAllTeacher() {
         viewModel.listAllTeacher().observe(this,
             { t ->
                 if (t.list.isNotEmpty()){
@@ -85,7 +100,6 @@ class AdminEditActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "listAllTeacher Verified !"+t.error, Toast.LENGTH_SHORT).show()
                 }
             })
-
     }
 
     override fun onBackPressed() {
