@@ -113,6 +113,7 @@ class HomeFragment : BaseFragment() {
 
                     currrentFragment.setResponse(response)
                     if (!it.data.tchPicUrl.isNullOrEmpty()){
+                        Log.d("tchPicUrl", "Glide: "+it.data.tchPicUrl)
                         Glide.with(view.context)
                             .load( GlideUrl(it.data.tchPicUrl))
                             .apply(RequestOptions.bitmapTransform( CircleCrop()))
@@ -124,12 +125,16 @@ class HomeFragment : BaseFragment() {
 
     private fun sendDataToNestedFragment() {
         val currentFragment = childFragmentManager.fragments.last() as NestedBaseFragment
-        val submitData=setDetailData(profileSecondFragment.getSubmitData(),teacherDetailFragment.getSubmitData())
-        val detailData=teacherDetailFragment.getSubmitData()
+        var submitData=currentFragment.getSubmitData()
+        if (teacherDetailFragment.isAdded){
+             submitData=setDetailData(profileSecondFragment.getSubmitData(),teacherDetailFragment.getSubmitData())
+//            val detailData=teacherDetailFragment.getSubmitData()
+        }
 
-        workInformationFragment
-        teacherDetailFragment
+
+
 //        val submitData=currentFragment.getSubmitData()
+        Log.d("tchPicUrl", "sendDataToNestedFragment: "+response.tchPicUrl)
         submitData.tchPicUrl=response.tchPicUrl
         viewModel.updateTeacherProfile(
             submitData,
@@ -185,6 +190,7 @@ class HomeFragment : BaseFragment() {
                     .observe(viewLifecycleOwner,{
                         if (it.result==Config.RESULT_OK){
                             view?.let { viewR ->
+                                response.tchPicUrl=it.picUrl
                                 Glide.with(viewR.context)
                                     .load( GlideUrl(it.picUrl))
                                     .apply(RequestOptions.bitmapTransform( CircleCrop()))

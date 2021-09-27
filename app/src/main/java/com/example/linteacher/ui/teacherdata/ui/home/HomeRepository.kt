@@ -1,5 +1,6 @@
 package com.example.linteacher.ui.teacherdata.ui.home
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.linteacher.api.RetrofitManager
 import com.example.linteacher.api.pojo.UnitResponse
@@ -115,7 +116,9 @@ class HomeRepository
         val requestBody
              = file.asRequestBody("image/*".toMediaTypeOrNull())
         val partMap=HashMap<String,RequestBody>()
-        partMap["file\"; filename=\""+file.name+"\""] = requestBody
+        Log.d("uploadFile", "uploadFile: ${file.name}")
+        Log.d("uploadFile", "@@@: "+"file\"; filename=\"${file.name}")
+        partMap["file\"; filename=\"${file.name}"] = requestBody
         val url=String.format(Config.POST_PROFILE_PIC,loginId);
         RetrofitManager.compositeDisposable.add(
             RetrofitManager.apiServices.uploadPic(url,partMap)
@@ -123,6 +126,7 @@ class HomeRepository
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<ProfilePicResponse>(){
                     override fun onNext(t: ProfilePicResponse) {
+                        Log.d("uploadFile", "onNext: ${t.picUrl}")
                         data.value= ProfilePicResponse(t.picUrl,Config.RESULT_OK)
                     }
 
