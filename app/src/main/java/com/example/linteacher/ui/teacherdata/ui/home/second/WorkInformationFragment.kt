@@ -27,7 +27,7 @@ class WorkInformationFragment : NestedBaseFragment() {
     }
 
     override fun getSubmitData():TeacherProfileResponse {
-        TODO("Not yet implemented")
+       return TeacherProfileResponse()
     }
 
     override fun setResponse(response: TeacherProfileResponse) {

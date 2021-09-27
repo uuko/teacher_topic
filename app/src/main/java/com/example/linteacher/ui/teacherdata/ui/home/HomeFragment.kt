@@ -124,7 +124,12 @@ class HomeFragment : BaseFragment() {
 
     private fun sendDataToNestedFragment() {
         val currentFragment = childFragmentManager.fragments.last() as NestedBaseFragment
-        val submitData=currentFragment.getSubmitData()
+        val submitData=setDetailData(profileSecondFragment.getSubmitData(),teacherDetailFragment.getSubmitData())
+        val detailData=teacherDetailFragment.getSubmitData()
+
+        workInformationFragment
+        teacherDetailFragment
+//        val submitData=currentFragment.getSubmitData()
         submitData.tchPicUrl=response.tchPicUrl
         viewModel.updateTeacherProfile(
             submitData,
@@ -134,6 +139,24 @@ class HomeFragment : BaseFragment() {
                 Toast.makeText(context, "ok", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun setDetailData(submitData: TeacherProfileResponse, detailData: TeacherProfileResponse): TeacherProfileResponse {
+        submitData.tchType=detailData.tchType
+        submitData.tchRireYear =detailData.tchRireYear
+        submitData.tchRireRank =detailData.tchRireRank
+        submitData.tchHireNumber =detailData.tchHireNumber
+        submitData.tchCertificateRank =detailData.tchCertificateRank
+        submitData.tchCertificateNumber=detailData.tchCertificateNumber
+        submitData.tchmain_licenseNumber =detailData.tchmain_licenseNumber
+        submitData.tchEvaNumber =detailData.tchEvaNumber
+        submitData.tch107PaySalary =detailData.tch107PaySalary
+        submitData.tchFiestAssistant=detailData.tchFiestAssistant
+        submitData.tchFullTime =detailData.tchFullTime
+        submitData.tchComplyLaw  =detailData.tchComplyLaw
+        submitData.tchTwoFour  =detailData.tchTwoFour
+
+        return submitData
     }
 
     fun imageChooser() {
