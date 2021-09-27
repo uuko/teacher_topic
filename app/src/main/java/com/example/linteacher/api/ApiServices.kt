@@ -23,7 +23,9 @@ interface ApiServices {
     //教師個資
     @GET
     fun getTeacherProfileData(@Url string: String): Observable<TeacherProfileResponse>
-
+    @POST
+    fun postTeacherProfileData(@Url string: String
+    ,@Body requestBody: TeacherProfileResponse): Observable<Unit>
     @POST
     fun updateTeacherProfileData(@Url url: String,@Body requestBody: TeacherUpdateRequest):Observable<Unit>
     //選擇頭像

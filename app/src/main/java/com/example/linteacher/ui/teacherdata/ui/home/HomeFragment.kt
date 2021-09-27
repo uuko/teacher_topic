@@ -1,6 +1,5 @@
 package com.example.linteacher.ui.teacherdata.ui.home
 
-import android.R.attr.fragment
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -10,6 +9,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -20,13 +21,16 @@ import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.linteacher.R
+import com.example.linteacher.api.pojo.UnitResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
 import com.example.linteacher.databinding.FragmentHomeBinding
+import com.example.linteacher.ui.teacherdata.ui.home.second.NestedBaseFragment
 import com.example.linteacher.ui.teacherdata.ui.home.second.ProfileSecondFragment
 import com.example.linteacher.ui.teacherdata.ui.home.second.TeacherDetailFragment
 import com.example.linteacher.ui.teacherdata.ui.home.second.WorkInformationFragment
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.preference.LoginPreferences
+import io.reactivex.Observer
 import java.io.File
 import java.io.FileOutputStream
 
@@ -46,7 +50,7 @@ class HomeFragment : Fragment() {
     }
     private  var response: TeacherProfileResponse= TeacherProfileResponse()
     private lateinit var loginPreferences:LoginPreferences
-    private lateinit var profileSecondFragment:ProfileSecondFragment
+    private var profileSecondFragment:ProfileSecondFragment=ProfileSecondFragment()
     private var workInformationFragment=WorkInformationFragment()
     private var teacherDetailFragment=TeacherDetailFragment()
     override fun onCreateView(
@@ -57,11 +61,11 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         manager = childFragmentManager
-        transaction = manager.beginTransaction()
-        profileSecondFragment= ProfileSecondFragment()
-        hideFragment(workInformationFragment,teacherDetailFragment)
-        showFragment(profileSecondFragment,Config.PROFLE_SECOND_FRAGMENT)
 
+        transaction = manager.beginTransaction()
+
+        transaction.add(R.id.forFragment, profileSecondFragment, Config.PROFLE_SECOND_FRAGMENT)
+        transaction.commit()
         return binding.root
     }
 
@@ -72,23 +76,33 @@ class HomeFragment : Fragment() {
         binding.imagePickButton.setOnClickListener {
             imageChooser()
         }
+        view.findViewById<Button>(R.id.submit_btn)
+            .setOnClickListener {
+                Log.d("submit_btn", "onViewCreated: ")
+                sendDataToNestedFragment()
+            }
+
 
         binding.teacherProfileButton.setOnClickListener {
-            hideFragment(workInformationFragment,teacherDetailFragment)
             showFragment(profileSecondFragment,Config.PROFLE_SECOND_FRAGMENT)
+            hideFragment(workInformationFragment,teacherDetailFragment)
+
         }
         binding.teacherDetailButton.setOnClickListener {
-            hideFragment(profileSecondFragment,workInformationFragment)
             showFragment(teacherDetailFragment,Config.TEACHER_DETAIL_FRAGMENT)
+            hideFragment(profileSecondFragment,workInformationFragment)
+
         }
         binding.workInformationWork.setOnClickListener {
-            hideFragment(profileSecondFragment,teacherDetailFragment)
             showFragment(workInformationFragment,Config.WORK_INFORM_FRAGMENT)
+            hideFragment(profileSecondFragment,teacherDetailFragment)
+
         }
         viewModel.getTeacherProfile(loginPreferences.getTeacherId())
             .observe(viewLifecycleOwner, {
                 if (it.result == Config.RESULT_OK){
                     response=it.data
+                    profileSecondFragment.setResponse(response)
                     if (!it.data.tchPicUrl.isNullOrEmpty()){
                         Glide.with(view.context)
                             .load( GlideUrl(it.data.tchPicUrl))
@@ -97,6 +111,18 @@ class HomeFragment : Fragment() {
                     }
                 }
             })
+    }
+
+    private fun sendDataToNestedFragment() {
+        val currentFragment = childFragmentManager.fragments.last() as NestedBaseFragment
+        viewModel.updateTeacherProfile(
+            currentFragment.getSubmitData(),
+            loginPreferences.getTeacherId()
+        ).observe(viewLifecycleOwner,{
+            if (it.result == Config.RESULT_OK){
+                Toast.makeText(context, "ok", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     fun imageChooser() {
@@ -163,12 +189,6 @@ class HomeFragment : Fragment() {
     fun showFragment(frag: Fragment, tag: String) {
         transaction = manager.beginTransaction()
 
-        if (!response.tchName.isNullOrEmpty()){
-            val bundle = Bundle()
-            bundle.putSerializable(tag,response )
-            frag.arguments = bundle
-        }
-
         if (manager.findFragmentByTag(tag) == null) {
             Log.d("showFragment", "showFragment: $tag")
             transaction.add(R.id.forFragment, frag, tag)
@@ -178,9 +198,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun hideFragment(frag: Fragment, frag2: Fragment) {
-        if (manager.findFragmentByTag(frag.tag) != null) transaction.hide(frag)
-        if (manager.findFragmentByTag(frag2.tag) != null) transaction.hide(frag2)
+    fun hideFragment(hfrag_1: Fragment, hfrag_2: Fragment) {
+        if (manager.findFragmentByTag(hfrag_1.tag) != null) transaction.hide(hfrag_1)
+        if (manager.findFragmentByTag(hfrag_2.tag) != null) transaction.hide(hfrag_2)
 
         transaction.commit()
     }

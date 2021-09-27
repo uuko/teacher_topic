@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,6 @@ import androidx.transition.TransitionManager
 import com.example.linteacher.R
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
 import com.example.linteacher.databinding.FragmentProfileSecondBinding
-import com.example.linteacher.util.Config
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,11 +26,12 @@ import java.util.*
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class ProfileSecondFragment : Fragment() {
+class ProfileSecondFragment : NestedBaseFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private  var response: TeacherProfileResponse = TeacherProfileResponse()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -52,23 +53,73 @@ class ProfileSecondFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentProfileSecondBinding.inflate(inflater, container, false)
-        response =
-            arguments?.getSerializable(Config.PROFLE_SECOND_FRAGMENT) as TeacherProfileResponse;
         return binding.root
+    }
+
+    override fun getSubmitData():TeacherProfileResponse {
+        val result=response
+        result.tchName=binding.cnName.text.toString()
+        result.tchNameEN=binding.enName.text.toString()
+        val sexArray= context?.resources?.getStringArray(R.array.exp_gender_array_en)
+        if (binding.tchGenderSpinner.selectedItemPosition!=-1){
+            result.sex= sexArray?.get(binding.tchGenderSpinner.selectedItemPosition).toString()
+        }
+
+        val schoolArray= context?.resources?.getStringArray(R.array.exp_school_type_array_en)
+        if (binding.tchEducationSpinner.selectedItemPosition!=-1){
+            result.tchSchoolType = schoolArray?.get(binding.tchEducationSpinner.selectedItemPosition).toString()
+        }
+
+        result.tchSchool=binding.tchSchool.text.toString()
+        val phdArray= context?.resources?.getStringArray(R.array.exp_phd_array_en)
+        if (binding.tchPhdSpinner.selectedItemPosition!=-1){
+            result.tchDiploma=phdArray?.get(binding.tchPhdSpinner.selectedItemPosition).toString()
+        }
+
+        result.tchDepartment=binding.tchDepart.text.toString()
+        result.tchExpertise=binding.tchExpert.text.toString()
+        result.tchIdNumberI=binding.tchPersonId.text.toString()
+        val countryArray= context?.resources?.getStringArray(R.array.tch_country_en)
+        if (binding.tchCountrySpinner.selectedItemPosition!=-1){
+            result.tchCountry=countryArray?.get(binding.tchCountrySpinner.selectedItemPosition).toString()
+        }
+        val aborArray= context?.resources?.getStringArray(R.array.tch_abor_en)
+        val clanArray= context?.resources?.getStringArray(R.array.tch_clan_en)
+        if (binding.tchClanSpinner.selectedItemPosition!=-1){
+            result.tchAboriginal=clanArray?.get(binding.tchClanSpinner.selectedItemPosition).toString()
+        }
+        if (binding.tchAborSpinner.selectedItemPosition!=-1){
+            result.tchIsAboriginal=aborArray?.get(binding.tchAborSpinner.selectedItemPosition).toString()
+        }
+
+//        result.tchBirthday=binding.teacherBirthday.text.toString()
+        return result
+    }
+
+    override fun setResponse( response: TeacherProfileResponse ){
+        this.response =response
+        context?.let { init(it) }
     }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val context=view.context
+        init(context)
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun init(context: Context) {
+
         binding.teacherEducation.text= "${response.tchSchool}-${response.tchDepartment}*${response.tchDiploma}"
         binding.tchExpert.setText(response.tchExpertise.toString() )
         binding.tchSchool.setText(response.tchSchool .toString())
         binding.tchDepart.setText(response.tchDepartment.toString())
         binding.teacherName.text="${response.tchName}(${response.tchNameEN})"
-        binding.teacherGender.text = "(${response.sex})"
+        binding.teacherGender.text = "${response.sex}"
         binding.teacherBirthday.text=response.tchBirthday.toString()
-        binding.teacherCountry.text=response.tchIdNumberI.toString()+"國籍:${response.tchCountry}"
+        binding.teacherCountry.text="${response.tchIdNumberI.toString()}:${response.tchCountry}"
         binding.tchNameView.setOnClickListener {
             isTchNameVisible=!isTchNameVisible
             toggleView(R.id.tch_inside_name_view,isTchNameVisible,binding.tchInsideNameView)
@@ -107,7 +158,6 @@ class ProfileSecondFragment : Fragment() {
             setTchPerson(context)
 
         }
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -115,7 +165,7 @@ class ProfileSecondFragment : Fragment() {
         val ingText=binding.teacherCountry.text.split(":")
         val tchPersonId=ingText[0]
         var country=ingText[1]
-
+        //
         val adapter = ArrayAdapter.createFromResource(
             context,
             R.array.exp_id_px_array_en,
@@ -124,7 +174,7 @@ class ProfileSecondFragment : Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.tchPersonSpinner.adapter = adapter
         binding.tchPersonSpinner.setSelection(getTchPerson(response.tchIdType.toString()), false)
-//
+        //
         val countryAdapter = ArrayAdapter.createFromResource(
             context,
             R.array.tch_country_en,
@@ -141,6 +191,7 @@ class ProfileSecondFragment : Fragment() {
 
             override fun onItemSelected(parent: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
                 country=parent?.getItemAtPosition(pos).toString()
+                binding.tchCountrySpinner.setSelection(pos, false)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -167,14 +218,12 @@ class ProfileSecondFragment : Fragment() {
         binding.tchAborSpinner.adapter = adapter
         binding.tchAborSpinner.setSelection(getAbor(response.tchIsAboriginal .toString()), false)
         if (isTchPhoneVisible){
-
-
-            binding.teacherCountry.text= "{ $tchPersonId }國籍:${country}"
+            binding.teacherCountry.text= " $tchPersonId:${country}"
         }
         else{
-            val responseText="{ $tchPersonId }國籍:${country}"
-            val array= context?.resources?.getStringArray(R.array.tch_country_en)
-            val text= binding.tchPersonId.text.toString()+"國籍:${country}"
+
+            val responseText=" $tchPersonId:${country}"
+            val text=" $tchPersonId:${country}"
             if (text == responseText)binding.teacherCountry.text=responseText
             else binding.teacherCountry.text=text
         }
@@ -239,7 +288,7 @@ class ProfileSecondFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setTchGender(context: Context) {
-        if(!isTchGenderVisible) {
+        if(isTchGenderVisible) {
             val adapter = ArrayAdapter.createFromResource(
                 context,
                 R.array.exp_gender_array_en,
@@ -247,6 +296,7 @@ class ProfileSecondFragment : Fragment() {
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.tchGenderSpinner.adapter = adapter
+            Log.d("setTchGender", "setTchGender: ${getGender(binding.teacherGender.text.toString())}")
             binding.tchGenderSpinner.setSelection(getGender(binding.teacherGender.text.toString()), false)
             binding.tchGenderSpinner.onItemSelectedListener = object :AdapterView.OnItemClickListener,
                 AdapterView.OnItemSelectedListener {
@@ -267,7 +317,8 @@ class ProfileSecondFragment : Fragment() {
 
         } else{
            val sex= getGender(binding.teacherGender.text.toString())
-            binding.teacherGender.text = "(${sex})"
+            val array= context?.resources?.getStringArray(R.array.exp_gender_array_en)
+            binding.teacherGender.text = "${array?.get(sex)}"
         }
     }
 
@@ -295,66 +346,69 @@ class ProfileSecondFragment : Fragment() {
         val schoolStr=ingText[0]
         val depart=ingText2[0]
         var phdStr=ingText2[1]
-        val adapter = ArrayAdapter.createFromResource(
-            context,
-            R.array.exp_school_type_array_en,
-            android.R.layout.simple_spinner_item
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.tchEducationSpinner.setAdapter(adapter)
-        binding.tchEducationSpinner.setSelection(getEduacation(response.tchSchoolType.toString()), false)
-        var eduStr=""
-        binding.tchEducationSpinner.onItemSelectedListener = object :AdapterView.OnItemClickListener,
-            AdapterView.OnItemSelectedListener {
-            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onItemSelected(parent: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
-                eduStr=parent?.getItemAtPosition(pos).toString()
-                binding.tchEducationSpinner.setSelection(pos,false)
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-
-        }
-        val phdAdapter = ArrayAdapter.createFromResource(
-            context,
-            R.array.exp_phd_array_en,
-            android.R.layout.simple_spinner_item
-        )
-        phdAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.tchPhdSpinner.adapter = phdAdapter
-        binding.tchPhdSpinner.setSelection(getPhd(response.tchDiploma.toString() ), false)
-
-        binding.tchPhdSpinner.onItemSelectedListener = object :AdapterView.OnItemClickListener,
-            AdapterView.OnItemSelectedListener {
-            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onItemSelected(parent: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
-                phdStr=parent?.getItemAtPosition(pos).toString()
-                binding.tchPhdSpinner.setSelection(pos,false)
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-
-        }
 
         if (isTchEduVisible){
 
+            val adapter = ArrayAdapter.createFromResource(
+                context,
+                R.array.exp_school_type_array_en,
+                android.R.layout.simple_spinner_item
+            )
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.tchEducationSpinner.setAdapter(adapter)
+            binding.tchEducationSpinner.setSelection(getEduacation(response.tchSchoolType.toString()), false)
+            var eduStr=""
+            binding.tchEducationSpinner.onItemSelectedListener = object :AdapterView.OnItemClickListener,
+                AdapterView.OnItemSelectedListener {
+                override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onItemSelected(parent: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
+                    eduStr=parent?.getItemAtPosition(pos).toString()
+                    binding.tchEducationSpinner.setSelection(pos,false)
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+
+            }
+            val phdAdapter = ArrayAdapter.createFromResource(
+                context,
+                R.array.exp_phd_array_en,
+                android.R.layout.simple_spinner_item
+            )
+            phdAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.tchPhdSpinner.adapter = phdAdapter
+            Log.d("tchPhdSpinner", "onItemSelected111111:   : $phdStr"+getPhd(response.tchDiploma.toString()))
+            binding.tchPhdSpinner.setSelection(getPhd(response.tchDiploma.toString() ), false)
+
+            binding.tchPhdSpinner.onItemSelectedListener = object :AdapterView.OnItemClickListener,
+                AdapterView.OnItemSelectedListener {
+                override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onItemSelected(parent: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
+                    phdStr=parent?.getItemAtPosition(pos).toString()
+                    Log.d("tchPhdSpinner", "onItemSelected: $pos : $phdStr")
+                    binding.tchPhdSpinner.setSelection(pos,false)
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+
+            }
 
             binding.teacherEducation.text="$schoolStr-$depart*${ phdStr}"
 
         }
         else{
             val responseText="${schoolStr}-${depart}*${phdStr}"
-            val array= context?.resources?.getStringArray(R.array.exp_phd_array_en)
+            val array= context.resources?.getStringArray(R.array.exp_phd_array_en)
+            Log.d("TAG", "setTchEduCation: "+binding.tchPhdSpinner.selectedItemPosition)
             val text= "${binding.tchSchool.text.toString()}-${binding.tchDepart.text.toString()}*${
                 array?.get(binding.tchPhdSpinner.selectedItemPosition)
             }"

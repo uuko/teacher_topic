@@ -6,17 +6,17 @@
         android:layout_height="match_parent"
         android:background="@color/purple_700"
         tools:context=".ui.teacherdata.ui.home.HomeFragment">
+
     <ImageView
             android:id="@+id/image_pick_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="60dp"
+            android:src="@drawable/ic_launcher_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_launcher_background"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
     <Button
             android:id="@+id/teacher_profile_button"
@@ -49,9 +49,8 @@
             android:text="任職資訊"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline5" />
-<!---->
-    <LinearLayout
-            android:id="@+id/forFragment"
+    <!---->
+    <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="20dp"
@@ -59,14 +58,24 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/work_information_work" >
-
-        <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/work_information_work">
+        <LinearLayout
+                android:id="@+id/forFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
-    </LinearLayout>
+                android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+
+
+    <Button
+            android:id="@+id/submit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

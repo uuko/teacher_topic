@@ -15,12 +15,15 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
+import java.util.*
+import kotlin.collections.HashMap
 
 class HomeRepository
 {
 
     fun updateTeacherProfileData
-                (teacherUpdateRequest: TeacherUpdateRequest,loginId: String,tchYear:String,tchSemester:String)
+                (teacherUpdateRequest: TeacherUpdateRequest
+                 ,loginId: String,tchYear:String,tchSemester:String)
     :MutableLiveData<UnitResponse>{
         val data= MutableLiveData<UnitResponse>()
         val url=String.format(Config. UPDATE_TEACHER_PROFILE,loginId,tchYear,tchSemester);
@@ -59,6 +62,43 @@ class HomeRepository
 
                     override fun onError(e: Throwable) {
                         data.value= TeacherProfileAllResponse(TeacherProfileResponse(),e.toString())
+                    }
+
+                    override fun onComplete() {
+
+                    }
+
+                })
+        )
+        return data
+    }
+
+    fun postTeacherProfileData(request: TeacherProfileResponse
+        ,loginId: String):MutableLiveData<UnitResponse>{
+        val data= MutableLiveData<UnitResponse>()
+//        /teacher/{tchNumber}/{tchYear}/{tchSemester}
+        val year: Int = Calendar.getInstance().get(Calendar.YEAR) - 1911
+        val month: Int = Calendar.getInstance().get(Calendar.MONTH)
+        var semester = 0
+        semester = if (month < 8 && month > 1) {
+            1
+        } else {
+            2
+        }
+        val url=String.format(
+            Config.UPDATE_BY_THREE_DATE_TEACHER_PROFILE
+            ,loginId,year,semester);
+        RetrofitManager.compositeDisposable.add(
+            RetrofitManager.apiServices.postTeacherProfileData(url,request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<Unit>(){
+                    override fun onNext(t: Unit) {
+                        data.value= UnitResponse(Config.RESULT_OK)
+                    }
+
+                    override fun onError(e: Throwable) {
+                        data.value= UnitResponse(e.toString())
                     }
 
                     override fun onComplete() {

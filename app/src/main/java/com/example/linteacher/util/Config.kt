@@ -32,6 +32,7 @@ object Config {
     const val GET_EXP_BY_EXP_NUMBER="/teacher/one_dash_two/expNumber/%s"
 
     const val GET_TEACHER_PROFILE="/teacher/%s"
+    const val UPDATE_BY_THREE_DATE_TEACHER_PROFILE="/teacher/%s/%s/%s"
     const val POST_PROFILE_PIC="/teacher/uploadFile?tchNumber=%s"
     const val UPDATE_TEACHER_PROFILE="/teacher/update/%s/%s/%s"
 
