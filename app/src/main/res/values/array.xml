@@ -57,6 +57,24 @@
         <item>國內私立</item>
         <item>境外</item>
     </string-array>
+
+    <string-array name="tchType_array_en">
+        <item>教授</item>
+        <item>副教授</item>
+        <item>助理教授</item>
+        <item>講師</item>
+        <item>助教</item>
+        <item>無</item>
+    </string-array>
+    <string-array name="tch_tchcertificaterank_array_en">
+        <item>教授</item>
+        <item>副教授</item>
+        <item>助理教授</item>
+        <item>講師</item>
+        <item>助教</item>
+        <item>無</item>
+    </string-array>
+
     <string-array name="exp_phd_array_en">
         <item>博士</item>
         <item>碩士</item>

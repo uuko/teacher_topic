@@ -51,6 +51,7 @@ class HomeFragment : BaseFragment() {
         factory
     }
     var loginId :Int?=0
+    lateinit var currrentFragment:NestedBaseFragment
     private  var response: TeacherProfileResponse= TeacherProfileResponse()
     private lateinit var loginPreferences:LoginPreferences
     private var profileSecondFragment:ProfileSecondFragment=ProfileSecondFragment()
@@ -108,9 +109,9 @@ class HomeFragment : BaseFragment() {
             .observe(viewLifecycleOwner, {
                 if (it.result == Config.RESULT_OK){
                     response=it.data
-                    Log.d("ProfileSecondFragment", "setResponse before : "+it.data)
-                    ProfileSecondFragment.newInstance(response)
-                    profileSecondFragment.setResponse(response)
+                    Log.d("HomeFragment", "setResponse before : "+it.data)
+
+                    currrentFragment.setResponse(response)
                     if (!it.data.tchPicUrl.isNullOrEmpty()){
                         Glide.with(view.context)
                             .load( GlideUrl(it.data.tchPicUrl))
@@ -199,7 +200,8 @@ class HomeFragment : BaseFragment() {
 
     fun showFragment(frag: Fragment, tag: String) {
         transaction = manager.beginTransaction()
-
+        currrentFragment= frag as NestedBaseFragment
+        currrentFragment.setResponse(response)
         if (manager.findFragmentByTag(tag) == null) {
             Log.d("showFragment", "showFragment: $tag")
             transaction.add(R.id.forFragment, frag, tag)

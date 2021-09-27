@@ -7,15 +7,31 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.linteacher.R
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
+import com.example.linteacher.databinding.FragmentTeacherDetailBinding
+import com.example.linteacher.databinding.FragmentWorkInformationBinding
 
 
 class WorkInformationFragment : NestedBaseFragment() {
+
+    private var _binding: FragmentWorkInformationBinding? = null
+    private val binding get() = _binding!!
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        _binding = FragmentWorkInformationBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun getSubmitData():TeacherProfileResponse {
         TODO("Not yet implemented")
     }
 
     override fun setResponse(response: TeacherProfileResponse) {
-        TODO("Not yet implemented")
+
     }
 
 
@@ -23,14 +39,4 @@ class WorkInformationFragment : NestedBaseFragment() {
         super.onCreate(savedInstanceState)
 
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_work_information, container, false)
-    }
-
-
 }

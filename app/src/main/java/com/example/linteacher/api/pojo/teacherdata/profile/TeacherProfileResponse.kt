@@ -56,12 +56,12 @@ data class TeacherProfileResponse(
     val tchSixtyFive: Any?=null,
     val tchState: Any?=null,
     val tchStopDate: Any?=null,
-    val tchTow: Any="",
-    val tchTwoFour: Any="",
-    val tchType: Any="",
-    val tchValidationStatus: Any="",
+    val tchTow: Any?="",
+    val tchTwoFour: Any?="",
+    val tchType: Any?="",
+    val tchValidationStatus: Any?="",
     val tchYear: Int=0,
-    val tchmain_licenseNumber: Any=""
+    val tchmain_licenseNumber: Any?=""
 ):Serializable{
 
 }
