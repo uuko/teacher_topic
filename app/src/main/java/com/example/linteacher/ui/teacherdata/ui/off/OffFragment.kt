@@ -17,6 +17,7 @@ import com.example.linteacher.api.pojo.teacherdata.off.ui.OffAddData
 import com.example.linteacher.api.pojo.teacherdata.off.ui.OffBaseData
 import com.example.linteacher.api.pojo.teacherdata.off.ui.OffEditData
 import com.example.linteacher.api.pojo.teacherdata.off.ui.OffOriginData
+import com.example.linteacher.databinding.FragmentEventBinding
 import com.example.linteacher.databinding.FragmentSlideshowBinding
 import com.example.linteacher.ui.teacherdata.ui.slideshow.*
 import com.example.linteacher.util.BaseFragment
@@ -35,7 +36,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class OffFragment : BaseFragment(), OffInterface.View {
     private lateinit var offCampusViewModel: OffCampusViewModel
-    private var _binding: FragmentSlideshowBinding? = null
+    private var _binding: FragmentEventBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -53,7 +54,7 @@ class OffFragment : BaseFragment(), OffInterface.View {
     ): View? {
 
 
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
+        _binding = FragmentEventBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
