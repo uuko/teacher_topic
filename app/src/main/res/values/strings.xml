@@ -23,9 +23,10 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_award">Award</string>
-    <string name="menu_license">License</string>
+    <string name="menu_gallery">實務經驗</string>
+    <string name="menu_slideshow">計畫案產學</string>
+    <string name="menu_ademic">學術活動</string>
+    <string name="menu_award">獎項與榮譽</string>
+    <string name="menu_license">證書</string>
     <string name="menu_event">校外服務經驗</string>
 </resources>

@@ -16,14 +16,21 @@
                 android:id="@+id/nav_license"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_license" />
-
+        <item
+                android:id="@+id/nav_event"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_event" />
+        <item
+                android:id="@+id/nav_adamic"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_ademic" />
         <item
                 android:id="@+id/nav_award"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_award" />
         <item
-                android:id="@+id/nav_event"
+                android:id="@+id/nav_slideshow"
                 android:icon="@drawable/ic_menu_slideshow"
-                android:title="@string/menu_event" />
+                android:title="@string/menu_slideshow" />
     </group>
 </menu>

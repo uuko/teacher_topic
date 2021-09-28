@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.linteacher.R
+import com.example.linteacher.databinding.FragmentLicenseBinding
 
 class LicenseFragment : Fragment() {
 
@@ -15,12 +16,12 @@ class LicenseFragment : Fragment() {
     }
 
     private lateinit var viewModel: LicenseViewModel
-
+    private lateinit var binding:FragmentLicenseBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.license_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_license, container, false)
     }
 
 
