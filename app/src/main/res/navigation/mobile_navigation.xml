@@ -17,11 +17,7 @@
             android:label="@string/menu_gallery"
             tools:layout="@layout/fragment_gallery" />
 
-    <fragment
-            android:id="@+id/nav_slideshow"
-            android:name="com.example.linteacher.ui.teacherdata.ui.slideshow.SlideshowFragment"
-            android:label="@string/menu_slideshow"
-            tools:layout="@layout/fragment_slideshow" />
+
 
     <fragment
             android:id="@+id/nav_license"
@@ -36,7 +32,13 @@
             tools:layout="@layout/fragment_award" />
     <fragment
             android:id="@+id/nav_event"
-            android:name="com.example.linteacher.ui.teacherdata.ui.event.EventFragment"
+            android:name="com.example.linteacher.ui.teacherdata.ui.off.OffFragment"
             android:label="@string/menu_event"
             tools:layout="@layout/fragment_event" />
+
+    <fragment
+            android:id="@+id/nav_slideshow"
+            android:name="com.example.linteacher.ui.teacherdata.ui.slideshow.SlideshowFragment"
+            android:label="@string/menu_slideshow"
+            tools:layout="@layout/fragment_slideshow" />
 </navigation>

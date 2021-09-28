@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.teacherdata.ui.license.LicenseFragment">
+        >
 
-    <TextView
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lic_recycleView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello" />
+            />
 
-</FrameLayout>
+
+    <LinearLayout
+            android:id="@+id/add_lic"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="新增教師證照"
+
+                android:textSize="20sp" />
+
+        <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/ic_launcher_background" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

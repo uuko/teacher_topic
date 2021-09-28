@@ -34,6 +34,11 @@
         <item>否</item>
 
     </string-array>
+    <string-array name="tch_not_en">
+        <item>否</item>
+        <item>是</item>
+
+    </string-array>
     <string-array name="tch_clan_en">
         <item>阿美族</item>
         <item>泰雅族</item>
@@ -153,4 +158,15 @@
         <item>政府</item>
         <item>民間</item>
     </string-array>
+    <string-array name="pro_pronature_array_en">
+        <item>擔任學會行政職務</item>
+        <item>擔任專業考試命題委員(填報至107上)</item>
+        <item>擔任專業考試典試人員(107下適用)</item>
+        <item>擔任國內專業期刊編審及評審</item>
+        <item>擔任國外專業期刊編審及評審</item>
+        <item>擔任校外公民營機構顧問或委員</item>
+        <item>擔任政府機構專業委員會委員</item>
+        <item>其他</item>
+    </string-array>
+
 </resources>

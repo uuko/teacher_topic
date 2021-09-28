@@ -7,6 +7,8 @@ import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.*
+import com.example.linteacher.api.pojo.teacherdata.license.LicenseResponse
+import com.example.linteacher.api.pojo.teacherdata.off.*
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.pic.ProfilePicResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.update.TeacherUpdateRequest
@@ -19,6 +21,9 @@ interface ApiServices {
 
     @GET("teacher/teacherLine/list")
     fun getTeacherLineList(): Observable<List<TeacherLineResponse>>
+
+
+
 
     //教師個資
     @GET
@@ -81,4 +86,30 @@ interface ApiServices {
     @GET
     fun getExpDataByExpNumber(@Url string: String): Observable<ExpOneGetResponse>
 
+
+    /**
+    * 教師證照
+    * */
+
+    @GET
+    fun getLicenseData(@Url string: String): Observable<List<LicenseResponse>>
+
+    /**
+     * 校外服務經驗
+     * */
+    @GET
+    fun getOneOffData(@Url string: String): Observable<OffOneGetResponse>
+    @GET
+    fun getOffData(@Url string: String): Observable<List<OffGetResponse>>
+    @HTTP(method = "DELETE", path = Config.DEL_PRO, hasBody = true)
+    fun deleteOffData(
+        @Body deleteRequest: OffDeleteRequest
+    ): Observable<Unit>
+    @POST
+    fun postOffData(
+        @Url url: String,
+        @Body addTeacherRequest: OffPostRequest
+    ): Observable<Unit>
+    @POST
+    fun updateOffData(@Url url: String,@Body requestBody: OffUpdateRequest):Observable<Unit>
 }

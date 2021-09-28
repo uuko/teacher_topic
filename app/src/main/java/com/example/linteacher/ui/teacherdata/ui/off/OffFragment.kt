@@ -1,10 +1,10 @@
-package com.example.linteacher.ui.teacherdata.ui.slideshow
+package com.example.linteacher.ui.teacherdata.ui.off
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,13 +18,22 @@ import com.example.linteacher.api.pojo.teacherdata.off.ui.OffBaseData
 import com.example.linteacher.api.pojo.teacherdata.off.ui.OffEditData
 import com.example.linteacher.api.pojo.teacherdata.off.ui.OffOriginData
 import com.example.linteacher.databinding.FragmentSlideshowBinding
-import com.example.linteacher.ui.teacherdata.ui.off.*
+import com.example.linteacher.ui.teacherdata.ui.slideshow.*
+import com.example.linteacher.util.BaseFragment
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.preference.LoginPreferences
 
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
-class SlideshowFragment : Fragment(), OffInterface.View {
-
+/**
+ * A simple [Fragment] subclass.
+ * Use the [OffFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class OffFragment : BaseFragment(), OffInterface.View {
     private lateinit var offCampusViewModel: OffCampusViewModel
     private var _binding: FragmentSlideshowBinding? = null
 
@@ -101,7 +110,7 @@ class SlideshowFragment : Fragment(), OffInterface.View {
 
     override fun onSaveClick(item: OffAddData, position: Int) {
         val request= OffPostRequest(
-            loginId = 0,
+            loginId = loginPreferences.getTeacherId().toInt(),
             proCaseName = item.proCaseName,
             proCaseNumber = item.proCaseNumber,
             proContent = item.proContent,
@@ -115,7 +124,7 @@ class SlideshowFragment : Fragment(), OffInterface.View {
         )
 
         viewModel.postData(request)
-            .observe(viewLifecycleOwner,object :Observer<UnitResponse>{
+            .observe(viewLifecycleOwner,object : Observer<UnitResponse> {
                 override fun onChanged(t: UnitResponse) {
                     if (t.result != Config.RESULT_OK){
 
@@ -144,23 +153,23 @@ class SlideshowFragment : Fragment(), OffInterface.View {
     }
 
     override fun onEditSaveClick(item: OffEditData, position: Int) {
-        val request= item.proStartDate?.let {
+        val request=
             OffUpdateRequest(
-                proId=item.proId,
+                proId = item.proId,
                 proCaseName = item.proCaseName,
                 proCaseNumber = item.proCaseNumber,
                 proContent = item.proContent,
                 proNature = item.proNature,
                 proRebate = item.proRebate,
                 proSign = item.proSign,
-                proStartDate = it,
+                proStartDate = item.proStartDate,
                 proStopDate = item.proStopDate,
                 proVendor = item.proVendor,
                 public = false,
                 loginId = loginPreferences.getTeacherId().toInt()
             )
-        }
-        if (request != null) {
+
+
             viewModel.updateList(request)
                 .observe(viewLifecycleOwner,{
                         t->
@@ -168,7 +177,7 @@ class SlideshowFragment : Fragment(), OffInterface.View {
                         viewModelObserveLst()
                     }
                 })
-        }
+
     }
 
     override fun onEditClick(item: OffOriginData, position: Int) {
@@ -185,8 +194,8 @@ class SlideshowFragment : Fragment(), OffInterface.View {
                             proCaseNumber = t.list.proCaseNumber,
                             proCaseName = t.list.proCaseName,
                             proContent = t.list.proContent,
-                            proStartDate = t.list.proStartDate!!,
-                            proStopDate = t.list.proStopDate!!,
+                            proStartDate = t.list.proStartDate,
+                            proStopDate = t.list.proStopDate,
                             proRebate = t.list.proRebate,
                         )
                     )

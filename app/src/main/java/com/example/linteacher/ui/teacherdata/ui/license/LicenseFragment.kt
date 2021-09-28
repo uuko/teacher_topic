@@ -23,10 +23,5 @@ class LicenseFragment : Fragment() {
         return inflater.inflate(R.layout.license_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LicenseViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

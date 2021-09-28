@@ -122,8 +122,6 @@ class ExpAdapter(
             return arrayEn[0]
         }
     }
-
-
     class EditViewHolder(private val binding:  ItemExpEditBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
             items: ExpEditData,
