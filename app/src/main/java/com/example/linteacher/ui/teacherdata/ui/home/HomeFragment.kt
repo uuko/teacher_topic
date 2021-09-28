@@ -128,7 +128,12 @@ class HomeFragment : BaseFragment() {
         var submitData=currentFragment.getSubmitData()
         if (teacherDetailFragment.isAdded){
              submitData=setDetailData(profileSecondFragment.getSubmitData(),teacherDetailFragment.getSubmitData())
-//            val detailData=teacherDetailFragment.getSubmitData()
+            if (workInformationFragment.isAdded){
+                submitData=setWorkData(submitData,workInformationFragment.getSubmitData())
+            }
+        }
+        if (workInformationFragment.isAdded){
+            submitData=setWorkData(profileSecondFragment.getSubmitData(),workInformationFragment.getSubmitData())
         }
 
 
@@ -144,6 +149,33 @@ class HomeFragment : BaseFragment() {
                 Toast.makeText(context, "ok", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun setWorkData(submitData: TeacherProfileResponse, detailData: TeacherProfileResponse): TeacherProfileResponse {
+        submitData.tchMainDepartment =detailData.tchMainDepartment
+        submitData.tchCoeDepartment  =detailData.tchCoeDepartment
+        submitData.tchState  =detailData.tchState
+        submitData.tchHureDate  =detailData.tchHureDate
+        submitData.tchSchDate  =detailData.tchSchDate
+        submitData.tchOriginalUnit =detailData.tchOriginalUnit
+        submitData.tchResignDate =detailData.tchResignDate
+        submitData.tchStopDate =detailData.tchStopDate
+        submitData.tchAppointDate  =detailData.tchAppointDate
+        submitData.tchReinstateDate =detailData.tchReinstateDate
+
+        submitData.tchEstablishment  =detailData.tchEstablishment
+        submitData.tchKind   =detailData.tchKind
+        submitData.tchKindIndustry  =detailData.tchKindIndustry
+        submitData.tchKindDepartment   =detailData.tchKindDepartment
+        submitData.tchFullPartPosition   =detailData.tchFullPartPosition
+        submitData.tchPartAdmini   =detailData.tchPartAdmini
+        submitData.tchAdminiJob    =detailData.tchAdminiJob
+
+
+        submitData.tchSceWhemain_ther    =detailData.tchSceWhemain_ther
+        submitData.tchScePurpose     =detailData.tchScePurpose
+        submitData.tchSecUnit     =detailData.tchSecUnit
+        return submitData
     }
 
     private fun setDetailData(submitData: TeacherProfileResponse, detailData: TeacherProfileResponse): TeacherProfileResponse {

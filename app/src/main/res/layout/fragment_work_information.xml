@@ -2,145 +2,546 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
         android:background="@drawable/work_background"
+        android:orientation="vertical"
         tools:context=".ui.teacherdata.ui.home.second.WorkInformationFragment">
 
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
+            android:id="@+id/tchMainDepartmentView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView
-                    android:layout_weight="2"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="主聘系所"/>
-            <TextView
-                    android:layout_weight="2"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="共聘系所"/>
-            <TextView
-                    android:layout_weight="1"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新任"/>
-        </LinearLayout>
-    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/black"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="任職資訊"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView
-                    android:layout_weight="2"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="主聘系所"/>
-            <TextView
-                    android:layout_weight="2"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="共聘系所"/>
-            <TextView
-                    android:layout_weight="1"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新任"/>
-        </LinearLayout>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/black"/>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView
-                    android:layout_weight="2"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="主聘系所"/>
-            <TextView
-                    android:layout_weight="2"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="共聘系所"/>
-            <TextView
-                    android:layout_weight="1"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新任"/>
-        </LinearLayout>
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_launcher_foreground" />
+    </LinearLayout>
 
 
     <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/black"/>
+            android:background="@color/black" />
+
+    <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/tchMainDepartmentInnerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="主聘系所"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <Spinner
+                        android:id="@+id/tchMainDepartment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="共聘系所"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <Spinner
+                        android:id="@+id/tchCoeDepartment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="任職狀態"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <Spinner
+                        android:id="@+id/tchState"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="聘任日期"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <EditText
+                        android:id="@+id/tchHureDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <EditText
+                        android:id="@+id/tchOriginalUnit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="原任單位" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="最早到校日"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <EditText
+                        android:id="@+id/tchSchDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <EditText
+                        android:id="@+id/tchAppointDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="新任單位" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="離職日期"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <EditText
+                        android:id="@+id/tchResignDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="停職日期"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <EditText
+                        android:id="@+id/tchStopDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="復職日期"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <EditText
+                        android:id="@+id/tchReinstateDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+            android:id="@+id/tchKindView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="兼專任"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_launcher_foreground" />
+    </LinearLayout>
+
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:visibility="gone"
+            android:id="@+id/tchKindInnerView"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="編制內/外"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <Spinner
+                        android:id="@+id/tchEstablishment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="兼專任"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <Spinner
+                        android:id="@+id/tchKind"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="職業別"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <Spinner
+                        android:id="@+id/tchKindIndustry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="單位"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <EditText
+                        android:id="@+id/tchKindDepartment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black" />
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
             <TextView
-                    android:layout_weight="2"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="主聘系所"/>
-            <TextView
-                    android:layout_weight="2"
-                    android:textSize="25sp"
+                    android:text="職務"
                     android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="共聘系所"/>
-            <TextView
-                    android:layout_weight="1"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新任"/>
+                    android:textSize="12sp" />
+
+            <EditText
+                    android:id="@+id/tchFullPartPosition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
         </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black" />
+
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="兼任行政工作"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            <Spinner
+                    android:id="@+id/tchPartAdmini"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="行政職務"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            <EditText
+                    android:id="@+id/tchAdminiJob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black" />
+
+
+    <LinearLayout
+            android:id="@+id/tchSceWhemainView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="借調事項"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="12sp"
+                android:src="@drawable/ic_launcher_foreground" />
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/tchSceWhemainInnerView"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="借調否"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                <Spinner
+                        android:id="@+id/tchSceWhemain_ther"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="借調目的/來源"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+
+                <Spinner
+                        android:id="@+id/tchScePurpose"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <EditText
+                    android:id="@+id/tchSecUnit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="借調新單位" />
+        </LinearLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 </LinearLayout>

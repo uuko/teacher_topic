@@ -479,37 +479,9 @@ class ProfileSecondFragment : NestedBaseFragment() {
         }
         return 0
     }
-    fun datePicker(v: View) {
-        val calendar: Calendar = Calendar.getInstance()
-        val year: Int = calendar.get(Calendar.YEAR) //取得現在的日期年月日
-        val month: Int = calendar.get(Calendar.MONTH)
-        val day: Int = calendar.get(Calendar.DAY_OF_MONTH)
-        DatePickerDialog(v.context,
-            { view, year, month, day ->
-                val calendar = Calendar.getInstance()
-                calendar[year, month] = day
 
-                val format = SimpleDateFormat("yyyy-MM-dd")
-                val strDate = format.format(calendar.time)
-                (v as EditText).setText(strDate)
-            }, year, month, day
-        ).show()
-    }
 
-    private fun toggleView(target:Int,visible:Boolean,childView: View) {
-        val transition =  Fade();
-        transition.duration = 300;
-        transition.addTarget(target);
 
-        TransitionManager.beginDelayedTransition(childView.parent as ViewGroup, transition);
-        if (visible){
-            childView.visibility = View.VISIBLE;
-        }
-        else{
-            childView.visibility=View.GONE
-        }
-
-    }
 
     override fun onPause() {
         super.onPause()

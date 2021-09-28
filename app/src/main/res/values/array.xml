@@ -104,4 +104,53 @@
         <item>FIR</item>
         <item>OTH</item>
     </string-array>
+
+
+<!--tch_tchstate-->
+    <string-array name="tch_tchstate_array_en">
+        <item>續聘</item>
+        <item>新任</item>
+        <item>離職</item>
+        <item>續聘_育嬰代理</item>
+        <item>新任_育嬰代理</item>
+        <item>留職停薪</item>
+        <item>留職留薪</item>
+        <item>帶職帶薪</item>
+        <item>留職停薪_因進修、研究、學術交流</item>
+        <item>留職停薪_因育嬰</item>
+        <item>留職停薪_因侍親</item>
+        <item>留職停薪_因服兵役</item>
+        <item>留職停薪_其他因素</item>
+        <item>帶職帶薪_因進修、研究、學術交流</item>
+        <item>帶職帶薪_因育嬰</item>
+        <item>帶職帶薪_因侍親</item>
+        <item>帶職帶薪_因服兵役</item>
+        <item>帶職帶薪_其他因素</item>
+    </string-array>
+    <string-array name="tchMainDepartment_array_en">
+        <item>資訊工程系</item>
+    </string-array>
+    <string-array name="tchCoeDepartment_array_en">
+        <item>無</item>
+    </string-array>
+    <string-array name="tch_tchkindindustry_array_en">
+        <item>無</item>
+        <item>學校</item>
+        <item>業界</item>
+        <item>政府機關</item>
+    </string-array>
+    <string-array name="tchKind_array_en">
+        <item>兼任</item>
+        <item>專任</item>
+    </string-array>
+    <string-array name="tchEstablishment_array_en">
+        <item>編制內</item>
+        <item>編制外</item>
+    </string-array>
+
+    <string-array name="tch_tchscepurpose_array_en">
+        <item>他校</item>
+        <item>政府</item>
+        <item>民間</item>
+    </string-array>
 </resources>
