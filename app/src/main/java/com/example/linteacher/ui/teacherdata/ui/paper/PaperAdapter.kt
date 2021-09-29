@@ -92,18 +92,9 @@ class PaperAdapter(
             binding.thePubmainLicatinNumber.setText(items.thePubmain_licatinNumber)
 
 //        thePublishYear
-            val prev100Year: Calendar = Calendar.getInstance()
-            prev100Year.add(Calendar.YEAR, -100)
-            val nowYear: Calendar = Calendar.getInstance()
-            val last100 = prev100Year.get(Calendar.YEAR)
-            val now = nowYear.get(Calendar.YEAR)
-            val array = arrayListOf<String>()
-            Log.d("bind", "bind: $last100   : $now")
-            for (i in now..last100) {
-                array.add(i.toString())
-            }
+
             bindSpinnerArrayAdapter(
-                array,
+                generateArray100Year(),
                 binding.thePublishYear,
                 items.thePublishYear,
                 context
@@ -209,7 +200,7 @@ class PaperAdapter(
                     if (binding.thePublishYear.selectedItemPosition != -1) {
                         itemData.thePublishYear =
                             getResponseArraySpinner(
-                                array,
+                                generateArray100Year(),
                                 binding.thePublishYear,
                                 context
                             )
@@ -310,18 +301,9 @@ class PaperAdapter(
             binding.thePubmainLicatinNumber.setText(items.thePubmain_licatinNumber)
 
 //        thePublishYear
-            val prev100Year: Calendar = Calendar.getInstance()
-            prev100Year.add(Calendar.YEAR, -1)
-            val nowYear: Calendar = Calendar.getInstance()
-            nowYear.add(Calendar.YEAR, 0)
-            val last100 = prev100Year.get(Calendar.YEAR)
-            val now = prev100Year.get(Calendar.YEAR)
-            val array = arrayListOf<String>()
-            for (i in now..last100) {
-                array.add(i.toString())
-            }
+
             bindSpinnerArrayAdapter(
-                array,
+                generateArray100Year(),
                 binding.thePublishYear,
                 items.thePublishYear,
                 context
@@ -419,7 +401,7 @@ class PaperAdapter(
                     if (binding.thePublishYear.selectedItemPosition != -1) {
                         itemData.thePublishYear =
                             getResponseArraySpinner(
-                                array,
+                                generateArray100Year(),
                                 binding.thePublishYear,
                                 context
                             )

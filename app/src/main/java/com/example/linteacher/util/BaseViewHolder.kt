@@ -118,7 +118,7 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val last100 = prev100Year.get(Calendar.YEAR)
         val now = nowYear.get(Calendar.YEAR)
         val array = arrayListOf<String>()
-        for (i in now..last100) {
+        for (i in last100..now) {
             array.add(i.toString())
         }
         return array
