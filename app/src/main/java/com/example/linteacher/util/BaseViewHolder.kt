@@ -8,11 +8,12 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.recyclerview.widget.RecyclerView
-import com.example.linteacher.api.BaseData
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
     fun bindSpinnerAdapter(array: Int, spinner: Spinner, data: String, context: Context) {
         val adapter =
             ArrayAdapter.createFromResource(
@@ -66,10 +67,60 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
         return 0
     }
+
+    private fun getArrayChgSelection(data: String, arrayRes: ArrayList<String>, context: Context): Int {
+
+        for (i in arrayRes.indices) {
+            if (data == arrayRes[i]) {
+                return i
+            }
+        }
+        return 0
+    }
     fun getResponseSpinner(arrayEn: Int, spinner: Spinner,context: Context): String {
         val array = context?.resources?.getStringArray(arrayEn)
         return array?.get(spinner.selectedItemPosition).toString()
     }
+    fun getResponseArraySpinner(array: ArrayList<String>, spinner: Spinner,context: Context): String {
+        return array?.get(spinner.selectedItemPosition).toString()
+    }
 
+    fun bindSpinnerArrayAdapter(array: ArrayList<String>, spinner: Spinner, data: String, context: Context) {
+        val adapter = ArrayAdapter(context
+            , android.R.layout.simple_spinner_dropdown_item
+            , array)
 
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+        spinner.setSelection(getArrayChgSelection(data, array,context), false)
+        spinner.onItemSelectedListener = object : AdapterView.OnItemClickListener,
+            AdapterView.OnItemSelectedListener {
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
+                spinner.setSelection(pos, false)
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+    }
+
+    fun generateArray100Year(): ArrayList<String> {
+        val prev100Year: Calendar = Calendar.getInstance()
+        prev100Year.add(Calendar.YEAR, -100)
+        val nowYear: Calendar = Calendar.getInstance()
+        nowYear.add(Calendar.YEAR, 0)
+        val last100 = prev100Year.get(Calendar.YEAR)
+        val now = nowYear.get(Calendar.YEAR)
+        val array = arrayListOf<String>()
+        for (i in now..last100) {
+            array.add(i.toString())
+        }
+        return array
+    }
 }

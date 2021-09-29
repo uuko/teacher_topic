@@ -29,4 +29,6 @@
     <string name="menu_award">獎項與榮譽</string>
     <string name="menu_license">證書</string>
     <string name="menu_event">校外服務經驗</string>
+    <string name="menu_paper">期刊論文</string>
+    <string name="menu_journal">研討會論文</string>
 </resources>

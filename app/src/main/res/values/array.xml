@@ -175,4 +175,45 @@
         <item>專技高普考</item>
         <item>其他相關證照</item>
     </string-array>
+    <string-array name="theAuthor_array_en">
+        <item>第一作者</item>
+        <item>第二作者</item>
+        <item>第三作者</item>
+        <item>第四(以上)作者</item>
+        <item>無佐證資料</item>
+    </string-array>
+    <string-array name="month_array_en">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="theCollCategory_array_en">
+        <item>SCI</item>
+        <item>SSCI</item>
+        <item>AHCI / A&amp;HCI (100年度起適用)</item>
+        <item>TSSCI</item>
+        <item>EI</item>
+        <item>SCIE (100年度起適用)</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="thePublishType_array_en">
+        <item>紙本</item>
+        <item>電子期刊</item>
+        <item>紙本及電子期刊</item>
+    </string-array>
+    <string-array name="theTransCooperation_array_en">
+        <item>是(跨國合作)</item>
+        <item>是(大陸、港澳地區合作)</item>
+        <item>是(跨國及大陸、港澳地區合作)</item>
+        <item>否</item>
+    </string-array>
 </resources>

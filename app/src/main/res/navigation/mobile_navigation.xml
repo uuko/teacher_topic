@@ -45,4 +45,16 @@
             android:name="com.example.linteacher.ui.teacherdata.ui.slideshow.SlideshowFragment"
             android:label="@string/menu_slideshow"
             tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+            android:id="@+id/nav_paper"
+            android:name="com.example.linteacher.ui.teacherdata.ui.paper.PaperFragment"
+            android:label="@string/menu_paper"
+            tools:layout="@layout/fragment_paper" />
+
+    <fragment
+            android:id="@+id/nav_journal"
+            android:name="com.example.linteacher.ui.teacherdata.ui.journal.JournalFragment"
+            android:label="@string/menu_journal"
+            tools:layout="@layout/fragment_journal" />
 </navigation>

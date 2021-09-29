@@ -36,6 +36,13 @@ object Config {
     const val POST_PROFILE_PIC="/teacher/uploadFile?tchNumber=%s"
     const val UPDATE_TEACHER_PROFILE="/teacher/update/%s/%s/%s"
 
+
+    //paper
+    const val GET_PAPER="/teacher/paper/loginId/%s"
+    const val DEL_PAPER="/teacher/paper"
+    const val POST_PAPER="/teacher/paper"
+    const val GET_ONE_PAPER="/teacher/paper/theId/%s"
+    const val UPDATE_PAPER="/teacher/update/paper"
     //license
     const val GET_LICENSE="/teacher/license/loginId/%s"
 //    /teacher/license/licId/15

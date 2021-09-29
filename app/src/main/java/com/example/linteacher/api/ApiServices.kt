@@ -9,6 +9,7 @@ import com.example.linteacher.api.pojo.login.LoginResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.*
 import com.example.linteacher.api.pojo.teacherdata.license.*
 import com.example.linteacher.api.pojo.teacherdata.off.*
+import com.example.linteacher.api.pojo.teacherdata.paper.*
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.pic.ProfilePicResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.update.TeacherUpdateRequest
@@ -85,6 +86,29 @@ interface ApiServices {
     fun getExpData(@Url string: String): Observable<List<ExpGetResponse>>
     @GET
     fun getExpDataByExpNumber(@Url string: String): Observable<ExpOneGetResponse>
+
+    /**
+     * 教師證照
+     * */
+    @GET
+    fun getPaperData(@Url string: String): Observable<List<PaperResponse>>
+    @HTTP(method = "DELETE", path = Config.DEL_PAPER, hasBody = true)
+    fun deletePaperData(
+        @Body deleteRequest: PaperDeleteRequest
+    ): Observable<Unit>
+    @GET
+    fun getPaperOneData(@Url string: String): Observable<PaperOneResponse>
+
+    @POST
+    fun postPaperData(
+        @Url url: String,
+        @Body addTeacherRequest: PaperPostRequest
+    ): Observable<Unit>
+    @POST
+    fun updatePaperData(@Url url: String,@Body requestBody: PaperUpdateRequest):Observable<Unit>
+
+
+
 
 
     /**

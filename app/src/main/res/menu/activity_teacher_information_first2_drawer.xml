@@ -32,5 +32,13 @@
                 android:id="@+id/nav_slideshow"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_slideshow" />
+        <item
+                android:id="@+id/nav_paper"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_paper" />
+        <item
+                android:id="@+id/nav_journal"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_journal" />
     </group>
 </menu>
