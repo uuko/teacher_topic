@@ -168,5 +168,11 @@
         <item>擔任政府機構專業委員會委員</item>
         <item>其他</item>
     </string-array>
-
+    <string-array name="lic_lictype_array_en">
+        <item>甲級證照</item>
+        <item>乙級證照</item>
+        <item>丙級證照</item>
+        <item>專技高普考</item>
+        <item>其他相關證照</item>
+    </string-array>
 </resources>

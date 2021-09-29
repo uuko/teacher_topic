@@ -9,7 +9,7 @@
         tools:context=".ui.teacherdata.ui.slideshow.SlideshowFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/off_recycleView"
+            android:id="@+id/lic_recycleView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />

@@ -52,8 +52,6 @@ class OffFragment : BaseFragment(), OffInterface.View {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         _binding = FragmentEventBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root

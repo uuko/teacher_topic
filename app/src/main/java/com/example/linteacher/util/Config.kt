@@ -38,7 +38,12 @@ object Config {
 
     //license
     const val GET_LICENSE="/teacher/license/loginId/%s"
-
+//    /teacher/license/licId/15
+//    /teacher/license
+    const val DEL_LIC="/teacher/license"
+    const val POST_LIC="/teacher/license"
+    const val GET_ONE_LICENSE="/teacher/license/licId/%s"
+    const val UPDATE_LIC="/teacher/update/license"
     //pro
     const val GET_PRO="/teacher/pro/loginId/%s"
     const val DEL_PRO="/teacher/pro"

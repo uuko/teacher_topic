@@ -23,7 +23,7 @@ import com.example.linteacher.util.Config
 import com.example.linteacher.util.preference.LoginPreferences
 
 
-class SlideshowFragment : Fragment(), OffInterface.View {
+class SlideshowFragment : Fragment(){
 
     private lateinit var offCampusViewModel: OffCampusViewModel
     private var _binding: FragmentSlideshowBinding? = null
@@ -51,160 +51,9 @@ class SlideshowFragment : Fragment(), OffInterface.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginPreferences = LoginPreferences(view.context)
-        initRecycleView()
-        viewModelObserveLst()
-        binding.addOff.setOnClickListener {
-            val list = adapter.getDataList()
-            list.add(OffAddData())
-            adapter.setDataList(list)
-        }
+
     }
 
-    private fun initRecycleView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        layoutManager.reverseLayout = false
-        binding.offRecycleView.layoutManager = layoutManager
-        val list = arrayListOf<OffBaseData>()
-        list.add(OffOriginData())
-        adapter = OffAdapter(list, this)
-        _binding?.offRecycleView?.adapter = adapter
-    }
-
-    private fun viewModelObserveLst() {
-        viewModel.getList(loginPreferences.getTeacherId())
-            .observe(viewLifecycleOwner, object : Observer<OffGetAllResponse> {
-                override fun onChanged(t: OffGetAllResponse) {
-
-                    if (t.list.isEmpty()) {
-
-                    } else {
-                        val valueLst = arrayListOf<OffBaseData>()
-                        for (r: OffGetResponse in t.list) {
-                            valueLst.add(
-                                OffOriginData(
-                                    proId=r.proId,
-                                    proVendor = r.proVendor,
-                                    proNature = r.proNature
-                                )
-                            )
-                        }
-                        adapter.setDataList(valueLst)
-                    }
-
-
-                }
-
-            })
-    }
-
-    override fun onSaveClick(item: OffAddData, position: Int) {
-        val request= OffPostRequest(
-            loginId = 0,
-            proCaseName = item.proCaseName,
-            proCaseNumber = item.proCaseNumber,
-            proContent = item.proContent,
-            proNature = item.proNature,
-            proRebate = item.proRebate,
-            proSign = item.proSign,
-            proStartDate = item.proStartDate,
-            proStopDate = item.proStopDate,
-            proVendor = item.proVendor,
-            public = false
-        )
-
-        viewModel.postData(request)
-            .observe(viewLifecycleOwner,object :Observer<UnitResponse>{
-                override fun onChanged(t: UnitResponse) {
-                    if (t.result != Config.RESULT_OK){
-
-                    }
-                    else{
-                        viewModelObserveLst()
-                    }
-                }
-
-            })
-    }
-
-    override fun onCancelClick(position: Int) {
-        adapter.getDataList().removeAt(position)
-        adapter.setDataList(adapter.getDataList())
-    }
-
-    override fun onDeleteClick(expNumber: Int, position: Int) {
-        viewModel.delete(expNumber)
-            .observe(viewLifecycleOwner, {
-                if (it.result == Config.RESULT_OK) {
-                    adapter.getDataList().removeAt(position)
-                    adapter.setDataList(adapter.getDataList())
-                }
-            })
-    }
-
-    override fun onEditSaveClick(item: OffEditData, position: Int) {
-        val request= item.proStartDate?.let {
-            OffUpdateRequest(
-                proId=item.proId,
-                proCaseName = item.proCaseName,
-                proCaseNumber = item.proCaseNumber,
-                proContent = item.proContent,
-                proNature = item.proNature,
-                proRebate = item.proRebate,
-                proSign = item.proSign,
-                proStartDate = it,
-                proStopDate = item.proStopDate,
-                proVendor = item.proVendor,
-                public = false,
-                loginId = loginPreferences.getTeacherId().toInt()
-            )
-        }
-        if (request != null) {
-            viewModel.updateList(request)
-                .observe(viewLifecycleOwner,{
-                        t->
-                    if (t.result == Config.RESULT_OK){
-                        viewModelObserveLst()
-                    }
-                })
-        }
-    }
-
-    override fun onEditClick(item: OffOriginData, position: Int) {
-        viewModel.getDataByExpNumber(item.proId.toString())
-            .observe(viewLifecycleOwner,
-                { t ->
-                    adapter.getDataList().removeAt(position)
-                    adapter.getDataList().add(
-                        position, OffEditData(
-                            proVendor = t.list.proVendor,
-                            proNature = t.list.proNature,
-                            proId = t.list.proId,
-                            proSign = t.list.proSign,
-                            proCaseNumber = t.list.proCaseNumber,
-                            proCaseName = t.list.proCaseName,
-                            proContent = t.list.proContent,
-                            proStartDate = t.list.proStartDate!!,
-                            proStopDate = t.list.proStopDate!!,
-                            proRebate = t.list.proRebate,
-                        )
-                    )
-                    adapter.setOneData(adapter.getDataList(), position)
-                })
-    }
-
-    override fun onEditCancelClick(position: Int, r: OffEditData) {
-        val data= OffOriginData(
-            proId=r.proId,
-            proVendor = r.proVendor,
-            proNature = r.proNature
-        )
-        adapter.getDataList().removeAt(position)
-        val list=adapter.getDataList()
-        list.add(position,data)
-        adapter.setOneData(list,position)
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

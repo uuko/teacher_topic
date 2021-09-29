@@ -7,7 +7,7 @@ import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.*
-import com.example.linteacher.api.pojo.teacherdata.license.LicenseResponse
+import com.example.linteacher.api.pojo.teacherdata.license.*
 import com.example.linteacher.api.pojo.teacherdata.off.*
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.pic.ProfilePicResponse
@@ -93,7 +93,19 @@ interface ApiServices {
 
     @GET
     fun getLicenseData(@Url string: String): Observable<List<LicenseResponse>>
-
+    @GET
+    fun getOneLicData(@Url string: String): Observable<LicOneResponse>
+    @HTTP(method = "DELETE", path = Config.DEL_LIC, hasBody = true)
+    fun deleteLicData(
+        @Body deleteRequest: LicDeleteRequest
+    ): Observable<Unit>
+    @POST
+    fun postLicData(
+        @Url url: String,
+        @Body addTeacherRequest: LicPostRequest
+    ): Observable<Unit>
+    @POST
+    fun updateLicData(@Url url: String,@Body requestBody: LicUpdateRequest):Observable<Unit>
     /**
      * 校外服務經驗
      * */

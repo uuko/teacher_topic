@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.recyclerview.widget.RecyclerView
+import com.example.linteacher.api.BaseData
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -68,6 +69,7 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun getResponseSpinner(arrayEn: Int, spinner: Spinner,context: Context): String {
         val array = context?.resources?.getStringArray(arrayEn)
         return array?.get(spinner.selectedItemPosition).toString()
-
     }
+
+
 }
