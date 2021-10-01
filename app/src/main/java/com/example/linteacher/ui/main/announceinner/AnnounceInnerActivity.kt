@@ -1,5 +1,7 @@
 package com.example.linteacher.ui.main.announceinner
 
+import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,18 +32,30 @@ class AnnounceInnerActivity : AppCompatActivity() {
     private val viewModel: AnnounceInnerViewModel by viewModels {
         factory
     }
-
+    private lateinit var context: Context
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAnnounceInnerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        context = this
         val id = intent.getSerializableExtra("articleId") as String
         viewModel.getArticle(id)
             .observe(this, object : Observer<ArticleResponse> {
                 override fun onChanged(item: ArticleResponse?) {
                     with(binding) {
                         articleTitle.text = item?.articleTitle
-                        articleImportant.text = item?.articleImportant
+                        var important = ""
+                        if (item?.articleImportant == "U") {
+                            important = "重要"
+                            articleImportant.chipBackgroundColor = ColorStateList.valueOf(Color.RED)
+                            articleImportant.text = important
+                        } else if (item?.articleImportant == "O") {
+                            important = "普通"
+                            articleImportant.chipBackgroundColor =
+                                ColorStateList.valueOf(Color.GREEN)
+                            articleImportant.text = important
+                        }
+                        articleImportant.text = important
                         articleTag.text = item?.articleTag
                         modifyDate.text = item?.modifyDate
                         item?.articleContent?.let {
@@ -52,18 +66,18 @@ class AnnounceInnerActivity : AppCompatActivity() {
                                 Log.d("splitString", "bind: ${content.data}  type ${content.type}")
                                 if (content.type == Config.PIC) {
 
-                                    val imageView = ImageView(this@AnnounceInnerActivity)
+                                    val imageView = ImageView(context)
                                     val vp: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
                                         ViewGroup.LayoutParams.MATCH_PARENT,
                                         ViewGroup.LayoutParams.WRAP_CONTENT
                                     )
                                     imageView.layoutParams = vp
-                                    Glide.with(this@AnnounceInnerActivity)
+                                    Glide.with(context)
                                         .load(GlideUrl(content.data))
                                         .into(imageView)
                                     mainView.addView(imageView)
                                 } else if (content.type == Config.TEXTVIEW) {
-                                    val textView = TextView(this@AnnounceInnerActivity)
+                                    val textView = TextView(context)
                                     textView.setTextColor(Color.WHITE)
                                     textView.textSize = 20F
                                     textView.text = content.data
@@ -93,6 +107,8 @@ class AnnounceInnerActivity : AppCompatActivity() {
                     contentLst.add(Content.ContentData(splitString[i], Config.TEXTVIEW))
                 }
             }
+        } else {
+            contentLst.add(Content.ContentData(articleContent, Config.TEXTVIEW))
         }
     }
 

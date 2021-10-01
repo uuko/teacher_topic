@@ -50,13 +50,13 @@ class ContentAdapter(
             items: Content.Response,
             position: Int,
             listener: ContentListener.View
-            ) {
+        ) {
             handleContent(items.articleContent)
             with(binding) {
                 articleTitle.text = items.articleTitle
                 articleTag.text = items.articleTag
                 itemView.setOnClickListener {
-                    listener.onItemClick(position, items.articleId)
+                    listener.onItemClick(items.articleId)
                 }
                 val mainView = binding.contentView
                 mainView.removeAllViews()
@@ -100,6 +100,8 @@ class ContentAdapter(
                         contentLst.add(Content.ContentData(splitString[i], Config.TEXTVIEW))
                     }
                 }
+            } else {
+                contentLst.add(Content.ContentData(articleContent, Config.TEXTVIEW))
             }
         }
     }

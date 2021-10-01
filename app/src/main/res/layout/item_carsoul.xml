@@ -2,35 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:padding="10dp">
 
-    <TextView
-            android:id="@+id/articleTag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:text="123"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-            android:id="@+id/articleTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="9"
-            android:gravity="center_horizontal"
-            android:text="articleTitle"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+        <TextView
+                android:id="@+id/articleTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="123"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
-    <TextView
-            android:id="@+id/modifyDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:gravity="right"
-            android:text="modifyDate"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+        <TextView
+                android:id="@+id/articleTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:gravity="center_horizontal"
+                android:text="articleTitle"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        <TextView
+                android:id="@+id/modifyDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="right"
+                android:text="modifyDate"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black" />
+
+
 </LinearLayout>

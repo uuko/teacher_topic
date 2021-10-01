@@ -22,6 +22,7 @@ sealed class Content(open val itemType: Int) {
     ) : Content(itemType)
 
     data class ImportantInnerAnnounce(
+        var articleId: Int = 0,
         var articleImportant: String = "",
         var articleTag: String = "",
         var articleTitle: String = "",

@@ -1,6 +1,8 @@
 package com.example.linteacher.ui.main.announce
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,9 +21,11 @@ import com.example.linteacher.ui.teacherdata.ui.experience.ExpRepository
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpViewModel
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpViewModelFactory
 import com.example.linteacher.util.ActivityNavigator
+import com.example.linteacher.util.ImageAdapter
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
+import com.youth.banner.listener.OnBannerListener
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,6 +50,7 @@ class AnnounceFragment : Fragment(), ContentListener.View {
         factory
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,6 +67,9 @@ class AnnounceFragment : Fragment(), ContentListener.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecycleView()
+        binding.moreButton.setOnClickListener {
+            
+        }
         observeBannerList()
         observeImportantList(0)
         observeLatest(0)
@@ -88,6 +96,23 @@ class AnnounceFragment : Fragment(), ContentListener.View {
                 binding.banner.apply {
                     addBannerLifecycleObserver(activity)
                     setIndicator(CircleIndicator(activity))
+                    setOnBannerListener(object : OnBannerListener<Content.BannerResponse> {
+                        override fun OnBannerClick(data: Content.BannerResponse?, position: Int) {
+                            val bundle = Bundle()
+                            bundle.putSerializable("articleId", data?.articleId.toString())
+                            Log.d("OnBannerClick", "OnBannerClick: ")
+                            activity?.let {
+                                ActivityNavigator.startActivityWithData(
+                                    AnnounceInnerActivity::class.java,
+                                    bundle,
+                                    it
+                                )
+                            }
+
+                        }
+
+                    })
+                    setAdapter(ImageAdapter(bannerList))
                     setAdapter(object : BannerImageAdapter<Content.BannerResponse>(bannerList) {
                         override fun onBindView(
                             holder: BannerImageHolder,
@@ -121,6 +146,7 @@ class AnnounceFragment : Fragment(), ContentListener.View {
                             articleTitle = item.articleTitle,
                             articleContent = item.articleContent,
                             modifyDate = item.modifyDate,
+                            articleId = item.articleId,
                         )
                     )
                 }
@@ -132,6 +158,9 @@ class AnnounceFragment : Fragment(), ContentListener.View {
                     view.findViewById<TextView>(R.id.articleTitle).text = a.articleTitle
                     view.findViewById<TextView>(R.id.articleTag).text = a.articleTag
                     view.findViewById<TextView>(R.id.modifyDate).text = a.modifyDate
+                    view.setOnClickListener {
+                        onItemClick(a.articleId)
+                    }
                     mainView.addView(view)
                 }
             }
@@ -193,7 +222,7 @@ class AnnounceFragment : Fragment(), ContentListener.View {
             }
     }
 
-    override fun onItemClick(position: Int, artical: Int) {
+    override fun onItemClick(artical: Int) {
         val bundle = Bundle()
         bundle.putSerializable("articleId", artical.toString())
         this.activity?.let {
