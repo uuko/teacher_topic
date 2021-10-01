@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -13,10 +14,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.Linteacher">
+        <activity android:name=".ui.main.announceinner.AnnounceInnerActivity"></activity>
         <activity
                 android:name=".ui.teacherdata.TeacherInformationFirstActivity"
                 android:label="@string/title_activity_teacher_information_first"
-                android:theme="@style/Theme.Linteacher.NoActionBar"></activity>
+                android:theme="@style/Theme.Linteacher.NoActionBar" />
         <activity android:name=".ui.main.teacherline.tchsencondline.TeacherSecondLineActivity" />
         <activity
                 android:name=".ui.main.teacherline.tchsencondline.FragmentSecondLine"

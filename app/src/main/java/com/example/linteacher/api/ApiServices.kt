@@ -5,6 +5,7 @@ import com.example.linteacher.api.pojo.admin.addteacher.AddTeacherRequest
 import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthorityRequest
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.api.pojo.artical.ArticalGetResponse
+import com.example.linteacher.api.pojo.artical.ArticleResponse
 import com.example.linteacher.api.pojo.artical.LatestArticleResponse
 import com.example.linteacher.api.pojo.banner.BannerGetResponse
 import com.example.linteacher.api.pojo.login.LoginRequest
@@ -26,9 +27,12 @@ interface ApiServices {
     @GET("teacher/teacherLine/list")
     fun getTeacherLineList(): Observable<List<TeacherLineResponse>>
 
-    //
+    //banner & article
     @GET(Config.GET_BANNER)
     fun getBannerList(): Observable<BannerGetResponse>
+
+    @GET
+    fun getArticle(@Url string: String): Observable<ArticleResponse>
 
     @GET
     fun getImportantList(@Url string: String): Observable<ArticalGetResponse>

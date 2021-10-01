@@ -13,9 +13,12 @@ import com.bumptech.glide.Glide
 import com.example.linteacher.R
 import com.example.linteacher.api.pojo.banner.BannerGetResponse
 import com.example.linteacher.databinding.FragmentAnnounceBinding
+import com.example.linteacher.ui.main.announceinner.AnnounceInnerActivity
+import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondLineActivity
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpRepository
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpViewModel
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpViewModelFactory
+import com.example.linteacher.util.ActivityNavigator
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
@@ -31,7 +34,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [AnnounceFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AnnounceFragment : Fragment() {
+class AnnounceFragment : Fragment(), ContentListener.View {
 
     private var _binding: FragmentAnnounceBinding? = null
     private val binding get() = _binding!!
@@ -166,6 +169,8 @@ class AnnounceFragment : Fragment() {
         layoutManager.reverseLayout = false
         binding.content.layoutManager = layoutManager
         binding.content.adapter = contentAdapter
+        contentAdapter.setViewListener(this)
+
     }
 
     companion object {
@@ -186,5 +191,17 @@ class AnnounceFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onItemClick(position: Int, artical: Int) {
+        val bundle = Bundle()
+        bundle.putSerializable("articleId", artical.toString())
+        this.activity?.let {
+            ActivityNavigator.startActivityWithData(
+                AnnounceInnerActivity::class.java,
+                bundle,
+                it
+            )
+        }
     }
 }

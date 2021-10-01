@@ -23,6 +23,8 @@
             app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+                android:textColor="@color/black"
+                android:textSize="30sp"
                 android:id="@+id/articleTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,6 +38,7 @@
                 android:gravity="right">
 
             <TextView
+                    android:textSize="20sp"
                     android:id="@+id/articleTag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

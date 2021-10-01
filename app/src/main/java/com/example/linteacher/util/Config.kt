@@ -75,4 +75,5 @@ object Config {
     //article
     const val GET_ARTICLE = "/article/important?pageNo=%s"
     const val GET_LATEST_ARTICLE = "/article/latest?pageNo=%s"
+    const val GET_ARTICLE_ID = "/article/id/%s"
 }

@@ -1,6 +1,7 @@
 package com.example.linteacher.ui.main.announce
 
 import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,6 +18,10 @@ import java.util.*
 class ContentAdapter(
     private var list: ArrayList<Content.Response>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    lateinit var listener: ContentListener.View
+    fun setViewListener(listener: ContentListener.View) {
+        this.listener = listener
+    }
 
     fun setDataList(list: ArrayList<Content.Response>) {
         this.list = list
@@ -31,7 +36,7 @@ class ContentAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolder).bind(list[position], position)
+        (holder as ViewHolder).bind(list[position], position, listener)
     }
 
     override fun getItemCount(): Int {
@@ -44,12 +49,15 @@ class ContentAdapter(
         fun bind(
             items: Content.Response,
             position: Int,
-
+            listener: ContentListener.View
             ) {
             handleContent(items.articleContent)
             with(binding) {
                 articleTitle.text = items.articleTitle
                 articleTag.text = items.articleTag
+                itemView.setOnClickListener {
+                    listener.onItemClick(position, items.articleId)
+                }
                 val mainView = binding.contentView
                 mainView.removeAllViews()
                 for (content in contentLst) {
@@ -68,6 +76,8 @@ class ContentAdapter(
                         mainView.addView(imageView)
                     } else if (content.type == Config.TEXTVIEW) {
                         val textView = TextView(context)
+                        textView.setTextColor(Color.BLACK)
+                        textView.textSize = 20F
                         textView.text = content.data
                         mainView.addView(textView)
                     }
