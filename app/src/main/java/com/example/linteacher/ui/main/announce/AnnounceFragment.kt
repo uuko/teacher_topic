@@ -18,6 +18,7 @@ import com.example.linteacher.databinding.FragmentAnnounceBinding
 import com.example.linteacher.ui.main.MainActivity
 import com.example.linteacher.ui.main.announceinner.AnnounceInnerActivity
 import com.example.linteacher.ui.main.listannounce.ListAnnounceActivity
+import com.example.linteacher.ui.main.listimportant.ListImportantActivity
 import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondLineActivity
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpRepository
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpViewModel
@@ -72,6 +73,12 @@ class AnnounceFragment : Fragment(), ContentListener.View {
         binding.moreButton.setOnClickListener {
             ActivityNavigator.startActivity(
                 ListAnnounceActivity::class.java,
+                this.requireActivity()
+            )
+        }
+        binding.moreImportantButton.setOnClickListener {
+            ActivityNavigator.startActivity(
+                ListImportantActivity::class.java,
                 this.requireActivity()
             )
         }
@@ -143,17 +150,22 @@ class AnnounceFragment : Fragment(), ContentListener.View {
             viewLifecycleOwner,
             { t ->
                 val importantLst = mutableListOf<Content.ImportantInnerAnnounce>()
+                var count = 0
                 for (item in t.responses) {
-                    importantLst.add(
-                        Content.ImportantInnerAnnounce(
-                            articleImportant = item.articleImportant,
-                            articleTag = item.articleTag,
-                            articleTitle = item.articleTitle,
-                            articleContent = item.articleContent,
-                            modifyDate = item.modifyDate,
-                            articleId = item.articleId,
+                    if (count < 3) {
+                        importantLst.add(
+                            Content.ImportantInnerAnnounce(
+                                articleImportant = item.articleImportant,
+                                articleTag = item.articleTag,
+                                articleTitle = item.articleTitle,
+                                articleContent = item.articleContent,
+                                modifyDate = item.modifyDate,
+                                articleId = item.articleId,
+                            )
                         )
-                    )
+                    } else break
+
+                    count++
                 }
                 val mainView = binding.importantContent
                 mainView.removeAllViews()
