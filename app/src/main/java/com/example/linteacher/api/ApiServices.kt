@@ -4,6 +4,9 @@ import com.example.linteacher.api.pojo.TeacherLineResponse
 import com.example.linteacher.api.pojo.admin.addteacher.AddTeacherRequest
 import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthorityRequest
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
+import com.example.linteacher.api.pojo.artical.ArticalGetResponse
+import com.example.linteacher.api.pojo.artical.LatestArticleResponse
+import com.example.linteacher.api.pojo.banner.BannerGetResponse
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.*
@@ -19,21 +22,35 @@ import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ApiServices {
-
+    //   教師資料 第一層第二層
     @GET("teacher/teacherLine/list")
     fun getTeacherLineList(): Observable<List<TeacherLineResponse>>
 
+    //
+    @GET(Config.GET_BANNER)
+    fun getBannerList(): Observable<BannerGetResponse>
 
+    @GET
+    fun getImportantList(@Url string: String): Observable<ArticalGetResponse>
 
+    @GET
+    fun getLatestList(@Url string: String): Observable<LatestArticleResponse>
 
     //教師個資
     @GET
     fun getTeacherProfileData(@Url string: String): Observable<TeacherProfileResponse>
+
     @POST
-    fun postTeacherProfileData(@Url string: String
-    ,@Body requestBody: TeacherProfileResponse): Observable<Unit>
+    fun postTeacherProfileData(
+        @Url string: String, @Body requestBody: TeacherProfileResponse
+    ): Observable<Unit>
+
     @POST
-    fun updateTeacherProfileData(@Url url: String,@Body requestBody: TeacherUpdateRequest):Observable<Unit>
+    fun updateTeacherProfileData(
+        @Url url: String,
+        @Body requestBody: TeacherUpdateRequest
+    ): Observable<Unit>
+
     //選擇頭像
     @POST
     @JvmSuppressWildcards
