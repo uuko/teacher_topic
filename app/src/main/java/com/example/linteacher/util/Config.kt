@@ -73,6 +73,8 @@ object Config {
     const val GET_BANNER = "/article/banner"
 
     //article
+    const val GET_LATEST_ARTICLE_ALL = "/article/latest/all"
+    const val GET_ARTICLE_ALL = "/article/important/all"
     const val GET_ARTICLE = "/article/important?pageNo=%s"
     const val GET_LATEST_ARTICLE = "/article/latest?pageNo=%s"
     const val GET_ARTICLE_ID = "/article/id/%s"

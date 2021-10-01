@@ -17,7 +17,7 @@ class AnnounceViewModel constructor(var repository: AnnounceRepository) : ViewMo
         return repository.getImportantList(page)
     }
 
-    fun getLatestList(page: Int): MutableLiveData<LatestArticleResponse> {
+    fun getLatestList(page: Int): MutableLiveData<ArticalGetResponse> {
         return repository.getLatestList(page)
     }
 

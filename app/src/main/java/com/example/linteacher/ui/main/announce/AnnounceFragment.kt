@@ -15,7 +15,9 @@ import com.bumptech.glide.Glide
 import com.example.linteacher.R
 import com.example.linteacher.api.pojo.banner.BannerGetResponse
 import com.example.linteacher.databinding.FragmentAnnounceBinding
+import com.example.linteacher.ui.main.MainActivity
 import com.example.linteacher.ui.main.announceinner.AnnounceInnerActivity
+import com.example.linteacher.ui.main.listannounce.ListAnnounceActivity
 import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondLineActivity
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpRepository
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpViewModel
@@ -68,7 +70,10 @@ class AnnounceFragment : Fragment(), ContentListener.View {
         super.onViewCreated(view, savedInstanceState)
         initRecycleView()
         binding.moreButton.setOnClickListener {
-            
+            ActivityNavigator.startActivity(
+                ListAnnounceActivity::class.java,
+                this.requireActivity()
+            )
         }
         observeBannerList()
         observeImportantList(0)

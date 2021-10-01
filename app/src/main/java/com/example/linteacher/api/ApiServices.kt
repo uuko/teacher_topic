@@ -6,6 +6,7 @@ import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthority
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.api.pojo.artical.ArticalGetResponse
 import com.example.linteacher.api.pojo.artical.ArticleResponse
+import com.example.linteacher.api.pojo.artical.LatestAllArticleResponse
 import com.example.linteacher.api.pojo.artical.LatestArticleResponse
 import com.example.linteacher.api.pojo.banner.BannerGetResponse
 import com.example.linteacher.api.pojo.login.LoginRequest
@@ -38,7 +39,14 @@ interface ApiServices {
     fun getImportantList(@Url string: String): Observable<ArticalGetResponse>
 
     @GET
-    fun getLatestList(@Url string: String): Observable<LatestArticleResponse>
+    fun getLatestList(@Url string: String): Observable<ArticalGetResponse>
+
+
+    @GET
+    fun getLatestAllList(@Url string: String): Observable<LatestAllArticleResponse>
+
+    @GET
+    fun getImportantAllList(@Url string: String): Observable<LatestAllArticleResponse>
 
     //教師個資
     @GET

@@ -65,20 +65,20 @@ class AnnounceRepository {
     }
 
 
-    fun getLatestList(page: Int): MutableLiveData<LatestArticleResponse> {
-        val data = MutableLiveData<LatestArticleResponse>()
+    fun getLatestList(page: Int): MutableLiveData<ArticalGetResponse> {
+        val data = MutableLiveData<ArticalGetResponse>()
         val url = String.format(Config.GET_LATEST_ARTICLE, page)
         RetrofitManager.compositeDisposable.add(
             RetrofitManager.apiServices.getLatestList(url)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<LatestArticleResponse>() {
-                    override fun onNext(t: LatestArticleResponse) {
+                .subscribeWith(object : DisposableObserver<ArticalGetResponse>() {
+                    override fun onNext(t: ArticalGetResponse) {
                         data.value = t
                     }
 
                     override fun onError(e: Throwable) {
-                        data.value = LatestArticleResponse(0, mutableListOf(), 0)
+                        data.value = ArticalGetResponse(0, mutableListOf(), 0)
                     }
 
                     override fun onComplete() {

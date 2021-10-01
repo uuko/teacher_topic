@@ -14,7 +14,13 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.Linteacher">
-        <activity android:name=".ui.main.announceinner.AnnounceInnerActivity"></activity>
+        <activity android:name=".ui.main.listannounce.ListAnnounceActivity"></activity>
+        <activity android:name=".ui.main.announcelist.ListAnnounceActivity" />
+        <activity
+                android:name=".ui.main.announcelist.ListAnnouncectivity"
+                android:label="@string/title_activity_list_announcectivity"
+                android:theme="@style/Theme.Linteacher.NoActionBar" />
+        <activity android:name=".ui.main.announceinner.AnnounceInnerActivity" />
         <activity
                 android:name=".ui.teacherdata.TeacherInformationFirstActivity"
                 android:label="@string/title_activity_teacher_information_first"
