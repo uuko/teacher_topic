@@ -94,6 +94,7 @@ class ContentAdapter(
                 val splitString = articleContent.split("<img>")
                 Log.d("splitString", "handleContent: $splitString  size ${splitString.size}")
                 for (i in splitString.indices) {
+                    if (i > 4) break
                     if (i % 2 == 1) {
                         contentLst.add(Content.ContentData(splitString[i], Config.PIC))
                     } else {

@@ -18,12 +18,13 @@ import com.example.linteacher.api.pojo.artical.Response
 import com.example.linteacher.databinding.ItemCarsoulInnerBinding
 import com.example.linteacher.databinding.ItemNetworkBinding
 import com.example.linteacher.ui.main.announce.Content.ContentData
+import com.example.linteacher.util.ArticleInnerListener
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.NetworkState
 import java.util.*
 
 
-class FeedListAdapter(private val context: Context) :
+class FeedListAdapter(private val context: Context, val listener: ArticleInnerListener) :
     PagedListAdapter<Response, RecyclerView.ViewHolder?>(
         DIFF_CALLBACK
     ) {
@@ -88,6 +89,9 @@ class FeedListAdapter(private val context: Context) :
         fun bindTo(article: Response?) {
             binding.articleTitle.setText(article!!.articleTitle)
             binding.articleTag.setText(article.articleTag)
+            itemView.setOnClickListener {
+                listener.onItemClick(article.articleId)
+            }
             handleContent(article.articleContent)
             val mainView: LinearLayout = binding.contentView
             mainView.removeAllViews()
@@ -119,6 +123,7 @@ class FeedListAdapter(private val context: Context) :
             if (articleContent.contains("<img>")) {
                 val splitString = articleContent.split("<img>").toTypedArray()
                 for (i in splitString.indices) {
+                    if (i > 4) break
                     if (i % 2 == 1) {
                         contentLst.add(ContentData(splitString[i], Config.PIC))
                     } else {

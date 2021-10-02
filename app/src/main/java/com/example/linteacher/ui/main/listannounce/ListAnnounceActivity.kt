@@ -5,6 +5,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.databinding.ActivityListAnnounceBinding
+import com.example.linteacher.ui.main.announceinner.AnnounceInnerActivity
+import com.example.linteacher.util.ActivityNavigator
+import com.example.linteacher.util.ArticleInnerListener
 
 class ListAnnounceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListAnnounceBinding
@@ -15,7 +18,20 @@ class ListAnnounceActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.listFeed.layoutManager = LinearLayoutManager(this)
-        val adapter = FeedListAdapter(this)
+        val adapter = FeedListAdapter(this, object : ArticleInnerListener {
+            override fun onItemClick(article: Int) {
+                val bundle = Bundle()
+                bundle.putSerializable("articleId", article.toString())
+
+                ActivityNavigator.startActivityWithData(
+                    AnnounceInnerActivity::class.java,
+                    bundle,
+                    this@ListAnnounceActivity
+                )
+
+            }
+
+        })
 
 
         /*
