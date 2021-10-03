@@ -59,6 +59,8 @@ class AddArticleActivity : AppCompatActivity() {
                 viewModel.postArticle(request)
                     .observe(this, {
                         Toast.makeText(this, "postArticle ok", Toast.LENGTH_SHORT).show()
+                        setResult(Activity.RESULT_OK, intent)
+                        finish()
                     })
             } else {
                 var content = binding.contentText.text.toString()
@@ -81,6 +83,8 @@ class AddArticleActivity : AppCompatActivity() {
                 viewModel.updateArticle(request)
                     .observe(this, {
                         Toast.makeText(this, "updateArticle ok", Toast.LENGTH_SHORT).show()
+                        setResult(Activity.RESULT_OK, intent)
+                        finish()
                     })
             }
 

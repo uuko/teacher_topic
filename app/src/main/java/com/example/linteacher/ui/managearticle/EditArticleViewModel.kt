@@ -15,9 +15,10 @@ import java.util.concurrent.Executors
 class EditArticleViewModel() : ViewModel() {
     private var networkState: LiveData<NetworkState>? = null
     private var articleLiveData: LiveData<PagedList<Response>>? = null
-    private fun init() {
+    lateinit var feedDataFactory: FeedDataFactory
+    fun init() {
         val executor = Executors.newFixedThreadPool(5)
-        val feedDataFactory = FeedDataFactory()
+        feedDataFactory = FeedDataFactory()
         networkState = Transformations.switchMap(
             feedDataFactory.getMutableLiveData()
         ) { dataSource -> dataSource.networkState }
@@ -36,6 +37,10 @@ class EditArticleViewModel() : ViewModel() {
 
     fun getArticleLiveData(): LiveData<PagedList<Response>>? {
         return articleLiveData
+    }
+
+    fun invalidate() {
+        feedDataFactory.invalidate()
     }
 
     init {

@@ -7,9 +7,9 @@ import com.example.linteacher.api.pojo.artical.Response
 class FeedDataFactory : DataSource.Factory<Long, Response>() {
     private val mutableLiveData: MutableLiveData<FeedDataSource> =
         MutableLiveData<FeedDataSource>()
-
+    lateinit var feedDataSource: FeedDataSource
     override fun create(): DataSource<Long, Response> {
-        val feedDataSource: FeedDataSource = FeedDataSource()
+        feedDataSource = FeedDataSource()
         mutableLiveData.postValue(feedDataSource)
         return feedDataSource
     }
@@ -18,4 +18,7 @@ class FeedDataFactory : DataSource.Factory<Long, Response>() {
         return mutableLiveData
     }
 
+    fun invalidate() {
+        feedDataSource.invalidate()
+    }
 }

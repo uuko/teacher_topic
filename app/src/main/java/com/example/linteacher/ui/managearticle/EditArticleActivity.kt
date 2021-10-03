@@ -28,7 +28,8 @@ class EditArticleActivity : AppCompatActivity(), EditListener.View {
         val resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
-
+                    Log.d("resultLauncher", "onCreate: ")
+                    viewModel.invalidate()
                 }
             }
         binding.addBtn.setOnClickListener {
