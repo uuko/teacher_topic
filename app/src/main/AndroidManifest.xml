@@ -14,7 +14,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.Linteacher">
-        <activity android:name=".ui.managearticle.EditArticleActivity"></activity>
+        <activity android:name=".ui.addarticle.AddArticleActivity"></activity>
+        <activity android:name=".ui.editarticle.EditArticleActivity" />
+        <activity android:name=".ui.managearticle.EditArticleActivity" />
         <activity android:name=".ui.main.listimportant.ListImportantActivity" />
         <activity android:name=".ui.main.listannounce.ListAnnounceActivity" />
         <activity android:name=".ui.main.announcelist.ListAnnounceActivity" />

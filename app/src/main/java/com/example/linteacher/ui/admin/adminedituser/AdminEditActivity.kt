@@ -27,12 +27,12 @@ import com.example.linteacher.util.preference.LoginPreferences
 class AdminEditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAdminEditBinding
     private lateinit var adapter: AdminEditAdapter
-    private lateinit var resultLauncher:ActivityResultLauncher<Intent>
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private val factory = AdminEditViewModelFactory(AdminEditRepository())
     private val viewModel: AdminEditViewModel by viewModels {
         factory
     }
-    private final val TAG="AdminEditActivity"
+    private final val TAG = "AdminEditActivity"
     private lateinit var owner: LifecycleOwner
     override fun onResume() {
         super.onResume()
@@ -40,38 +40,48 @@ class AdminEditActivity : AppCompatActivity() {
 
 
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate: ")
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        resultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
 
-                result ->
-            Log.d(TAG, "registerForActivityResult0000000: "+result.resultCode)
-            if (result.resultCode == Activity.RESULT_OK) {
-                // There are no request codes
-                val data: Intent? = result.data
-                Log.d(TAG, "registerForActivityResult: ")
-                viewModel.listAllTeacher().observe(owner,
-                    { t ->
-                        if (t.list.isNotEmpty()){
-                            adapter.swapItems(t.list)
-                        } else{
-                            Toast.makeText(applicationContext, "listAllTeacher Verified !"+t.error, Toast.LENGTH_SHORT).show()
-                        }
-                    })
+                    result ->
+                Log.d(TAG, "registerForActivityResult0000000: " + result.resultCode)
+                if (result.resultCode == Activity.RESULT_OK) {
+                    // There are no request codes
+                    val data: Intent? = result.data
+                    Log.d(TAG, "registerForActivityResult: ")
+                    viewModel.listAllTeacher().observe(owner,
+                        { t ->
+                            if (t.list.isNotEmpty()) {
+                                adapter.swapItems(t.list)
+                            } else {
+                                Toast.makeText(
+                                    applicationContext,
+                                    "listAllTeacher Verified !" + t.error,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        })
+                }
             }
-        }
-        val context=this
+        val context = this
         binding = ActivityAdminEditBinding.inflate(layoutInflater)
-        owner=this
+        owner = this
         setContentView(binding.root)
 
         binding.addBtn.setOnClickListener(
-            object :View.OnClickListener{
+            object : View.OnClickListener {
                 override fun onClick(p0: View?) {
 
                     ActivityNavigator
-                        .openActivity(resultLauncher,AddTeacherActivity::class.java,this@AdminEditActivity)
+                        .openActivity(
+                            resultLauncher,
+                            AddTeacherActivity::class.java,
+                            this@AdminEditActivity
+                        )
 
 
                 }
@@ -85,17 +95,19 @@ class AdminEditActivity : AppCompatActivity() {
         })
 
 
-
-
     }
 
     private fun listAllTeacher() {
         viewModel.listAllTeacher().observe(this,
             { t ->
-                if (t.list.isNotEmpty()){
+                if (t.list.isNotEmpty()) {
                     adapter.swapItems(t.list)
-                } else{
-                    Toast.makeText(applicationContext, "listAllTeacher Verified !"+t.error, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "listAllTeacher Verified !" + t.error,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             })
     }
@@ -107,44 +119,55 @@ class AdminEditActivity : AppCompatActivity() {
 
     private fun initRecycleView() {
         val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation= LinearLayoutManager.VERTICAL
-        layoutManager.reverseLayout=false
-        binding.adminTeacherRecycleView.layoutManager =layoutManager
-        val loginPreferences=LoginPreferences(this)
-        adapter= AdminEditAdapter(ArrayList(),listener = object :
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        layoutManager.reverseLayout = false
+        binding.adminTeacherRecycleView.layoutManager = layoutManager
+        val loginPreferences = LoginPreferences(this)
+        adapter = AdminEditAdapter(ArrayList(), listener = object :
             AdminEditActivity.OnHideClickListener {
             override fun onHideClick(item: AdminListTeacherResponse, position: Int) {
-                showDialog(item.teacherName, item.teacherName+""+item.isVisible,object :DialogInterface.OnClickListener{
-                    override fun onClick(p0: DialogInterface?, p1: Int) {
-                        viewModel.changeUserAuthority(item).observe(owner,
-                            { t ->
-                                if (t.result.equals(Config.RESULT_OK)){
-                                    Log.d("isVisble", "onClick: "+item.isVisible)
-                                    val isVisble=!item.isVisible
-                                    adapter.changeItemColors(position,isVisble)
-                                    p0?.dismiss()
-                                } else{
-                                    Toast.makeText(applicationContext, "changeUserAuthority Verified !"+t, Toast.LENGTH_SHORT).show()
-                                }
-                            })
-                    }
+                showDialog(
+                    item.teacherName,
+                    item.teacherName + "" + item.isVisible,
+                    object : DialogInterface.OnClickListener {
+                        override fun onClick(p0: DialogInterface?, p1: Int) {
+                            viewModel.changeUserAuthority(item).observe(owner,
+                                { t ->
+                                    if (t.result.equals(Config.RESULT_OK)) {
+                                        Log.d("isVisble", "onClick: " + item.isVisible)
+                                        val isVisble = !item.isVisible
+                                        adapter.changeItemColors(position, isVisble)
+                                        p0?.dismiss()
+                                    } else {
+                                        Toast.makeText(
+                                            applicationContext,
+                                            "changeUserAuthority Verified !" + t,
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                })
+                        }
 
-                })
+                    })
             }
 
             override fun onMoreClick(name: AdminListTeacherResponse, position: Int) {
-                val bundle=Bundle()
+                val bundle = Bundle()
                 Log.d("onMoreClick", "loginId: ${name.loginId}")
-                bundle.putInt("loginId",name.loginId)
+                bundle.putInt("loginId", name.loginId)
                 ActivityNavigator
-                    .openActivityWithData(resultLauncher
-                        , TeacherInformationFirstActivity::class.java,this@AdminEditActivity
-                        ,bundle)
+                    .openActivityWithData(
+                        resultLauncher,
+                        TeacherInformationFirstActivity::class.java,
+                        this@AdminEditActivity,
+                        bundle
+                    )
             }
 
         })
-        binding.adminTeacherRecycleView.adapter=adapter
+        binding.adminTeacherRecycleView.adapter = adapter
     }
+
     fun showDialog(
         text: String?, title: String?, negativeClickListener: DialogInterface.OnClickListener?
     ) {
@@ -152,7 +175,7 @@ class AdminEditActivity : AppCompatActivity() {
             .setMessage(text)
             .setTitle(title)
             .setNegativeButton(
-               "cancel"
+                "cancel"
             ) { dialogInterface, i ->
                 dialogInterface.dismiss()
             }
@@ -164,6 +187,7 @@ class AdminEditActivity : AppCompatActivity() {
             .create()
             .show()
     }
+
     interface OnHideClickListener {
         fun onHideClick(name: AdminListTeacherResponse, position: Int)
         fun onMoreClick(name: AdminListTeacherResponse, position: Int)

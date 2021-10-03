@@ -43,7 +43,7 @@ object Config {
     const val UPDATE_BY_THREE_DATE_TEACHER_PROFILE = "/teacher/%s/%s/%s"
     const val POST_PROFILE_PIC = "/teacher/uploadFile?tchNumber=%s"
     const val UPDATE_TEACHER_PROFILE = "/teacher/update/%s/%s/%s"
-
+    const val POST_ARTICLE_PIC = "/article/uploadFile"
 
     //paper
     const val GET_PAPER = "/teacher/paper/loginId/%s"
@@ -78,4 +78,6 @@ object Config {
     const val GET_ARTICLE = "/article/important?pageNo=%s"
     const val GET_LATEST_ARTICLE = "/article/latest?pageNo=%s"
     const val GET_ARTICLE_ID = "/article/id/%s"
+    const val POST_ARTICLE = "/article"
+    const val UPDATE_ARTICLE = "/article/update"
 }

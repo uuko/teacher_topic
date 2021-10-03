@@ -4,10 +4,7 @@ import com.example.linteacher.api.pojo.TeacherLineResponse
 import com.example.linteacher.api.pojo.admin.addteacher.AddTeacherRequest
 import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthorityRequest
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
-import com.example.linteacher.api.pojo.artical.ArticalGetResponse
-import com.example.linteacher.api.pojo.artical.ArticleResponse
-import com.example.linteacher.api.pojo.artical.LatestAllArticleResponse
-import com.example.linteacher.api.pojo.artical.LatestArticleResponse
+import com.example.linteacher.api.pojo.artical.*
 import com.example.linteacher.api.pojo.banner.BannerGetResponse
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
@@ -35,12 +32,32 @@ interface ApiServices {
     @GET
     fun getArticle(@Url string: String): Observable<ArticleResponse>
 
+    @POST
+    fun updateArticle(
+        @Url string: String,
+        @Body requestBody: ArticleUpdateRequest
+    ): Observable<String>
+
+    @POST
+    fun postArticle(
+        @Url string: String,
+        @Body requestBody: ArticlePostRequest
+    ): Observable<ArticlePostResponse>
+
     @GET
     fun getImportantList(@Url string: String): Observable<ArticalGetResponse>
 
     @GET
     fun getLatestList(@Url string: String): Observable<ArticalGetResponse>
 
+    //選擇頭像
+    @POST
+    @JvmSuppressWildcards
+    @Multipart
+    fun uploadArticlePic(
+        @Url url: String,
+        @PartMap params: Map<String, RequestBody>
+    ): Observable<ArticlePicResponse>
 
     @GET
     fun getLatestAllList(@Url string: String): Observable<LatestAllArticleResponse>
