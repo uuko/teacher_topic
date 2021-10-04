@@ -314,7 +314,10 @@ class AddArticleActivity : BaseActivity() {
                 })
         }
         val dialogButton: Button = dialog.findViewById(R.id.cancelBtn) as Button
-        dialogButton.setOnClickListener(View.OnClickListener { dialog.dismiss() })
+        dialogButton.setOnClickListener(View.OnClickListener {
+            dialog.dismiss()
+            uploadArticle()
+        })
         dialog.show()
     }
 
