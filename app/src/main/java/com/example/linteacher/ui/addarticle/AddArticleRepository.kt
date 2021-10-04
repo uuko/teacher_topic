@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.linteacher.api.RetrofitManager
 import com.example.linteacher.api.pojo.UnitResponse
 import com.example.linteacher.api.pojo.artical.*
+import com.example.linteacher.api.pojo.banner.BannerGetResponse
+import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
+import com.example.linteacher.api.pojo.banner.ResponseContent
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
 import com.example.linteacher.util.BaseRepository
 import com.example.linteacher.util.Config
@@ -50,11 +53,15 @@ class AddArticleRepository : BaseRepository() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<ArticlePicResponse>() {
                     override fun onNext(t: ArticlePicResponse) {
-                        data.value = ArticleAllPicResponse(t, Config.RESULT_OK)
+                        data.value = ArticleAllPicResponse(t, picName = file.name, Config.RESULT_OK)
                     }
 
                     override fun onError(e: Throwable) {
-                        data.value = ArticleAllPicResponse(ArticlePicResponse(), e.toString())
+                        data.value = ArticleAllPicResponse(
+                            ArticlePicResponse(),
+                            picName = file.name,
+                            e.toString()
+                        )
                     }
 
                     override fun onComplete() {
@@ -67,6 +74,29 @@ class AddArticleRepository : BaseRepository() {
 
     }
 
+    fun updateBannerData(request: BannerUpdateRequest): MutableLiveData<ResponseContent> {
+        val data = MutableLiveData<ResponseContent>()
+        RetrofitManager.compositeDisposable.add(
+            RetrofitManager.apiServices.updateBanner(Config.UPDATE_BANNER, request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<ResponseContent>() {
+                    override fun onNext(t: ResponseContent) {
+                        data.value = ResponseContent(Config.RESULT_OK)
+                    }
+
+                    override fun onError(e: Throwable) {
+                        data.value = ResponseContent(e.toString())
+                    }
+
+                    override fun onComplete() {
+
+                    }
+
+                })
+        )
+        return data
+    }
     fun updateArticleData(request: ArticleUpdateRequest): MutableLiveData<ArticlePostResponse> {
         val data = MutableLiveData<ArticlePostResponse>()
         RetrofitManager.compositeDisposable.add(
@@ -115,5 +145,28 @@ class AddArticleRepository : BaseRepository() {
         return data
     }
 
+    fun getBannerList(): MutableLiveData<BannerGetResponse> {
+        val data = MutableLiveData<BannerGetResponse>()
+        RetrofitManager.compositeDisposable.add(
+            RetrofitManager.apiServices.getBannerList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BannerGetResponse>() {
+                    override fun onNext(t: BannerGetResponse) {
+                        data.value = t
+                    }
+
+                    override fun onError(e: Throwable) {
+                        data.value = BannerGetResponse(mutableListOf(), 0)
+                    }
+
+                    override fun onComplete() {
+
+                    }
+
+                })
+        )
+        return data
+    }
 
 }

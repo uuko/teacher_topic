@@ -6,6 +6,8 @@ import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthority
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.api.pojo.artical.*
 import com.example.linteacher.api.pojo.banner.BannerGetResponse
+import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
+import com.example.linteacher.api.pojo.banner.ResponseContent
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.*
@@ -28,6 +30,10 @@ interface ApiServices {
     //banner & article
     @GET(Config.GET_BANNER)
     fun getBannerList(): Observable<BannerGetResponse>
+
+    @POST
+    fun updateBanner(@Url string: String, @Body request: BannerUpdateRequest)
+            : Observable<ResponseContent>
 
     @GET
     fun getArticle(@Url string: String): Observable<ArticleResponse>

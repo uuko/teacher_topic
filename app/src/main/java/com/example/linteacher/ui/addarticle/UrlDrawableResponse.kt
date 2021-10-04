@@ -8,4 +8,5 @@ data class UrlDrawableResponse(
     val content: String = "",
     val isDrawable: Boolean = false,
     var drawable: Drawable? = null,
+    var picName: String = "",
 )

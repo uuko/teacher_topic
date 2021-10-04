@@ -1,9 +1,14 @@
 package com.example.linteacher.util
 
+
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
@@ -11,8 +16,10 @@ import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.transition.Fade
 import androidx.transition.TransitionManager
+import com.example.linteacher.R
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 abstract class BaseActivity : AppCompatActivity() {
     fun bindSpinnerAdapter(array: Int, spinner: Spinner, data: String, context: Context) {
@@ -90,4 +97,6 @@ abstract class BaseActivity : AppCompatActivity() {
         return array?.get(spinner.selectedItemPosition).toString()
 
     }
+
+
 }

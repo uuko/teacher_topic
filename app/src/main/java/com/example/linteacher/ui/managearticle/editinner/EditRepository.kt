@@ -70,11 +70,15 @@ class EditRepository : BaseRepository() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<ArticlePicResponse>() {
                     override fun onNext(t: ArticlePicResponse) {
-                        data.value = ArticleAllPicResponse(t, Config.RESULT_OK)
+                        data.value = ArticleAllPicResponse(t, picName = file.name, Config.RESULT_OK)
                     }
 
                     override fun onError(e: Throwable) {
-                        data.value = ArticleAllPicResponse(ArticlePicResponse(), e.toString())
+                        data.value = ArticleAllPicResponse(
+                            ArticlePicResponse(),
+                            picName = file.name,
+                            e.toString()
+                        )
                     }
 
                     override fun onComplete() {

@@ -71,6 +71,7 @@ object Config {
 
     //    banner
     const val GET_BANNER = "/article/banner"
+    const val UPDATE_BANNER = "/article/banner"
 
     //article
     const val GET_LATEST_ARTICLE_ALL = "/article/latest/all"

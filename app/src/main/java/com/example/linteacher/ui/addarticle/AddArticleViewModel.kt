@@ -6,6 +6,9 @@ import com.example.linteacher.api.pojo.artical.ArticleAllPicResponse
 import com.example.linteacher.api.pojo.artical.ArticlePostRequest
 import com.example.linteacher.api.pojo.artical.ArticlePostResponse
 import com.example.linteacher.api.pojo.artical.ArticleUpdateRequest
+import com.example.linteacher.api.pojo.banner.BannerGetResponse
+import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
+import com.example.linteacher.api.pojo.banner.ResponseContent
 import com.example.linteacher.api.pojo.teacherdata.profile.pic.ProfilePicResponse
 import java.io.File
 
@@ -20,5 +23,13 @@ class AddArticleViewModel(val dataModel: AddArticleRepository) : ViewModel() {
 
     fun postArticle(request: ArticlePostRequest): MutableLiveData<ArticlePostResponse> {
         return dataModel.postArticleData(request)
+    }
+
+    fun getBannerList(): MutableLiveData<BannerGetResponse> {
+        return dataModel.getBannerList()
+    }
+
+    fun updateBanner(request: BannerUpdateRequest): MutableLiveData<ResponseContent> {
+        return dataModel.updateBannerData(request)
     }
 }

@@ -1,6 +1,7 @@
 package com.example.linteacher.ui.addarticle
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -10,17 +11,17 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.view.Window
+import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.request.target.CustomTarget
 import com.example.linteacher.R
 import com.example.linteacher.api.pojo.artical.ArticlePostRequest
 import com.example.linteacher.api.pojo.artical.ArticleUpdateRequest
+import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
 import com.example.linteacher.databinding.ActivityAddArticleBinding
 import com.example.linteacher.util.BaseActivity
 import com.example.linteacher.util.Config
@@ -55,60 +56,77 @@ class AddArticleActivity : BaseActivity() {
             this
         )
         binding.addBtn.setOnClickListener {
-            var articleImportant = ""
-            if (binding.articleImportant.selectedItemPosition != -1) {
-                articleImportant =
-                    getResponseSpinner(
-                        R.array.tch_important_array_en,
-                        binding.articleImportant,
-                    )
-                if (articleImportant == "重要") articleImportant = "U"
-                else if (articleImportant == "普通") articleImportant = "O"
-            }
-            if (articleId == -1) {
+            getBannerList()
 
-                val request =
-                    ArticlePostRequest(
-                        articleContent = binding.contentText.text.toString(),
-                        articleImportant = articleImportant,
-                        articleTag = binding.articleTag.text.toString(),
-                        articleTitle = binding.articleTitle.text.toString(),
-                    )
-                viewModel.postArticle(request)
-                    .observe(this, {
-                        Toast.makeText(this, "postArticle ok", Toast.LENGTH_SHORT).show()
-                        setResult(Activity.RESULT_OK, intent)
-                        finish()
-                    })
-            } else {
-                var content = binding.contentText.text.toString()
-                Log.d("onResourceReady", "onCreate: ${picUrlList.size}")
-                for (picUrl in picUrlList) {
-                    if (content.contains(picUrl.picUrl)) {
-                        content = content.replace(picUrl.picUrl, "<img>${picUrl.picUrl}<img>")
-                        Log.d("onResourceReady", "replace: $content")
-                    }
-                }
-                Log.d("onResourceReady", "content: $content")
-                val request =
-                    ArticleUpdateRequest(
-                        articleId = articleId,
-                        articleContent = content,
-                        articleImportant = articleImportant,
-                        articleTag = binding.articleTag.text.toString(),
-                        articleTitle = binding.articleTitle.text.toString(),
-                    )
-                viewModel.updateArticle(request)
-                    .observe(this, {
-                        Toast.makeText(this, "updateArticle ok", Toast.LENGTH_SHORT).show()
-                        setResult(Activity.RESULT_OK, intent)
-                        finish()
-                    })
-            }
 
         }
 
 
+    }
+
+    private fun getBannerList() {
+        viewModel.getBannerList()
+            .observe(this, {
+                if (it.totalCount >= 5 || picUrlList.size <= 0) {
+                    uploadArticle()
+                } else {
+                    showCustomDialog(this, picUrlList)
+                }
+            })
+
+    }
+
+    private fun uploadArticle() {
+        var articleImportant = ""
+        if (binding.articleImportant.selectedItemPosition != -1) {
+            articleImportant =
+                getResponseSpinner(
+                    R.array.tch_important_array_en,
+                    binding.articleImportant,
+                )
+            if (articleImportant == "重要") articleImportant = "U"
+            else if (articleImportant == "普通") articleImportant = "O"
+        }
+        if (articleId == -1) {
+
+            val request =
+                ArticlePostRequest(
+                    articleContent = binding.contentText.text.toString(),
+                    articleImportant = articleImportant,
+                    articleTag = binding.articleTag.text.toString(),
+                    articleTitle = binding.articleTitle.text.toString(),
+                )
+            viewModel.postArticle(request)
+                .observe(this, {
+                    Toast.makeText(this, "postArticle ok", Toast.LENGTH_SHORT).show()
+                    setResult(Activity.RESULT_OK, intent)
+                    finish()
+                })
+        } else {
+            var content = binding.contentText.text.toString()
+            Log.d("onResourceReady", "onCreate: ${picUrlList.size}")
+            for (picUrl in picUrlList) {
+                if (content.contains(picUrl.picUrl)) {
+                    content = content.replace(picUrl.picUrl, "<img>${picUrl.picUrl}<img>")
+                    Log.d("onResourceReady", "replace: $content")
+                }
+            }
+            Log.d("onResourceReady", "content: $content")
+            val request =
+                ArticleUpdateRequest(
+                    articleId = articleId,
+                    articleContent = content,
+                    articleImportant = articleImportant,
+                    articleTag = binding.articleTag.text.toString(),
+                    articleTitle = binding.articleTitle.text.toString(),
+                )
+            viewModel.updateArticle(request)
+                .observe(this, {
+                    Toast.makeText(this, "updateArticle ok", Toast.LENGTH_SHORT).show()
+                    setResult(Activity.RESULT_OK, intent)
+                    finish()
+                })
+        }
     }
 
     fun imageChooser() {
@@ -184,6 +202,7 @@ class AddArticleActivity : BaseActivity() {
                                 binding.insertBtn.visibility = View.VISIBLE
                                 val cs = it.list.picUrl
                                 articleId = it.list.articleId
+                                val picName = it.picName
                                 binding.insertBtn.setOnClickListener {
 
 
@@ -200,7 +219,11 @@ class AddArticleActivity : BaseActivity() {
                                                 transition: com.bumptech.glide.request.transition.Transition<in Drawable>?
                                             ) {
                                                 if (drawable != null) {
-                                                    picUrlList.add(UrlDrawableResponse(picUrl = cs))
+                                                    picUrlList.add(
+                                                        UrlDrawableResponse(
+                                                            picUrl = cs, picName = picName
+                                                        )
+                                                    )
                                                     Log.d(
                                                         "onResourceReady", "onResourceReady: " +
                                                                 "${binding.contentText.selectionStart}"
@@ -244,6 +267,56 @@ class AddArticleActivity : BaseActivity() {
 
     }
 
+    fun showCustomDialog(context: Context, list: ArrayList<UrlDrawableResponse>) {
+        val dialog = Dialog(context)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.banner_dialog)
+        val imageView = dialog.findViewById<ImageView>(R.id.imageView)
+        var position = 0
+        val textView = dialog.findViewById(R.id.checkBox2) as TextView
+        Glide.with(context)
+            .load(GlideUrl(list[position].picUrl))
+            .into(imageView)
+        dialog.findViewById<ImageView>(R.id.previousBtn).setOnClickListener {
+            position--
+            if (position <= 0) position = 0
+            else {
+                textView.text = list[position].picName
+                Glide.with(context)
+                    .load(GlideUrl(list[position].picUrl))
+                    .into(imageView)
+            }
+        }
+        dialog.findViewById<ImageView>(R.id.nextBtn).setOnClickListener {
+            position++
+            if (position >= list.size) position = list.size - 1
+            else {
+                textView.text = list[position].picName
+                Glide.with(context)
+                    .load(GlideUrl(list[position].picUrl))
+                    .into(imageView)
+            }
+        }
+        val submitBtn: Button = dialog.findViewById(R.id.submitBtn) as Button
+
+
+        submitBtn.setOnClickListener {
+            val request = BannerUpdateRequest(
+                banner = true,
+                picUrl = list[position].picUrl
+            )
+            viewModel.updateBanner(request)
+                .observe(this, {
+                    if (it.responseContent == Config.RESULT_OK) {
+                        uploadArticle()
+                    }
+                })
+        }
+        val dialogButton: Button = dialog.findViewById(R.id.cancelBtn) as Button
+        dialogButton.setOnClickListener(View.OnClickListener { dialog.dismiss() })
+        dialog.show()
+    }
 
     fun getFile(mContext: Context, documentUri: Uri): File {
         val inputStream = mContext?.contentResolver?.openInputStream(documentUri)
