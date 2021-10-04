@@ -65,7 +65,7 @@ class ArticleTagActivity : AppCompatActivity() {
     }
 
     private fun getTagsBindView(tag: String) {
-        val list = ArrayList<Chip>()
+        val list = ArrayList<ChipData>()
         viewModel.getArticleAllTags()
             .observe(this, {
                 for (response in it.iterator()) {
@@ -76,8 +76,9 @@ class ArticleTagActivity : AppCompatActivity() {
                     else chip.setChipBackgroundColorResource(R.color.black)
                     chip.isCloseIconVisible = false
                     chip.setTextColor(resources.getColor(R.color.white))
-                    chip.id = ViewCompat.generateViewId();
-                    list.add(chip)
+                    val id = ViewCompat.generateViewId();
+                    chip.id = id
+                    list.add(ChipData(chip.id, chip.text.toString()))
                     chip.setOnClickListener {
                         Log.d(
                             "getTagsBindView", "getTagsBindView: ${response.tag} " +
@@ -91,9 +92,9 @@ class ArticleTagActivity : AppCompatActivity() {
                                     "getTagsBindView", "minichip: ${minichip.text.toString()} " +
                                             "chip : ${chip.text.toString()}"
                                 )
-                                chip.setChipBackgroundColorResource(R.color.holo_red_dark)
+                                findViewById<Chip>(minichip.id).setChipBackgroundColorResource(R.color.holo_red_dark)
                             } else {
-                                chip.setChipBackgroundColorResource(R.color.black)
+                                findViewById<Chip>(minichip.id).setChipBackgroundColorResource(R.color.black)
                             }
 
                         }
