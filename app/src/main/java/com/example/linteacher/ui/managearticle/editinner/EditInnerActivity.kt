@@ -67,7 +67,7 @@ class EditInnerActivity : BaseActivity() {
                                     response.picUrl,
                                     it,
                                     binding.contentText,
-                                    300, 300,
+                                    it.intrinsicWidth, it.intrinsicHeight,
 
                                     )
                             }
