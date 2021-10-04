@@ -9,15 +9,25 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.linteacher.api.pojo.artical.DeleteArticleRequest
+import com.example.linteacher.api.pojo.artical.Response
 import com.example.linteacher.databinding.ActivityEditArticleBinding
 import com.example.linteacher.ui.addarticle.AddArticleActivity
+import com.example.linteacher.ui.addarticle.AddArticleRepository
+import com.example.linteacher.ui.addarticle.AddArticleViewModel
+import com.example.linteacher.ui.addarticle.AddArticleViewModelFactory
 import com.example.linteacher.ui.managearticle.editinner.EditInnerActivity
 import com.example.linteacher.util.ActivityNavigator
+import com.example.linteacher.util.Config
 
 class EditArticleActivity : AppCompatActivity(), EditListener.View {
     private lateinit var binding: ActivityEditArticleBinding
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private val viewModel: EditArticleViewModel by viewModels()
+    private val factory = EditArticleViewModelFactory(EditArticleRepository())
+    private val viewModel: EditArticleViewModel by viewModels {
+        factory
+    }
+    lateinit var adapter: EditArticleAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditArticleBinding.inflate(layoutInflater)
@@ -38,12 +48,35 @@ class EditArticleActivity : AppCompatActivity(), EditListener.View {
                     this
                 )
         }
+        binding.deleteBtn.setOnClickListener {
+            val checkedList = ArrayList<DeleteArticleRequest>()
+            val removeList = ArrayList<Response>()
+
+            for (data in adapter.currentList!!) {
+                if (data.isChecked) {
+                    Log.d("isChecked", "onCreate: ${data.articleId}")
+                    removeList.add(data)
+                    checkedList.add(DeleteArticleRequest(data.articleId))
+                }
+            }
+            if (checkedList.size > 0) {
+                viewModel.deleteArticle(checkedList)
+                    .observe(this, {
+                        if (it.result == Config.RESULT_OK) {
+                            viewModel.invalidate()
+                        }
+                    })
+            }
+        }
     }
 
     private fun initRecycleView() {
         binding.listFeed.layoutManager = LinearLayoutManager(this)
-        val adapter = EditArticleAdapter(this, this)
+        adapter = EditArticleAdapter(this, this)
         viewModel.getArticleLiveData()?.observe(this) { pagedList ->
+            for (response in pagedList) {
+                response.isChecked = false
+            }
             adapter.submitList(
                 pagedList
             )
@@ -53,6 +86,7 @@ class EditArticleActivity : AppCompatActivity(), EditListener.View {
                 networkState
             )
         }
+
         binding.listFeed.adapter = adapter
     }
 

@@ -8,7 +8,7 @@ class EditArticleViewModelFactory(private val dataModel: EditArticleRepository) 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
         if (modelClass.isAssignableFrom(EditArticleViewModel::class.java)) {
-            return EditArticleViewModel() as T
+            return EditArticleViewModel(dataModel) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

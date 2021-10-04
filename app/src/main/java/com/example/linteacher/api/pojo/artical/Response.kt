@@ -6,5 +6,6 @@ data class Response(
     val articleImportant: String,
     val articleTag: String,
     val articleTitle: String,
-    val modifyDate: String
+    val modifyDate: String,
+    var isChecked: Boolean = false
 )

@@ -90,6 +90,10 @@ class EditArticleAdapter(private val context: Context, val listener: EditListene
             binding.articleTitle.text = article!!.articleTitle
             binding.articleTag.text = article.articleTag
             binding.modifyDate.text = article.modifyDate
+            binding.checkBox.setOnClickListener {
+                article.isChecked = !article.isChecked
+                binding.checkBox.isChecked = article.isChecked
+            }
             handleContent(article.articleContent)
             val mainView: LinearLayout = binding.contentView
             mainView.removeAllViews()
