@@ -4,7 +4,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         tools:context=".ui.managearticle.EditArticleActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -26,7 +25,7 @@
             android:orientation="horizontal">
 
         <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/all_check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/custom_checkbox"
@@ -36,11 +35,12 @@
 
         <TextView
 
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="全選"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBox2"
-                app:layout_constraintStart_toEndOf="@+id/checkBox2"
+                app:layout_constraintBottom_toBottomOf="@+id/all_check"
+                app:layout_constraintStart_toEndOf="@+id/all_check"
                 app:layout_constraintTop_toTopOf="parent" />
 
         <Button

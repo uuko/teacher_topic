@@ -48,6 +48,19 @@ class EditArticleActivity : AppCompatActivity(), EditListener.View {
                     this
                 )
         }
+        binding.allCheck.setOnCheckedChangeListener { compoundButton, b ->
+            Log.d("allCheck", "onCreate: ")
+            val list = adapter.currentList!!
+
+            for (response in list) {
+                response.isChecked = b
+            }
+
+            adapter.submitList(list)
+        }
+
+
+
         binding.deleteBtn.setOnClickListener {
             val checkedList = ArrayList<DeleteArticleRequest>()
             val removeList = ArrayList<Response>()

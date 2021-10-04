@@ -90,6 +90,7 @@ class EditArticleAdapter(private val context: Context, val listener: EditListene
             binding.articleTitle.text = article!!.articleTitle
             binding.articleTag.text = article.articleTag
             binding.modifyDate.text = article.modifyDate
+            binding.checkBox.isChecked = article.isChecked
             binding.checkBox.setOnClickListener {
                 article.isChecked = !article.isChecked
                 binding.checkBox.isChecked = article.isChecked
@@ -173,10 +174,14 @@ class EditArticleAdapter(private val context: Context, val listener: EditListene
         var DIFF_CALLBACK: DiffUtil.ItemCallback<Response> =
             object : DiffUtil.ItemCallback<Response>() {
                 override fun areItemsTheSame(oldItem: Response, newItem: Response): Boolean {
-                    return false
+                    return oldItem == newItem
                 }
 
                 override fun areContentsTheSame(oldItem: Response, newItem: Response): Boolean {
+                    val b =
+                        oldItem.isChecked == newItem.isChecked && oldItem.articleId == newItem.articleId
+                    oldItem.articleContent == newItem.articleContent && oldItem.articleTitle == newItem.articleTitle
+                            && oldItem.articleImportant == newItem.articleImportant && oldItem.articleTag == newItem.articleTag
                     return false
                 }
             }
