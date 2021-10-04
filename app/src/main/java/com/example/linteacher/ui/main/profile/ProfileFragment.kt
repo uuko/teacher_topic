@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.linteacher.databinding.FragmentProfileBinding
 import com.example.linteacher.ui.admin.adminedituser.AdminEditActivity
+import com.example.linteacher.ui.main.banneredit.BannerEditActivity
 import com.example.linteacher.ui.managearticle.EditArticleActivity
 import com.example.linteacher.util.ActivityNavigator
 import com.example.linteacher.util.Config
@@ -73,6 +74,12 @@ class ProfileFragment : Fragment() {
         binding.gradeAArticle.setOnClickListener {
             ActivityNavigator.startActivity(
                 EditArticleActivity::class.java,
+                requireActivity()
+            )
+        }
+        binding.gradeABanner.setOnClickListener {
+            ActivityNavigator.startActivity(
+                BannerEditActivity::class.java,
                 requireActivity()
             )
         }

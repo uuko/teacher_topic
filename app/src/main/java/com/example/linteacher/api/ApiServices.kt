@@ -35,6 +35,9 @@ interface ApiServices {
     fun updateBanner(@Url string: String, @Body request: BannerUpdateRequest)
             : Observable<ResponseContent>
 
+    @POST
+    fun deleteBanner(@Url string: String): Observable<ResponseContent>
+
     @GET
     fun getArticle(@Url string: String): Observable<ArticleResponse>
 

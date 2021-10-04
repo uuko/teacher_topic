@@ -11,17 +11,21 @@ import com.bumptech.glide.Glide
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.databinding.ItemTeacherlineBinding
 
-class AdminEditAdapter constructor(val items: MutableList<AdminListTeacherResponse>, val listener:AdminEditActivity.OnHideClickListener) : RecyclerView.Adapter<AdminEditAdapter.ViewHolder>() {
+class AdminEditAdapter(
+    val items: MutableList<AdminListTeacherResponse>,
+    val listener: AdminEditActivity.OnHideClickListener
+) : RecyclerView.Adapter<AdminEditAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         Log.d("onBindViewHolder", "onCreateViewHolder: ")
-        val itemBinding = ItemTeacherlineBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding =
+            ItemTeacherlineBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("onBindViewHolder", "onBindViewHolder: "+items.get(position).teacherName)
-        val itemData= items[position]
+        Log.d("onBindViewHolder", "onBindViewHolder: " + items.get(position).teacherName)
+        val itemData = items[position]
         holder.bind(itemData,listener,position)
     }
 
