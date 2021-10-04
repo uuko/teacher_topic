@@ -124,21 +124,8 @@ class AnnounceFragment : Fragment(), ContentListener.View {
                         }
 
                     })
-                    setAdapter(ImageAdapter(bannerList))
-                    setAdapter(object : BannerImageAdapter<Content.BannerResponse>(bannerList) {
-                        override fun onBindView(
-                            holder: BannerImageHolder,
-                            data: Content.BannerResponse,
-                            position: Int,
-                            size: Int
-                        ) {
-                            activity?.let {
-                                Glide.with(it)
-                                    .load(data.picUrl)
-                                    .into(holder.imageView)
-                            }
-                        }
-                    })
+                    setAdapter(ImageAdapter(bannerList, this@AnnounceFragment))
+
                 }
             }
         )
@@ -250,4 +237,6 @@ class AnnounceFragment : Fragment(), ContentListener.View {
             )
         }
     }
+
+
 }

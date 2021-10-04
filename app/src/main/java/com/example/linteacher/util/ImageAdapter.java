@@ -21,9 +21,10 @@ public class ImageAdapter extends BannerAdapter<Content.BannerResponse, ImageAda
     private Context context;
     private ContentListener.View listener;
 
-    public ImageAdapter(List<Content.BannerResponse> mDatas) {
+    public ImageAdapter(List<Content.BannerResponse> mDatas, ContentListener.View listener) {
         //设置数据，也可以调用banner提供的方法,或者自己在adapter中实现
         super(mDatas);
+        this.listener = listener;
 
     }
 
@@ -59,7 +60,12 @@ public class ImageAdapter extends BannerAdapter<Content.BannerResponse, ImageAda
             Glide.with(context)
                     .load(data.getPicUrl())
                     .into(imageView);
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(data.getArticleId());
+                }
+            });
 
         }
     }
