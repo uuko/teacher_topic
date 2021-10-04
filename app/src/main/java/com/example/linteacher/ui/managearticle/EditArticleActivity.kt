@@ -1,31 +1,29 @@
 package com.example.linteacher.ui.managearticle
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.databinding.ActivityEditArticleBinding
 import com.example.linteacher.ui.addarticle.AddArticleActivity
-import com.example.linteacher.ui.main.teacherline.TeacherLineRepository
-import com.example.linteacher.ui.main.teacherline.TeacherLineViewModel
-import com.example.linteacher.ui.main.teacherline.TeacherLineViewModelFactory
 import com.example.linteacher.ui.managearticle.editinner.EditInnerActivity
 import com.example.linteacher.util.ActivityNavigator
 
 class EditArticleActivity : AppCompatActivity(), EditListener.View {
     private lateinit var binding: ActivityEditArticleBinding
-
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private val viewModel: EditArticleViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditArticleBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initRecycleView()
-        val resultLauncher =
+        resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
                     Log.d("resultLauncher", "onCreate: ")
@@ -61,10 +59,12 @@ class EditArticleActivity : AppCompatActivity(), EditListener.View {
     override fun onItemClick(aritcleId: Int) {
         val bundle = Bundle()
         bundle.putSerializable("articleId", aritcleId.toString())
-        ActivityNavigator.startActivityWithData(
+        ActivityNavigator.openActivityWithData(
+            resultLauncher,
             EditInnerActivity::class.java,
+
+            this,
             bundle,
-            this
         )
 
     }

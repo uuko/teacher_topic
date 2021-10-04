@@ -18,16 +18,18 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
+import com.example.linteacher.R
 import com.example.linteacher.api.pojo.artical.ArticlePostRequest
 import com.example.linteacher.api.pojo.artical.ArticleUpdateRequest
 import com.example.linteacher.databinding.ActivityAddArticleBinding
+import com.example.linteacher.util.BaseActivity
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.VerticalImageSpan
 import java.io.File
 import java.io.FileOutputStream
 
 
-class AddArticleActivity : AppCompatActivity() {
+class AddArticleActivity : BaseActivity() {
     private val picUrlList: ArrayList<UrlDrawableResponse> = arrayListOf()
     private lateinit var binding: ActivityAddArticleBinding
     private val factory = AddArticleViewModelFactory(AddArticleRepository())
@@ -46,13 +48,29 @@ class AddArticleActivity : AppCompatActivity() {
         binding.removeBtn.setOnClickListener {
             showVisible(false, binding.bottomSheet)
         }
-
+        bindSpinnerAdapter(
+            R.array.tch_important_array_en,
+            binding.articleImportant,
+            "",
+            this
+        )
         binding.addBtn.setOnClickListener {
+            var articleImportant = ""
+            if (binding.articleImportant.selectedItemPosition != -1) {
+                articleImportant =
+                    getResponseSpinner(
+                        R.array.tch_important_array_en,
+                        binding.articleImportant,
+                    )
+                if (articleImportant == "重要") articleImportant = "U"
+                else if (articleImportant == "普通") articleImportant = "O"
+            }
             if (articleId == -1) {
+
                 val request =
                     ArticlePostRequest(
                         articleContent = binding.contentText.text.toString(),
-                        articleImportant = binding.articleImportant.text.toString(),
+                        articleImportant = articleImportant,
                         articleTag = binding.articleTag.text.toString(),
                         articleTitle = binding.articleTitle.text.toString(),
                     )
@@ -76,7 +94,7 @@ class AddArticleActivity : AppCompatActivity() {
                     ArticleUpdateRequest(
                         articleId = articleId,
                         articleContent = content,
-                        articleImportant = binding.articleImportant.text.toString(),
+                        articleImportant = articleImportant,
                         articleTag = binding.articleTag.text.toString(),
                         articleTitle = binding.articleTitle.text.toString(),
                     )

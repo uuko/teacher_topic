@@ -158,6 +158,11 @@
         <item>政府</item>
         <item>民間</item>
     </string-array>
+
+    <string-array name="tch_important_array_en">
+        <item>重要</item>
+        <item>普通</item>
+    </string-array>
     <string-array name="pro_pronature_array_en">
         <item>擔任學會行政職務</item>
         <item>擔任專業考試命題委員(填報至107上)</item>

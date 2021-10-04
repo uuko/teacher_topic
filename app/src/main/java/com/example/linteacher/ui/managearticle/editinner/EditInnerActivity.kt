@@ -20,6 +20,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.request.target.CustomTarget
+import com.example.linteacher.R
 import com.example.linteacher.api.pojo.artical.ArticlePostRequest
 import com.example.linteacher.api.pojo.artical.ArticleResponse
 import com.example.linteacher.api.pojo.artical.ArticleUpdateRequest
@@ -27,12 +28,13 @@ import com.example.linteacher.databinding.ActivityEditInnerBinding
 import com.example.linteacher.ui.addarticle.AddArticleRequest
 import com.example.linteacher.ui.addarticle.UrlDrawableResponse
 import com.example.linteacher.ui.main.announce.Content
+import com.example.linteacher.util.BaseActivity
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.VerticalImageSpan
 import java.io.File
 import java.io.FileOutputStream
 
-class EditInnerActivity : AppCompatActivity() {
+class EditInnerActivity : BaseActivity() {
     private lateinit var binding: ActivityEditInnerBinding
     private val factory = EditViewModelFactory(EditRepository())
     private val picUrlList: ArrayList<UrlDrawableResponse> = arrayListOf()
@@ -88,11 +90,21 @@ class EditInnerActivity : AppCompatActivity() {
                 }
             }
             Log.d("submitBtn", "content: $content")
+            var articleImportant = ""
+            if (binding.articleImportant.selectedItemPosition != -1) {
+                articleImportant =
+                    getResponseSpinner(
+                        R.array.tch_important_array_en,
+                        binding.articleImportant,
+                    )
+                if (articleImportant == "重要") articleImportant = "U"
+                else if (articleImportant == "普通") articleImportant = "O"
+            }
             val request =
                 ArticleUpdateRequest(
                     articleId = articleId,
                     articleContent = content,
-                    articleImportant = binding.articleImportant.text.toString(),
+                    articleImportant = articleImportant,
                     articleTag = binding.articleTag.text.toString(),
                     articleTitle = binding.articleTitle.text.toString(),
                 )
@@ -121,12 +133,16 @@ class EditInnerActivity : AppCompatActivity() {
                         var important = ""
                         if (item?.articleImportant == "U") {
                             important = "重要"
-                            articleImportant.setText(important)
+
                         } else if (item?.articleImportant == "O") {
                             important = "普通"
-                            articleImportant.setText(important)
                         }
-                        articleImportant.setText(important)
+                        bindSpinnerAdapter(
+                            R.array.tch_important_array_en,
+                            binding.articleImportant,
+                            important,
+                            this@EditInnerActivity
+                        )
                         articleTag.setText(item?.articleTag)
                         modifyDate.text = item?.modifyDate
                         item?.articleContent?.let {
