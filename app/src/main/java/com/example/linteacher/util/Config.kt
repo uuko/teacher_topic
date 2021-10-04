@@ -80,4 +80,5 @@ object Config {
     const val GET_ARTICLE_ID = "/article/id/%s"
     const val POST_ARTICLE = "/article"
     const val UPDATE_ARTICLE = "/article/update"
+    const val DEL_ARTICLE = "/article/delete"
 }

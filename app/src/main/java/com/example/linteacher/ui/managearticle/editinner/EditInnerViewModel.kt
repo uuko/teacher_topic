@@ -4,10 +4,8 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.linteacher.api.pojo.artical.ArticleAllPicResponse
-import com.example.linteacher.api.pojo.artical.ArticlePostResponse
-import com.example.linteacher.api.pojo.artical.ArticleResponse
-import com.example.linteacher.api.pojo.artical.ArticleUpdateRequest
+import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.artical.*
 import com.example.linteacher.ui.addarticle.AddArticleRequest
 import com.example.linteacher.ui.addarticle.UrlDrawableResponse
 import com.example.linteacher.ui.main.announce.Content
@@ -22,6 +20,8 @@ import java.net.URL
 
 
 class EditInnerViewModel(val dataModel: EditRepository) : ViewModel() {
+    var data = MutableLiveData<List<UrlDrawableResponse>>()
+
     fun getArticle(id: String): MutableLiveData<ArticleResponse> {
         return dataModel.getArticle(id)
     }
@@ -34,7 +34,10 @@ class EditInnerViewModel(val dataModel: EditRepository) : ViewModel() {
         return dataModel.updateArticleData(request)
     }
 
-    var data = MutableLiveData<List<UrlDrawableResponse>>()
+    fun deleteArticle(request: List<DeleteArticleRequest>): MutableLiveData<UnitResponse> {
+        return dataModel.deleteArticle(request)
+    }
+
     fun handleContentDrawable(articleContent: String) {
         val contentLst = ArrayList<Content.ContentData>()
         contentLst.clear()

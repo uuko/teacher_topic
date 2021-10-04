@@ -34,6 +34,12 @@ interface ApiServices {
 
 
     @POST
+    fun deleteArticle(
+        @Url string: String,
+        @Body request: List<DeleteArticleRequest>
+    ): Observable<Unit>
+
+    @POST
     fun updateArticle(
         @Url string: String,
         @Body requestBody: ArticleUpdateRequest

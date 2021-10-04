@@ -24,6 +24,7 @@ import com.example.linteacher.R
 import com.example.linteacher.api.pojo.artical.ArticlePostRequest
 import com.example.linteacher.api.pojo.artical.ArticleResponse
 import com.example.linteacher.api.pojo.artical.ArticleUpdateRequest
+import com.example.linteacher.api.pojo.artical.DeleteArticleRequest
 import com.example.linteacher.databinding.ActivityEditInnerBinding
 import com.example.linteacher.ui.addarticle.AddArticleRequest
 import com.example.linteacher.ui.addarticle.UrlDrawableResponse
@@ -111,10 +112,27 @@ class EditInnerActivity : BaseActivity() {
             viewModel.updateArticle(request)
                 .observe(this, {
                     Toast.makeText(this, "updateArticle ok", Toast.LENGTH_SHORT).show()
-                    setResult(Activity.RESULT_OK, intent)
-                    finish()
+                    closeActivity()
                 })
         }
+        binding.deleteBtn.setOnClickListener {
+            val request = ArrayList<DeleteArticleRequest>()
+            request.add(DeleteArticleRequest(articleId))
+            viewModel.deleteArticle(request)
+                .observe(this, {
+                    Toast.makeText(this, "deleteArticle ok ${it.result}", Toast.LENGTH_SHORT).show()
+                    closeActivity()
+//                    if (it.result==Config.RESULT_OK){
+//                        Toast.makeText(this, "deleteArticle ok", Toast.LENGTH_SHORT).show()
+//                        closeActivity()
+//                    }
+                })
+        }
+    }
+
+    private fun closeActivity() {
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 
     fun imageChooser() {
