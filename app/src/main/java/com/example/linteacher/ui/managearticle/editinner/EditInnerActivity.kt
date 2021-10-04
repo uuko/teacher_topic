@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
 import android.view.Window
@@ -50,6 +51,7 @@ class EditInnerActivity : BaseActivity() {
         binding.selectPicture.setOnClickListener {
             imageChooser()
         }
+        binding.contentText.movementMethod = ScrollingMovementMethod();
         articleId = (intent.getSerializableExtra("articleId") as String).toInt()
         observeInnerId(articleId)
         viewModel.data.observe(this, object : Observer<List<UrlDrawableResponse>> {
