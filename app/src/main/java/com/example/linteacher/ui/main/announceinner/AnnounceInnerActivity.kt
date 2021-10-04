@@ -19,11 +19,13 @@ import com.example.linteacher.R
 import com.example.linteacher.api.pojo.artical.ArticleResponse
 import com.example.linteacher.databinding.ActivityAnnounceInnerBinding
 import com.example.linteacher.databinding.ActivityMainBinding
+import com.example.linteacher.ui.articletag.ArticleTagActivity
 import com.example.linteacher.ui.main.announce.AnnounceViewModel
 import com.example.linteacher.ui.main.announce.Content
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpRepository
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpViewModel
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpViewModelFactory
+import com.example.linteacher.util.ActivityNavigator
 import com.example.linteacher.util.Config
 
 class AnnounceInnerActivity : AppCompatActivity() {
@@ -39,6 +41,18 @@ class AnnounceInnerActivity : AppCompatActivity() {
         setContentView(binding.root)
         context = this
         val id = intent.getSerializableExtra("articleId") as String
+        binding.articleTag.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putSerializable("articleTag", binding.articleTag.text.toString())
+
+            this?.let {
+                ActivityNavigator.startActivityWithData(
+                    ArticleTagActivity::class.java,
+                    bundle,
+                    it
+                )
+            }
+        }
         viewModel.getArticle(id)
             .observe(this, object : Observer<ArticleResponse> {
                 override fun onChanged(item: ArticleResponse?) {

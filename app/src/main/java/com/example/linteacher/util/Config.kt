@@ -75,10 +75,12 @@ object Config {
     const val DEL_BANNER = "/article/banner/%s"
 
     //article
+    const val GET_ARTICLE_TAGS = "/article/tags"
     const val GET_LATEST_ARTICLE_ALL = "/article/latest/all"
     const val GET_ARTICLE_ALL = "/article/important/all"
     const val GET_ARTICLE = "/article/important?pageNo=%s"
     const val GET_LATEST_ARTICLE = "/article/latest?pageNo=%s"
+    const val GET_ARTICLE_PAGING_TAGS = "/article/tag?pageNo=%s&tag=%s"
     const val GET_ARTICLE_ID = "/article/id/%s"
     const val POST_ARTICLE = "/article"
     const val UPDATE_ARTICLE = "/article/update"
