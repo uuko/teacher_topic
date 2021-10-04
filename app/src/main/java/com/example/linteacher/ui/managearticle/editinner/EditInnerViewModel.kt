@@ -6,6 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.linteacher.api.pojo.UnitResponse
 import com.example.linteacher.api.pojo.artical.*
+import com.example.linteacher.api.pojo.banner.BannerGetResponse
+import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
+import com.example.linteacher.api.pojo.banner.ResponseContent
 import com.example.linteacher.ui.addarticle.AddArticleRequest
 import com.example.linteacher.ui.addarticle.UrlDrawableResponse
 import com.example.linteacher.ui.main.announce.Content
@@ -38,6 +41,10 @@ class EditInnerViewModel(val dataModel: EditRepository) : ViewModel() {
         return dataModel.deleteArticle(request)
     }
 
+    fun getBannerList(): MutableLiveData<BannerGetResponse> {
+        return dataModel.getBannerList()
+    }
+
     fun handleContentDrawable(articleContent: String) {
         val contentLst = ArrayList<Content.ContentData>()
         contentLst.clear()
@@ -65,6 +72,10 @@ class EditInnerViewModel(val dataModel: EditRepository) : ViewModel() {
 
     }
 
+    fun updateBanner(request: BannerUpdateRequest): MutableLiveData<ResponseContent> {
+        return dataModel.updateBannerData(request)
+    }
+
     private fun handleOneContentData(
         articleContent: ArrayList<UrlDrawableResponse>,
         listener: FinishedListener
@@ -89,7 +100,10 @@ class EditInnerViewModel(val dataModel: EditRepository) : ViewModel() {
                 }
 
                 override fun onNext(t: DrawableIndex) {
+                    val name = articleContent[t.index].picName.split("_")
+                    articleContent[t.index].picName = name[name.size - 1]
                     articleContent[t.index].drawable = t.drawable
+
                     Log.d("handleOneContentData", "onNext: " + t)
                 }
 
@@ -99,6 +113,7 @@ class EditInnerViewModel(val dataModel: EditRepository) : ViewModel() {
 
                 override fun onComplete() {
                     Log.d("handleOneContentData", "onComplete: ")
+
                     listener.isFinished(articleContent)
                 }
 

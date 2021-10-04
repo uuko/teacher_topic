@@ -70,6 +70,7 @@ class AddArticleActivity : BaseActivity() {
                 if (it.totalCount >= 5 || picUrlList.size <= 0) {
                     uploadArticle()
                 } else {
+
                     showCustomDialog(this, picUrlList)
                 }
             })
@@ -267,7 +268,7 @@ class AddArticleActivity : BaseActivity() {
 
     }
 
-    fun showCustomDialog(context: Context, list: ArrayList<UrlDrawableResponse>) {
+    private fun showCustomDialog(context: Context, list: ArrayList<UrlDrawableResponse>) {
         val dialog = Dialog(context)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
@@ -278,6 +279,7 @@ class AddArticleActivity : BaseActivity() {
         Glide.with(context)
             .load(GlideUrl(list[position].picUrl))
             .into(imageView)
+        textView.text = list[position].picName
         dialog.findViewById<ImageView>(R.id.previousBtn).setOnClickListener {
             position--
             if (position <= 0) position = 0

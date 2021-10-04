@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.linteacher.api.RetrofitManager
 import com.example.linteacher.api.pojo.UnitResponse
 import com.example.linteacher.api.pojo.artical.*
+import com.example.linteacher.api.pojo.banner.BannerGetResponse
+import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
+import com.example.linteacher.api.pojo.banner.ResponseContent
 import com.example.linteacher.ui.addarticle.AddArticleRequest
 import com.example.linteacher.util.BaseRepository
 import com.example.linteacher.util.Config
@@ -31,6 +34,30 @@ class EditRepository : BaseRepository() {
 
                     override fun onError(e: Throwable) {
                         data.value = ArticleResponse(result = e.toString())
+                    }
+
+                    override fun onComplete() {
+
+                    }
+
+                })
+        )
+        return data
+    }
+
+    fun updateBannerData(request: BannerUpdateRequest): MutableLiveData<ResponseContent> {
+        val data = MutableLiveData<ResponseContent>()
+        RetrofitManager.compositeDisposable.add(
+            RetrofitManager.apiServices.updateBanner(Config.UPDATE_BANNER, request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<ResponseContent>() {
+                    override fun onNext(t: ResponseContent) {
+                        data.value = ResponseContent(Config.RESULT_OK)
+                    }
+
+                    override fun onError(e: Throwable) {
+                        data.value = ResponseContent(e.toString())
                     }
 
                     override fun onComplete() {
@@ -140,4 +167,27 @@ class EditRepository : BaseRepository() {
         return data
     }
 
+    fun getBannerList(): MutableLiveData<BannerGetResponse> {
+        val data = MutableLiveData<BannerGetResponse>()
+        RetrofitManager.compositeDisposable.add(
+            RetrofitManager.apiServices.getBannerList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BannerGetResponse>() {
+                    override fun onNext(t: BannerGetResponse) {
+                        data.value = t
+                    }
+
+                    override fun onError(e: Throwable) {
+                        data.value = BannerGetResponse(mutableListOf(), 0)
+                    }
+
+                    override fun onComplete() {
+
+                    }
+
+                })
+        )
+        return data
+    }
 }

@@ -1,9 +1,11 @@
 package com.example.linteacher.ui.managearticle.editinner
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -11,24 +13,22 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
+import android.view.Window
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.request.target.CustomTarget
 import com.example.linteacher.R
-import com.example.linteacher.api.pojo.artical.ArticlePostRequest
 import com.example.linteacher.api.pojo.artical.ArticleResponse
 import com.example.linteacher.api.pojo.artical.ArticleUpdateRequest
 import com.example.linteacher.api.pojo.artical.DeleteArticleRequest
+import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
 import com.example.linteacher.databinding.ActivityEditInnerBinding
 import com.example.linteacher.ui.addarticle.AddArticleRequest
 import com.example.linteacher.ui.addarticle.UrlDrawableResponse
-import com.example.linteacher.ui.main.announce.Content
 import com.example.linteacher.util.BaseActivity
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.VerticalImageSpan
@@ -57,7 +57,11 @@ class EditInnerActivity : BaseActivity() {
                 if (t != null) {
                     for (response: UrlDrawableResponse in t) {
                         if (response.isDrawable) {
-                            picUrlList.add(UrlDrawableResponse(picUrl = response.picUrl))
+                            picUrlList.add(
+                                UrlDrawableResponse(
+                                    picUrl = response.picUrl, picName = response.picName
+                                )
+                            )
                             binding.contentText.text.insert(
                                 binding.contentText.selectionStart, response.picUrl
                             )
@@ -82,38 +86,8 @@ class EditInnerActivity : BaseActivity() {
 
         })
         binding.submitBtn.setOnClickListener {
-            var content = binding.contentText.text.toString()
-            Log.d("submitBtn", "onCreate: ${picUrlList.size} content: $content")
-            for (picUrl in picUrlList) {
-                if (content.contains(picUrl.picUrl)) {
-                    content = content.replace(picUrl.picUrl, "<img>${picUrl.picUrl}<img>")
-                    Log.d("submitBtn", "replace: $content")
-                }
-            }
-            Log.d("submitBtn", "content: $content")
-            var articleImportant = ""
-            if (binding.articleImportant.selectedItemPosition != -1) {
-                articleImportant =
-                    getResponseSpinner(
-                        R.array.tch_important_array_en,
-                        binding.articleImportant,
-                    )
-                if (articleImportant == "重要") articleImportant = "U"
-                else if (articleImportant == "普通") articleImportant = "O"
-            }
-            val request =
-                ArticleUpdateRequest(
-                    articleId = articleId,
-                    articleContent = content,
-                    articleImportant = articleImportant,
-                    articleTag = binding.articleTag.text.toString(),
-                    articleTitle = binding.articleTitle.text.toString(),
-                )
-            viewModel.updateArticle(request)
-                .observe(this, {
-                    Toast.makeText(this, "updateArticle ok", Toast.LENGTH_SHORT).show()
-                    closeActivity()
-                })
+            getBannerList()
+
         }
         binding.deleteBtn.setOnClickListener {
             val request = ArrayList<DeleteArticleRequest>()
@@ -128,6 +102,138 @@ class EditInnerActivity : BaseActivity() {
 //                    }
                 })
         }
+    }
+
+    private fun getBannerList() {
+        viewModel.getBannerList()
+            .observe(this, {
+                val list = ArrayList<UrlDrawableResponse>()
+                val content = binding.contentText.text.toString()
+                for (picUrl in picUrlList) {
+
+                    if (content.contains(picUrl.picUrl)) {
+                        list.add(picUrl)
+                    }
+                }
+                if (it.totalCount >= 5 || list.size <= 0) {
+                    uploadArticle()
+                } else {
+                    showPreviewCheckDialog(list)
+
+                }
+            })
+    }
+
+    private fun showPreviewCheckDialog(list: ArrayList<UrlDrawableResponse>) {
+        AlertDialog.Builder(this)
+            .setMessage("是否需要更新Banner?")
+            .setTitle("title")
+            .setPositiveButton("確定",
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                    dialogInterface.dismiss()
+                    showCustomDialog(this, list)
+                })
+            .setNegativeButton(
+                "更新文章",
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                    dialogInterface.dismiss()
+                    uploadArticle()
+                }
+            )
+            .setCancelable(false)
+            .create()
+            .show()
+
+    }
+
+    fun showCustomDialog(context: Context, list: ArrayList<UrlDrawableResponse>) {
+        val dialog = Dialog(context)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.banner_dialog)
+        val imageView = dialog.findViewById<ImageView>(R.id.imageView)
+        var position = 0
+        val textView = dialog.findViewById(R.id.checkBox2) as TextView
+        Glide.with(context)
+            .load(GlideUrl(list[position].picUrl))
+            .into(imageView)
+        textView.text = list[position].picName
+        dialog.findViewById<ImageView>(R.id.previousBtn).setOnClickListener {
+            position--
+            if (position <= 0) position = 0
+            else {
+                textView.text = list[position].picName
+                Glide.with(context)
+                    .load(GlideUrl(list[position].picUrl))
+                    .into(imageView)
+            }
+        }
+        dialog.findViewById<ImageView>(R.id.nextBtn).setOnClickListener {
+            position++
+            if (position >= list.size) position = list.size - 1
+            else {
+                textView.text = list[position].picName
+                Glide.with(context)
+                    .load(GlideUrl(list[position].picUrl))
+                    .into(imageView)
+            }
+        }
+        val submitBtn: Button = dialog.findViewById(R.id.submitBtn) as Button
+
+
+        submitBtn.setOnClickListener {
+            val request = BannerUpdateRequest(
+                banner = true,
+                picUrl = list[position].picUrl
+            )
+            viewModel.updateBanner(request)
+                .observe(this, {
+                    if (it.responseContent == Config.RESULT_OK) {
+                        uploadArticle()
+                    }
+                })
+        }
+        val dialogButton: Button = dialog.findViewById(R.id.cancelBtn) as Button
+        dialogButton.setOnClickListener(View.OnClickListener {
+            dialog.dismiss()
+            uploadArticle()
+        })
+        dialog.show()
+    }
+
+    private fun uploadArticle() {
+        var content = binding.contentText.text.toString()
+        Log.d("submitBtn", "onCreate: ${picUrlList.size} content: $content")
+        for (picUrl in picUrlList) {
+            if (content.contains(picUrl.picUrl)) {
+                content = content.replace(picUrl.picUrl, "<img>${picUrl.picUrl}<img>")
+                Log.d("submitBtn", "replace: $content")
+            }
+        }
+        Log.d("submitBtn", "content: $content")
+        var articleImportant = ""
+        if (binding.articleImportant.selectedItemPosition != -1) {
+            articleImportant =
+                getResponseSpinner(
+                    R.array.tch_important_array_en,
+                    binding.articleImportant,
+                )
+            if (articleImportant == "重要") articleImportant = "U"
+            else if (articleImportant == "普通") articleImportant = "O"
+        }
+        val request =
+            ArticleUpdateRequest(
+                articleId = articleId,
+                articleContent = content,
+                articleImportant = articleImportant,
+                articleTag = binding.articleTag.text.toString(),
+                articleTitle = binding.articleTitle.text.toString(),
+            )
+        viewModel.updateArticle(request)
+            .observe(this, {
+                Toast.makeText(this, "updateArticle ok", Toast.LENGTH_SHORT).show()
+                closeActivity()
+            })
     }
 
     private fun closeActivity() {
@@ -214,6 +320,7 @@ class EditInnerActivity : BaseActivity() {
                                 binding.insertBtn.visibility = View.VISIBLE
                                 val cs = it.list.picUrl
                                 articleId = it.list.articleId
+                                val picName = it.picName
                                 binding.insertBtn.setOnClickListener {
                                     Glide.with(this)
                                         .asDrawable()
@@ -228,7 +335,11 @@ class EditInnerActivity : BaseActivity() {
                                                 transition: com.bumptech.glide.request.transition.Transition<in Drawable>?
                                             ) {
                                                 if (drawable != null) {
-                                                    picUrlList.add(UrlDrawableResponse(picUrl = cs))
+                                                    picUrlList.add(
+                                                        UrlDrawableResponse(
+                                                            picUrl = cs, picName = picName
+                                                        )
+                                                    )
                                                     Log.d(
                                                         "onResourceReady", "onResourceReady: " +
                                                                 "${binding.contentText.selectionStart}"
