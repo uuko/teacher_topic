@@ -1,8 +1,9 @@
-package com.example.linteacher.ui.addarticle
+package com.example.linteacher.ui.managearticle.editinner
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -10,87 +11,98 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.view.ViewGroup
+import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.request.target.CustomTarget
 import com.example.linteacher.api.pojo.artical.ArticlePostRequest
+import com.example.linteacher.api.pojo.artical.ArticleResponse
 import com.example.linteacher.api.pojo.artical.ArticleUpdateRequest
-import com.example.linteacher.databinding.ActivityAddArticleBinding
+import com.example.linteacher.databinding.ActivityEditInnerBinding
+import com.example.linteacher.ui.addarticle.AddArticleRequest
+import com.example.linteacher.ui.addarticle.UrlDrawableResponse
+import com.example.linteacher.ui.main.announce.Content
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.VerticalImageSpan
 import java.io.File
 import java.io.FileOutputStream
 
-
-class AddArticleActivity : AppCompatActivity() {
+class EditInnerActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityEditInnerBinding
+    private val factory = EditViewModelFactory(EditRepository())
     private val picUrlList: ArrayList<UrlDrawableResponse> = arrayListOf()
-    private lateinit var binding: ActivityAddArticleBinding
-    private val factory = AddArticleViewModelFactory(AddArticleRepository())
-    private val viewModel: AddArticleViewModel by viewModels {
+    private val viewModel: EditInnerViewModel by viewModels {
         factory
     }
-    private var articleId = -1
-
+    var articleId = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddArticleBinding.inflate(layoutInflater)
+        binding = ActivityEditInnerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.selectPicture.setOnClickListener {
             imageChooser()
         }
-        binding.removeBtn.setOnClickListener {
-            showVisible(false, binding.bottomSheet)
-        }
+        articleId = (intent.getSerializableExtra("articleId") as String).toInt()
+        observeInnerId(articleId)
+        viewModel.data.observe(this, object : Observer<List<UrlDrawableResponse>> {
+            override fun onChanged(t: List<UrlDrawableResponse>?) {
+                if (t != null) {
+                    for (response: UrlDrawableResponse in t) {
+                        if (response.isDrawable) {
+                            picUrlList.add(UrlDrawableResponse(picUrl = response.picUrl))
+                            binding.contentText.text.insert(
+                                binding.contentText.selectionStart, response.picUrl
+                            )
 
-        binding.addBtn.setOnClickListener {
-            if (articleId == -1) {
-                val request =
-                    ArticlePostRequest(
-                        articleContent = binding.contentText.text.toString(),
-                        articleImportant = binding.articleImportant.text.toString(),
-                        articleTag = binding.articleTag.text.toString(),
-                        articleTitle = binding.articleTitle.text.toString(),
-                    )
-                viewModel.postArticle(request)
-                    .observe(this, {
-                        Toast.makeText(this, "postArticle ok", Toast.LENGTH_SHORT).show()
-                        setResult(Activity.RESULT_OK, intent)
-                        finish()
-                    })
-            } else {
-                var content = binding.contentText.text.toString()
-                Log.d("onResourceReady", "onCreate: ${picUrlList.size}")
-                for (picUrl in picUrlList) {
-                    if (content.contains(picUrl.picUrl)) {
-                        content = content.replace(picUrl.picUrl, "<img>${picUrl.picUrl}<img>")
-                        Log.d("onResourceReady", "replace: $content")
+                            response.drawable?.let {
+                                binding.contentText.addImage(
+                                    response.picUrl,
+                                    it,
+                                    binding.contentText,
+                                    300, 300,
+
+                                    )
+                            }
+                        } else {
+                            binding.contentText.text.insert(
+                                binding.contentText.selectionStart, response.picUrl
+                            )
+                        }
                     }
                 }
-                Log.d("onResourceReady", "content: $content")
-                val request =
-                    ArticleUpdateRequest(
-                        articleId = articleId,
-                        articleContent = content,
-                        articleImportant = binding.articleImportant.text.toString(),
-                        articleTag = binding.articleTag.text.toString(),
-                        articleTitle = binding.articleTitle.text.toString(),
-                    )
-                viewModel.updateArticle(request)
-                    .observe(this, {
-                        Toast.makeText(this, "updateArticle ok", Toast.LENGTH_SHORT).show()
-                        setResult(Activity.RESULT_OK, intent)
-                        finish()
-                    })
             }
 
+        })
+        binding.submitBtn.setOnClickListener {
+            var content = binding.contentText.text.toString()
+            Log.d("submitBtn", "onCreate: ${picUrlList.size} content: $content")
+            for (picUrl in picUrlList) {
+                if (content.contains(picUrl.picUrl)) {
+                    content = content.replace(picUrl.picUrl, "<img>${picUrl.picUrl}<img>")
+                    Log.d("submitBtn", "replace: $content")
+                }
+            }
+            Log.d("submitBtn", "content: $content")
+            val request =
+                ArticleUpdateRequest(
+                    articleId = articleId,
+                    articleContent = content,
+                    articleImportant = binding.articleImportant.text.toString(),
+                    articleTag = binding.articleTag.text.toString(),
+                    articleTitle = binding.articleTitle.text.toString(),
+                )
+            viewModel.updateArticle(request)
+                .observe(this, {
+                    Toast.makeText(this, "updateArticle ok", Toast.LENGTH_SHORT).show()
+                    setResult(Activity.RESULT_OK, intent)
+                    finish()
+                })
         }
-
-
     }
 
     fun imageChooser() {
@@ -100,30 +112,32 @@ class AddArticleActivity : AppCompatActivity() {
         resultLauncher.launch(Intent.createChooser(i, "Select Picture"))
     }
 
-    fun EditText.addImage(
-        atText: String, imgSrc: Drawable, textView: EditText, imgWidth: Int,
-        imgHeight: Int
-    ) {
-        val ssb = SpannableStringBuilder(this.text)
-        val start = text.indexOf(atText)
-        Log.d("onResourceReady", "addImage: $start end : ${start + atText.length}")
-        imgSrc.mutate()
-        imgSrc.setBounds(
-            0, 0,
-            imgWidth,
-            imgHeight
-        )
-        ssb.setSpan(
-            VerticalImageSpan(imgSrc),
-            start,
-            start + atText.length,
-            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
-        )
-        textView.setText(ssb, TextView.BufferType.SPANNABLE)
-        textView.setSelection(start + atText.length);
-        Log.d("onResourceReady", ": ${binding.contentText.text}")
-        showVisible(false, binding.bottomSheet)
+    private fun observeInnerId(id: Int) {
+        viewModel.getArticle(id.toString())
+            .observe(this, object : Observer<ArticleResponse> {
+                override fun onChanged(item: ArticleResponse?) {
+                    with(binding) {
+                        articleTitle.setText(item?.articleTitle)
+                        var important = ""
+                        if (item?.articleImportant == "U") {
+                            important = "重要"
+                            articleImportant.setText(important)
+                        } else if (item?.articleImportant == "O") {
+                            important = "普通"
+                            articleImportant.setText(important)
+                        }
+                        articleImportant.setText(important)
+                        articleTag.setText(item?.articleTag)
+                        modifyDate.text = item?.modifyDate
+                        item?.articleContent?.let {
+                            viewModel.handleContentDrawable(it)
+                        }
 
+
+                    }
+                }
+
+            })
     }
 
 
@@ -167,8 +181,6 @@ class AddArticleActivity : AppCompatActivity() {
                                 val cs = it.list.picUrl
                                 articleId = it.list.articleId
                                 binding.insertBtn.setOnClickListener {
-
-
                                     Glide.with(this)
                                         .asDrawable()
                                         .load(cs)
@@ -226,6 +238,31 @@ class AddArticleActivity : AppCompatActivity() {
 
     }
 
+    fun EditText.addImage(
+        atText: String, imgSrc: Drawable, textView: EditText, imgWidth: Int,
+        imgHeight: Int
+    ) {
+        val ssb = SpannableStringBuilder(this.text)
+        val start = text.indexOf(atText)
+        Log.d("onResourceReady", "addImage: $start end : ${start + atText.length}")
+        imgSrc.mutate()
+        imgSrc.setBounds(
+            0, 0,
+            imgWidth,
+            imgHeight
+        )
+        ssb.setSpan(
+            VerticalImageSpan(imgSrc),
+            start,
+            start + atText.length,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+        )
+        textView.setText(ssb, TextView.BufferType.SPANNABLE)
+        textView.setSelection(start + atText.length);
+        Log.d("onResourceReady", ": ${binding.contentText.text}")
+        showVisible(false, binding.bottomSheet)
+
+    }
 
     fun getFile(mContext: Context, documentUri: Uri): File {
         val inputStream = mContext?.contentResolver?.openInputStream(documentUri)

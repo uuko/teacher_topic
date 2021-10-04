@@ -1,19 +1,19 @@
 package com.example.linteacher.ui.managearticle
 
 import android.app.Activity
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.databinding.ActivityEditArticleBinding
 import com.example.linteacher.ui.addarticle.AddArticleActivity
-import com.example.linteacher.ui.admin.adminaddteacher.AddTeacherActivity
-import com.example.linteacher.ui.main.listannounce.FeedListAdapter
-import com.example.linteacher.ui.main.listannounce.FeedViewModel
+import com.example.linteacher.ui.main.teacherline.TeacherLineRepository
+import com.example.linteacher.ui.main.teacherline.TeacherLineViewModel
+import com.example.linteacher.ui.main.teacherline.TeacherLineViewModelFactory
+import com.example.linteacher.ui.managearticle.editinner.EditInnerActivity
 import com.example.linteacher.util.ActivityNavigator
 
 class EditArticleActivity : AppCompatActivity(), EditListener.View {
@@ -44,7 +44,7 @@ class EditArticleActivity : AppCompatActivity(), EditListener.View {
 
     private fun initRecycleView() {
         binding.listFeed.layoutManager = LinearLayoutManager(this)
-        val adapter = EditArticleAdapter(this)
+        val adapter = EditArticleAdapter(this, this)
         viewModel.getArticleLiveData()?.observe(this) { pagedList ->
             adapter.submitList(
                 pagedList
@@ -59,7 +59,14 @@ class EditArticleActivity : AppCompatActivity(), EditListener.View {
     }
 
     override fun onItemClick(aritcleId: Int) {
-        TODO("Not yet implemented")
+        val bundle = Bundle()
+        bundle.putSerializable("articleId", aritcleId.toString())
+        ActivityNavigator.startActivityWithData(
+            EditInnerActivity::class.java,
+            bundle,
+            this
+        )
+
     }
 
 }

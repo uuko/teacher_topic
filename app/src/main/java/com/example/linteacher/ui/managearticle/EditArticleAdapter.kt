@@ -24,7 +24,7 @@ import com.example.linteacher.util.Config
 import com.example.linteacher.util.NetworkState
 import java.util.ArrayList
 
-class EditArticleAdapter(private val context: Context) :
+class EditArticleAdapter(private val context: Context, val listener: EditListener.View) :
     PagedListAdapter<Response, RecyclerView.ViewHolder?>(
         DIFF_CALLBACK
     ) {
@@ -113,6 +113,10 @@ class EditArticleAdapter(private val context: Context) :
                     textView.text = data
                     mainView.addView(textView)
                 }
+            }
+
+            itemView.setOnClickListener {
+                listener.onItemClick(article.articleId)
             }
         }
 

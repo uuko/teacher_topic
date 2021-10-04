@@ -1,27 +1,45 @@
-package com.example.linteacher.ui.addarticle
+package com.example.linteacher.ui.managearticle.editinner
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.linteacher.api.RetrofitManager
-import com.example.linteacher.api.pojo.UnitResponse
 import com.example.linteacher.api.pojo.artical.*
-import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
+import com.example.linteacher.ui.addarticle.AddArticleRequest
 import com.example.linteacher.util.BaseRepository
 import com.example.linteacher.util.Config
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
-import java.util.*
-import kotlin.collections.HashMap
 
+class EditRepository : BaseRepository() {
+    fun getArticle(id: String): MutableLiveData<ArticleResponse> {
+        val data = MutableLiveData<ArticleResponse>()
+        val url = String.format(Config.GET_ARTICLE_ID, id)
+        RetrofitManager.compositeDisposable.add(
+            RetrofitManager.apiServices.getArticle(url)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<ArticleResponse>() {
+                    override fun onNext(t: ArticleResponse) {
+                        data.value = t
+                    }
 
-class AddArticleRepository : BaseRepository() {
+                    override fun onError(e: Throwable) {
+                        data.value = ArticleResponse(result = e.toString())
+                    }
+
+                    override fun onComplete() {
+
+                    }
+
+                })
+        )
+        return data
+    }
+
     fun uploadFile(file: File, request: AddArticleRequest): MutableLiveData<ArticleAllPicResponse> {
         val data = MutableLiveData<ArticleAllPicResponse>()
         val requestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
@@ -90,30 +108,5 @@ class AddArticleRepository : BaseRepository() {
         )
         return data
     }
-
-    fun postArticleData(request: ArticlePostRequest): MutableLiveData<ArticlePostResponse> {
-        val data = MutableLiveData<ArticlePostResponse>()
-        RetrofitManager.compositeDisposable.add(
-            RetrofitManager.apiServices.postArticle(Config.POST_ARTICLE, request)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<ArticlePostResponse>() {
-                    override fun onNext(t: ArticlePostResponse) {
-                        data.value = ArticlePostResponse(Config.RESULT_OK)
-                    }
-
-                    override fun onError(e: Throwable) {
-                        data.value = ArticlePostResponse(e.toString())
-                    }
-
-                    override fun onComplete() {
-
-                    }
-
-                })
-        )
-        return data
-    }
-
 
 }
