@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
@@ -17,7 +19,7 @@ import java.util.*
 
 class ContentAdapter(
     private var list: ArrayList<Content.Response>
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : ListAdapter<Content.Response, RecyclerView.ViewHolder>(DiffCallback()) {
     lateinit var listener: ContentListener.View
     fun setViewListener(listener: ContentListener.View) {
         this.listener = listener
@@ -36,12 +38,10 @@ class ContentAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolder).bind(list[position], position, listener)
+        (holder as ViewHolder).bind(getItem(position), position, listener)
     }
 
-    override fun getItemCount(): Int {
-        return list.size;
-    }
+
 
     class ViewHolder(
         private val binding: ItemCarsoulInnerBinding, private val context: Context
@@ -104,6 +104,26 @@ class ContentAdapter(
             } else {
                 contentLst.add(Content.ContentData(articleContent, Config.TEXTVIEW))
             }
+        }
+
+
+    }
+
+    class DiffCallback : DiffUtil.ItemCallback<Content.Response>() {
+        //1
+        override fun areItemsTheSame(
+            oldItem: Content.Response,
+            newItem: Content.Response
+        ): Boolean {
+            return oldItem.articleId == newItem.articleId
+        }
+
+        //2
+        override fun areContentsTheSame(
+            oldItem: Content.Response,
+            newItem: Content.Response
+        ): Boolean {
+            return oldItem == newItem
         }
     }
 }
