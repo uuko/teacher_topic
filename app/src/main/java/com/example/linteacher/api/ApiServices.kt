@@ -1,6 +1,6 @@
 package com.example.linteacher.api
 
-import com.example.linteacher.api.pojo.TeacherLineResponse
+import com.example.linteacher.api.pojo.teacherline.TeacherLineResponse
 import com.example.linteacher.api.pojo.admin.addteacher.AddTeacherRequest
 import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthorityRequest
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
@@ -17,9 +17,9 @@ import com.example.linteacher.api.pojo.teacherdata.paper.*
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.pic.ProfilePicResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.update.TeacherUpdateRequest
+import com.example.linteacher.api.pojo.teacherline.TeacherSecondLineResponse
 import com.example.linteacher.util.Config
 import io.reactivex.Observable
-import io.reactivex.Observer
 import okhttp3.RequestBody
 import retrofit2.http.*
 
@@ -27,6 +27,9 @@ interface ApiServices {
     //   教師資料 第一層第二層
     @GET("teacher/teacherLine/list")
     fun getTeacherLineList(): Observable<List<TeacherLineResponse>>
+
+    @GET
+    fun getTeacherLineInnerList(@Url string: String): Observable<TeacherSecondLineResponse>
 
     //banner & article
     @GET(Config.GET_BANNER)

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="證照名稱:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/licName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="licName"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="發照機構:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/licService"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="licService"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="證照類型:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/licType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="licType"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

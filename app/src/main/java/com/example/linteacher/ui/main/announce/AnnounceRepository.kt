@@ -1,13 +1,9 @@
 package com.example.linteacher.ui.main.announce
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.linteacher.api.RetrofitManager
-import com.example.linteacher.api.pojo.TeacherLineResponse
 import com.example.linteacher.api.pojo.artical.ArticalGetResponse
-import com.example.linteacher.api.pojo.artical.LatestArticleResponse
 import com.example.linteacher.api.pojo.banner.BannerGetResponse
-import com.example.linteacher.ui.main.teacherline.TeacherLineAllResponse
 import com.example.linteacher.util.Config
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver

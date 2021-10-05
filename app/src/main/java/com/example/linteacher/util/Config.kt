@@ -44,6 +44,7 @@ object Config {
     const val POST_PROFILE_PIC = "/teacher/uploadFile?tchNumber=%s"
     const val UPDATE_TEACHER_PROFILE = "/teacher/update/%s/%s/%s"
     const val POST_ARTICLE_PIC = "/article/uploadFile"
+    const val GET_TEACHER_LINE_INNER = "/teacher/teacherLine/%s"
 
     //paper
     const val GET_PAPER = "/teacher/paper/loginId/%s"

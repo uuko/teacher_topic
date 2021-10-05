@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="合作/工作機構名稱:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/expMechanismName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="expMechanismName"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="職稱:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/expJobtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="expJobtitle"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="起始日期:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/expStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="expStartDate"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="終止日期:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/expStopDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="expStopDate"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
+import com.example.linteacher.databinding.ItemEdiitAdminBinding
 import com.example.linteacher.databinding.ItemTeacherlineBinding
 
 class AdminEditAdapter(
@@ -19,7 +20,7 @@ class AdminEditAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         Log.d("onBindViewHolder", "onCreateViewHolder: ")
         val itemBinding =
-            ItemTeacherlineBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemEdiitAdminBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemBinding)
     }
 
@@ -69,7 +70,8 @@ class AdminEditAdapter(
         items.addAll(mNewList)
         result.dispatchUpdatesTo(this)
     }
-    class ViewHolder(private val itemBinding: ItemTeacherlineBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+    class ViewHolder(private val itemBinding: ItemEdiitAdminBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(
             items: AdminListTeacherResponse,
             listener: AdminEditActivity.OnHideClickListener,
@@ -78,7 +80,7 @@ class AdminEditAdapter(
             Glide.with(itemBinding.root)
                 .load(items.picUrl)
                 .into(itemBinding.teacherTchPicUrl)
-            itemBinding.teacherContent.text=items.teacherName
+            itemBinding.teacherContent.text = items.teacherName
 
             if (items.isVisible){
                 itemView.setBackgroundColor(Color.parseColor("#79FF79"))

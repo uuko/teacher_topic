@@ -1,4 +1,4 @@
-package com.example.linteacher.api.pojo
+package com.example.linteacher.api.pojo.teacherline
 
 import java.io.Serializable
 

@@ -1,25 +1,18 @@
 package com.example.linteacher.ui.main.teacherline
 
-import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.linteacher.api.pojo.TeacherLineResponse
+import com.example.linteacher.api.pojo.teacherline.TeacherLineResponse
 import com.example.linteacher.databinding.FragmentTeacherBinding
-import com.example.linteacher.ui.main.MainActivity
 import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondLineActivity
 import com.example.linteacher.util.ActivityNavigator
-import com.example.linteacher.util.Config
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -95,8 +88,9 @@ class TeacherFragment : Fragment() {
             override fun onItemClick(item: TeacherLineResponse) {
                 activity?.let {
                     val bundle=Bundle()
-                    bundle.putSerializable("item",item)
-                    ActivityNavigator.startActivityWithData(TeacherSecondLineActivity::class.java,
+                    bundle.putSerializable("item", item.tchNumber)
+                    ActivityNavigator.startActivityWithData(
+                        TeacherSecondLineActivity::class.java,
                         bundle,
                         it
                     )

@@ -1,36 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_gravity="center_horizontal"
+        >
 
+    <LinearLayout
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_gravity="top"
+            android:orientation="horizontal">
+
         <ImageView
                 android:id="@+id/teacher_tchPicUrl"
-                android:src="@drawable/ic_launcher_background"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
-      <LinearLayout
-              android:layout_gravity="center_vertical"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-          <TextView
-                  android:id="@+id/teacher_content"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"/>
-          <Button
-                  android:layout_gravity="right"
-                  android:id="@+id/teacher_more"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:src="@drawable/ic_launcher_background" />
 
-      </LinearLayout>
-    </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:background="@color/pink"
+                        android:gravity="center">
+
+                    <TextView
+                            android:id="@+id/tchName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/pink"
+                            android:text="tchName"
+                            android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:background="@color/pink"
+                        android:gravity="center">
+
+                    <TextView
+                            android:id="@+id/tchRireRank"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="tchRireRank"
+                            android:textColor="@color/black" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tchMainDepartment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@color/pink" />
+
+            <TextView
+                    android:id="@+id/tchSchool"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@color/pink" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:background="@color/pink"
+                        android:gravity="center">
+
+                    <TextView
+                            android:id="@+id/tchDepartment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/pink"
+                            android:text="tchName"
+                            android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@color/pink"
+                        android:gravity="center">
+
+                    <TextView
+                            android:id="@+id/tchDiploma"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="tchRireRank"
+                            android:textColor="@color/black" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/pink" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -3,7 +3,7 @@ package com.example.linteacher.ui.main.teacherline
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.linteacher.api.RetrofitManager
-import com.example.linteacher.api.pojo.TeacherLineResponse
+import com.example.linteacher.api.pojo.teacherline.TeacherLineResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers

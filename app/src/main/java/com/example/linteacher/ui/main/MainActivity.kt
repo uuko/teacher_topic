@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.linteacher.R
-import com.example.linteacher.api.pojo.TeacherLineResponse
 import com.example.linteacher.databinding.ActivityMainBinding
 import com.example.linteacher.ui.main.announce.AnnounceFragment
 import com.example.linteacher.ui.main.profile.ProfileFragment

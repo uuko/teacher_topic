@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="篇章及所屬專書名稱/或專書名稱:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/infName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="infName"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出版年:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/infPubmain_licYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="infPubmain_licYear"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="專書類別 :"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/infCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="infCategory"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="作者順序 :"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/infAuthorOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="infAuthorOrder"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出版社/出版處所 :"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/infPublishHouse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="infPublishHouse"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ISBN編號 :"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/infISBN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="infISBN"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -7,20 +7,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.linteacher.api.pojo.TeacherLineResponse
+import com.example.linteacher.api.pojo.teacherline.TeacherLineResponse
 import com.example.linteacher.databinding.ItemTeacherlineBinding
 
-class TeacherLineAdapter constructor( val items: MutableList<TeacherLineResponse>,val listener: TeacherFragment.OnItemClickListener)
-    : RecyclerView.Adapter<TeacherLineAdapter.ViewHolder>() {
+class TeacherLineAdapter constructor(
+    val items: MutableList<TeacherLineResponse>,
+    val listener: TeacherFragment.OnItemClickListener
+) : RecyclerView.Adapter<TeacherLineAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         Log.d("onBindViewHolder", "onCreateViewHolder: ")
-        val itemBinding = ItemTeacherlineBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding =
+            ItemTeacherlineBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("onBindViewHolder", "onBindViewHolder: "+items.get(position).tchName)
+        Log.d("onBindViewHolder", "onBindViewHolder: " + items.get(position).tchName)
         val itemData= items[position]
         holder.bind(itemData, listener)
     }
@@ -45,12 +48,19 @@ class TeacherLineAdapter constructor( val items: MutableList<TeacherLineResponse
     }
     class ViewHolder(private val itemBinding: ItemTeacherlineBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(items: TeacherLineResponse, listener: TeacherFragment.OnItemClickListener) {
-            Glide.with(itemBinding.root)
-                .load(items.tchPicUrl)
-                .into(itemBinding.teacherTchPicUrl)
-            itemBinding.teacherContent.text=items.tchName
+            if (items.tchPicUrl != "") {
+                Glide.with(itemBinding.root)
+                    .load(items.tchPicUrl)
+                    .into(itemBinding.teacherTchPicUrl)
+            }
 
-            itemView.setOnClickListener(object : View.OnClickListener{
+            itemBinding.tchName.text = items.tchName
+            itemBinding.tchMainDepartment.text = items.tchMainDepartment
+            itemBinding.tchRireRank.text = items.tchRireRank
+            itemBinding.tchSchool.text = items.tchSchool
+            itemBinding.tchDiploma.text = items.tchDiploma
+            itemBinding.tchDepartment.text = items.tchDepartment
+            itemView.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
                     listener.onItemClick(items)
                 }

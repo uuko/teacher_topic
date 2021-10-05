@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="論文名稱:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/dismain_thesisName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="dismain_thesisName"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="作者順序:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/disAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="disAuthor"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="發表年份  :"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/disPublishY"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="disPublishY"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收錄分類 :"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/disCollection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="disCollection"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="研討會名稱 :"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/disSeminarName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="disSeminarName"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="舉行之國家 :"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/disHostCountry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="disHostCountry"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

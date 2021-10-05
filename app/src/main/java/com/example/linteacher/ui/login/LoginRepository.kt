@@ -2,11 +2,9 @@ package com.example.linteacher.ui.login
 
 import androidx.lifecycle.MutableLiveData
 import com.example.linteacher.api.RetrofitManager
-import com.example.linteacher.api.pojo.TeacherLineResponse
 import com.example.linteacher.api.pojo.login.LoginAllResponse
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
-import com.example.linteacher.ui.main.teacherline.TeacherLineAllResponse
 import com.example.linteacher.util.Config
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
