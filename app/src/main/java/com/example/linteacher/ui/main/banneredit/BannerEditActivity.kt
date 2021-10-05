@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
 import com.example.linteacher.databinding.ActivityBannerEditBinding
 import com.example.linteacher.ui.managearticle.editinner.EditInnerActivity
@@ -29,6 +30,10 @@ class BannerEditActivity : AppCompatActivity() {
         setContentView(binding.root)
         initRecycleView()
         getBannerList()
+        binding.mSwipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
+            binding.mSwipeRefreshLayout.isRefreshing = false
+            getBannerList()
+        })
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {

@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.linteacher.api.pojo.artical.DeleteArticleRequest
 import com.example.linteacher.api.pojo.artical.Response
 import com.example.linteacher.databinding.ActivityEditArticleBinding
@@ -59,6 +60,10 @@ class EditArticleActivity : AppCompatActivity(), EditListener.View {
             adapter.submitList(list)
         }
 
+        binding.mSwipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
+            binding.mSwipeRefreshLayout.isRefreshing = false
+            viewModel.invalidate()
+        })
 
 
         binding.deleteBtn.setOnClickListener {
