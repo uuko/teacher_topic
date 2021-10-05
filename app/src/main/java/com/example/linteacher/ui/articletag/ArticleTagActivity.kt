@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.linteacher.databinding.ActivityArticleTagBinding
 import com.example.linteacher.ui.main.announceinner.AnnounceInnerActivity
 import com.example.linteacher.util.ActivityNavigator
@@ -20,16 +21,21 @@ class ArticleTagActivity : AppCompatActivity() {
     private val viewModel: ArticleTagViewModel by viewModels {
         factory
     }
-
+    private var nowTags = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityArticleTagBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val tag = intent.getSerializableExtra("articleTag") as String
+        nowTags = tag
         viewModel.initData(tag)
         getTagsBindView(tag)
 
-
+        binding.mSwipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
+            binding.mSwipeRefreshLayout.isRefreshing = false
+            getTagsBindView(tag)
+            viewModel.refresh(nowTags)
+        })
         /*
         *
         * */
@@ -64,8 +70,10 @@ class ArticleTagActivity : AppCompatActivity() {
         binding.listFeed.adapter = adapter
     }
 
+
     private fun getTagsBindView(tag: String) {
         val list = ArrayList<ChipData>()
+        binding.chipsLayout.removeAllViews()
         viewModel.getArticleAllTags()
             .observe(this, {
                 for (response in it.iterator()) {
@@ -98,6 +106,7 @@ class ArticleTagActivity : AppCompatActivity() {
                             }
 
                         }
+                        nowTags = chip.text.toString()
                         viewModel.refresh(chip.text.toString())
                     }
                     binding.chipsLayout.addView(chip);

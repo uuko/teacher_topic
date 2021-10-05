@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.example.linteacher.R
@@ -41,6 +42,7 @@ class AnnounceInnerActivity : AppCompatActivity() {
         setContentView(binding.root)
         context = this
         val id = intent.getSerializableExtra("articleId") as String
+        initData(id)
         binding.articleTag.setOnClickListener {
             val bundle = Bundle()
             bundle.putSerializable("articleTag", binding.articleTag.text.toString())
@@ -53,6 +55,16 @@ class AnnounceInnerActivity : AppCompatActivity() {
                 )
             }
         }
+
+        binding.mSwipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
+            binding.mSwipeRefreshLayout.isRefreshing = false
+            initData(id)
+        })
+
+
+    }
+
+    private fun initData(id: String) {
         viewModel.getArticle(id)
             .observe(this, object : Observer<ArticleResponse> {
                 override fun onChanged(item: ArticleResponse?) {
@@ -73,10 +85,10 @@ class AnnounceInnerActivity : AppCompatActivity() {
                         articleTag.text = item?.articleTag
                         modifyDate.text = item?.modifyDate
                         item?.articleContent?.let {
-                            handleContent(it)
+
                             val mainView = binding.contentView
                             mainView.removeAllViews()
-                            for (content in contentLst) {
+                            for (content in handleContent(it)) {
                                 Log.d("splitString", "bind: ${content.data}  type ${content.type}")
                                 if (content.type == Config.PIC) {
 
@@ -104,13 +116,11 @@ class AnnounceInnerActivity : AppCompatActivity() {
                 }
 
             })
-
-
     }
 
-    val contentLst = mutableListOf<Content.ContentData>()
-    private fun handleContent(articleContent: String) {
-        contentLst.clear()
+
+    private fun handleContent(articleContent: String): List<Content.ContentData> {
+        val contentLst = mutableListOf<Content.ContentData>()
         if (articleContent.contains("<img>")) {
             val splitString = articleContent.split("<img>")
             Log.d("splitString", "handleContent: $splitString  size ${splitString.size}")
@@ -124,6 +134,7 @@ class AnnounceInnerActivity : AppCompatActivity() {
         } else {
             contentLst.add(Content.ContentData(articleContent, Config.TEXTVIEW))
         }
+        return contentLst
     }
 
 }

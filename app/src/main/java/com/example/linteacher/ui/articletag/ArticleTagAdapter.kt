@@ -171,14 +171,14 @@ class ArticleTagAdapter(private val context: Context, val listener: ArticleInner
                     oldItem: ArticleResponse,
                     newItem: ArticleResponse
                 ): Boolean {
-                    return false
+                    return oldItem.articleId == newItem.articleId
                 }
 
                 override fun areContentsTheSame(
                     oldItem: ArticleResponse,
                     newItem: ArticleResponse
                 ): Boolean {
-                    return false
+                    return oldItem == newItem
                 }
             }
     }
