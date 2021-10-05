@@ -1,14 +1,20 @@
 package com.example.linteacher.ui.main.teacherline.tchsencondline
 
 import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -43,15 +49,20 @@ class TeacherSecondLineActivity : AppCompatActivity() {
 
     }
 
+    var dialogContentVisible = false
     private fun dynamicAddViews(list: TeacherSecondLineResponse) {
 
+        val relativeNameList = ArrayList<ViewRelativeName>()
+        relativeNameList.add(ViewRelativeName("基本資料", R.id.top_constraint))
         val innerContent = binding.innerContent as ViewGroup
+        val dialogContent = binding.dialogContent as ViewGroup
         //實務經驗
         if (list.oneDashTwoList.isNotEmpty()) {
             Log.d("dynamicAddViews", "dynamicAddViews: ")
             val vi =
                 applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val v: View = vi.inflate(R.layout.inner_dynamic_teacher_line, null)
+
             v.findViewById<TextView>(R.id.title).text = "實務經驗"
             val recycleView = v.findViewById<RecyclerView>(R.id.recyclerView)
             val layoutManager = LinearLayoutManager(this)
@@ -60,6 +71,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             recycleView.layoutManager = layoutManager
             val adapter = OneDashTwoAdapter(list.oneDashTwoList)
             recycleView.adapter = adapter
+            val id = ViewCompat.generateViewId();
+            v.id = id
+            relativeNameList.add(ViewRelativeName("實務經驗", id))
             innerContent.addView(
                 v,
                 ViewGroup.LayoutParams(
@@ -68,8 +82,6 @@ class TeacherSecondLineActivity : AppCompatActivity() {
                 )
             )
         }
-
-
         if (list.proList.isNotEmpty()) {
             Log.d("dynamicAddViews", "校外服務經驗: ")
             val vi =
@@ -83,6 +95,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             recycleView.layoutManager = layoutManager
             val adapter = ProfeServiceAdapter(list.proList)
             recycleView.adapter = adapter
+            val id = ViewCompat.generateViewId();
+            v.id = id
+            relativeNameList.add(ViewRelativeName("校外服務經驗", id))
             innerContent.addView(
                 v,
                 ViewGroup.LayoutParams(
@@ -91,7 +106,6 @@ class TeacherSecondLineActivity : AppCompatActivity() {
                 )
             )
         }
-
         if (list.licList.isNotEmpty()) {
             Log.d("dynamicAddViews", "證照:: ")
             val vi =
@@ -105,6 +119,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             recycleView.layoutManager = layoutManager
             val adapter = LicAdapter(list.licList)
             recycleView.adapter = adapter
+            val id = ViewCompat.generateViewId();
+            v.id = id
+            relativeNameList.add(ViewRelativeName("證照", id))
             innerContent.addView(
                 v,
                 ViewGroup.LayoutParams(
@@ -113,7 +130,6 @@ class TeacherSecondLineActivity : AppCompatActivity() {
                 )
             )
         }
-
         if (list.eventList.isNotEmpty()) {
             Log.d("dynamicAddViews", "學術活動: ")
             val vi =
@@ -127,6 +143,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             recycleView.layoutManager = layoutManager
             val adapter = AcadeMicEventsAdapter(list.eventList)
             recycleView.adapter = adapter
+            val id = ViewCompat.generateViewId();
+            v.id = id
+            relativeNameList.add(ViewRelativeName("學術活動", id))
             innerContent.addView(
                 v,
                 ViewGroup.LayoutParams(
@@ -135,8 +154,6 @@ class TeacherSecondLineActivity : AppCompatActivity() {
                 )
             )
         }
-
-
         if (list.awardsList.isNotEmpty()) {
             Log.d("dynamicAddViews", "獎項或榮譽:: ")
             val vi =
@@ -150,6 +167,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             recycleView.layoutManager = layoutManager
             val adapter = TchAwardsAdapter(list.awardsList)
             recycleView.adapter = adapter
+            val id = ViewCompat.generateViewId();
+            v.id = id
+            relativeNameList.add(ViewRelativeName("獎項或榮譽", id))
             innerContent.addView(
                 v,
                 ViewGroup.LayoutParams(
@@ -158,7 +178,6 @@ class TeacherSecondLineActivity : AppCompatActivity() {
                 )
             )
         }
-
         if (list.tchinfList.isNotEmpty()) {
             Log.d("dynamicAddViews", "專書:: ")
             val vi =
@@ -172,6 +191,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             recycleView.layoutManager = layoutManager
             val adapter = TchInfAdapter(list.tchinfList)
             recycleView.adapter = adapter
+            val id = ViewCompat.generateViewId();
+            v.id = id
+            relativeNameList.add(ViewRelativeName("專書", id))
             innerContent.addView(
                 v,
                 ViewGroup.LayoutParams(
@@ -180,7 +202,6 @@ class TeacherSecondLineActivity : AppCompatActivity() {
                 )
             )
         }
-
         if (list.theList.isNotEmpty()) {
             Log.d("dynamicAddViews", "期刊論文:: ")
             val vi =
@@ -194,6 +215,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             recycleView.layoutManager = layoutManager
             val adapter = TchTheAdapter(list.theList)
             recycleView.adapter = adapter
+            val id = ViewCompat.generateViewId();
+            v.id = id
+            relativeNameList.add(ViewRelativeName("期刊論文", id))
             innerContent.addView(
                 v,
                 ViewGroup.LayoutParams(
@@ -202,7 +226,6 @@ class TeacherSecondLineActivity : AppCompatActivity() {
                 )
             )
         }
-
         if (list.govList.isNotEmpty()) {
             Log.d("dynamicAddViews", "計畫案產學:: ")
             val vi =
@@ -216,6 +239,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             recycleView.layoutManager = layoutManager
             val adapter = GovAdapter(list.govList)
             recycleView.adapter = adapter
+            val id = ViewCompat.generateViewId();
+            v.id = id
+            relativeNameList.add(ViewRelativeName("計畫案產學", id))
             innerContent.addView(
                 v,
                 ViewGroup.LayoutParams(
@@ -224,7 +250,6 @@ class TeacherSecondLineActivity : AppCompatActivity() {
                 )
             )
         }
-
         if (list.disList.isNotEmpty()) {
             Log.d("dynamicAddViews", "研討會:: ")
             val vi =
@@ -238,6 +263,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             recycleView.layoutManager = layoutManager
             val adapter = DisAdapter(list.disList)
             recycleView.adapter = adapter
+            val id = ViewCompat.generateViewId();
+            v.id = id
+            relativeNameList.add(ViewRelativeName("研討會", id))
             innerContent.addView(
                 v,
                 ViewGroup.LayoutParams(
@@ -247,9 +275,55 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             )
         }
 
+        binding.button.setOnClickListener {
+            dialogContentVisible = !dialogContentVisible
+            if (dialogContentVisible) {
+                dialogContent.visibility = View.VISIBLE
+                Log.d("dynamicAddViews", "dynamicAddViews: ${relativeNameList.size}")
+                dialogContent.removeAllViews()
+                for (name in relativeNameList) {
+                    val text = TextView(binding.root.context)
+                    text.text = name.name
+                    text.setTextColor(ContextCompat.getColor(binding.root.context, R.color.black));
+                    text.setPadding(20, 20, 20, 20)
+                    dialogContent.addView(text)
+                    text.setOnClickListener {
+                        Log.d("dynamicAddViews", "setOnClickListener: ${name.name}")
+                        if (text.text == "基本資料") {
+                            scrollToView(binding.topConstraint)
+                        } else {
+                            scrollToView(binding.innerContent.findViewById(name.id))
+                        }
+
+                        dialogContent.visibility = View.GONE
+                    }
+                }
+
+            } else dialogContent.visibility = View.GONE
+        }
 
     }
 
+    fun scrollToView(view: View) {
+
+        var fView = view
+        var vTop = fView.top
+
+        while (fView.parent !is ScrollView) {
+            fView = fView.parent as View
+            vTop += fView.top
+        }
+        Log.d("scrollToView", "scrollToView: haha")
+        val scrollPosition = vTop
+
+        Handler(Looper.getMainLooper()).post {
+            binding.contentScrollview.smoothScrollTo(
+                0,
+                scrollPosition
+            )
+        }
+
+    }
 
     private fun initBinding(response: TeacherSecondLineResponse) {
         if (response.tchPicUrl != "") {
