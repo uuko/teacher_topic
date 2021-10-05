@@ -13,161 +13,139 @@
             android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
+                android:padding="20dp"
                 android:id="@+id/content_scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/top_constraint"
+                    android:orientation="vertical"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                <ImageView
-                        android:id="@+id/tch_pic_url"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline14"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline8"
-                        app:layout_constraintStart_toStartOf="@+id/guideline10"
-                        app:layout_constraintTop_toTopOf="@+id/guideline9"
-                        tools:srcCompat="@tools:sample/avatars" />
-
-                <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline8"
-                        android:layout_width="wrap_content"
+                <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_begin="205dp" />
+                        android:orientation="horizontal">
 
-                <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintGuide_percent="0.03009576" />
+                    <ImageView
+                            android:id="@+id/tch_pic_url"
+                            android:layout_width="wrap_content"
+                            android:layout_height="500dp"
+                            android:layout_weight="5"
+                            tools:srcCompat="@tools:sample/avatars" />
 
-                <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_begin="30dp" />
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="5dp"
+                            android:layout_weight="5"
+                            android:orientation="vertical">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            <TextView
+                                    android:id="@+id/tchName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:text="TextView"
+                                    android:textColor="@color/pink" />
+
+                            <TextView
+                                    android:id="@+id/tchNameEN"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_weight="5"
+                                    android:text="TextView"
+                                    android:textColor="@color/pink" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            <TextView
+                                    android:id="@+id/tchSchool"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="8"
+                                    android:text="TextView"
+                                    android:textColor="@color/pink" />
+
+
+                            <TextView
+                                    android:id="@+id/tchDepartment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:text="TextView"
+                                    android:textColor="@color/pink" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            <TextView
+                                    android:id="@+id/tchDiploma"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:text="TextView"
+                                    android:textColor="@color/pink" />
+
+
+                            <TextView
+                                    android:id="@+id/tchMainDepartment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:text="TextView"
+                                    android:textColor="@color/pink" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:id="@+id/tchRireRank"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="TextView"
+                            android:textColor="@color/pink"
+                            app:layout_constraintBottom_toTopOf="@+id/guideline15"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline8" />
+
+                    <TextView
+                            android:id="@+id/email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="TextView"
+                            android:textColor="@color/pink"
+                            app:layout_constraintBottom_toTopOf="@+id/guideline15"
+                            app:layout_constraintStart_toStartOf="@+id/tchDepartment" />
+
+
+                </LinearLayout>
+
 
                 <TextView
-                        android:id="@+id/tchName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textColor="@color/pink"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline11"
-                        app:layout_constraintStart_toStartOf="@+id/guideline8"
-                        app:layout_constraintTop_toTopOf="@+id/guideline9" />
-
-                <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.72" />
-
-                <TextView
-                        android:id="@+id/tchNameEN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginLeft="4dp"
-                        android:text="TextView"
-                        android:textColor="@color/pink"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/guideline11"
-                        app:layout_constraintTop_toTopOf="@+id/guideline9" />
-
-                <TextView
-                        android:id="@+id/tchSchool"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textColor="@color/pink"
-                        app:layout_constraintStart_toStartOf="@+id/tchName"
-                        app:layout_constraintTop_toTopOf="@+id/guideline12" />
-
-                <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintGuide_percent="0.08" />
-
-                <TextView
-                        android:id="@+id/tchDepartment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textColor="@color/pink"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline11"
-                        app:layout_constraintStart_toStartOf="@+id/guideline8"
-                        app:layout_constraintTop_toTopOf="@+id/guideline13" />
-
-                <TextView
-                        android:id="@+id/tchDiploma"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textColor="@color/pink"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/guideline11"
-                        app:layout_constraintTop_toTopOf="@+id/guideline13" />
-
-                <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintGuide_percent="0.13" />
-
-                <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintGuide_percent="0.21" />
-
-                <TextView
-                        android:id="@+id/tchMainDepartment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textColor="@color/pink"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline15"
-                        app:layout_constraintStart_toStartOf="@+id/tch_pic_url" />
-
-                <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintGuide_percent="0.30232558" />
-
-                <TextView
-                        android:id="@+id/tchRireRank"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textColor="@color/pink"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline15"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline8" />
-
-                <TextView
-                        android:id="@+id/email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textColor="@color/pink"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline15"
-                        app:layout_constraintStart_toStartOf="@+id/tchDepartment" />
-
-                <TextView
+                        android:layout_gravity="center"
                         android:id="@+id/introduce"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -176,12 +154,6 @@
                         app:layout_constraintBottom_toTopOf="@+id/guideline16"
                         app:layout_constraintStart_toStartOf="@+id/tch_pic_url" />
 
-                <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline16"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintGuide_percent="0.4" />
 
                 <View
                         android:id="@+id/view"
@@ -200,7 +172,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/view" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.core.widget.NestedScrollView>
 
         <Button
