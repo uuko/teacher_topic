@@ -7,10 +7,11 @@ import com.example.linteacher.api.pojo.teacherline.Event
 import com.example.linteacher.databinding.ItemMainAcademiceventsBinding
 
 class AcadeMicEventsAdapter(
-    var list: List<Event>,
+
 ) : RecyclerView.Adapter<AcadeMicEventsAdapter.ViewHolder>() {
 
-    fun setDataList(list: MutableList<Event>) {
+    private var list: List<Event> = arrayListOf()
+    fun setDataList(list: List<Event>) {
         this.list = list
         notifyDataSetChanged()
     }

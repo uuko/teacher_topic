@@ -7,10 +7,10 @@ import com.example.linteacher.api.pojo.teacherline.Awards
 import com.example.linteacher.databinding.ItemTchawardsBinding
 
 class TchAwardsAdapter(
-    var list: List<Awards>,
-) : RecyclerView.Adapter<TchAwardsAdapter.ViewHolder>() {
 
-    fun setDataList(list: MutableList<Awards>) {
+) : RecyclerView.Adapter<TchAwardsAdapter.ViewHolder>() {
+    private var list: List<Awards> = arrayListOf()
+    fun setDataList(list: List<Awards>) {
         this.list = list
         notifyDataSetChanged()
     }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.linteacher.api.pojo.teacherline.TeacherLineResponse
 import com.example.linteacher.databinding.FragmentTeacherBinding
 import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondLineActivity
@@ -35,6 +36,7 @@ class TeacherFragment : Fragment() {
     private val viewModel: TeacherLineViewModel by viewModels {
         factory
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -56,54 +58,68 @@ class TeacherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecycleView()
+        initData()
         viewModel.isLoading.observe(viewLifecycleOwner, Observer {
-            if (it){ _binding?.progressBar?.visibility=View.VISIBLE}
-            else  _binding?.progressBar?.visibility=View.GONE
-
-        })
-        viewModel.postTeacherList().observe(viewLifecycleOwner,object :Observer<TeacherLineAllResponse>{
-            override fun onChanged(t: TeacherLineAllResponse?) {
-                viewModel.isLoading.value=(false)
-                if (t == null) {
-                    teacherLineAdapter.swapItems(arrayListOf())
-                    return
-                }
-                if (t.list.isNotEmpty()) {
-                    teacherLineAdapter.swapItems(t.list)
-                } else {
-                    Toast.makeText(context, "連線發生錯誤", Toast.LENGTH_SHORT).show()
-                }
-            }
+            if (it) {
+                _binding?.progressBar?.visibility = View.VISIBLE
+            } else _binding?.progressBar?.visibility = View.GONE
 
         })
 
+        binding.mSwipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
+            binding.mSwipeRefreshLayout.isRefreshing = false
+            initData()
+        })
+
+
+    }
+
+    private fun initData() {
+        viewModel.postTeacherList()
+            .observe(viewLifecycleOwner, object : Observer<TeacherLineAllResponse> {
+                override fun onChanged(t: TeacherLineAllResponse?) {
+                    viewModel.isLoading.value = (false)
+                    if (t == null) {
+                        teacherLineAdapter.swapItems(arrayListOf())
+                        return
+                    }
+                    if (t.list.isNotEmpty()) {
+                        teacherLineAdapter.swapItems(t.list)
+                    } else {
+                        Toast.makeText(context, "連線發生錯誤", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            })
     }
 
     private fun initRecycleView() {
         val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation= LinearLayoutManager.VERTICAL
-        layoutManager.reverseLayout=false
-        _binding?.teacherListRecycleView?.layoutManager =layoutManager
-        teacherLineAdapter= TeacherLineAdapter(ArrayList(),listener = object :OnItemClickListener{
-            override fun onItemClick(item: TeacherLineResponse) {
-                activity?.let {
-                    val bundle=Bundle()
-                    bundle.putSerializable("item", item.tchNumber)
-                    ActivityNavigator.startActivityWithData(
-                        TeacherSecondLineActivity::class.java,
-                        bundle,
-                        it
-                    )
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        layoutManager.reverseLayout = false
+        _binding?.teacherListRecycleView?.layoutManager = layoutManager
+        teacherLineAdapter =
+            TeacherLineAdapter(ArrayList(), listener = object : OnItemClickListener {
+                override fun onItemClick(item: TeacherLineResponse) {
+                    activity?.let {
+                        val bundle = Bundle()
+                        bundle.putSerializable("item", item.tchNumber)
+                        ActivityNavigator.startActivityWithData(
+                            TeacherSecondLineActivity::class.java,
+                            bundle,
+                            it
+                        )
+                    }
                 }
-            }
 
-        })
-        _binding?.teacherListRecycleView?.adapter=teacherLineAdapter
+            })
+        _binding?.teacherListRecycleView?.adapter = teacherLineAdapter
     }
 
     interface OnItemClickListener {
         fun onItemClick(item: TeacherLineResponse)
     }
+
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =

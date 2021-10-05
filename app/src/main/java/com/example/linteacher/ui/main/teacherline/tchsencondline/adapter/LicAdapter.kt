@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.linteacher.api.pojo.teacherline.Lic
+import com.example.linteacher.api.pojo.teacherline.Pro
 import com.example.linteacher.databinding.ItemLicBinding
 
 class LicAdapter(
-    var list: List<Lic>,
-) : RecyclerView.Adapter<LicAdapter.ViewHolder>() {
 
-    fun setDataList(list: MutableList<Lic>) {
+) : RecyclerView.Adapter<LicAdapter.ViewHolder>() {
+    private var list: List<Lic> = arrayListOf()
+    fun setDataList(list: List<Lic>) {
         this.list = list
         notifyDataSetChanged()
     }

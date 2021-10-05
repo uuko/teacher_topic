@@ -7,10 +7,10 @@ import com.example.linteacher.api.pojo.teacherline.The
 import com.example.linteacher.databinding.ItemTheBinding
 
 class TchTheAdapter(
-    var list: List<The>,
-) : RecyclerView.Adapter<TchTheAdapter.ViewHolder>() {
 
-    fun setDataList(list: MutableList<The>) {
+) : RecyclerView.Adapter<TchTheAdapter.ViewHolder>() {
+    private var list: List<The> = arrayListOf()
+    fun setDataList(list: List<The>) {
         this.list = list
         notifyDataSetChanged()
     }

@@ -7,10 +7,10 @@ import com.example.linteacher.api.pojo.teacherline.Gov
 import com.example.linteacher.databinding.ItemGovBinding
 
 class GovAdapter(
-    var list: List<Gov>,
-) : RecyclerView.Adapter<GovAdapter.ViewHolder>() {
 
-    fun setDataList(list: MutableList<Gov>) {
+) : RecyclerView.Adapter<GovAdapter.ViewHolder>() {
+    private var list: List<Gov> = arrayListOf()
+    fun setDataList(list: List<Gov>) {
         this.list = list
         notifyDataSetChanged()
     }

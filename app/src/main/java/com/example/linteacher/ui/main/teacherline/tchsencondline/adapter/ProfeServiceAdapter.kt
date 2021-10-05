@@ -8,10 +8,10 @@ import com.example.linteacher.databinding.ItemProfeserviceBinding
 import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondLineInterface
 
 class ProfeServiceAdapter(
-    var list: List<Pro>,
 ) : RecyclerView.Adapter<ProfeServiceAdapter.ViewHolder>() {
 
-    fun setDataList(list: MutableList<Pro>) {
+    private var list: List<Pro> = arrayListOf()
+    fun setDataList(list: List<Pro>) {
         this.list = list
         notifyDataSetChanged()
     }

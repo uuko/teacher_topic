@@ -1,7 +1,6 @@
 package com.example.linteacher.ui.main.teacherline.tchsencondline
 
 import android.content.Context
-import android.graphics.Rect
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,8 +14,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.example.linteacher.R
 import com.example.linteacher.api.pojo.teacherline.TeacherSecondLineResponse
@@ -37,16 +38,21 @@ class TeacherSecondLineActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val response = intent.getSerializableExtra("item") as Int
+        initData(response)
+        binding.mSwipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
+            binding.mSwipeRefreshLayout.isRefreshing = false
+            initData(response)
+        })
+
+
+    }
+
+    private fun initData(response: Int) {
         viewModel.getTeacherLineData(response.toString())
             .observe(this, {
                 initBinding(it)
                 dynamicAddViews(it)
             })
-
-
-//        initBinding(response)
-//        initRecycleView()
-
     }
 
     var dialogContentVisible = false
@@ -56,6 +62,8 @@ class TeacherSecondLineActivity : AppCompatActivity() {
         relativeNameList.add(ViewRelativeName("基本資料", R.id.top_constraint))
         val innerContent = binding.innerContent as ViewGroup
         val dialogContent = binding.dialogContent as ViewGroup
+        innerContent.removeAllViews()
+        dialogContent.removeAllViews()
         //實務經驗
         if (list.oneDashTwoList.isNotEmpty()) {
             Log.d("dynamicAddViews", "dynamicAddViews: ")
@@ -69,8 +77,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             layoutManager.orientation = LinearLayoutManager.VERTICAL
             layoutManager.reverseLayout = false
             recycleView.layoutManager = layoutManager
-            val adapter = OneDashTwoAdapter(list.oneDashTwoList)
+            val adapter = OneDashTwoAdapter()
             recycleView.adapter = adapter
+            adapter.submitList(list.oneDashTwoList)
             val id = ViewCompat.generateViewId();
             v.id = id
             relativeNameList.add(ViewRelativeName("實務經驗", id))
@@ -93,8 +102,10 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             layoutManager.orientation = LinearLayoutManager.VERTICAL
             layoutManager.reverseLayout = false
             recycleView.layoutManager = layoutManager
-            val adapter = ProfeServiceAdapter(list.proList)
+            val adapter = ProfeServiceAdapter()
+
             recycleView.adapter = adapter
+            adapter.setDataList(list.proList)
             val id = ViewCompat.generateViewId();
             v.id = id
             relativeNameList.add(ViewRelativeName("校外服務經驗", id))
@@ -117,8 +128,10 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             layoutManager.orientation = LinearLayoutManager.VERTICAL
             layoutManager.reverseLayout = false
             recycleView.layoutManager = layoutManager
-            val adapter = LicAdapter(list.licList)
+            val adapter = LicAdapter()
+
             recycleView.adapter = adapter
+            adapter.setDataList(list.licList)
             val id = ViewCompat.generateViewId();
             v.id = id
             relativeNameList.add(ViewRelativeName("證照", id))
@@ -141,8 +154,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             layoutManager.orientation = LinearLayoutManager.VERTICAL
             layoutManager.reverseLayout = false
             recycleView.layoutManager = layoutManager
-            val adapter = AcadeMicEventsAdapter(list.eventList)
+            val adapter = AcadeMicEventsAdapter()
             recycleView.adapter = adapter
+            adapter.setDataList(list.eventList)
             val id = ViewCompat.generateViewId();
             v.id = id
             relativeNameList.add(ViewRelativeName("學術活動", id))
@@ -165,8 +179,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             layoutManager.orientation = LinearLayoutManager.VERTICAL
             layoutManager.reverseLayout = false
             recycleView.layoutManager = layoutManager
-            val adapter = TchAwardsAdapter(list.awardsList)
+            val adapter = TchAwardsAdapter()
             recycleView.adapter = adapter
+            adapter.setDataList(list.awardsList)
             val id = ViewCompat.generateViewId();
             v.id = id
             relativeNameList.add(ViewRelativeName("獎項或榮譽", id))
@@ -189,8 +204,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             layoutManager.orientation = LinearLayoutManager.VERTICAL
             layoutManager.reverseLayout = false
             recycleView.layoutManager = layoutManager
-            val adapter = TchInfAdapter(list.tchinfList)
+            val adapter = TchInfAdapter()
             recycleView.adapter = adapter
+            adapter.setDataList(list.tchinfList)
             val id = ViewCompat.generateViewId();
             v.id = id
             relativeNameList.add(ViewRelativeName("專書", id))
@@ -213,7 +229,8 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             layoutManager.orientation = LinearLayoutManager.VERTICAL
             layoutManager.reverseLayout = false
             recycleView.layoutManager = layoutManager
-            val adapter = TchTheAdapter(list.theList)
+            val adapter = TchTheAdapter()
+            adapter.setDataList(list.theList)
             recycleView.adapter = adapter
             val id = ViewCompat.generateViewId();
             v.id = id
@@ -237,8 +254,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             layoutManager.orientation = LinearLayoutManager.VERTICAL
             layoutManager.reverseLayout = false
             recycleView.layoutManager = layoutManager
-            val adapter = GovAdapter(list.govList)
+            val adapter = GovAdapter()
             recycleView.adapter = adapter
+            adapter.setDataList(list.govList)
             val id = ViewCompat.generateViewId();
             v.id = id
             relativeNameList.add(ViewRelativeName("計畫案產學", id))
@@ -261,8 +279,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             layoutManager.orientation = LinearLayoutManager.VERTICAL
             layoutManager.reverseLayout = false
             recycleView.layoutManager = layoutManager
-            val adapter = DisAdapter(list.disList)
+            val adapter = DisAdapter()
             recycleView.adapter = adapter
+            adapter.setDataList(list.disList)
             val id = ViewCompat.generateViewId();
             v.id = id
             relativeNameList.add(ViewRelativeName("研討會", id))
@@ -309,7 +328,7 @@ class TeacherSecondLineActivity : AppCompatActivity() {
         var fView = view
         var vTop = fView.top
 
-        while (fView.parent !is ScrollView) {
+        while (fView.parent !is NestedScrollView) {
             fView = fView.parent as View
             vTop += fView.top
         }

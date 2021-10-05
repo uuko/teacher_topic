@@ -109,7 +109,7 @@ class ContentAdapter(
 
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<Content.Response>() {
+    private class DiffCallback : DiffUtil.ItemCallback<Content.Response>() {
         //1
         override fun areItemsTheSame(
             oldItem: Content.Response,

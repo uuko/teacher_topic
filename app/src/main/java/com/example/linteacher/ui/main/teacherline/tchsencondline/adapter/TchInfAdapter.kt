@@ -7,10 +7,10 @@ import com.example.linteacher.api.pojo.teacherline.Tchinf
 import com.example.linteacher.databinding.ItemTchInfBinding
 
 class TchInfAdapter(
-    var list: List<Tchinf>,
-) : RecyclerView.Adapter<TchInfAdapter.ViewHolder>() {
 
-    fun setDataList(list: MutableList<Tchinf>) {
+) : RecyclerView.Adapter<TchInfAdapter.ViewHolder>() {
+    private var list: List<Tchinf> = arrayListOf()
+    fun setDataList(list: List<Tchinf>) {
         this.list = list
         notifyDataSetChanged()
     }

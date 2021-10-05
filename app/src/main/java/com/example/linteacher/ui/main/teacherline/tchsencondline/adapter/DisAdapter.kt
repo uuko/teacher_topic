@@ -7,10 +7,10 @@ import com.example.linteacher.api.pojo.teacherline.Dis
 import com.example.linteacher.databinding.ItemDisBinding
 
 class DisAdapter(
-    var list: List<Dis>,
-) : RecyclerView.Adapter<DisAdapter.ViewHolder>() {
 
-    fun setDataList(list: MutableList<Dis>) {
+) : RecyclerView.Adapter<DisAdapter.ViewHolder>() {
+    private var list: List<Dis> = arrayListOf()
+    fun setDataList(list: List<Dis>) {
         this.list = list
         notifyDataSetChanged()
     }
