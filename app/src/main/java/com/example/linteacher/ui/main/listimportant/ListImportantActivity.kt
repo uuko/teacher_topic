@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.linteacher.databinding.ActivityListImportantBinding
 import com.example.linteacher.ui.main.announceinner.AnnounceInnerActivity
 import com.example.linteacher.ui.main.listannounce.FeedListAdapter
@@ -32,7 +33,10 @@ class ListImportantActivity : AppCompatActivity() {
             }
 
         })
-
+        binding.mSwipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
+            binding.mSwipeRefreshLayout.isRefreshing = false
+            viewModel.refresh()
+        })
 
         /*
          * Step 4: When a new page is available, we call submitList() method

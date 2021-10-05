@@ -35,7 +35,6 @@ class AnnounceFragment : Fragment(), ContentListener.View {
 
     private var _binding: FragmentAnnounceBinding? = null
     private val binding get() = _binding!!
-    private val importantContentAdapter by lazy { ImportantContentAdapter(arrayListOf()) }
     private val contentAdapter by lazy { ContentAdapter(arrayListOf()) }
 
     private val factory = AnnounceViewFactory(AnnounceRepository())

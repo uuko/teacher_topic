@@ -168,11 +168,11 @@ class FeedListAdapter(private val context: Context, val listener: ArticleInnerLi
         var DIFF_CALLBACK: DiffUtil.ItemCallback<Response> =
             object : DiffUtil.ItemCallback<Response>() {
                 override fun areItemsTheSame(oldItem: Response, newItem: Response): Boolean {
-                    return false
+                    return oldItem.articleId == newItem.articleId
                 }
 
                 override fun areContentsTheSame(oldItem: Response, newItem: Response): Boolean {
-                    return false
+                    return oldItem == newItem
                 }
             }
     }

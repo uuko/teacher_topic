@@ -13,9 +13,10 @@ import java.util.concurrent.Executors
 class ListImportantViewModel : ViewModel() {
     private var networkState: LiveData<NetworkState>? = null
     private var articleLiveData: LiveData<PagedList<Response>>? = null
+    private lateinit var feedDataFactory: ListImportDataFactory
     private fun init() {
         val executor = Executors.newFixedThreadPool(5)
-        val feedDataFactory = ListImportDataFactory()
+        feedDataFactory = ListImportDataFactory()
         networkState = Transformations.switchMap(
             feedDataFactory.getMutableLiveData()
         ) { dataSource -> dataSource.networkState }
@@ -34,6 +35,10 @@ class ListImportantViewModel : ViewModel() {
 
     fun getArticleLiveData(): LiveData<PagedList<Response>>? {
         return articleLiveData
+    }
+
+    fun refresh() {
+        feedDataFactory.invalidate()
     }
 
     init {

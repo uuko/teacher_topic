@@ -16,7 +16,16 @@ class ListAnnounceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityListAnnounceBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initRecycleView()
+        binding.announceListRefreshlayout.setOnRefreshListener {
+            binding.announceListRefreshlayout.isRefreshing = false
+            viewModel.refresh()
+        }
 
+
+    }
+
+    private fun initRecycleView() {
         binding.listFeed.layoutManager = LinearLayoutManager(this)
         val adapter = FeedListAdapter(this, object : ArticleInnerListener {
             override fun onItemClick(article: Int) {
@@ -33,24 +42,12 @@ class ListAnnounceActivity : AppCompatActivity() {
 
         })
 
-
-        /*
-         * Step 4: When a new page is available, we call submitList() method
-         * of the PagedListAdapter class
-         *
-         * */
         viewModel.getArticleLiveData()?.observe(this) { pagedList ->
             adapter.submitList(
                 pagedList
             )
         }
 
-
-        /*
-         * Step 5: When a new page is available, we call submitList() method
-         * of the PagedListAdapter class
-         *
-         * */
         viewModel.getNetworkState()?.observe(this) { networkState ->
             adapter.setNetworkState(
                 networkState

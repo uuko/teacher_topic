@@ -12,10 +12,11 @@ import java.util.concurrent.Executors
 class FeedViewModel : ViewModel() {
 
     private var networkState: LiveData<NetworkState>? = null
+    private lateinit var feedDataFactory: FeedDataFactory
     private var articleLiveData: LiveData<PagedList<Response>>? = null
     private fun init() {
         val executor = Executors.newFixedThreadPool(5)
-        val feedDataFactory = FeedDataFactory()
+        feedDataFactory = FeedDataFactory()
         networkState = Transformations.switchMap(
             feedDataFactory.getMutableLiveData()
         ) { dataSource -> dataSource.networkState }
@@ -26,6 +27,10 @@ class FeedViewModel : ViewModel() {
         articleLiveData = LivePagedListBuilder(feedDataFactory, pagedListConfig)
             .setFetchExecutor(executor)
             .build()
+    }
+
+    fun refresh() {
+        feedDataFactory.invalidate()
     }
 
     fun getNetworkState(): LiveData<NetworkState>? {

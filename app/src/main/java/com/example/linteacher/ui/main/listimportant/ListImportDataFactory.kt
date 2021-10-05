@@ -8,9 +8,9 @@ import com.example.linteacher.ui.main.listannounce.FeedDataSource
 class ListImportDataFactory : DataSource.Factory<Long, Response>() {
     private val mutableLiveData: MutableLiveData<ListDataSource> =
         MutableLiveData<ListDataSource>()
-
+    private lateinit var feedDataSource: ListDataSource
     override fun create(): DataSource<Long, Response> {
-        val feedDataSource: ListDataSource = ListDataSource()
+        feedDataSource = ListDataSource()
         mutableLiveData.postValue(feedDataSource)
         return feedDataSource
     }
@@ -19,4 +19,7 @@ class ListImportDataFactory : DataSource.Factory<Long, Response>() {
         return mutableLiveData
     }
 
+    fun invalidate() {
+        feedDataSource.invalidate()
+    }
 }
