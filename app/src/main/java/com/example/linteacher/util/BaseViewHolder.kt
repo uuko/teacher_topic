@@ -2,17 +2,50 @@ package com.example.linteacher.util
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.recyclerview.widget.RecyclerView
+import com.example.linteacher.ui.main.announce.Content
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    fun pareDate(data: String): String {
+
+        return "${data.split("T")[0]}-${data.split("T")[1].split(":")[0]}:${
+            data.split("T")[1].split(
+                ":"
+            )[1]
+        }"
+
+    }
+
+    fun handleContent(articleContent: String): List<Content.ContentData> {
+        val contentLst = mutableListOf<Content.ContentData>()
+        if (articleContent.contains("<img>")) {
+            val splitString = articleContent.split("<img>")
+            Log.d("splitString", "handleContent: $splitString  size ${splitString.size}")
+            for (i in splitString.indices) {
+                if (i > 3) break
+                if (i % 2 == 1) {
+                    contentLst.add(Content.ContentData(splitString[i], Config.PIC))
+                } else {
+                    contentLst.add(Content.ContentData(splitString[i], Config.TEXTVIEW))
+                }
+            }
+        } else {
+            var data = ""
+            if (articleContent.length > 50) data = articleContent.substring(0, 50) + "...."
+            else data = articleContent
+            contentLst.add(Content.ContentData(data, Config.TEXTVIEW))
+        }
+        return contentLst
+    }
 
     fun bindSpinnerAdapter(array: Int, spinner: Spinner, data: String, context: Context) {
         val adapter =
@@ -24,7 +57,7 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
-        spinner.setSelection(getArraySelection(data, array,context), false)
+        spinner.setSelection(getArraySelection(data, array, context), false)
         spinner.onItemSelectedListener = object : AdapterView.OnItemClickListener,
             AdapterView.OnItemSelectedListener {
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -41,6 +74,7 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         }
     }
+
     fun datePicker(v: View) {
         val calendar: Calendar = Calendar.getInstance()
         val year: Int = calendar.get(Calendar.YEAR) //取得現在的日期年月日
@@ -58,7 +92,8 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             }, year, month, day
         ).show()
     }
-    private fun getArraySelection(data: String,arrayRes:Int,context: Context): Int {
+
+    private fun getArraySelection(data: String, arrayRes: Int, context: Context): Int {
         val array = context?.resources?.getStringArray(arrayRes)
         for (i in array!!.indices) {
             if (data == array[i]) {
@@ -68,7 +103,11 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         return 0
     }
 
-    private fun getArrayChgSelection(data: String, arrayRes: ArrayList<String>, context: Context): Int {
+    private fun getArrayChgSelection(
+        data: String,
+        arrayRes: ArrayList<String>,
+        context: Context
+    ): Int {
 
         for (i in arrayRes.indices) {
             if (data == arrayRes[i]) {
@@ -77,22 +116,33 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
         return 0
     }
-    fun getResponseSpinner(arrayEn: Int, spinner: Spinner,context: Context): String {
+
+    fun getResponseSpinner(arrayEn: Int, spinner: Spinner, context: Context): String {
         val array = context?.resources?.getStringArray(arrayEn)
         return array?.get(spinner.selectedItemPosition).toString()
     }
-    fun getResponseArraySpinner(array: ArrayList<String>, spinner: Spinner,context: Context): String {
+
+    fun getResponseArraySpinner(
+        array: ArrayList<String>,
+        spinner: Spinner,
+        context: Context
+    ): String {
         return array?.get(spinner.selectedItemPosition).toString()
     }
 
-    fun bindSpinnerArrayAdapter(array: ArrayList<String>, spinner: Spinner, data: String, context: Context) {
-        val adapter = ArrayAdapter(context
-            , android.R.layout.simple_spinner_dropdown_item
-            , array)
+    fun bindSpinnerArrayAdapter(
+        array: ArrayList<String>,
+        spinner: Spinner,
+        data: String,
+        context: Context
+    ) {
+        val adapter = ArrayAdapter(
+            context, android.R.layout.simple_spinner_dropdown_item, array
+        )
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
-        spinner.setSelection(getArrayChgSelection(data, array,context), false)
+        spinner.setSelection(getArrayChgSelection(data, array, context), false)
         spinner.onItemSelectedListener = object : AdapterView.OnItemClickListener,
             AdapterView.OnItemSelectedListener {
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.example.linteacher.databinding.ItemCarsoulInnerBinding
+import com.example.linteacher.util.BaseViewHolder
 import com.example.linteacher.util.Config
 import java.util.*
 
@@ -42,25 +43,26 @@ class ContentAdapter(
     }
 
 
-
     class ViewHolder(
         private val binding: ItemCarsoulInnerBinding, private val context: Context
-    ) : RecyclerView.ViewHolder(binding.root) {
+    ) : BaseViewHolder(binding.root) {
         fun bind(
             items: Content.Response,
             position: Int,
             listener: ContentListener.View
         ) {
-            handleContent(items.articleContent)
+
             with(binding) {
                 articleTitle.text = items.articleTitle
                 articleTag.text = items.articleTag
+                binding.articleDate.text = pareDate(items.modifyDate)
+
                 itemView.setOnClickListener {
                     listener.onItemClick(items.articleId)
                 }
                 val mainView = binding.contentView
                 mainView.removeAllViews()
-                for (content in contentLst) {
+                for (content in handleContent(items.articleContent)) {
                     Log.d("splitString", "bind: ${content.data}  type ${content.type}")
                     if (content.type == Config.PIC) {
 
@@ -85,25 +87,6 @@ class ContentAdapter(
                 }
             }
 
-        }
-
-        val contentLst = mutableListOf<Content.ContentData>()
-        private fun handleContent(articleContent: String) {
-            contentLst.clear()
-            if (articleContent.contains("<img>")) {
-                val splitString = articleContent.split("<img>")
-                Log.d("splitString", "handleContent: $splitString  size ${splitString.size}")
-                for (i in splitString.indices) {
-                    if (i > 4) break
-                    if (i % 2 == 1) {
-                        contentLst.add(Content.ContentData(splitString[i], Config.PIC))
-                    } else {
-                        contentLst.add(Content.ContentData(splitString[i], Config.TEXTVIEW))
-                    }
-                }
-            } else {
-                contentLst.add(Content.ContentData(articleContent, Config.TEXTVIEW))
-            }
         }
 
 

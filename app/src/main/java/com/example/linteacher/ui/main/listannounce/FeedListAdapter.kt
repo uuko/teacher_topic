@@ -19,6 +19,7 @@ import com.example.linteacher.databinding.ItemCarsoulInnerBinding
 import com.example.linteacher.databinding.ItemNetworkBinding
 import com.example.linteacher.ui.main.announce.Content.ContentData
 import com.example.linteacher.util.ArticleInnerListener
+import com.example.linteacher.util.BaseViewHolder
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.NetworkState
 import java.util.*
@@ -83,19 +84,20 @@ class FeedListAdapter(private val context: Context, val listener: ArticleInnerLi
     }
 
     inner class ArticleItemViewHolder(binding: ItemCarsoulInnerBinding) :
-        RecyclerView.ViewHolder(binding.getRoot()) {
+        BaseViewHolder(binding.getRoot()) {
         private val binding: ItemCarsoulInnerBinding
         private val contentLst: MutableList<ContentData> = ArrayList()
         fun bindTo(article: Response?) {
             binding.articleTitle.setText(article!!.articleTitle)
             binding.articleTag.setText(article.articleTag)
+            binding.articleDate.text = pareDate(article.modifyDate)
             itemView.setOnClickListener {
                 listener.onItemClick(article.articleId)
             }
-            handleContent(article.articleContent)
+
             val mainView: LinearLayout = binding.contentView
             mainView.removeAllViews()
-            for ((data, type) in contentLst) {
+            for ((data, type) in handleContent(article.articleContent)) {
                 Log.d("splitString", "bind: \${content.data}  type \${content.type}")
                 if (type == Config.PIC) {
                     val imageView = ImageView(context)
@@ -118,22 +120,6 @@ class FeedListAdapter(private val context: Context, val listener: ArticleInnerLi
             }
         }
 
-        private fun handleContent(articleContent: String) {
-            contentLst.clear()
-            if (articleContent.contains("<img>")) {
-                val splitString = articleContent.split("<img>").toTypedArray()
-                for (i in splitString.indices) {
-                    if (i > 4) break
-                    if (i % 2 == 1) {
-                        contentLst.add(ContentData(splitString[i], Config.PIC))
-                    } else {
-                        contentLst.add(ContentData(splitString[i], Config.TEXTVIEW))
-                    }
-                }
-            } else {
-                contentLst.add(ContentData(articleContent, Config.TEXTVIEW))
-            }
-        }
 
         init {
             this.binding = binding
