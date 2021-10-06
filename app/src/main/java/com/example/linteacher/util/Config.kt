@@ -1,7 +1,7 @@
 package com.example.linteacher.util
 
 object Config {
-    const val BASE_URL = "http://192.168.1.135:8080/"
+    const val BASE_URL = "http://192.168.1.206:8080/"
     const val GITHUB_URL = "https://api.github.com/"
     const val ANNOUNCE_FRAGMENT = "ANNOUNCE_FRAGMENT"
     const val PROFLE_SECOND_FRAGMENT = "PROFLE_SECOND_FRAGMENT"

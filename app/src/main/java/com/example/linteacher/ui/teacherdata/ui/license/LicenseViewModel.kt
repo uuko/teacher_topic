@@ -13,21 +13,29 @@ import com.example.linteacher.api.pojo.teacherdata.off.OffPostRequest
 import com.example.linteacher.api.pojo.teacherdata.off.OffUpdateRequest
 
 class LicenseViewModel(var dataModel: LicenseRepository) : ViewModel() {
+    //證照的viewmodel
+
+    //git all lic by loginId
     fun getList( id:String): MutableLiveData<LicenseAllResponse> {
         return dataModel.getData(id)
     }
+
+    //delete lic by licId
     fun delete(expNumber: Int): MutableLiveData<UnitResponse> {
         return dataModel.deleteData(expNumber.toString())
     }
 
+    //get lic by licId
     fun getDataByExpNumber(loginId: String): MutableLiveData<LicAllOneResponse> {
         return dataModel.getOneData(loginId)
     }
 
+    //post lic by request
     fun postData(request: LicPostRequest): MutableLiveData<UnitResponse> {
         return dataModel.postData(request)
     }
 
+    //update lic by request
     fun updateList(request: LicUpdateRequest): MutableLiveData<UnitResponse> {
         return dataModel.updateData(request)
     }

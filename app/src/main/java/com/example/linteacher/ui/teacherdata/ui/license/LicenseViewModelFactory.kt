@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 class LicenseViewModelFactory ( private val dataModel: LicenseRepository): ViewModelProvider.Factory{
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
+        //重點(?)
         if (modelClass.isAssignableFrom(LicenseViewModel::class.java)) {
             return LicenseViewModel(dataModel) as T
         }

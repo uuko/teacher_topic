@@ -13,8 +13,11 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
 class LicenseRepository {
+    //回傳一個老師的證照資料
     fun getOneData(loginId: String): MutableLiveData<LicAllOneResponse> {
+        //得到data = LicAllOneResponse
         val data = MutableLiveData<LicAllOneResponse>()
+        //url= /teacher/license/licId/+loginId
         val url=String.format(Config.GET_ONE_LICENSE,loginId);
         RetrofitManager.compositeDisposable.add(
             RetrofitManager.apiServices.getOneLicData(url)
@@ -22,6 +25,7 @@ class LicenseRepository {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<LicOneResponse>() {
                     override fun onNext(t: LicOneResponse) {
+                        //view model  data = LicAllOneResponse
                         data.value = LicAllOneResponse(t, Config.RESULT_OK)
                     }
 
@@ -87,6 +91,7 @@ class LicenseRepository {
         return data
     }
     fun postData(request: LicPostRequest): MutableLiveData<UnitResponse> {
+        //MutableLiveData->UnitResponse
         val data= MutableLiveData<UnitResponse>()
         RetrofitManager.compositeDisposable.add(
             RetrofitManager.apiServices.postLicData(Config.POST_LIC,request)
@@ -94,6 +99,7 @@ class LicenseRepository {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<Unit>(){
                     override fun onNext(t: Unit) {
+                        //setValue ->觸發obsebever
                         data.value= UnitResponse(Config.RESULT_OK)
                     }
 
