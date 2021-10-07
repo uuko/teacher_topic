@@ -86,4 +86,12 @@ object Config {
     const val POST_ARTICLE = "/article"
     const val UPDATE_ARTICLE = "/article/update"
     const val DEL_ARTICLE = "/article/delete"
+
+
+    //dis
+    const val POST_DIS = "/teacher/dis"
+    const val GET_DIS_BY_LOGINID = "/teacher/dis/loginId/%s"
+    const val GET_DIS_DISID = "/teacher/dis/disId/%s"
+    const val UPDATE_DIS = "/teacher/update/dis"
+    const val DEL_DIS = "/teacher/dis"
 }

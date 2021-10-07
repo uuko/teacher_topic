@@ -8,6 +8,7 @@ import com.example.linteacher.api.pojo.artical.*
 import com.example.linteacher.api.pojo.banner.BannerGetResponse
 import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
 import com.example.linteacher.api.pojo.banner.ResponseContent
+import com.example.linteacher.api.pojo.teacherdata.dis.*
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.*
@@ -30,6 +31,24 @@ interface ApiServices {
 
     @GET
     fun getTeacherLineInnerList(@Url string: String): Observable<TeacherSecondLineResponse>
+
+    //dis
+    @HTTP(method = "DELETE", path = Config.DEL_DIS, hasBody = true)
+    fun deleteDisData(
+        @Body deleteRequest: DisDelRequest
+    ): Observable<Unit>
+
+    @GET
+    fun getDisList(@Url string: String): Observable<List<DisGetResponse>>
+
+    @GET
+    fun getDisListById(@Url string: String): Observable<DisGetOneResponse>
+
+    @POST
+    fun postDisData(@Url string: String, @Body request: DisPostRequest): Observable<Unit>
+
+    @POST
+    fun updateDisData(@Url string: String, @Body request: DisUpdateRequest): Observable<Unit>
 
     //banner & article
     @GET(Config.GET_BANNER)

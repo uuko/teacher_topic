@@ -20,6 +20,7 @@ import com.example.linteacher.databinding.ItemCarsoulInnerBinding
 import com.example.linteacher.databinding.ItemEditArticleBinding
 import com.example.linteacher.databinding.ItemNetworkBinding
 import com.example.linteacher.ui.main.announce.Content
+import com.example.linteacher.util.BaseViewHolder
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.NetworkState
 import java.util.ArrayList
@@ -83,24 +84,24 @@ class EditArticleAdapter(private val context: Context, val listener: EditListene
     }
 
     inner class ArticleItemViewHolder(binding: ItemEditArticleBinding) :
-        RecyclerView.ViewHolder(binding.getRoot()) {
+        BaseViewHolder(binding.getRoot()) {
         private val binding: ItemEditArticleBinding
         private val contentLst: MutableList<Content.ContentData> = ArrayList()
         fun bindTo(article: Response?) {
             binding.articleTitle.text = article!!.articleTitle
             binding.articleTag.text = article.articleTag
-            binding.modifyDate.text = article.modifyDate
+            binding.modifyDate.text = pareDate(article.modifyDate)
             binding.checkBox.isChecked = article.isChecked
             binding.checkBox.setOnClickListener {
                 article.isChecked = !article.isChecked
                 binding.checkBox.isChecked = article.isChecked
             }
-            handleContent(article.articleContent)
+
             val mainView: LinearLayout = binding.contentView
             mainView.removeAllViews()
-            for ((data, type) in contentLst) {
+            for (content in handleContent(article.articleContent)) {
                 Log.d("splitString", "bind: \${content.data}  type \${content.type}")
-                if (type == Config.PIC) {
+                if (content.type == Config.PIC) {
                     val imageView = ImageView(context)
                     val vp = LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
@@ -108,14 +109,14 @@ class EditArticleAdapter(private val context: Context, val listener: EditListene
                     )
                     imageView.layoutParams = vp
                     Glide.with(context)
-                        .load(GlideUrl(data))
+                        .load(GlideUrl(content.data))
                         .into(imageView)
                     mainView.addView(imageView)
-                } else if (type == Config.TEXTVIEW) {
+                } else if (content.type == Config.TEXTVIEW) {
                     val textView = TextView(context)
                     textView.setTextColor(Color.BLACK)
                     textView.textSize = 20f
-                    textView.text = data
+                    textView.text = content.data
                     mainView.addView(textView)
                 }
             }
@@ -125,21 +126,6 @@ class EditArticleAdapter(private val context: Context, val listener: EditListene
             }
         }
 
-        private fun handleContent(articleContent: String) {
-            contentLst.clear()
-            if (articleContent.contains("<img>")) {
-                val splitString = articleContent.split("<img>").toTypedArray()
-                for (i in splitString.indices) {
-                    if (i % 2 == 1) {
-                        contentLst.add(Content.ContentData(splitString[i], Config.PIC))
-                    } else {
-                        contentLst.add(Content.ContentData(splitString[i], Config.TEXTVIEW))
-                    }
-                }
-            } else {
-                contentLst.add(Content.ContentData(articleContent, Config.TEXTVIEW))
-            }
-        }
 
         init {
             this.binding = binding

@@ -221,4 +221,10 @@
         <item>是(跨國及大陸、港澳地區合作)</item>
         <item>否</item>
     </string-array>
+    <string-array name="disAuthor_array_en">
+        <item>第一作者</item>
+        <item>第二作者</item>
+        <item>第三作者</item>
+        <item>第四(以上)作者</item>
+    </string-array>
 </resources>
