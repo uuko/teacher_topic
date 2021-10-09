@@ -8,9 +8,12 @@ import com.example.linteacher.api.pojo.artical.*
 import com.example.linteacher.api.pojo.banner.BannerGetResponse
 import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
 import com.example.linteacher.api.pojo.banner.ResponseContent
-import com.example.linteacher.api.pojo.teacherdata.dis.*
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
+import com.example.linteacher.api.pojo.teacherdata.award.AwardDeleteRequest
+import com.example.linteacher.api.pojo.teacherdata.award.AwardPostRequest
+import com.example.linteacher.api.pojo.teacherdata.award.AwardResponse
+import com.example.linteacher.api.pojo.teacherdata.award.AwardUpdateRequest
 import com.example.linteacher.api.pojo.teacherdata.exp.*
 import com.example.linteacher.api.pojo.teacherdata.license.*
 import com.example.linteacher.api.pojo.teacherdata.off.*
@@ -31,24 +34,6 @@ interface ApiServices {
 
     @GET
     fun getTeacherLineInnerList(@Url string: String): Observable<TeacherSecondLineResponse>
-
-    //dis
-    @HTTP(method = "DELETE", path = Config.DEL_DIS, hasBody = true)
-    fun deleteDisData(
-        @Body deleteRequest: DisDelRequest
-    ): Observable<Unit>
-
-    @GET
-    fun getDisList(@Url string: String): Observable<List<DisGetResponse>>
-
-    @GET
-    fun getDisListById(@Url string: String): Observable<DisGetOneResponse>
-
-    @POST
-    fun postDisData(@Url string: String, @Body request: DisPostRequest): Observable<Unit>
-
-    @POST
-    fun updateDisData(@Url string: String, @Body request: DisUpdateRequest): Observable<Unit>
 
     //banner & article
     @GET(Config.GET_BANNER)
@@ -257,4 +242,126 @@ interface ApiServices {
 
     @POST
     fun updateOffData(@Url url: String, @Body requestBody: OffUpdateRequest): Observable<Unit>
+    /**
+     * ademic_event
+     * */
+
+    @GET
+    fun getEveData(@Url string: String): Observable<List<LicenseResponse>>
+
+    @GET
+    fun getOneEveData(@Url string: String): Observable<LicOneResponse>
+
+    @HTTP(method = "DELETE", path = Config.DEL_EVE, hasBody = true)
+    fun deleteEveData(
+            @Body deleteRequest: LicDeleteRequest
+    ): Observable<Unit>
+
+    @POST
+    fun postEveData(
+            @Url url: String,
+            @Body addTeacherRequest: LicPostRequest
+    ): Observable<Unit>
+
+    @POST
+    fun updateEveData(@Url url: String, @Body requestBody: LicUpdateRequest): Observable<Unit>
+
+    /**
+     * Award
+     * */
+
+    //參數隨便
+    @GET
+    fun getAwardData(@Url string: String): Observable<List<AwardResponse>>
+
+    //參數隨便
+    @GET
+    fun getOneAwardData(@Url string: String): Observable<AwardResponse>
+
+
+    @HTTP(method = "DELETE", path = Config.DEL_AWA, hasBody = true)
+    fun deleteAwardData(
+            @Body deleteRequest: AwardDeleteRequest
+    ): Observable<Unit>
+
+    @POST
+    fun postAwardData(
+            @Url url: String,
+            @Body addTeacherRequest: AwardPostRequest
+    ): Observable<Unit>
+
+    @POST
+    fun updateAwardData(@Url url: String, @Body requestBody: AwardUpdateRequest): Observable<Unit>
+
+    /**
+     * Gov
+     * */
+    fun getGovData(@Url string: String): Observable<List<AwardResponse>>
+
+    @GET
+    fun getOneGovData(@Url string: String): Observable<AwardResponse>
+
+    @HTTP(method = "DELETE", path = Config.DEL_GOV, hasBody = true)
+    fun deleteGovData(
+            @Body deleteRequest: AwardDeleteRequest
+    ): Observable<Unit>
+
+    @POST
+    fun postGovData(
+            @Url url: String,
+            @Body addTeacherRequest: AwardPostRequest
+    ): Observable<Unit>
+
+    @POST
+    fun updateGovData(@Url url: String, @Body requestBody: AwardUpdateRequest): Observable<Unit>
+
+
+
+    /**
+     * Book
+     * */
+
+    fun getBookData(@Url string: String): Observable<List<AwardResponse>>
+
+    @GET
+    fun getOneBookData(@Url string: String): Observable<AwardResponse>
+
+    @HTTP(method = "DELETE", path = Config.DEL_GOV, hasBody = true)
+    fun deleteBookData(
+            @Body deleteRequest: AwardDeleteRequest
+    ): Observable<Unit>
+
+    @POST
+    fun postBookData(
+            @Url url: String,
+            @Body addTeacherRequest: AwardPostRequest
+    ): Observable<Unit>
+
+    @POST
+    fun updateBookData(@Url url: String, @Body requestBody: AwardUpdateRequest): Observable<Unit>
+
+
+    /**
+     * Patent
+     * */
+
+    fun getPatentData(@Url string: String): Observable<List<AwardResponse>>
+
+    @GET
+    fun getOnePatentData(@Url string: String): Observable<AwardResponse>
+
+    @HTTP(method = "DELETE", path = Config.DEL_GOV, hasBody = true)
+    fun deletePatentData(
+            @Body deleteRequest: AwardDeleteRequest
+    ): Observable<Unit>
+
+    @POST
+    fun postPatentData(
+            @Url url: String,
+            @Body addTeacherRequest: AwardPostRequest
+    ): Observable<Unit>
+
+    @POST
+    fun updatePatentData(@Url url: String, @Body requestBody: AwardUpdateRequest): Observable<Unit>
+
 }

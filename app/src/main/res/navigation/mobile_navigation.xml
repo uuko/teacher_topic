@@ -40,11 +40,11 @@
             android:name="com.example.linteacher.ui.teacherdata.ui.adamic.AdemicEventFragment"
             android:label="@string/menu_ademic"
             tools:layout="@layout/fragment_ademic_event" />
-    <fragment
-            android:id="@+id/nav_slideshow"
-            android:name="com.example.linteacher.ui.teacherdata.ui.slideshow.SlideshowFragment"
-            android:label="@string/menu_slideshow"
-            tools:layout="@layout/fragment_slideshow" />
+<!--    <fragment-->
+<!--            android:id="@+id/nav_slideshow"-->
+<!--            android:name="com.example.linteacher.ui.teacherdata.ui.slideshow.SlideshowFragment"-->
+<!--            android:label="@string/menu_slideshow"-->
+<!--            tools:layout="@layout/fragment_slideshow" />-->
 
     <fragment
             android:id="@+id/nav_paper"
@@ -57,4 +57,20 @@
             android:name="com.example.linteacher.ui.teacherdata.ui.journal.JournalFragment"
             android:label="@string/menu_journal"
             tools:layout="@layout/fragment_journal" />
+    <fragment
+        android:id="@+id/nav_patent"
+        android:name="com.example.linteacher.ui.teacherdata.ui.patent.PatentFragment"
+        android:label="@string/menu_patent"
+        tools:layout="@layout/fragment_patent" />
+
+    <fragment
+        android:id="@+id/nav_gov"
+        android:name="com.example.linteacher.ui.teacherdata.ui.gov.Govfragment"
+        android:label="@string/menu_gov"
+        tools:layout="@layout/fragment_gov" />
+    <fragment
+        android:id="@+id/nav_book"
+        android:name="com.example.linteacher.ui.teacherdata.ui.book.BookFragment"
+        android:label="@string/menu_book"
+        tools:layout="@layout/fragment_book" />
 </navigation>

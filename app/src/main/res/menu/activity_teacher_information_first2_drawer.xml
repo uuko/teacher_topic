@@ -17,6 +17,10 @@
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_license" />
         <item
+            android:id="@+id/nav_book"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_book" />
+        <item
                 android:id="@+id/nav_event"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_event" />
@@ -40,5 +44,13 @@
                 android:id="@+id/nav_journal"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_journal" />
+        <item
+            android:id="@+id/nav_patent"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_patent" />
+        <item
+            android:id="@+id/nav_gov"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_gov" />
     </group>
 </menu>

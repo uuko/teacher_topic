@@ -31,5 +31,8 @@
     <string name="menu_event">校外服務經驗</string>
     <string name="menu_paper">期刊論文</string>
     <string name="menu_journal">研討會論文</string>
+    <string name="menu_patent">專利</string>
+    <string name="menu_gov">計畫案產學</string>
+    <string name="menu_book">專書</string>
     <string name="title_activity_list_announcectivity">ListAnnouncectivity</string>
 </resources>

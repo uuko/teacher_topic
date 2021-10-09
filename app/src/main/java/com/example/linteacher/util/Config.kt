@@ -87,11 +87,38 @@ object Config {
     const val UPDATE_ARTICLE = "/article/update"
     const val DEL_ARTICLE = "/article/delete"
 
+    //ademic_event
+    const val GET_EVE = "/teacher/ademic/loginId/%s"
+    const val DEL_EVE = "/teacher/ademic"
+    const val POST_EVE = "/teacher/ademic"
+    const val GET_ONE_EVE = "/teacher/ademic/eveNumber/%s"
+    const val UPDATE_EVE = "/teacher/update/ademic"
 
-    //dis
-    const val POST_DIS = "/teacher/dis"
-    const val GET_DIS_BY_LOGINID = "/teacher/dis/loginId/%s"
-    const val GET_DIS_DISID = "/teacher/dis/disId/%s"
-    const val UPDATE_DIS = "/teacher/update/dis"
-    const val DEL_DIS = "/teacher/dis"
+    //award
+    const val GET_AWA = "/teacher/awards/loginId/%s"
+    const val DEL_AWA = "/teacher/awards"
+    const val POST_AWA = "/teacher/awards"
+    const val GET_ONE_AWA = "/teacher/awards/awaId/%s"
+    const val UPDATE_AWA = "/teacher/update/awards"
+
+    //gov
+    const val GET_GOV = "/teacher/gov/loginId/%s"
+    const val DEL_GOV = "/teacher/gov"
+    const val POST_GOV = "/teacher/gov"
+    const val GET_ONE_GOV = "/teacher/gov/govId/%s"
+    const val UPDATE_GOV = "/teacher/update/gov"
+
+    //book
+    const val GET_BOOK = "/teacher/book/loginId/%s"
+    const val DEL_BOOK = "/teacher/book"
+    const val POST_BOOK = "/teacher/book"
+    const val GET_ONE_BOOK = "/teacher/book/infNumber/%s"
+    const val UPDATE_BOOK = "/teacher/update/book"
+
+    //patent
+    const val GET_PANTENT = "/teacher/pat/loginId/%s"
+    const val DEL_PANTENT = "/teacher/pat"
+    const val POST_PANTENT = "/teacher/pat"
+    const val GET_ONE_PANTENT = "/teacher/pat/theId/%s"
+    const val UPDATE_PANTENT = "/teacher/update/pat"
 }
