@@ -10,10 +10,14 @@ import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
 import com.example.linteacher.api.pojo.banner.ResponseContent
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AdemicEventDeleteRequest
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicPostRequest
+import com.example.linteacher.api.pojo.teacherdata.adamic.AdemicEventResponse
 import com.example.linteacher.api.pojo.teacherdata.award.AwardDeleteRequest
 import com.example.linteacher.api.pojo.teacherdata.award.AwardPostRequest
 import com.example.linteacher.api.pojo.teacherdata.award.AwardResponse
 import com.example.linteacher.api.pojo.teacherdata.award.AwardUpdateRequest
+import com.example.linteacher.api.pojo.teacherdata.dis.*
 import com.example.linteacher.api.pojo.teacherdata.exp.*
 import com.example.linteacher.api.pojo.teacherdata.license.*
 import com.example.linteacher.api.pojo.teacherdata.off.*
@@ -34,6 +38,24 @@ interface ApiServices {
 
     @GET
     fun getTeacherLineInnerList(@Url string: String): Observable<TeacherSecondLineResponse>
+
+    //dis
+    @HTTP(method = "DELETE", path = Config.DEL_DIS, hasBody = true)
+    fun deleteDisData(
+            @Body deleteRequest: DisDelRequest
+    ): Observable<Unit>
+
+    @GET
+    fun getDisList(@Url string: String): Observable<List<DisGetResponse>>
+
+    @GET
+    fun getDisListById(@Url string: String): Observable<DisGetOneResponse>
+
+    @POST
+    fun postDisData(@Url string: String, @Body request: DisPostRequest): Observable<Unit>
+
+    @POST
+    fun updateDisData(@Url string: String, @Body request: DisUpdateRequest): Observable<Unit>
 
     //banner & article
     @GET(Config.GET_BANNER)
@@ -59,20 +81,20 @@ interface ApiServices {
 
     @POST
     fun deleteArticle(
-        @Url string: String,
-        @Body request: List<DeleteArticleRequest>
+            @Url string: String,
+            @Body request: List<DeleteArticleRequest>
     ): Observable<Unit>
 
     @POST
     fun updateArticle(
-        @Url string: String,
-        @Body requestBody: ArticleUpdateRequest
+            @Url string: String,
+            @Body requestBody: ArticleUpdateRequest
     ): Observable<String>
 
     @POST
     fun postArticle(
-        @Url string: String,
-        @Body requestBody: ArticlePostRequest
+            @Url string: String,
+            @Body requestBody: ArticlePostRequest
     ): Observable<ArticlePostResponse>
 
     @GET
@@ -86,8 +108,8 @@ interface ApiServices {
     @JvmSuppressWildcards
     @Multipart
     fun uploadArticlePic(
-        @Url url: String,
-        @PartMap params: Map<String, RequestBody>
+            @Url url: String,
+            @PartMap params: Map<String, RequestBody>
     ): Observable<ArticlePicResponse>
 
     @GET
@@ -102,13 +124,13 @@ interface ApiServices {
 
     @POST
     fun postTeacherProfileData(
-        @Url string: String, @Body requestBody: TeacherProfileResponse
+            @Url string: String, @Body requestBody: TeacherProfileResponse
     ): Observable<Unit>
 
     @POST
     fun updateTeacherProfileData(
-        @Url url: String,
-        @Body requestBody: TeacherUpdateRequest
+            @Url url: String,
+            @Body requestBody: TeacherUpdateRequest
     ): Observable<Unit>
 
     //選擇頭像
@@ -116,54 +138,54 @@ interface ApiServices {
     @JvmSuppressWildcards
     @Multipart
     fun uploadPic(
-        @Url url: String,
-        @PartMap params: Map<String, RequestBody>
+            @Url url: String,
+            @PartMap params: Map<String, RequestBody>
     ): Observable<ProfilePicResponse>
 
     //登入
     @POST
     fun login(
-        @Url url: String,
-        @Body loginRequest: LoginRequest
+            @Url url: String,
+            @Body loginRequest: LoginRequest
     ): Observable<LoginResponse>
 
     //管理員列出使用者
     @POST
     fun adminListUser(
-        @Url url: String,
+            @Url url: String,
     ): Observable<List<AdminListTeacherResponse>>
 
     //管理員改單一使用者權限
     @POST
     fun adminChangeUserAuthority(
-        @Url url: String,
-        @Body adminChangeAuthorityRequest: AdminChangeAuthorityRequest
+            @Url url: String,
+            @Body adminChangeAuthorityRequest: AdminChangeAuthorityRequest
     ): Observable<Unit>
 
     //管理員改單一使用者權限
     @POST
     fun adminRegisterTeacher(
-        @Url url: String,
-        @Body addTeacherRequest: AddTeacherRequest
+            @Url url: String,
+            @Body addTeacherRequest: AddTeacherRequest
     ): Observable<Unit>
 
 
     //老師實務經驗
     @POST
     fun postExpData(
-        @Url url: String,
-        @Body addTeacherRequest: ExpAddRequest
+            @Url url: String,
+            @Body addTeacherRequest: ExpAddRequest
     ): Observable<Unit>
 
     @POST
     fun updateExpData(
-        @Url url: String,
-        @Body addTeacherRequest: ExpUpdateRequest
+            @Url url: String,
+            @Body addTeacherRequest: ExpUpdateRequest
     ): Observable<Unit>
 
     @HTTP(method = "DELETE", path = Config.POST_EXP, hasBody = true)
     fun deleteExpData(
-        @Body deleteRequest: ExpDeleteRequest
+            @Body deleteRequest: ExpDeleteRequest
     ): Observable<Unit>
 
     @GET
@@ -180,7 +202,7 @@ interface ApiServices {
 
     @HTTP(method = "DELETE", path = Config.DEL_PAPER, hasBody = true)
     fun deletePaperData(
-        @Body deleteRequest: PaperDeleteRequest
+            @Body deleteRequest: PaperDeleteRequest
     ): Observable<Unit>
 
     @GET
@@ -188,8 +210,8 @@ interface ApiServices {
 
     @POST
     fun postPaperData(
-        @Url url: String,
-        @Body addTeacherRequest: PaperPostRequest
+            @Url url: String,
+            @Body addTeacherRequest: PaperPostRequest
     ): Observable<Unit>
 
     @POST
@@ -208,13 +230,13 @@ interface ApiServices {
 
     @HTTP(method = "DELETE", path = Config.DEL_LIC, hasBody = true)
     fun deleteLicData(
-        @Body deleteRequest: LicDeleteRequest
+            @Body deleteRequest: LicDeleteRequest
     ): Observable<Unit>
 
     @POST
     fun postLicData(
-        @Url url: String,
-        @Body addTeacherRequest: LicPostRequest
+            @Url url: String,
+            @Body addTeacherRequest: LicPostRequest
     ): Observable<Unit>
 
     @POST
@@ -231,13 +253,13 @@ interface ApiServices {
 
     @HTTP(method = "DELETE", path = Config.DEL_PRO, hasBody = true)
     fun deleteOffData(
-        @Body deleteRequest: OffDeleteRequest
+            @Body deleteRequest: OffDeleteRequest
     ): Observable<Unit>
 
     @POST
     fun postOffData(
-        @Url url: String,
-        @Body addTeacherRequest: OffPostRequest
+            @Url url: String,
+            @Body addTeacherRequest: OffPostRequest
     ): Observable<Unit>
 
     @POST
@@ -247,24 +269,24 @@ interface ApiServices {
      * */
 
     @GET
-    fun getEveData(@Url string: String): Observable<List<LicenseResponse>>
+    fun getAdemicEventData(@Url string: String): Observable<List<AdemicEventResponse>>
 
     @GET
-    fun getOneEveData(@Url string: String): Observable<LicOneResponse>
+    fun getOneAdemicEventData(@Url string: String): Observable<AdemicEventResponse>
 
     @HTTP(method = "DELETE", path = Config.DEL_EVE, hasBody = true)
-    fun deleteEveData(
-            @Body deleteRequest: LicDeleteRequest
+    fun deleteAdemicEventData(
+            @Body deleteRequest: AdemicEventDeleteRequest
     ): Observable<Unit>
 
     @POST
-    fun postEveData(
+    fun postAdemicEventData(
             @Url url: String,
-            @Body addTeacherRequest: LicPostRequest
+            @Body addTeacherRequest: AcademicPostRequest
     ): Observable<Unit>
 
     @POST
-    fun updateEveData(@Url url: String, @Body requestBody: LicUpdateRequest): Observable<Unit>
+    fun updateAdemicEventData(@Url url: String, @Body requestBody: AcademicPostRequest): Observable<Unit>
 
     /**
      * Award

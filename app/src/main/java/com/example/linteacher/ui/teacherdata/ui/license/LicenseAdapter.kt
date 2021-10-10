@@ -3,16 +3,12 @@ package com.example.linteacher.ui.teacherdata.ui.license
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.linteacher.R
-import com.example.linteacher.api.BaseData
 import com.example.linteacher.api.pojo.teacherdata.license.ui.LicAddData
 import com.example.linteacher.api.pojo.teacherdata.license.ui.LicBaseData
 import com.example.linteacher.api.pojo.teacherdata.license.ui.LicEditData
 import com.example.linteacher.api.pojo.teacherdata.license.ui.LicOriginData
-import com.example.linteacher.api.pojo.teacherdata.off.ui.OffAddData
-import com.example.linteacher.api.pojo.teacherdata.off.ui.OffEditData
 import com.example.linteacher.databinding.*
 import com.example.linteacher.util.BaseAdapter
 import com.example.linteacher.util.BaseViewHolder

@@ -87,12 +87,20 @@ object Config {
     const val UPDATE_ARTICLE = "/article/update"
     const val DEL_ARTICLE = "/article/delete"
 
+
+    //dis
+    const val POST_DIS = "/teacher/dis"
+    const val GET_DIS_BY_LOGINID = "/teacher/dis/loginId/%s"
+    const val GET_DIS_DISID = "/teacher/dis/disId/%s"
+    const val UPDATE_DIS = "/teacher/update/dis"
+    const val DEL_DIS = "/teacher/dis"
+
     //ademic_event
-    const val GET_EVE = "/teacher/ademic/loginId/%s"
-    const val DEL_EVE = "/teacher/ademic"
-    const val POST_EVE = "/teacher/ademic"
-    const val GET_ONE_EVE = "/teacher/ademic/eveNumber/%s"
-    const val UPDATE_EVE = "/teacher/update/ademic"
+    const val GET_EVE = "/teacher/acad/loginId/%s"
+    const val DEL_EVE = "/teacher/acad"
+    const val POST_EVE = "/teacher/acad"
+    const val GET_ONE_EVE = "/teacher/acad/eveNumber/%s"
+    const val UPDATE_EVE = "/teacher/update/acad"
 
     //award
     const val GET_AWA = "/teacher/awards/loginId/%s"

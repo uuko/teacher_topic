@@ -2,18 +2,11 @@ package com.example.linteacher.ui.teacherdata.ui.award
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.linteacher.R
-import com.example.linteacher.api.pojo.teacherdata.award.AwardResponse
 import com.example.linteacher.api.pojo.teacherdata.award.data.AwardBaseData
-import com.example.linteacher.api.pojo.teacherdata.license.ui.LicBaseData
-import com.example.linteacher.api.pojo.teacherdata.license.ui.LicEditData
-import com.example.linteacher.api.pojo.teacherdata.license.ui.LicOriginData
 import com.example.linteacher.databinding.*
-import com.example.linteacher.ui.teacherdata.ui.license.LicInterface
-import com.example.linteacher.ui.teacherdata.ui.license.LicenseAdapter
 import com.example.linteacher.util.BaseAdapter
 import com.example.linteacher.util.BaseViewHolder
 import com.example.linteacher.util.Config
