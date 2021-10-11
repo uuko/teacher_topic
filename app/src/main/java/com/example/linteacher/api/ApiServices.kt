@@ -26,6 +26,10 @@ import com.example.linteacher.api.pojo.teacherdata.exp.*
 import com.example.linteacher.api.pojo.teacherdata.license.*
 import com.example.linteacher.api.pojo.teacherdata.off.*
 import com.example.linteacher.api.pojo.teacherdata.paper.*
+import com.example.linteacher.api.pojo.teacherdata.patent.PatentDeleteRequest
+import com.example.linteacher.api.pojo.teacherdata.patent.PatentPostRequest
+import com.example.linteacher.api.pojo.teacherdata.patent.PatentResponse
+import com.example.linteacher.api.pojo.teacherdata.patent.PatentUpdateRequest
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.pic.ProfilePicResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.update.TeacherUpdateRequest
@@ -322,6 +326,7 @@ interface ApiServices {
     /**
      * Gov
      * */
+    @GET
     fun getGovData(@Url string: String): Observable<List<AwardResponse>>
 
     @GET
@@ -372,23 +377,24 @@ interface ApiServices {
      * Patent
      * */
 
-    fun getPatentData(@Url string: String): Observable<List<AwardResponse>>
+    @GET
+    fun getPatentData(@Url string: String): Observable<List<PatentResponse>>
 
     @GET
-    fun getOnePatentData(@Url string: String): Observable<AwardResponse>
+    fun getOnePatentData(@Url string: String): Observable<PatentResponse>
 
-    @HTTP(method = "DELETE", path = Config.DEL_GOV, hasBody = true)
+    @HTTP(method = "DELETE", path = Config.DEL_PANTENT, hasBody = true)
     fun deletePatentData(
-            @Body deleteRequest: AwardDeleteRequest
+            @Body deleteRequest: PatentDeleteRequest
     ): Observable<Unit>
 
     @POST
     fun postPatentData(
             @Url url: String,
-            @Body addTeacherRequest: AwardPostRequest
+            @Body addTeacherRequest: PatentPostRequest
     ): Observable<Unit>
 
     @POST
-    fun updatePatentData(@Url url: String, @Body requestBody: AwardUpdateRequest): Observable<Unit>
+    fun updatePatentData(@Url url: String, @Body requestBody: PatentUpdateRequest): Observable<Unit>
 
 }
