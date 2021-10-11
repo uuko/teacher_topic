@@ -40,12 +40,6 @@
             android:name="com.example.linteacher.ui.teacherdata.ui.adamic.AdemicEventFragment"
             android:label="@string/menu_ademic"
             tools:layout="@layout/fragment_ademic_event" />
-<!--    <fragment-->
-<!--            android:id="@+id/nav_slideshow"-->
-<!--            android:name="com.example.linteacher.ui.teacherdata.ui.slideshow.SlideshowFragment"-->
-<!--            android:label="@string/menu_slideshow"-->
-<!--            tools:layout="@layout/fragment_slideshow" />-->
-
     <fragment
             android:id="@+id/nav_paper"
             android:name="com.example.linteacher.ui.teacherdata.ui.paper.PaperFragment"
@@ -65,7 +59,7 @@
 
     <fragment
         android:id="@+id/nav_gov"
-        android:name="com.example.linteacher.ui.teacherdata.ui.gov.Govfragment"
+        android:name="com.example.linteacher.ui.teacherdata.ui.gov.GovFragment"
         android:label="@string/menu_gov"
         tools:layout="@layout/fragment_gov" />
     <fragment

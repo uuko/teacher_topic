@@ -48,8 +48,9 @@ class TeacherInformationFirstActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home_profile_first, R.id.nav_gallery, R.id.nav_slideshow
-                ,R.id.nav_license,R.id.nav_award,R.id.nav_event
+                R.id.nav_home_profile_first, R.id.nav_gallery
+                ,R.id.nav_license,R.id.nav_award,R.id.nav_event,R.id.nav_gov,R.id.nav_adamic,R.id.nav_book,
+                    R.id.nav_patent,R.id.nav_journal,R.id.nav_paper
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

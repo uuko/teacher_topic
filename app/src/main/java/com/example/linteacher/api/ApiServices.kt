@@ -23,6 +23,10 @@ import com.example.linteacher.api.pojo.teacherdata.book.BookResponse
 import com.example.linteacher.api.pojo.teacherdata.book.BookUpdateRequest
 import com.example.linteacher.api.pojo.teacherdata.dis.*
 import com.example.linteacher.api.pojo.teacherdata.exp.*
+import com.example.linteacher.api.pojo.teacherdata.gov.GovDeleteRequest
+import com.example.linteacher.api.pojo.teacherdata.gov.GovPostRequest
+import com.example.linteacher.api.pojo.teacherdata.gov.GovResponse
+import com.example.linteacher.api.pojo.teacherdata.gov.GovUpdateRequest
 import com.example.linteacher.api.pojo.teacherdata.license.*
 import com.example.linteacher.api.pojo.teacherdata.off.*
 import com.example.linteacher.api.pojo.teacherdata.paper.*
@@ -327,24 +331,24 @@ interface ApiServices {
      * Gov
      * */
     @GET
-    fun getGovData(@Url string: String): Observable<List<AwardResponse>>
+    fun getGovData(@Url string: String): Observable<List<GovResponse>>
 
     @GET
-    fun getOneGovData(@Url string: String): Observable<AwardResponse>
+    fun getOneGovData(@Url string: String): Observable<GovResponse>
 
     @HTTP(method = "DELETE", path = Config.DEL_GOV, hasBody = true)
     fun deleteGovData(
-            @Body deleteRequest: AwardDeleteRequest
+            @Body deleteRequest: GovDeleteRequest
     ): Observable<Unit>
 
     @POST
     fun postGovData(
             @Url url: String,
-            @Body addTeacherRequest: AwardPostRequest
+            @Body addTeacherRequest: GovPostRequest
     ): Observable<Unit>
 
     @POST
-    fun updateGovData(@Url url: String, @Body requestBody: AwardUpdateRequest): Observable<Unit>
+    fun updateGovData(@Url url: String, @Body requestBody: GovUpdateRequest): Observable<Unit>
 
 
 
