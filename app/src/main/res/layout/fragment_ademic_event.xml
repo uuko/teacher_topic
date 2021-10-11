@@ -27,7 +27,7 @@ tools:context=".ui.teacherdata.ui.adamic.AdemicEventFragment">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:text="新增獎項"
+        android:text="新增學術活動"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
