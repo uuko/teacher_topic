@@ -17,6 +17,10 @@ import com.example.linteacher.api.pojo.teacherdata.award.AwardDeleteRequest
 import com.example.linteacher.api.pojo.teacherdata.award.AwardPostRequest
 import com.example.linteacher.api.pojo.teacherdata.award.AwardResponse
 import com.example.linteacher.api.pojo.teacherdata.award.AwardUpdateRequest
+import com.example.linteacher.api.pojo.teacherdata.book.BookDeleteRequest
+import com.example.linteacher.api.pojo.teacherdata.book.BookPostRequest
+import com.example.linteacher.api.pojo.teacherdata.book.BookResponse
+import com.example.linteacher.api.pojo.teacherdata.book.BookUpdateRequest
 import com.example.linteacher.api.pojo.teacherdata.dis.*
 import com.example.linteacher.api.pojo.teacherdata.exp.*
 import com.example.linteacher.api.pojo.teacherdata.license.*
@@ -343,24 +347,25 @@ interface ApiServices {
      * Book
      * */
 
-    fun getBookData(@Url string: String): Observable<List<AwardResponse>>
+    @GET
+    fun getBookData(@Url string: String): Observable<List<BookResponse>>
 
     @GET
-    fun getOneBookData(@Url string: String): Observable<AwardResponse>
+    fun getOneBookData(@Url string: String): Observable<BookResponse>
 
-    @HTTP(method = "DELETE", path = Config.DEL_GOV, hasBody = true)
+    @HTTP(method = "DELETE", path = Config.DEL_BOOK, hasBody = true)
     fun deleteBookData(
-            @Body deleteRequest: AwardDeleteRequest
+            @Body deleteRequest: BookDeleteRequest
     ): Observable<Unit>
 
     @POST
     fun postBookData(
             @Url url: String,
-            @Body addTeacherRequest: AwardPostRequest
+            @Body addTeacherRequest: BookPostRequest
     ): Observable<Unit>
 
     @POST
-    fun updateBookData(@Url url: String, @Body requestBody: AwardUpdateRequest): Observable<Unit>
+    fun updateBookData(@Url url: String, @Body requestBody: BookUpdateRequest): Observable<Unit>
 
 
     /**
