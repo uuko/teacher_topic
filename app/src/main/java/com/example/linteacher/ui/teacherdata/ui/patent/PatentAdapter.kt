@@ -98,7 +98,6 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
             binding.patmainPatentName.setText(items.patmainPatentName)
             binding.patReportCode.setText(items.patReportCode )
             binding.patReportEdata.setText(items.patReportEdata)
-            binding.patAuthor.setText(items.patAuthor)
             binding.patAppmainLicant.setText(items.patAppmainLicant )
             binding.patAppmainLicationDate.setText(items.patAppmainLicationDate)
             binding.patEndDate.setText(items.patEndDate)
@@ -106,6 +105,12 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
             binding.patCertificateNumber.setText(items.patCertificateNumber)
 
             //4
+            bindSpinnerAdapter(
+                    R.array.lic_lictype_array_en,
+                    binding.patAuthor,
+                    items.patAuthor,
+                    context
+            )
             bindSpinnerAdapter(
                     R.array.lic_lictype_array_en,
                     binding.patCountry,
@@ -169,9 +174,7 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                     if (binding.patReportEdata.text.isNotEmpty()) {
                         itemData.patReportEdata = binding.patReportEdata.text.toString()
                     }
-                    if (binding.patAuthor.text.isNotEmpty()) {
-                        itemData.patAuthor = binding.patAuthor.text.toString()
-                    }
+
                     if (binding.patAppmainLicant.text.isNotEmpty()) {
                         itemData.patAppmainLicant = binding.patAppmainLicant.text.toString()
                     }
@@ -188,6 +191,14 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                         itemData.patCertificateNumber = binding.patCertificateNumber.text.toString()
                     }
                     //4
+                    if (binding.patAuthor.selectedItemPosition != -1) {
+                        itemData.patAuthor =
+                                getResponseSpinner(
+                                        R.array.lic_lictype_array_en,
+                                        binding.patAuthor,
+                                        context
+                                )
+                    }
                     if (binding.patCountry.selectedItemPosition != -1) {
                         itemData.patCountry =
                                 getResponseSpinner(
@@ -254,7 +265,6 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
             binding.patmainPatentName.setText(items.patmainPatentName)
             binding.patReportCode.setText(items.patReportCode )
             binding.patReportEdata.setText(items.patReportEdata)
-            binding.patAuthor.setText(items.patAuthor)
             binding.patAppmainLicant.setText(items.patAppmainLicant )
             binding.patAppmainLicationDate.setText(items.patAppmainLicationDate)
             binding.patEndDate.setText(items.patEndDate)
@@ -262,6 +272,12 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
             binding.patCertificateNumber.setText(items.patCertificateNumber)
 
             //4
+            bindSpinnerAdapter(
+                    R.array.lic_lictype_array_en,
+                    binding.patAuthor,
+                    items.patAuthor,
+                    context
+            )
             bindSpinnerAdapter(
                     R.array.lic_lictype_array_en,
                     binding.patCountry,
@@ -327,9 +343,6 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                     if (binding.patReportEdata.text.isNotEmpty()) {
                         itemData.patReportEdata = binding.patReportEdata.text.toString()
                     }
-                    if (binding.patAuthor.text.isNotEmpty()) {
-                        itemData.patAuthor = binding.patAuthor.text.toString()
-                    }
                     if (binding.patAppmainLicant.text.isNotEmpty()) {
                         itemData.patAppmainLicant = binding.patAppmainLicant.text.toString()
                     }
@@ -346,6 +359,14 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                         itemData.patCertificateNumber = binding.patCertificateNumber.text.toString()
                     }
                     //4
+                    if (binding.patAuthor.selectedItemPosition != -1) {
+                        itemData.patAuthor =
+                                getResponseSpinner(
+                                        R.array.lic_lictype_array_en,
+                                        binding.patAuthor,
+                                        context
+                                )
+                    }
                     if (binding.patCountry.selectedItemPosition != -1) {
                         itemData.patCountry =
                                 getResponseSpinner(
