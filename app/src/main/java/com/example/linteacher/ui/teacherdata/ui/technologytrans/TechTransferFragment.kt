@@ -109,6 +109,7 @@ class TechTransferFragment : Fragment() {
     private fun openNextActivity(id: Int) {
         val bundle = Bundle()
         bundle.putSerializable("techId", id)
+        Log.d("resultLauncher", "傳進來的id: "+id)
         this@TechTransferFragment.activity?.let {
             ActivityNavigator.openFragmentActivityWithData(
                 resultLauncher,

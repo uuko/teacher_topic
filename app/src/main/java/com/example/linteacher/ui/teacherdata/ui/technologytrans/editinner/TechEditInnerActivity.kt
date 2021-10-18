@@ -57,6 +57,10 @@ class TechEditInnerActivity : AppCompatActivity() {
                         if (it.result == Config.RESULT_OK) {
                             setResult(Activity.RESULT_OK,intent)
                             finish()
+                        }else
+                        {
+                            setResult(Activity.RESULT_OK,intent)
+                            finish()
                         }
                     })
             } else {

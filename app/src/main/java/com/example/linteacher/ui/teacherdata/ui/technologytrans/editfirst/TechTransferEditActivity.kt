@@ -44,6 +44,7 @@ class TechTransferEditActivity : BaseActivity() {
         binding = ActivityTechTransferEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
         id = (intent.getSerializableExtra("techId")) as Int //模式
+        Log.d("resultLauncher", "onCreate: id"+id)
         loginPreferences = LoginPreferences(this)
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -127,6 +128,7 @@ class TechTransferEditActivity : BaseActivity() {
                     observeGetList()
                     binding.addInnerBtn.visibility=View.VISIBLE
                     tecId = it.id
+                    id = it.id
 
                 }
             })
@@ -155,6 +157,7 @@ class TechTransferEditActivity : BaseActivity() {
     }
 
     private fun observeGetList() {
+        Log.d("resultLauncher", "observeGetList id: "+id)
         viewModel.getList(id.toString())
             .observe(this, {
                 if (it.error == Config.RESULT_OK) {
