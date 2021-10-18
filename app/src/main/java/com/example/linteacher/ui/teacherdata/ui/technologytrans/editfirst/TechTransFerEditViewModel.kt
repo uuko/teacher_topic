@@ -15,7 +15,7 @@ class TechTransFerEditViewModel(val dataModel: TechTransFerEditRepository) :View
         return dataModel.updateData(request)
     }
 
-    fun postData(request: TechTransFerPostRequest): MutableLiveData<UnitResponse>{
+    fun postData(request: TechTransFerPostRequest): MutableLiveData<TechChgFirstPostResponse>{
         return dataModel.postData(request)
     }
     fun deleteData(request: TechInnerDeleteRequest): MutableLiveData<UnitResponse>{

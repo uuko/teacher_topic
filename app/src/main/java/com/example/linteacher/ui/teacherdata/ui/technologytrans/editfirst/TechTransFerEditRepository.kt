@@ -85,8 +85,8 @@ class TechTransFerEditRepository {
         )
         return data
     }
-    fun postData(request: TechTransFerPostRequest): MutableLiveData<UnitResponse> {
-        val data= MutableLiveData<UnitResponse>()
+    fun postData(request: TechTransFerPostRequest): MutableLiveData<TechChgFirstPostResponse> {
+        val data= MutableLiveData<TechChgFirstPostResponse>()
         val url=Config.POST_TECHCHANGE_FIRST;
 
         Log.d("Aadsa", "POST_TECHCHANGE_FIRST: "+url)
@@ -96,11 +96,11 @@ class TechTransFerEditRepository {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<TechPostResponse>(){
                     override fun onNext(t: TechPostResponse) {
-                        data.value= UnitResponse(Config.RESULT_OK)
+                        data.value= TechChgFirstPostResponse(Config.RESULT_OK,t.id)
                     }
 
                     override fun onError(e: Throwable) {
-                        data.value= UnitResponse(e.toString())
+                        data.value= TechChgFirstPostResponse(e.toString())
                     }
 
                     override fun onComplete() {

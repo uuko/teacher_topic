@@ -126,6 +126,7 @@ class TechTransferEditActivity : BaseActivity() {
                 if (it.result == Config.RESULT_OK) {
                     observeGetList()
                     binding.addInnerBtn.visibility=View.VISIBLE
+                    tecId = it.id
 
                 }
             })
