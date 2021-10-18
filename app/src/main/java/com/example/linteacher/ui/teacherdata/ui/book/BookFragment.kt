@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
+import com.example.linteacher.api.pojo.teacherdata.adamic.data.AdemicEventBaseData
 import com.example.linteacher.api.pojo.teacherdata.book.BookAllResponse
 import com.example.linteacher.api.pojo.teacherdata.book.BookPostRequest
 import com.example.linteacher.api.pojo.teacherdata.book.BookResponse
@@ -84,6 +86,7 @@ class BookFragment : Fragment(), BookInterface.View{
                                                 infPlan = r.infPlan,
                                                 infCorreAuthor = r.infCorreAuthor,
                                                 infNumber = r.infNumber,
+                                            public = r.public,
 
                                                 itemType = Config.ORIGIN_VIEW_TYPE
                                         )
@@ -227,6 +230,7 @@ class BookFragment : Fragment(), BookInterface.View{
                                     infISBN = t.list.infISBN,
                                     infPlan = t.list.infPlan,
                                     infCorreAuthor = t.list.infCorreAuthor,
+                                    public = t.list.public,
 
                                     infNumber=t.list.infNumber,
                                     itemType = Config.EdIT_VIEW_TYPE
@@ -246,6 +250,25 @@ class BookFragment : Fragment(), BookInterface.View{
         val list=adapter.getDataList() as ArrayList<BookBaseData>
         list.add(position,data)
         adapter.setOneData(list,position)
+    }
+
+    override fun onChangeVisibleClick(r: BookBaseData, position: Int) {
+        //request =LicEditData內容+loginId
+        val request=
+            AcademicChangeVisibleRequest(
+                id = r.infNumber,
+                visible = r.public
+
+            )
+
+        viewModel.changeVisible(request)
+            .observe(viewLifecycleOwner,{
+                    t->
+                if (t.result == Config.RESULT_OK){
+                    //打API成功->刷新
+                    viewModelObserveLst()
+                }
+            })
     }
 
 }

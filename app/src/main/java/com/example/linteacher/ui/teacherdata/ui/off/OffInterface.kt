@@ -1,5 +1,6 @@
 package com.example.linteacher.ui.teacherdata.ui.off
 
+import com.example.linteacher.api.pojo.teacherdata.adamic.data.AdemicEventBaseData
 import com.example.linteacher.api.pojo.teacherdata.off.ui.OffAddData
 import com.example.linteacher.api.pojo.teacherdata.off.ui.OffEditData
 import com.example.linteacher.api.pojo.teacherdata.off.ui.OffOriginData
@@ -12,5 +13,7 @@ interface OffInterface {
         fun onEditSaveClick(name: OffEditData, position: Int)
         fun onEditClick(name: OffOriginData, position: Int)
         fun onEditCancelClick(position: Int,name: OffEditData)
+        fun onChangeVisibleClick(r: OffOriginData, position: Int)
+
     }
 }

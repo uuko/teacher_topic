@@ -7,4 +7,6 @@ data class OffOriginData(
         override var proVendor:String="",
         override var proNature:String="",
         override var itemType:Int= Config.ORIGIN_VIEW_TYPE,
-) : OffBaseData()
+        open var `public`: Boolean=false,
+
+        ) : OffBaseData()

@@ -11,6 +11,7 @@ data class ExpEditData(
     override var endDate:String="",
     override var expType:String="",
     override var coopAgency:String="",
-    override var isPublic:Boolean=false,
+    override var `public`: Boolean=false,
+
     var isPartTime: String=""
 ): ExpBaseData()

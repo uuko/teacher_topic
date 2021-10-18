@@ -1,5 +1,6 @@
 package com.example.linteacher.ui.teacherdata.ui.paper
 
+import com.example.linteacher.api.pojo.teacherdata.adamic.data.AdemicEventBaseData
 import com.example.linteacher.api.pojo.teacherdata.paper.ui.PaperAddData
 import com.example.linteacher.api.pojo.teacherdata.paper.ui.PaperEditData
 import com.example.linteacher.api.pojo.teacherdata.paper.ui.PaperOriginData
@@ -12,5 +13,7 @@ interface PaperInterface {
         fun onEditSaveClick(name: PaperEditData, position: Int)
         fun onEditClick(name: PaperOriginData, position: Int)
         fun onEditCancelClick(position: Int, name: PaperEditData)
+        fun onChangeVisibleClick(r: PaperOriginData, position: Int)
+
     }
 }

@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
+import com.example.linteacher.api.pojo.teacherdata.adamic.data.AdemicEventBaseData
 import com.example.linteacher.api.pojo.teacherdata.license.LicPostRequest
 import com.example.linteacher.api.pojo.teacherdata.license.LicUpdateRequest
 import com.example.linteacher.api.pojo.teacherdata.license.LicenseResponse
@@ -79,7 +81,8 @@ class LicenseFragment : Fragment(),LicInterface.View {
                                     licService = r.licService,
                                     licType = r.licType,
                                     licId = r.licId,
-                                )
+                                    public = r.public,
+                                    )
                             )
                         }
                         adapter.setDataList(valueLst) //照理說就有植了
@@ -186,8 +189,10 @@ class LicenseFragment : Fragment(),LicInterface.View {
                             licNumber = t.list.licNumber.toString(),
                             licService = t.list.licService,
                             licType = t.list.licType,
-                            licId=t.list.licId
-                        )
+                            licId=t.list.licId,
+                            public = t.list.public,
+
+                            )
                     )
                     adapter.setOneData(adapter.getDataList(), position)
                 })
@@ -200,12 +205,32 @@ class LicenseFragment : Fragment(),LicInterface.View {
             licService = name.licService,
             licType = name.licType,
             licId = name.licId,
-        )
+            public = name.public,
+
+            )
         adapter.getDataList().removeAt(position)
         val list=adapter.getDataList() as ArrayList<LicBaseData>
         list.add(position,data)
         adapter.setOneData(list,position)
     }
 
+    override fun onChangeVisibleClick(r: LicOriginData, position: Int) {
+        //request =LicEditData內容+loginId
+        val request=
+            AcademicChangeVisibleRequest(
+                id = r.licId,
+                visible = r.public
+
+            )
+
+        viewModel.changeVisible(request)
+            .observe(viewLifecycleOwner,{
+                    t->
+                if (t.result == Config.RESULT_OK){
+                    //打API成功->刷新
+                    viewModelObserveLst()
+                }
+            })
+    }
 
 }

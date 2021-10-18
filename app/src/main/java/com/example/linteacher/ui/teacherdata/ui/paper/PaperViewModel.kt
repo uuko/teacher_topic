@@ -3,6 +3,7 @@ package com.example.linteacher.ui.teacherdata.ui.paper
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
 import com.example.linteacher.api.pojo.teacherdata.license.LicPostRequest
 import com.example.linteacher.api.pojo.teacherdata.license.LicUpdateRequest
 import com.example.linteacher.api.pojo.teacherdata.license.all.LicAllOneResponse
@@ -30,5 +31,11 @@ class PaperViewModel(val dataModel: PaperRepository) : ViewModel() {
 
     fun updateList(request: PaperUpdateRequest): MutableLiveData<UnitResponse> {
         return dataModel.updateData(request)
+    }
+
+    //change Visible  by licId
+    //licId就好,回傳值是<calss>
+    fun changeVisible(request: AcademicChangeVisibleRequest): MutableLiveData<UnitResponse> {
+        return dataModel.changeVisible(request)
     }
 }

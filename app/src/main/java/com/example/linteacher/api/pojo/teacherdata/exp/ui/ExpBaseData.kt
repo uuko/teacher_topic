@@ -8,5 +8,7 @@ abstract   class ExpBaseData (
     open var endDate:String="",
     open var expType:String="",
     open var coopAgency:String="",
-    open var isPublic:Boolean=false
+//    open var isPublic:Boolean=false
+    open var `public`: Boolean=false,
+
         )

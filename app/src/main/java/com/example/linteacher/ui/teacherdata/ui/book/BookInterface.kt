@@ -1,5 +1,6 @@
 package com.example.linteacher.ui.teacherdata.ui.book
 
+import com.example.linteacher.api.pojo.teacherdata.adamic.data.AdemicEventBaseData
 import com.example.linteacher.api.pojo.teacherdata.book.data.BookBaseData
 
 interface BookInterface {
@@ -11,5 +12,7 @@ interface BookInterface {
         fun onEditSaveClick(name: BookBaseData, position: Int)
         fun onEditClick(name: String, position: Int)
         fun onEditCancelClick(position: Int,name: BookBaseData)
+        fun onChangeVisibleClick(r: BookBaseData, position: Int)
+
     }
 }

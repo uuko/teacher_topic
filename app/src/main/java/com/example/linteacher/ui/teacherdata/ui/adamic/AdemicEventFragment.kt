@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
 import com.example.linteacher.api.pojo.teacherdata.adamic.AdemicEventAllResponse
 import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicPostRequest
 import com.example.linteacher.api.pojo.teacherdata.adamic.AdemicEventResponse
@@ -46,6 +47,7 @@ class AdemicEventFragment :  Fragment(), AdemicEventInterface.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginPreferences = LoginPreferences(view.context)
+        //這邊加初始化UI加勾勾 oragin
         initRecycleView()
         viewModelObserveLst()
         binding.addAdemicEvent.setOnClickListener {
@@ -58,6 +60,7 @@ class AdemicEventFragment :  Fragment(), AdemicEventInterface.View {
 
     private fun viewModelObserveLst() {
         //git all lic by loginId
+        //存open
         viewModel.getList(loginPreferences.getTeacherId())
                 .observe(viewLifecycleOwner, object : Observer<AdemicEventAllResponse> {
                     override fun onChanged(t: AdemicEventAllResponse) {
@@ -83,6 +86,7 @@ class AdemicEventFragment :  Fragment(), AdemicEventInterface.View {
                                                 eveStudyCertificate = r.eveStudyCertificate,
                                                 eveCertificateNumber = r.eveCertificateNumber,
                                                 eveSchSubsidy = r.eveSchSubsidy,
+                                                public = r.public,
 
                                                 eveNumber = r.eveNumber,
                                                 itemType = Config.ORIGIN_VIEW_TYPE
@@ -131,6 +135,7 @@ class AdemicEventFragment :  Fragment(), AdemicEventInterface.View {
                 eveStudyCertificate = r.eveStudyCertificate,
                 eveCertificateNumber = r.eveCertificateNumber,
                 eveSchSubsidy = r.eveSchSubsidy,
+
 
                 loginId = loginPreferences.getTeacherId().toInt(),
         )
@@ -231,6 +236,7 @@ class AdemicEventFragment :  Fragment(), AdemicEventInterface.View {
                                     eveStudyCertificate = t.list.eveStudyCertificate,
                                     eveCertificateNumber = t.list.eveCertificateNumber,
                                     eveSchSubsidy = t.list.eveSchSubsidy,
+                                    public = t.list.public,
 
                                     eveNumber=t.list.eveNumber,
                                     itemType = Config.EdIT_VIEW_TYPE
@@ -239,6 +245,25 @@ class AdemicEventFragment :  Fragment(), AdemicEventInterface.View {
                             )
                             adapter.setOneData(adapter.getDataList(), position)
                         })
+    }
+
+    override fun onChangeVisibleClick(r: AdemicEventBaseData, position: Int) {
+        //request =LicEditData內容+loginId
+        val request=
+            AcademicChangeVisibleRequest(
+                id = r.eveNumber,
+                visible = r.public
+
+            )
+
+        viewModel.changeVisible(request)
+            .observe(viewLifecycleOwner,{
+                    t->
+                if (t.result == Config.RESULT_OK){
+                    //打API成功->刷新
+                    viewModelObserveLst()
+                }
+            })
     }
 
 

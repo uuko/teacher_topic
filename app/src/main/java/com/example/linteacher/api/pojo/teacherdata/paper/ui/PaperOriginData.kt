@@ -7,5 +7,7 @@ data class PaperOriginData(
     override var themain_thesisName: String = "",
     override var theAuthor: String = "",
     override var itemType: Int = Config.ORIGIN_VIEW_TYPE,
-    var thePublishYear:String=""
+    var thePublishYear:String="",
+    open var `public`: Boolean=false,
+
 ) : PaperBaseData()

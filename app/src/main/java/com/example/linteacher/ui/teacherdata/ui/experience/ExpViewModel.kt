@@ -3,6 +3,7 @@ package com.example.linteacher.ui.teacherdata.ui.experience
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
 import com.example.linteacher.api.pojo.teacherdata.exp.ui.ExpGetAllResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpAddRequest
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpDeleteRequest
@@ -31,5 +32,11 @@ class ExpViewModel constructor(var repository: ExpRepository): ViewModel() {
     }
     fun getExpDataByExpNumber(number:String): MutableLiveData<ExpOneGetResponse>{
         return repository.getExpDataByTchNumber(number)
+    }
+
+    //change Visible  by licId
+    //licId就好,回傳值是<calss>
+    fun changeVisible(request: AcademicChangeVisibleRequest): MutableLiveData<UnitResponse> {
+        return repository.changeVisible(request)
     }
 }

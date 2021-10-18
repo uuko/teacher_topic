@@ -4,14 +4,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
     <ImageView
-            android:src="@mipmap/ic_launcher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/tick"
+        android:src="@mipmap/ic_launcher"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
     <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:orientation="vertical"
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
 
                 android:orientation="horizontal"

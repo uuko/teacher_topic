@@ -8,4 +8,6 @@ data class LicOriginData (
     override var licService:String="",
     override var licType :String="",
     override var licId:Int=0,
-):LicBaseData()
+    open var `public`: Boolean=false,
+
+    ):LicBaseData()

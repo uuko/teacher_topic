@@ -14,5 +14,7 @@ data class OffEditData(
     var proStartDate  :String="",
     var proStopDate  :String="",
     var proRebate  :String=""
+            ,open var `public`: Boolean=false,
+
 
 ):OffBaseData()

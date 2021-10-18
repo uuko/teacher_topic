@@ -1,5 +1,6 @@
 package com.example.linteacher.ui.teacherdata.ui.license
 
+import com.example.linteacher.api.pojo.teacherdata.adamic.data.AdemicEventBaseData
 import com.example.linteacher.api.pojo.teacherdata.license.ui.LicAddData
 import com.example.linteacher.api.pojo.teacherdata.license.ui.LicEditData
 import com.example.linteacher.api.pojo.teacherdata.license.ui.LicOriginData
@@ -15,5 +16,7 @@ interface LicInterface {
         fun onEditSaveClick(name: LicEditData, position: Int)
         fun onEditClick(name: LicOriginData, position: Int)
         fun onEditCancelClick(position: Int,name: LicEditData)
+        fun onChangeVisibleClick(r: LicOriginData, position: Int)
+
     }
 }

@@ -15,5 +15,7 @@ interface JournalInterface {
         fun onEditSaveClick(name: DisEditData, position: Int)
         fun onEditClick(name: DisOriginData, position: Int)
         fun onEditCancelClick(position: Int, name: DisEditData)
+        fun onChangeVisibleClick(r: DisOriginData, position: Int)
+
     }
 }

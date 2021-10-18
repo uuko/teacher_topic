@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.R
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
+import com.example.linteacher.api.pojo.teacherdata.adamic.data.AdemicEventBaseData
 import com.example.linteacher.api.pojo.teacherdata.dis.*
 import com.example.linteacher.api.pojo.teacherdata.dis.ui.DisAddData
 import com.example.linteacher.api.pojo.teacherdata.dis.ui.DisBaseData
@@ -94,6 +96,7 @@ class JournalFragment : Fragment(), JournalInterface.View {
                                     disSeminarName = r.disSeminarName,
                                     disFD = r.disFD,
                                     disED = r.disED,
+                                    public = r.public,
                                 )
                             )
                         }
@@ -203,7 +206,8 @@ class JournalFragment : Fragment(), JournalInterface.View {
                             disHostCity = items.disHostCity,
                             disHostCountry = items.disHostCountry,
                             disPublishY = items.disPublishY,
-                            disAuthor = items.disAuthor
+                            disAuthor = items.disAuthor,
+                            public = items.public,
                         )
                     )
                     adapter.setOneData(adapter.getDataList(), position)
@@ -217,10 +221,30 @@ class JournalFragment : Fragment(), JournalInterface.View {
             disSeminarName = r.disSeminarName,
             disFD = r.disFD,
             disED = r.disED,
+                public = r.public,
         )
         adapter.getDataList().removeAt(position)
         val list = adapter.getDataList() as ArrayList<DisBaseData>
         list.add(position, data)
         adapter.setOneData(list, position)
+    }
+
+    override fun onChangeVisibleClick(r: DisOriginData, position: Int) {
+        //request =LicEditData內容+loginId
+        val request=
+            AcademicChangeVisibleRequest(
+                id = r.disId,
+                visible = r.public
+
+            )
+
+        viewModel.changeVisible(request)
+            .observe(viewLifecycleOwner,{
+                    t->
+                if (t.result == Config.RESULT_OK){
+                    //打API成功->刷新
+                    viewModelObserveLst()
+                }
+            })
     }
 }

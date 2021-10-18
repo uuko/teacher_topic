@@ -9,6 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
+import com.example.linteacher.api.pojo.teacherdata.adamic.data.AdemicEventBaseData
+import com.example.linteacher.api.pojo.teacherdata.book.data.BookBaseData
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpAddRequest
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpGetResponse
 import com.example.linteacher.api.pojo.teacherdata.exp.ExpUpdateRequest
@@ -76,7 +79,8 @@ class ExperienceFragment : Fragment() {
                                     startDate = r.expStartDate,
                                     endDate = r.expStopDate,
                                     coopAgency = r.expMechanismSort,
-                                    expType = r.expCategory
+                                    expType = r.expCategory ,
+                                    public = r.public,
                                 )
                             )
                         }
@@ -106,7 +110,7 @@ class ExperienceFragment : Fragment() {
                     expPFtime = data.isPartTime,
                     expStartDate = data.startDate,
                     expStopDate = data.endDate,
-                    public = data.isPublic,
+                    public = data.public,
                     loginId = loginPreferences.getTeacherId().toInt()
                 )
 
@@ -139,6 +143,25 @@ class ExperienceFragment : Fragment() {
                     })
             }
 
+            override fun onChangeVisibleClick(r: ExpOriginData, position: Int) {
+                //request =LicEditData內容+loginId
+                val request=
+                    AcademicChangeVisibleRequest(
+                        id = r.expNumber,
+                        visible = r.public
+
+                    )
+
+                viewModel.changeVisible(request)
+                    .observe(viewLifecycleOwner,{
+                            t->
+                        if (t.result == Config.RESULT_OK){
+                            //打API成功->刷新
+                            viewModelObserveExpLst()
+                        }
+                    })
+            }
+
             override fun onEditSaveClick(data: ExpEditData, position: Int) {
                 val request=ExpUpdateRequest(
                     expNumber=data.expNumber,
@@ -149,7 +172,7 @@ class ExperienceFragment : Fragment() {
                     expPFtime = data.isPartTime,
                     expStartDate = data.startDate,
                     expStopDate = data.endDate,
-                    public = data.isPublic,
+                    public = data.public,
                     loginId = loginPreferences.getTeacherId().toInt()
                 )
                 viewModel.updateExpList(request)
@@ -175,8 +198,8 @@ class ExperienceFragment : Fragment() {
                                endDate=t.expStopDate!!,
                                expType=t.expCategory!!,
                                coopAgency=t.expMechanismSort!!,
-                               isPublic=t.public!!,
-                               isPartTime=t.expPFtime!!
+                               isPartTime=t.expPFtime!!,
+                               public = t.public!!,
                            )
                            )
                            adapter.setOneData(adapter.getDataList(),position)
@@ -191,7 +214,8 @@ class ExperienceFragment : Fragment() {
                     startDate = name.startDate,
                     endDate = name.endDate,
                     coopAgency = name.coopAgency,
-                    expType = name.expType
+                    expType = name.expType,
+                        public = name.public,
                 )
                 adapter.getDataList().removeAt(position)
                 val list=adapter.getDataList()
@@ -209,6 +233,8 @@ class ExperienceFragment : Fragment() {
         fun onEditSaveClick(name: ExpEditData, position: Int)
         fun onEditClick(name: ExpOriginData, position: Int)
         fun onEditCancelClick(position: Int,name: ExpEditData)
+        fun onChangeVisibleClick(r: ExpOriginData, position: Int)
+
 
     }
 

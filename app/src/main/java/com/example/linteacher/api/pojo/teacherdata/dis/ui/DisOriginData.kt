@@ -9,4 +9,6 @@ data class DisOriginData(
     override var disSeminarName: String = "",
     override var disFD: String = "",
     override var disED: String = "",
-) : DisBaseData()
+    open var `public`: Boolean=false,
+
+    ) : DisBaseData()

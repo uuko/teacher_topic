@@ -2,6 +2,8 @@ package com.example.linteacher.ui.teacherdata.ui.experience
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.graphics.drawable.Icon
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -99,6 +101,22 @@ class ExpAdapter(
             binding.editButton.setOnClickListener {
                 listener.onEditClick(items,position)
             }
+            binding.tick.setOnClickListener {
+                Log.d("clickaaa", "click:tick ")
+                items.public  = !items.public
+                listener.onChangeVisibleClick(items, position)
+            }
+
+            if(items.public==true)
+            {
+                binding.tick.setImageIcon(Icon.createWithResource(context ,R.mipmap.ic_launcher))
+                Log.d("tickkkkkk", "勾勾 "+position)
+            }else
+            {
+                binding.tick.setImageIcon(Icon.createWithResource(context ,R.mipmap.ic_launcher2))
+                Log.d("tickkkkkk", "沒勾勾 "+position)
+
+            }
         }
         fun compareCategory(company:String):String{
             val array= context.resources.getStringArray(R.array.exp_expcategory_array)
@@ -160,7 +178,7 @@ class ExpAdapter(
                         endDate=binding.expEndDate.text.toString(),
                         expType=getExpCateGory(binding.expCategory.selectedItem.toString()),
                         coopAgency=getExpMeachen(binding.expMechanismsort.selectedItem.toString()),
-                        isPublic=false,
+                        public=false,
                         isPartTime=binding.expPftime.selectedItem.toString()
                     )
 
@@ -365,7 +383,7 @@ class ExpAdapter(
                         endDate=binding.expEndDate.text.toString(),
                         expType=binding.expCategory.selectedItem.toString(),
                         coopAgency=binding.expMechanismsort.selectedItem.toString(),
-                        isPublic=false,
+                        public=false,
                         isPartTime=binding.expPftime.selectedItem.toString()
                     )
 

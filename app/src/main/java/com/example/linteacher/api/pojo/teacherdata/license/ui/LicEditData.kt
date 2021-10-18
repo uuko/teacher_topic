@@ -9,4 +9,6 @@ data class LicEditData(
     override var licType: String = "",
     var licNumber: String = "",
     override var licId: Int = 0,
-) : LicBaseData()
+    open var `public`: Boolean=false,
+
+    ) : LicBaseData()

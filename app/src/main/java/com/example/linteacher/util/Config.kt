@@ -1,7 +1,7 @@
 package com.example.linteacher.util
 
 object Config {
-    const val BASE_URL = "http://192.168.1.206:8080/"
+    const val BASE_URL = "http://163.17.136.180:8080/"
     const val GITHUB_URL = "https://api.github.com/"
     const val ANNOUNCE_FRAGMENT = "ANNOUNCE_FRAGMENT"
     const val PROFLE_SECOND_FRAGMENT = "PROFLE_SECOND_FRAGMENT"
@@ -34,10 +34,14 @@ object Config {
     const val ADMIN_CHANGE_USER_AUTHORITY = "/admin/change/user/authority"
     const val RESULT_OK = "200"
     const val ADMIN_REGISTER_ = "/teacher/register"
+
+    //exp
     const val POST_EXP = "/teacher/one_dash_two"
     const val UPDATE_EXP = "/teacher/update/one_dash_two"
     const val GET_EXP = "/teacher/one_dash_two/loginId/%s"
     const val GET_EXP_BY_EXP_NUMBER = "/teacher/one_dash_two/expNumber/%s"
+    const val CHANGE_VISIBLE_EXP = "/teacher/one_dash_two/changeVisible"
+
 
     const val GET_TEACHER_PROFILE = "/teacher/%s"
     const val UPDATE_BY_THREE_DATE_TEACHER_PROFILE = "/teacher/%s/%s/%s"
@@ -52,6 +56,8 @@ object Config {
     const val POST_PAPER = "/teacher/paper"
     const val GET_ONE_PAPER = "/teacher/paper/theId/%s"
     const val UPDATE_PAPER = "/teacher/update/paper"
+    const val CHANGE_VISIBLE_PAPER = "/teacher/paper/changeVisible"
+
 
     //license
     const val GET_LICENSE = "/teacher/license/loginId/%s"
@@ -62,6 +68,8 @@ object Config {
     const val POST_LIC = "/teacher/license"
     const val GET_ONE_LICENSE = "/teacher/license/licId/%s"
     const val UPDATE_LIC = "/teacher/update/license"
+    const val CHANGE_VISIBLE_LIC = "/teacher/license/changeVisible"
+
 
     //pro
     const val GET_PRO = "/teacher/pro/loginId/%s"
@@ -69,6 +77,8 @@ object Config {
     const val POST_PRO = "/teacher/pro"
     const val GET_ONE_PRO = "/teacher/pro/theId/%s"
     const val UPDATE_PRO = "/teacher/update/pro"
+    const val CHANGE_VISIBLE_PRO = "/teacher/pro/changeVisible"
+
 
     //    banner
     const val GET_BANNER = "/article/banner"
@@ -94,6 +104,8 @@ object Config {
     const val GET_DIS_DISID = "/teacher/dis/disId/%s"
     const val UPDATE_DIS = "/teacher/update/dis"
     const val DEL_DIS = "/teacher/dis"
+    const val CHANGE_VISIBLE_DIS = "/teacher/dis/changeVisible"
+
 
     //ademic_event
     const val GET_EVE = "/teacher/acad/loginId/%s"
@@ -101,6 +113,7 @@ object Config {
     const val POST_EVE = "/teacher/acad"
     const val GET_ONE_EVE = "/teacher/acad/eveNumber/%s"
     const val UPDATE_EVE = "/teacher/update/acad"
+    const val CHANGE_VISIBLE_EVE = "/teacher/acad/changeVisible"
 
     //award
     const val GET_AWA = "/teacher/awards/loginId/%s"
@@ -108,6 +121,8 @@ object Config {
     const val POST_AWA = "/teacher/awards"
     const val GET_ONE_AWA = "/teacher/awards/awaId/%s"
     const val UPDATE_AWA = "/teacher/update/awards"
+    const val CHANGE_VISIBLE_AWA = "/teacher/awards/changeVisible"
+
 
     //gov
     const val GET_GOV = "/teacher/gov/loginId/%s"
@@ -122,6 +137,8 @@ object Config {
     const val POST_BOOK = "/teacher/book"
     const val GET_ONE_BOOK = "/teacher/book/infNumber/%s"
     const val UPDATE_BOOK = "/teacher/update/book"
+    const val CHANGE_VISIBLE_BOOK = "/teacher/book/changeVisible"
+
 
     //patent
     const val GET_PANTENT = "/teacher/pat/loginId/%s"

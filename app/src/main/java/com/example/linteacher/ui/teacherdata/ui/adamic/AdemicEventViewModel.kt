@@ -36,6 +36,12 @@ class AdemicEventViewModel (var dataModel: AdemicEventRepository) : ViewModel() 
         return dataModel.updateData(request)
     }
 
+    //change Visible  by licId
+    //licId就好,回傳值是<calss>
+    fun changeVisible(request: AcademicChangeVisibleRequest): MutableLiveData<UnitResponse> {
+        return dataModel.changeVisible(request)
+    }
+
     //共計2個request(一個吃awaid,一個吃loginid),2個response,1個Data viewType
 
 }

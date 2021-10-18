@@ -3,6 +3,7 @@ package com.example.linteacher.ui.teacherdata.ui.book
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
 import com.example.linteacher.api.pojo.teacherdata.book.BookAllOneResponse
 import com.example.linteacher.api.pojo.teacherdata.book.BookAllResponse
 import com.example.linteacher.api.pojo.teacherdata.book.BookPostRequest
@@ -37,6 +38,12 @@ class BookViewModel (var dataModel: BookRepository) : ViewModel() {
     //update lic by request
     fun updateList(request: BookUpdateRequest): MutableLiveData<UnitResponse> {
         return dataModel.updateData(request)
+    }
+
+    //change Visible  by licId
+    //licId就好,回傳值是<calss>
+    fun changeVisible(request: AcademicChangeVisibleRequest): MutableLiveData<UnitResponse> {
+        return dataModel.changeVisible(request)
     }
 
     //共計2個request(一個吃awaid,一個吃loginid),2個response,1個Data viewType

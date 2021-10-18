@@ -10,6 +10,7 @@ import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
 import com.example.linteacher.api.pojo.banner.ResponseContent
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
 import com.example.linteacher.api.pojo.teacherdata.adamic.AdemicEventDeleteRequest
 import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicPostRequest
 import com.example.linteacher.api.pojo.teacherdata.adamic.AdemicEventResponse
@@ -299,6 +300,22 @@ interface ApiServices {
 
     @POST
     fun updateAdemicEventData(@Url url: String, @Body requestBody: AcademicPostRequest): Observable<Unit>
+
+    //公開不公開
+    @POST
+    fun changeVisibleAdemicEventData(@Url url: String, @Body requestBody: AcademicChangeVisibleRequest): Observable<Unit>
+//    @POST
+//    fun changeVisiblePaperData(@Url url: String, @Body requestBody: AcademicChangeVisibleRequest): Observable<Unit>
+//    @POST
+//    fun changeVisibleProData(@Url url: String, @Body requestBody: AcademicChangeVisibleRequest): Observable<Unit>
+//    @POST
+//    fun changeVisibleDisData(@Url url: String, @Body requestBody: AcademicChangeVisibleRequest): Observable<Unit>
+//    @POST
+//    fun changeVisibleAwardsData(@Url url: String, @Body requestBody: AcademicChangeVisibleRequest): Observable<Unit>
+//    @POST
+//    fun changeVisibleBookData(@Url url: String, @Body requestBody: AcademicChangeVisibleRequest): Observable<Unit>
+//    @POST
+//    fun changeVisibleLicenseData(@Url url: String, @Body requestBody: AcademicChangeVisibleRequest): Observable<Unit>
 
     /**
      * Award

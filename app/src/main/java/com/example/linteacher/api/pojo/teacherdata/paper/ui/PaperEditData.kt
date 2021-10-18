@@ -20,6 +20,8 @@ data class PaperEditData(
     var theReviewer: String = "",
     var theTransCooperation: String = "",
     var thePublishingcountry: String = "",
+    open var `public`: Boolean=false,
+
 
 
     ) : PaperBaseData()

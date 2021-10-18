@@ -14,18 +14,19 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:background="@drawable/circle_background"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintBottom_toBottomOf="@+id/tick"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-            android:src="@drawable/ic_launcher_background"
-            android:id="@+id/imageView2"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/tick"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:layout_constraintStart_toEndOf="@+id/position_id"
             app:layout_constraintTop_toTopOf="parent"
            />
+
 
     <TableLayout
 
@@ -33,9 +34,9 @@
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2">
+            app:layout_constraintBottom_toBottomOf="@+id/tick"
+            app:layout_constraintStart_toEndOf="@+id/tick"
+            app:layout_constraintTop_toTopOf="@+id/tick">
 
         <TableRow
                 android:layout_height="1px"

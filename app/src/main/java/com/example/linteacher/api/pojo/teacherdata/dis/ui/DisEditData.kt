@@ -16,4 +16,6 @@ data class DisEditData(
     var disHostCountry: String = "",
     var disPublishY: String = "",
     var disAuthor: String = "",
-) : DisBaseData()
+    open var `public`: Boolean=false,
+
+    ) : DisBaseData()

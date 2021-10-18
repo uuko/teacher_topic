@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
+import com.example.linteacher.api.pojo.teacherdata.adamic.data.AdemicEventBaseData
 import com.example.linteacher.api.pojo.teacherdata.award.AwardAllResponse
 import com.example.linteacher.api.pojo.teacherdata.award.AwardPostRequest
 import com.example.linteacher.api.pojo.teacherdata.award.AwardResponse
@@ -89,7 +91,8 @@ class AwardFragment : Fragment(), AwardInterface.View {
                                                 awaCountry = r.awaCountry,
                                                 awaDate = r.awaDate,
                                                 awaId = r.awaId,
-                                                itemType = Config.ORIGIN_VIEW_TYPE
+                                                itemType = Config.ORIGIN_VIEW_TYPE,
+                                            public = r.public,
                                         )
                                 )
 
@@ -212,7 +215,8 @@ class AwardFragment : Fragment(), AwardInterface.View {
                                     awaCountry = t.list.awaCountry,
                                     awaDate = t.list.awaDate,
                                     awaId=t.list.awaId,
-                                    itemType = Config.EdIT_VIEW_TYPE
+                                    itemType = Config.EdIT_VIEW_TYPE,
+                                    public = t.list.public,
 
                             )
                             )
@@ -236,5 +240,24 @@ class AwardFragment : Fragment(), AwardInterface.View {
 //        viewModel = ViewModelProvider(this).get(AwardViewModel::class.java)
 //        // TODO: Use the ViewModel
 //    }
+
+    override fun onChangeVisibleClick(r: AwardBaseData, position: Int) {
+        //request =LicEditData內容+loginId
+        val request=
+            AcademicChangeVisibleRequest(
+                id = r.awaId,
+                visible = r.public
+
+            )
+
+        viewModel.changeVisible(request)
+            .observe(viewLifecycleOwner,{
+                    t->
+                if (t.result == Config.RESULT_OK){
+                    //打API成功->刷新
+                    viewModelObserveLst()
+                }
+            })
+    }
 
 }

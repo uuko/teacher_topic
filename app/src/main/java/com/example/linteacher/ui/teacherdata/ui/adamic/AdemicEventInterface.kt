@@ -12,5 +12,6 @@ interface AdemicEventInterface {
         fun onEditSaveClick(name: AdemicEventBaseData, position: Int)
         fun onEditClick(name: String, position: Int)
         fun onEditCancelClick(position: Int,name: AdemicEventBaseData)
+        fun onChangeVisibleClick(r: AdemicEventBaseData, position: Int)
     }
 }

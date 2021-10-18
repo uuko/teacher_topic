@@ -3,6 +3,7 @@ package com.example.linteacher.ui.teacherdata.ui.award
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
 import com.example.linteacher.api.pojo.teacherdata.award.AwardAllOneResponse
 import com.example.linteacher.api.pojo.teacherdata.award.AwardAllResponse
 import com.example.linteacher.api.pojo.teacherdata.award.AwardPostRequest
@@ -40,6 +41,12 @@ class AwardViewModel(var dataModel: AwardRepository) : ViewModel() {
     //update lic by request
     fun updateList(request: AwardUpdateRequest): MutableLiveData<UnitResponse> {
         return dataModel.updateData(request)
+    }
+
+    //change Visible  by licId
+    //licId就好,回傳值是<calss>
+    fun changeVisible(request: AcademicChangeVisibleRequest): MutableLiveData<UnitResponse> {
+        return dataModel.changeVisible(request)
     }
 
     //共計2個request(一個吃awaid,一個吃loginid),2個response,1個Data viewType

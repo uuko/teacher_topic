@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
+import com.example.linteacher.api.pojo.teacherdata.adamic.data.AdemicEventBaseData
 import com.example.linteacher.api.pojo.teacherdata.off.OffGetAllResponse
 import com.example.linteacher.api.pojo.teacherdata.off.OffGetResponse
 import com.example.linteacher.api.pojo.teacherdata.off.OffPostRequest
@@ -94,8 +96,10 @@ class OffFragment : BaseFragment(), OffInterface.View {
                                 OffOriginData(
                                     proId=r.proId,
                                     proVendor = r.proVendor,
-                                    proNature = r.proNature
-                                )
+                                    proNature = r.proNature,
+                                            public = r.public,
+
+                                    )
                             )
                         }
                         adapter.setDataList(valueLst)
@@ -196,7 +200,9 @@ class OffFragment : BaseFragment(), OffInterface.View {
                             proStartDate = t.list.proStartDate,
                             proStopDate = t.list.proStopDate,
                             proRebate = t.list.proRebate,
-                        )
+                            public = t.list.public,
+
+                            )
                     )
                     adapter.setOneData(adapter.getDataList(), position)
                 })
@@ -206,8 +212,10 @@ class OffFragment : BaseFragment(), OffInterface.View {
         val data= OffOriginData(
             proId=r.proId,
             proVendor = r.proVendor,
-            proNature = r.proNature
-        )
+            proNature = r.proNature,
+            public = r.public,
+
+            )
         adapter.getDataList().removeAt(position)
         val list=adapter.getDataList()
         list.add(position,data)
@@ -217,5 +225,24 @@ class OffFragment : BaseFragment(), OffInterface.View {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onChangeVisibleClick(r: OffOriginData, position: Int) {
+        //request =LicEditData內容+loginId
+        val request=
+            AcademicChangeVisibleRequest(
+                id = r.proId,
+                visible = r.public
+
+            )
+
+        viewModel.changeVisible(request)
+            .observe(viewLifecycleOwner,{
+                    t->
+                if (t.result == Config.RESULT_OK){
+                    //打API成功->刷新
+                    viewModelObserveLst()
+                }
+            })
     }
 }

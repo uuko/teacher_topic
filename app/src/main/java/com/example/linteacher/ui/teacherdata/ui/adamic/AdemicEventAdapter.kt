@@ -1,6 +1,8 @@
 package com.example.linteacher.ui.teacherdata.ui.adamic
 
 import android.content.Context
+import android.graphics.drawable.Icon
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -74,6 +76,35 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
             binding.editButton.setOnClickListener {
                 listener.onEditClick(items.eveNumber.toString(), position)
             }
+            //勾勾設定監聽按鈕
+            binding.tick.setOnClickListener {
+                Log.d("clickaaa", "click:tick ")
+                items.public  = !items.public
+                listener.onChangeVisibleClick(items, position)
+            }
+
+            if(items.public==true)
+            {
+                binding.tick.setImageIcon(Icon.createWithResource(context ,R.mipmap.ic_launcher))
+                Log.d("tickkkkkk", "勾勾 "+position)
+            }else
+            {
+                binding.tick.setImageIcon(Icon.createWithResource(context ,R.mipmap.ic_launcher2))
+                Log.d("tickkkkkk", "沒勾勾 "+position)
+
+            }
+
+//            if(items.public)
+//            {
+//                binding.tick.setImageDrawable(context.getResources().getDrawable(R.drawable.gogo))
+//            }else
+//            {
+//                binding.tick.setImageDrawable(context.getResources().getDrawable(R.drawable.nogogo))
+//
+//            }
+
+
+
         }
 
     }

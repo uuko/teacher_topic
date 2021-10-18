@@ -2,6 +2,7 @@ package com.example.linteacher.ui.teacherdata.ui.book
 
 
 import android.content.Context
+import android.graphics.drawable.Icon
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -77,6 +78,22 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
             binding.editButton.setOnClickListener {
                 Log.d("orginid", "items.infNumber"+items.infNumber)
                 listener.onEditClick(items.infNumber.toString(), position)
+            }
+            binding.tick.setOnClickListener {
+                Log.d("clickaaa", "click:tick ")
+                items.public  = !items.public
+                listener.onChangeVisibleClick(items, position)
+            }
+
+            if(items.public==true)
+            {
+                binding.tick.setImageIcon(Icon.createWithResource(context ,R.mipmap.ic_launcher))
+                Log.d("tickkkkkk", "勾勾 "+position)
+            }else
+            {
+                binding.tick.setImageIcon(Icon.createWithResource(context ,R.mipmap.ic_launcher2))
+                Log.d("tickkkkkk", "沒勾勾 "+position)
+
             }
         }
 

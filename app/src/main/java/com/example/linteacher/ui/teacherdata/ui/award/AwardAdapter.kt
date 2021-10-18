@@ -1,6 +1,8 @@
 package com.example.linteacher.ui.teacherdata.ui.award
 
 import android.content.Context
+import android.graphics.drawable.Icon
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -73,6 +75,22 @@ class AwardAdapter(list: ArrayList<AwardBaseData>, private val listener: AwardIn
             //監聽編輯按鈕***
             binding.editButton.setOnClickListener {
                 listener.onEditClick(items.awaId.toString(), position)
+            }
+            binding.tick.setOnClickListener {
+                Log.d("clickaaa", "click:tick ")
+                items.public  = !items.public
+                listener.onChangeVisibleClick(items, position)
+            }
+
+            if(items.public==true)
+            {
+                binding.tick.setImageIcon(Icon.createWithResource(context ,R.mipmap.ic_launcher))
+                Log.d("tickkkkkk", "勾勾 "+position)
+            }else
+            {
+                binding.tick.setImageIcon(Icon.createWithResource(context ,R.mipmap.ic_launcher2))
+                Log.d("tickkkkkk", "沒勾勾 "+position)
+
             }
         }
 
