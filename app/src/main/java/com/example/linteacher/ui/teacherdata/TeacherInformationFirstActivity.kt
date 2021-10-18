@@ -66,7 +66,7 @@ class TeacherInformationFirstActivity : AppCompatActivity() {
     override fun onBackPressed() {
 
         Log.d("TeacherInforFstActivity", "onBackPressed: ")
-        setResult(Activity.RESULT_OK)
+        setResult(Activity.RESULT_OK,intent)
         finish()
         super.onBackPressed()
     }

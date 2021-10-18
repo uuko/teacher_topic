@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$" />
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/VP/Desktop/linproject/teacher_topic/app/src/main/res/layout/activity_tech_edit_inner.xml" value="0.264" />
+        <entry key="..\:/Users/VP/Desktop/linproject/teacher_topic/app/src/main/res/layout/activity_tech_transfer_edit.xml" value="0.264" />
+        <entry key="..\:/Users/VP/Desktop/linproject/teacher_topic/app/src/main/res/layout/fragment_slideshow.xml" value="0.1296875" />
+        <entry key="..\:/Users/VP/Desktop/linproject/teacher_topic/app/src/main/res/layout/fragment_tech_transfer.xml" value="0.13360507246376813" />
+        <entry key="..\:/Users/VP/Desktop/linproject/teacher_topic/app/src/main/res/layout/item_transfer_first.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/VP/Desktop/linproject/teacher_topic/app/src/main/res/layout/item_transter_inner.xml" value="0.1" />
+        <entry key="..\:/Users/VP/Desktop/linproject/teacher_topic/app/src/main/res/menu/activity_teacher_information_first2_drawer.xml" value="0.264" />
+      </map>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

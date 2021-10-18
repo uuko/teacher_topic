@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.example.linteacher">
+    package="com.example.linteacher">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:networkSecurityConfig="@xml/network_security_config"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.Linteacher">
-        <activity android:name=".ui.articletag.ArticleTagActivity"></activity>
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Linteacher">
+        <activity
+            android:name=".ui.teacherdata.ui.technologytrans.editinner.TechEditInnerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.teacherdata.ui.technologytrans.editfirst.TechTransferEditActivity"
+            android:exported="false" />
+        <activity android:name=".ui.articletag.ArticleTagActivity" />
         <activity android:name=".ui.main.banneredit.BannerEditActivity" />
         <activity android:name=".ui.managearticle.editinner.EditInnerActivity" />
         <activity android:name=".ui.addarticle.AddArticleActivity" />
@@ -24,24 +30,24 @@
         <activity android:name=".ui.main.listannounce.ListAnnounceActivity" />
         <activity android:name=".ui.main.announcelist.ListAnnounceActivity" />
         <activity
-                android:name=".ui.main.announcelist.ListAnnouncectivity"
-                android:label="@string/title_activity_list_announcectivity"
-                android:theme="@style/Theme.Linteacher.NoActionBar" />
+            android:name=".ui.main.announcelist.ListAnnouncectivity"
+            android:label="@string/title_activity_list_announcectivity"
+            android:theme="@style/Theme.Linteacher.NoActionBar" />
         <activity android:name=".ui.main.announceinner.AnnounceInnerActivity" />
         <activity
-                android:name=".ui.teacherdata.TeacherInformationFirstActivity"
-                android:label="@string/title_activity_teacher_information_first"
-                android:theme="@style/Theme.Linteacher.NoActionBar" />
+            android:name=".ui.teacherdata.TeacherInformationFirstActivity"
+            android:label="@string/title_activity_teacher_information_first"
+            android:theme="@style/Theme.Linteacher.NoActionBar" />
         <activity android:name=".ui.main.teacherline.tchsencondline.TeacherSecondLineActivity" />
         <activity
-                android:name=".ui.main.teacherline.tchsencondline.FragmentSecondLine"
-                android:label="@string/title_activity_fragment_second_line"
-                android:theme="@style/Theme.Linteacher.NoActionBar" />
+            android:name=".ui.main.teacherline.tchsencondline.FragmentSecondLine"
+            android:label="@string/title_activity_fragment_second_line"
+            android:theme="@style/Theme.Linteacher.NoActionBar" />
         <activity android:name=".ui.admin.adminaddteacher.AddTeacherActivity" />
         <activity
-                android:name=".api.pojo.admin.addteacher.AddTeacherActivity"
-                android:label="@string/title_activity_add_teacher"
-                android:theme="@style/Theme.Linteacher.NoActionBar" />
+            android:name=".api.pojo.admin.addteacher.AddTeacherActivity"
+            android:label="@string/title_activity_add_teacher"
+            android:theme="@style/Theme.Linteacher.NoActionBar" />
         <activity android:name=".ui.admin.adminedituser.AdminEditActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.login.LoginActivity">

@@ -34,5 +34,6 @@
     <string name="menu_patent">專利</string>
     <string name="menu_gov">計畫案產學</string>
     <string name="menu_book">專書</string>
+    <string name="menu_techtransfer">技術轉移授權</string>
     <string name="title_activity_list_announcectivity">ListAnnouncectivity</string>
 </resources>
