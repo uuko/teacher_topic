@@ -67,4 +67,10 @@
         android:name="com.example.linteacher.ui.teacherdata.ui.book.BookFragment"
         android:label="@string/menu_book"
         tools:layout="@layout/fragment_book" />
+
+    <fragment
+        android:id="@+id/nav_tech_transfer"
+        android:name="com.example.linteacher.ui.teacherdata.ui.technologytrans.TechTransferFragment"
+        android:label="@string/menu_techtransfer"
+        tools:layout="@layout/fragment_tech_transfer" />
 </navigation>

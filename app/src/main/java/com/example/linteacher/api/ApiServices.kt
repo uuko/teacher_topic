@@ -37,6 +37,7 @@ import com.example.linteacher.api.pojo.teacherdata.patent.PatentUpdateRequest
 import com.example.linteacher.api.pojo.teacherdata.profile.TeacherProfileResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.pic.ProfilePicResponse
 import com.example.linteacher.api.pojo.teacherdata.profile.update.TeacherUpdateRequest
+import com.example.linteacher.api.pojo.teacherdata.techtransfer.*
 import com.example.linteacher.api.pojo.teacherline.TeacherSecondLineResponse
 import com.example.linteacher.util.Config
 import io.reactivex.Observable
@@ -51,10 +52,41 @@ interface ApiServices {
     @GET
     fun getTeacherLineInnerList(@Url string: String): Observable<TeacherSecondLineResponse>
 
+    /***
+     *tecTransfer
+     * **/
+
+    @GET
+    fun getTechFistList(@Url string: String): Observable<List<TechTransFerFirstResponse>>
+    @POST
+    fun postTechFist(@Url string: String, @Body request: TechTransFerPostRequest): Observable<TechPostResponse>
+    @POST
+    fun updateTechFist(@Url string: String, @Body request: TechTransFerUpdateRequest): Observable<Unit>
+
+    @HTTP(method = "DELETE", path = Config.DELETE_TECHCHANGE_FIRST, hasBody = true)
+    fun deleteTechFirstData(
+        @Body request: TechInnerDeleteRequest
+    ): Observable<Unit>
+
+    //
+    @GET
+    fun getTechSecondList(@Url string: String): Observable<TechTransFerSecondResponse>
+
+    @GET
+    fun getTechSecondOne(@Url string: String): Observable<TechInnerResponse>
+    @POST
+    fun postTechSecondOne(@Url string: String, @Body request: TechInnerPostOneRequest): Observable<TechPostResponse>
+    @POST
+    fun updateTechSecondOne(@Url string: String, @Body request: TechInnerUpdateRequest): Observable<Unit>
+
+    @HTTP(method = "DELETE", path = Config.DELETE_TECHCHANGE_ONE, hasBody = true)
+    fun deleteTechData(
+        @Body request: TechInnerDeleteRequest
+    ): Observable<Unit>
     //dis
     @HTTP(method = "DELETE", path = Config.DEL_DIS, hasBody = true)
     fun deleteDisData(
-            @Body deleteRequest: DisDelRequest
+        @Body deleteRequest: DisDelRequest
     ): Observable<Unit>
 
     @GET
@@ -93,20 +125,20 @@ interface ApiServices {
 
     @POST
     fun deleteArticle(
-            @Url string: String,
-            @Body request: List<DeleteArticleRequest>
+        @Url string: String,
+        @Body request: List<DeleteArticleRequest>
     ): Observable<Unit>
 
     @POST
     fun updateArticle(
-            @Url string: String,
-            @Body requestBody: ArticleUpdateRequest
+        @Url string: String,
+        @Body requestBody: ArticleUpdateRequest
     ): Observable<String>
 
     @POST
     fun postArticle(
-            @Url string: String,
-            @Body requestBody: ArticlePostRequest
+        @Url string: String,
+        @Body requestBody: ArticlePostRequest
     ): Observable<ArticlePostResponse>
 
     @GET
@@ -120,8 +152,8 @@ interface ApiServices {
     @JvmSuppressWildcards
     @Multipart
     fun uploadArticlePic(
-            @Url url: String,
-            @PartMap params: Map<String, RequestBody>
+        @Url url: String,
+        @PartMap params: Map<String, RequestBody>
     ): Observable<ArticlePicResponse>
 
     @GET
@@ -136,13 +168,13 @@ interface ApiServices {
 
     @POST
     fun postTeacherProfileData(
-            @Url string: String, @Body requestBody: TeacherProfileResponse
+        @Url string: String, @Body requestBody: TeacherProfileResponse
     ): Observable<Unit>
 
     @POST
     fun updateTeacherProfileData(
-            @Url url: String,
-            @Body requestBody: TeacherUpdateRequest
+        @Url url: String,
+        @Body requestBody: TeacherUpdateRequest
     ): Observable<Unit>
 
     //選擇頭像
@@ -150,54 +182,54 @@ interface ApiServices {
     @JvmSuppressWildcards
     @Multipart
     fun uploadPic(
-            @Url url: String,
-            @PartMap params: Map<String, RequestBody>
+        @Url url: String,
+        @PartMap params: Map<String, RequestBody>
     ): Observable<ProfilePicResponse>
 
     //登入
     @POST
     fun login(
-            @Url url: String,
-            @Body loginRequest: LoginRequest
+        @Url url: String,
+        @Body loginRequest: LoginRequest
     ): Observable<LoginResponse>
 
     //管理員列出使用者
     @POST
     fun adminListUser(
-            @Url url: String,
+        @Url url: String,
     ): Observable<List<AdminListTeacherResponse>>
 
     //管理員改單一使用者權限
     @POST
     fun adminChangeUserAuthority(
-            @Url url: String,
-            @Body adminChangeAuthorityRequest: AdminChangeAuthorityRequest
+        @Url url: String,
+        @Body adminChangeAuthorityRequest: AdminChangeAuthorityRequest
     ): Observable<Unit>
 
     //管理員改單一使用者權限
     @POST
     fun adminRegisterTeacher(
-            @Url url: String,
-            @Body addTeacherRequest: AddTeacherRequest
+        @Url url: String,
+        @Body addTeacherRequest: AddTeacherRequest
     ): Observable<Unit>
 
 
     //老師實務經驗
     @POST
     fun postExpData(
-            @Url url: String,
-            @Body addTeacherRequest: ExpAddRequest
+        @Url url: String,
+        @Body addTeacherRequest: ExpAddRequest
     ): Observable<Unit>
 
     @POST
     fun updateExpData(
-            @Url url: String,
-            @Body addTeacherRequest: ExpUpdateRequest
+        @Url url: String,
+        @Body addTeacherRequest: ExpUpdateRequest
     ): Observable<Unit>
 
     @HTTP(method = "DELETE", path = Config.POST_EXP, hasBody = true)
     fun deleteExpData(
-            @Body deleteRequest: ExpDeleteRequest
+        @Body deleteRequest: ExpDeleteRequest
     ): Observable<Unit>
 
     @GET
@@ -214,7 +246,7 @@ interface ApiServices {
 
     @HTTP(method = "DELETE", path = Config.DEL_PAPER, hasBody = true)
     fun deletePaperData(
-            @Body deleteRequest: PaperDeleteRequest
+        @Body deleteRequest: PaperDeleteRequest
     ): Observable<Unit>
 
     @GET
@@ -222,8 +254,8 @@ interface ApiServices {
 
     @POST
     fun postPaperData(
-            @Url url: String,
-            @Body addTeacherRequest: PaperPostRequest
+        @Url url: String,
+        @Body addTeacherRequest: PaperPostRequest
     ): Observable<Unit>
 
     @POST
@@ -242,13 +274,13 @@ interface ApiServices {
 
     @HTTP(method = "DELETE", path = Config.DEL_LIC, hasBody = true)
     fun deleteLicData(
-            @Body deleteRequest: LicDeleteRequest
+        @Body deleteRequest: LicDeleteRequest
     ): Observable<Unit>
 
     @POST
     fun postLicData(
-            @Url url: String,
-            @Body addTeacherRequest: LicPostRequest
+        @Url url: String,
+        @Body addTeacherRequest: LicPostRequest
     ): Observable<Unit>
 
     @POST
@@ -265,17 +297,18 @@ interface ApiServices {
 
     @HTTP(method = "DELETE", path = Config.DEL_PRO, hasBody = true)
     fun deleteOffData(
-            @Body deleteRequest: OffDeleteRequest
+        @Body deleteRequest: OffDeleteRequest
     ): Observable<Unit>
 
     @POST
     fun postOffData(
-            @Url url: String,
-            @Body addTeacherRequest: OffPostRequest
+        @Url url: String,
+        @Body addTeacherRequest: OffPostRequest
     ): Observable<Unit>
 
     @POST
     fun updateOffData(@Url url: String, @Body requestBody: OffUpdateRequest): Observable<Unit>
+
     /**
      * ademic_event
      * */
@@ -288,17 +321,20 @@ interface ApiServices {
 
     @HTTP(method = "DELETE", path = Config.DEL_EVE, hasBody = true)
     fun deleteAdemicEventData(
-            @Body deleteRequest: AdemicEventDeleteRequest
+        @Body deleteRequest: AdemicEventDeleteRequest
     ): Observable<Unit>
 
     @POST
     fun postAdemicEventData(
-            @Url url: String,
-            @Body addTeacherRequest: AcademicPostRequest
+        @Url url: String,
+        @Body addTeacherRequest: AcademicPostRequest
     ): Observable<Unit>
 
     @POST
-    fun updateAdemicEventData(@Url url: String, @Body requestBody: AcademicPostRequest): Observable<Unit>
+    fun updateAdemicEventData(
+        @Url url: String,
+        @Body requestBody: AcademicPostRequest
+    ): Observable<Unit>
 
     /**
      * Award
@@ -315,13 +351,13 @@ interface ApiServices {
 
     @HTTP(method = "DELETE", path = Config.DEL_AWA, hasBody = true)
     fun deleteAwardData(
-            @Body deleteRequest: AwardDeleteRequest
+        @Body deleteRequest: AwardDeleteRequest
     ): Observable<Unit>
 
     @POST
     fun postAwardData(
-            @Url url: String,
-            @Body addTeacherRequest: AwardPostRequest
+        @Url url: String,
+        @Body addTeacherRequest: AwardPostRequest
     ): Observable<Unit>
 
     @POST
@@ -338,18 +374,17 @@ interface ApiServices {
 
     @HTTP(method = "DELETE", path = Config.DEL_GOV, hasBody = true)
     fun deleteGovData(
-            @Body deleteRequest: GovDeleteRequest
+        @Body deleteRequest: GovDeleteRequest
     ): Observable<Unit>
 
     @POST
     fun postGovData(
-            @Url url: String,
-            @Body addTeacherRequest: GovPostRequest
+        @Url url: String,
+        @Body addTeacherRequest: GovPostRequest
     ): Observable<Unit>
 
     @POST
     fun updateGovData(@Url url: String, @Body requestBody: GovUpdateRequest): Observable<Unit>
-
 
 
     /**
@@ -364,13 +399,13 @@ interface ApiServices {
 
     @HTTP(method = "DELETE", path = Config.DEL_BOOK, hasBody = true)
     fun deleteBookData(
-            @Body deleteRequest: BookDeleteRequest
+        @Body deleteRequest: BookDeleteRequest
     ): Observable<Unit>
 
     @POST
     fun postBookData(
-            @Url url: String,
-            @Body addTeacherRequest: BookPostRequest
+        @Url url: String,
+        @Body addTeacherRequest: BookPostRequest
     ): Observable<Unit>
 
     @POST
@@ -389,13 +424,13 @@ interface ApiServices {
 
     @HTTP(method = "DELETE", path = Config.DEL_PANTENT, hasBody = true)
     fun deletePatentData(
-            @Body deleteRequest: PatentDeleteRequest
+        @Body deleteRequest: PatentDeleteRequest
     ): Observable<Unit>
 
     @POST
     fun postPatentData(
-            @Url url: String,
-            @Body addTeacherRequest: PatentPostRequest
+        @Url url: String,
+        @Body addTeacherRequest: PatentPostRequest
     ): Observable<Unit>
 
     @POST

@@ -48,5 +48,9 @@
             android:id="@+id/nav_gov"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_gov" />
+        <item
+            android:id="@+id/nav_tech_transfer"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_techtransfer" />
     </group>
 </menu>

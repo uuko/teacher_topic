@@ -158,7 +158,10 @@
         <item>政府</item>
         <item>民間</item>
     </string-array>
-
+    <string-array name="tch_tecTransfer_array_en">
+        <item>技術轉移</item>
+        <item>授權</item>
+    </string-array>
     <string-array name="tch_important_array_en">
         <item>重要</item>
         <item>普通</item>

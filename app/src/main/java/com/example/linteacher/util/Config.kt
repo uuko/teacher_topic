@@ -1,7 +1,7 @@
 package com.example.linteacher.util
 
 object Config {
-    const val BASE_URL = "http://192.168.1.206:8080/"
+    const val BASE_URL = "http://163.17.136.180:8080/"
     const val GITHUB_URL = "https://api.github.com/"
     const val ANNOUNCE_FRAGMENT = "ANNOUNCE_FRAGMENT"
     const val PROFLE_SECOND_FRAGMENT = "PROFLE_SECOND_FRAGMENT"
@@ -46,6 +46,20 @@ object Config {
     const val POST_ARTICLE_PIC = "/article/uploadFile"
     const val GET_TEACHER_LINE_INNER = "/teacher/teacherLine/%s"
 
+
+    const val EDIT_TECHCHANGE=-1
+    const val ADD_TECHCHANGE=0
+
+    //teacher-transfer
+    const val DELETE_TECHCHANGE_FIRST="/teacher/techChange"
+    const val GET_TECHCHANGE_FIRST = "/teacher/techChange/loginId/%s"
+    const val GET_TECHCHANGE_FIRST_BY_TECID="/teacher/techChange/tecId/%s"
+    const val POST_TECHCHANGE_FIRST = "/teacher/techChange"
+    const val UPDATE_TECHCHANGE_FIRST = "/teacher/techChange/update"
+    const val GET_TECHCHANGE_ONE="/teacher/techChange/inner/tecCompanyId/%s"
+    const val POST_TECHCHANGE_ONE="/teacher/techChange/inner"
+    const val UPDATE_TECHCHANGE_ONE="/teacher/techChange/update/inner"
+    const val DELETE_TECHCHANGE_ONE="/teacher/techChange/inner"
     //paper
     const val GET_PAPER = "/teacher/paper/loginId/%s"
     const val DEL_PAPER = "/teacher/paper"

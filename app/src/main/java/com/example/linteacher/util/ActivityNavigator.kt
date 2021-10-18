@@ -36,6 +36,15 @@ object ActivityNavigator{
         resultLauncher.launch(intent)
 
     }
+    fun openFragmentActivityWithData(resultLauncher: ActivityResultLauncher<Intent>
+                             ,activityClass: Class<out Activity>
+                             ,activity: FragmentActivity
+                             , bundle: Bundle) {
+        val intent = Intent(activity, activityClass)
+        intent.putExtras(bundle)
+        resultLauncher.launch(intent)
+
+    }
     fun startActivityWithData(
         activityClass: Class<out Activity>,
         bundle: Bundle, activity: FragmentActivity
