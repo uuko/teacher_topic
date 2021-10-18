@@ -50,8 +50,8 @@ class TechEditInnerActivity : AppCompatActivity() {
                 request.tecId = tecId
                 request.tecStratDate = binding.tecStratDate.text.toString()
                 request.tecTransferAmount = binding.tecTransferAmount.text.toString()
-                request.tecTransferNumber = binding.tecTransferAmount.text.toString()
-                request.tecTransferVendor = binding.tecTransferAmount.text.toString()
+                request.tecTransferNumber = binding.tecTransferNumber.text.toString()
+                request.tecTransferVendor = binding.tecTransferVendor.text.toString()
                 viewModel.postData(request)
                     .observe(this, {
                         if (it.result == Config.RESULT_OK) {
@@ -64,8 +64,8 @@ class TechEditInnerActivity : AppCompatActivity() {
                 request.tecEndDate = binding.tecEndDate.text.toString()
                 request.tecStratDate = binding.tecStratDate.text.toString()
                 request.tecTransferAmount = binding.tecTransferAmount.text.toString()
-                request.tecTransferNumber = binding.tecTransferAmount.text.toString()
-                request.tecTransferVendor = binding.tecTransferAmount.text.toString()
+                request.tecTransferNumber = binding.tecTransferNumber.text.toString()
+                request.tecTransferVendor = binding.tecTransferVendor.text.toString()
                 request.tecCompanyId = tecCompanyId
 
                 viewModel.updateData(request)
