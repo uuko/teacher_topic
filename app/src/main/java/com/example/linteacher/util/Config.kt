@@ -160,4 +160,12 @@ object Config {
     const val POST_PANTENT = "/teacher/pat"
     const val GET_ONE_PANTENT = "/teacher/pat/theId/%s"
     const val UPDATE_PANTENT = "/teacher/update/pat"
+
+    //forget password
+    const val POST_SEND_EMAIL = "/teacher/resetPassword"
+    const val POST_SAVE_PASSWORD = "/teacher/savePassword"
+    const val GET_CHECK_TOKEN = "/teacher/changePassword"
+
+
+
 }

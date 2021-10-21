@@ -136,4 +136,6 @@ fun updateData(request: PatentUpdateRequest): MutableLiveData<UnitResponse> {
                     })
     )
     return data
-}}
+}
+
+}
