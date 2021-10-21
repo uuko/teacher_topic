@@ -50,6 +50,7 @@
             android:theme="@style/Theme.Linteacher.NoActionBar" />
         <activity android:name=".ui.admin.adminedituser.AdminEditActivity" />
         <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.forgetPassword.ForgetPasswordAcitivity"/>
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

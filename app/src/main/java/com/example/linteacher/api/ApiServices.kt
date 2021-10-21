@@ -1,5 +1,6 @@
 package com.example.linteacher.api
 
+import com.example.linteacher.api.pojo.UnitResponse
 import com.example.linteacher.api.pojo.teacherline.TeacherLineResponse
 import com.example.linteacher.api.pojo.admin.addteacher.AddTeacherRequest
 import com.example.linteacher.api.pojo.admin.changeautority.AdminChangeAuthorityRequest
@@ -8,6 +9,8 @@ import com.example.linteacher.api.pojo.artical.*
 import com.example.linteacher.api.pojo.banner.BannerGetResponse
 import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
 import com.example.linteacher.api.pojo.banner.ResponseContent
+import com.example.linteacher.api.pojo.forgetPawwrod.GetCheckTokenResponse
+import com.example.linteacher.api.pojo.forgetPawwrod.SavePasswordRequest
 import com.example.linteacher.api.pojo.login.LoginRequest
 import com.example.linteacher.api.pojo.login.LoginResponse
 import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
@@ -452,5 +455,26 @@ interface ApiServices {
 
     @POST
     fun updatePatentData(@Url url: String, @Body requestBody: PatentUpdateRequest): Observable<Unit>
+/**forgetpassword**/
+
+
+    @POST
+    fun postSendMail(
+        @Url url: String,
+        @Query("email") email:String
+    ): Observable<Unit>
+
+    @POST
+    fun postSavaPassword(
+        @Url url: String,
+        @Body savePasswordRequest: SavePasswordRequest
+    ): Observable<Unit>
+
+    @GET
+    fun getCheckToken(
+        @Url string: String
+    ,@Query("token") token:String  ): Observable<Unit>
+
+
 
 }
