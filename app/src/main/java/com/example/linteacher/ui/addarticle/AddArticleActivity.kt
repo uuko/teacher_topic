@@ -206,7 +206,10 @@ class AddArticleActivity : BaseActivity() {
                                 val picName = it.picName
                                 binding.insertBtn.setOnClickListener {
 
-
+                                    binding.progressBar.visibility = View.VISIBLE
+                                    binding.progressText.visibility = View.VISIBLE
+                                    binding.insertBtn.visibility = View.GONE
+                                    binding.removeBtn.visibility = View.GONE
                                     Glide.with(this)
                                         .asDrawable()
                                         .load(cs)
