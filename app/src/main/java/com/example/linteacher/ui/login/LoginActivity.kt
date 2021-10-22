@@ -22,11 +22,17 @@ class LoginActivity : AppCompatActivity() {
         factory
     }
     private lateinit var logiSharePreferences: LoginPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         logiSharePreferences= LoginPreferences(this)
+
+        logiSharePreferences.setTeacherGrade("")
+        logiSharePreferences.setTeacherId("")
+        //記號 //遊客 =""
+        logiSharePreferences.setLoginId("")
 
 
         viewModel.isLoading.observe(this, Observer {
@@ -77,6 +83,7 @@ class LoginActivity : AppCompatActivity() {
                                         MainActivity::class.java,
                                         this@LoginActivity
                                     )
+                                    finish()
                                 } else {
 
                                 }

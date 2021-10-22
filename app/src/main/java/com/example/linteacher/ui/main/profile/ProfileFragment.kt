@@ -131,6 +131,17 @@ class ProfileFragment : Fragment() {
             loginPreferences.setTeacherGrade("")
             loginPreferences.setTeacherId("")
             loginPreferences.setLoginId("")
+            //硬幹
+            binding.gradeAArticle.visibility=View.GONE
+            binding.gradeABanner.visibility=View.GONE
+            binding.gradeAChoose.visibility=View.GONE
+            //
+            binding.gradeBChoose.visibility=View.GONE
+            binding.logout.visibility=View.GONE
+            //
+            binding.login.visibility=View.VISIBLE
+
+
 
         //如何刷新該framgent?
         }
