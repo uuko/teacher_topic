@@ -97,14 +97,13 @@ class ProfileFragment : Fragment() {
 
         binding.teacherEditBtn.setOnClickListener {
             //換去個資頁(帶loginId)
-
-
             val bundle = Bundle()
             Log.d("teacherEditBtn", "loginId: ${loginPreferences.getLoginId()}")
             bundle.putInt("loginId", loginPreferences.getLoginId().toInt())
             val i = Intent(activity, TeacherInformationFirstActivity::class.java)
-            startActivity(i)
             i.putExtras(bundle);
+            startActivity(i)
+
             (activity as Activity?)!!.overridePendingTransition(0, 0)
 
 //            getActivity()?.let { it1 ->
