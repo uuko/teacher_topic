@@ -45,6 +45,19 @@ class LoginActivity : AppCompatActivity() {
 
         })
 
+        binding.guestBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                logiSharePreferences.setTeacherGrade("")
+                logiSharePreferences.setTeacherId("")
+                //記號 //遊客 =""
+                logiSharePreferences.setLoginId("")
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
+
+            }
+
+        })
+
         binding.loginBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 if (emailValidator(binding.account.toString())) {
@@ -56,6 +69,10 @@ class LoginActivity : AppCompatActivity() {
                                 if (!(t.error.isNotEmpty())) {
                                     logiSharePreferences.setTeacherGrade(t?.grade.toString())
                                     logiSharePreferences.setTeacherId(t?.tchNumber.toString())
+                                    //記號
+                                    // 登入 loginId=使用者,teacherId = get 編輯資料 by teacherId,
+                                    // grade="A",teacherId會變動(按teacherMore時)
+                                    logiSharePreferences.setLoginId(t?.tchNumber.toString())
                                     ActivityNavigator.startActivity(
                                         MainActivity::class.java,
                                         this@LoginActivity

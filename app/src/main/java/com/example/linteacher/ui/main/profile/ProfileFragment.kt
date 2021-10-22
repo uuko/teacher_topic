@@ -1,17 +1,25 @@
 package com.example.linteacher.ui.main.profile
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.linteacher.databinding.FragmentProfileBinding
 import com.example.linteacher.ui.admin.adminedituser.AdminEditActivity
+import com.example.linteacher.ui.login.LoginActivity
 import com.example.linteacher.ui.main.banneredit.BannerEditActivity
 import com.example.linteacher.ui.managearticle.EditArticleActivity
+import com.example.linteacher.ui.teacherdata.TeacherInformationFirstActivity
 import com.example.linteacher.util.ActivityNavigator
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.preference.LoginPreferences
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,21 +56,90 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val loginPreferences=LoginPreferences(view.context)
-        if ( (loginPreferences.getTeacherId()?.length)!! >0 ){
+//        if ( (loginPreferences.getTeacherId()?.length)!! >0 ){
+//
+//        }
+//        else
+        if (loginPreferences.getTeacherGrade().equals(Config.ADMIN)){
+            binding.gradeAArticle.visibility=View.VISIBLE
+            binding.gradeABanner.visibility=View.VISIBLE
+            binding.gradeAChoose.visibility=View.VISIBLE
+            //
+            binding.gradeBChoose.visibility=View.GONE
+            binding.logout.visibility=View.VISIBLE
 
-        }
-        else if (loginPreferences.getTeacherGrade().equals(Config.ADMIN)){
 
         }
         else if (loginPreferences.getTeacherGrade().equals(Config.TEACHER)){
+            binding.gradeAArticle.visibility=View.GONE
+            binding.gradeABanner.visibility=View.GONE
+            binding.gradeAChoose.visibility=View.GONE
+            //
+            binding.gradeBChoose.visibility=View.VISIBLE
+            binding.logout.visibility=View.VISIBLE
+        }else
+        {
+            binding.gradeAArticle.visibility=View.GONE
+            binding.gradeABanner.visibility=View.GONE
+            binding.gradeAChoose.visibility=View.GONE
+            //
+            binding.gradeBChoose.visibility=View.GONE
+            binding.logout.visibility=View.GONE
+            //
+            binding.login.visibility=View.VISIBLE
 
         }
 
-        adminChoose()
+        adminChoose(loginPreferences)
     }
 
-    private fun adminChoose() {
+    private fun adminChoose(loginPreferences: LoginPreferences) {
+
+        binding.teacherEditBtn.setOnClickListener {
+            //換去個資頁(帶loginId)
+
+
+            val bundle = Bundle()
+            Log.d("teacherEditBtn", "loginId: ${loginPreferences.getLoginId()}")
+            bundle.putInt("loginId", loginPreferences.getLoginId().toInt())
+            val i = Intent(activity, TeacherInformationFirstActivity::class.java)
+            startActivity(i)
+            i.putExtras(bundle);
+            (activity as Activity?)!!.overridePendingTransition(0, 0)
+
+//            getActivity()?.let { it1 ->
+//                ActivityNavigator.startActivity(
+//                    AdminEditActivity::class.java,
+//                    it1
+//                )
+//            }
+        }
+
+        binding.login.setOnClickListener {
+            //如何finish fragment
+            //finish自己去登入頁?
+            getActivity()?.let { it1 ->
+                ActivityNavigator.startActivity(
+                    LoginActivity::class.java,
+                    it1
+                )
+            }
+        }
+
+        binding.logout.setOnClickListener {
+            //清loginId,teacherId,grade,重整該頁
+            //登出
+            loginPreferences.setTeacherGrade("")
+            loginPreferences.setTeacherId("")
+            loginPreferences.setLoginId("")
+
+        //如何刷新該framgent?
+        }
+
+
+
         binding.manageAccount.setOnClickListener {
+            //管理帳號
             getActivity()?.let { it1 ->
                 ActivityNavigator.startActivity(
                     AdminEditActivity::class.java,
@@ -72,12 +149,14 @@ class ProfileFragment : Fragment() {
         }
 
         binding.gradeAArticle.setOnClickListener {
+            //文章
             ActivityNavigator.startActivity(
                 EditArticleActivity::class.java,
                 requireActivity()
             )
         }
         binding.gradeABanner.setOnClickListener {
+            //移除banner
             ActivityNavigator.startActivity(
                 BannerEditActivity::class.java,
                 requireActivity()

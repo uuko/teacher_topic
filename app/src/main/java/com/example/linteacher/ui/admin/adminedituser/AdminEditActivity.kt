@@ -152,6 +152,8 @@ class AdminEditActivity : AppCompatActivity() {
             }
 
             override fun onMoreClick(name: AdminListTeacherResponse, position: Int) {
+                loginPreferences.setTeacherId(name.loginId.toString())
+                //click teacherMore -> get 各項資料 by teacherId
                 val bundle = Bundle()
                 Log.d("onMoreClick", "loginId: ${name.loginId}")
                 bundle.putInt("loginId", name.loginId)

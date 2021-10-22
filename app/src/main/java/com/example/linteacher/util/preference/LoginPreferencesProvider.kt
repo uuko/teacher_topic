@@ -4,6 +4,9 @@ interface LoginPreferencesProvider {
     fun setTeacherId(mTeacherId: String)
     fun getTeacherId(): String
 
+    fun setLoginId(mLoginId: String)
+    fun getLoginId(): String
+
     fun setTeacherGrade(mTeacherGrade: String)
     fun getTeacherGrade(): String
 }

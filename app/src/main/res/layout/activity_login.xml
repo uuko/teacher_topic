@@ -63,9 +63,12 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <TextView
+            android:id="@+id/guestBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="遊客"
+            android:layout_marginTop="50dp"
+            android:textSize="30dp"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutCompat2"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutCompat2"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2" />
@@ -75,6 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="忘記密碼"
+            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
