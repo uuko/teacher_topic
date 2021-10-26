@@ -35,13 +35,13 @@
                     android:layout_height="wrap_content"
                     android:hint="articleTag" />
         </LinearLayout>
-
-        <EditText
+        <jp.wasabeef.richeditor.RichEditor
                 android:id="@+id/contentText"
-                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="top"
+                android:layout_width="match_parent"
                 android:hint="內文" />
+
     </LinearLayout>
 
 

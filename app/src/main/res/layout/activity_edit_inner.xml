@@ -67,14 +67,15 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <EditText
-            android:scrollbars="vertical"
+    <jp.wasabeef.richeditor.RichEditor
+
             android:id="@+id/contentText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottom_sheet"

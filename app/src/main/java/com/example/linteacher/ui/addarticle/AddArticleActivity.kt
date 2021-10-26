@@ -7,8 +7,6 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.View
 import android.view.Window
@@ -17,7 +15,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
-import com.bumptech.glide.request.target.CustomTarget
 import com.example.linteacher.R
 import com.example.linteacher.api.pojo.artical.ArticlePostRequest
 import com.example.linteacher.api.pojo.artical.ArticleUpdateRequest
@@ -25,7 +22,6 @@ import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
 import com.example.linteacher.databinding.ActivityAddArticleBinding
 import com.example.linteacher.util.BaseActivity
 import com.example.linteacher.util.Config
-import com.example.linteacher.util.VerticalImageSpan
 import java.io.File
 import java.io.FileOutputStream
 
@@ -92,7 +88,7 @@ class AddArticleActivity : BaseActivity() {
 
             val request =
                 ArticlePostRequest(
-                    articleContent = binding.contentText.text.toString(),
+                    articleContent = binding.contentText.getHtml(),
                     articleImportant = articleImportant,
                     articleTag = binding.articleTag.text.toString(),
                     articleTitle = binding.articleTitle.text.toString(),
@@ -104,15 +100,8 @@ class AddArticleActivity : BaseActivity() {
                     finish()
                 })
         } else {
-            var content = binding.contentText.text.toString()
-            Log.d("onResourceReady", "onCreate: ${picUrlList.size}")
-            for (picUrl in picUrlList) {
-                if (content.contains(picUrl.picUrl)) {
-                    content = content.replace(picUrl.picUrl, "<img>${picUrl.picUrl}<img>")
-                    Log.d("onResourceReady", "replace: $content")
-                }
-            }
-            Log.d("onResourceReady", "content: $content")
+            val content = binding.contentText.html
+
             val request =
                 ArticleUpdateRequest(
                     articleId = articleId,
@@ -137,31 +126,31 @@ class AddArticleActivity : BaseActivity() {
         resultLauncher.launch(Intent.createChooser(i, "Select Picture"))
     }
 
-    fun EditText.addImage(
-        atText: String, imgSrc: Drawable, textView: EditText, imgWidth: Int,
-        imgHeight: Int
-    ) {
-        val ssb = SpannableStringBuilder(this.text)
-        val start = text.indexOf(atText)
-        Log.d("onResourceReady", "addImage: $start end : ${start + atText.length}")
-        imgSrc.mutate()
-        imgSrc.setBounds(
-            0, 0,
-            imgWidth,
-            imgHeight
-        )
-        ssb.setSpan(
-            VerticalImageSpan(imgSrc),
-            start,
-            start + atText.length,
-            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
-        )
-        textView.setText(ssb, TextView.BufferType.SPANNABLE)
-        textView.setSelection(start + atText.length);
-        Log.d("onResourceReady", ": ${binding.contentText.text}")
-        showVisible(false, binding.bottomSheet)
-
-    }
+//    fun EditText.addImage(
+//        atText: String, imgSrc: Drawable, textView: EditText, imgWidth: Int,
+//        imgHeight: Int
+//    ) {
+//        val ssb = SpannableStringBuilder(this.text)
+//        val start = text.indexOf(atText)
+//        Log.d("onResourceReady", "addImage: $start end : ${start + atText.length}")
+//        imgSrc.mutate()
+//        imgSrc.setBounds(
+//            0, 0,
+//            imgWidth,
+//            imgHeight
+//        )
+//        ssb.setSpan(
+//            VerticalImageSpan(imgSrc),
+//            start,
+//            start + atText.length,
+//            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+//        )
+//        textView.setText(ssb, TextView.BufferType.SPANNABLE)
+//        textView.setSelection(start + atText.length);
+//        Log.d("onResourceReady", ": ${binding.contentText.text}")
+//        showVisible(false, binding.bottomSheet)
+//
+//    }
 
 
     var resultLauncher =
@@ -210,48 +199,13 @@ class AddArticleActivity : BaseActivity() {
                                     binding.progressText.visibility = View.VISIBLE
                                     binding.insertBtn.visibility = View.GONE
                                     binding.removeBtn.visibility = View.GONE
-                                    Glide.with(this)
-                                        .asDrawable()
-                                        .load(cs)
-                                        .into(object : CustomTarget<Drawable>() {
-                                            override fun onLoadCleared(placeholder: Drawable?) {
-
-                                            }
-
-                                            override fun onResourceReady(
-                                                resource: Drawable,
-                                                transition: com.bumptech.glide.request.transition.Transition<in Drawable>?
-                                            ) {
-                                                if (drawable != null) {
-                                                    picUrlList.add(
-                                                        UrlDrawableResponse(
-                                                            picUrl = cs, picName = picName
-                                                        )
-                                                    )
-                                                    Log.d(
-                                                        "onResourceReady", "onResourceReady: " +
-                                                                "${binding.contentText.selectionStart}"
-                                                    )
-                                                    binding.contentText.text.insert(
-                                                        binding.contentText.selectionStart, cs
-                                                    )
-                                                    Log.d(
-                                                        "onResourceReady",
-                                                        "onResourceReady11111: ${binding.contentText.text}"
-                                                    )
-                                                    binding.contentText.addImage(
-                                                        cs,
-                                                        drawable,
-                                                        binding.contentText,
-                                                        drawable.intrinsicWidth,
-                                                        drawable.intrinsicHeight
-                                                    )
-
-                                                }
-                                            }
+                                    binding.contentText
+                                    binding.contentText.insertImage(
+                                        cs,
+                                        picName
+                                    );
 
 
-                                        })
                                 }
 
 

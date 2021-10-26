@@ -61,30 +61,7 @@ class ContentAdapter(
                     listener.onItemClick(items.articleId)
                 }
                 val mainView = binding.contentView
-                mainView.removeAllViews()
-                for (content in handleContent(items.articleContent)) {
-                    Log.d("splitString", "bind: ${content.data}  type ${content.type}")
-                    if (content.type == Config.PIC) {
-
-                        val imageView = ImageView(context)
-                        val vp: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT
-                        )
-                        imageView.layoutParams = vp
-                        Glide.with(context)
-                            .load(GlideUrl(content.data))
-                            .into(imageView)
-                        mainView.addView(imageView)
-                    } else if (content.type == Config.TEXTVIEW) {
-                        val textView = TextView(context)
-                        textView.setTextColor(Color.BLACK)
-                        textView.textSize = 20F
-                        textView.text = content.data
-                        mainView.addView(textView)
-                    }
-
-                }
+                mainView.html = items.articleContent
             }
 
         }

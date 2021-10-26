@@ -51,42 +51,10 @@ class EditInnerActivity : BaseActivity() {
         binding.selectPicture.setOnClickListener {
             imageChooser()
         }
-        binding.contentText.movementMethod = ScrollingMovementMethod();
+
         articleId = (intent.getSerializableExtra("articleId") as String).toInt()
         observeInnerId(articleId)
-        viewModel.data.observe(this, object : Observer<List<UrlDrawableResponse>> {
-            override fun onChanged(t: List<UrlDrawableResponse>?) {
-                if (t != null) {
-                    for (response: UrlDrawableResponse in t) {
-                        if (response.isDrawable) {
-                            picUrlList.add(
-                                UrlDrawableResponse(
-                                    picUrl = response.picUrl, picName = response.picName
-                                )
-                            )
-                            binding.contentText.text.insert(
-                                binding.contentText.selectionStart, response.picUrl
-                            )
 
-                            response.drawable?.let {
-                                binding.contentText.addImage(
-                                    response.picUrl,
-                                    it,
-                                    binding.contentText,
-                                    it.intrinsicWidth, it.intrinsicHeight,
-
-                                    )
-                            }
-                        } else {
-                            binding.contentText.text.insert(
-                                binding.contentText.selectionStart, response.picUrl
-                            )
-                        }
-                    }
-                }
-            }
-
-        })
         binding.submitBtn.setOnClickListener {
             getBannerList()
 
@@ -110,7 +78,7 @@ class EditInnerActivity : BaseActivity() {
         viewModel.getBannerList()
             .observe(this, {
                 val list = ArrayList<UrlDrawableResponse>()
-                val content = binding.contentText.text.toString()
+                val content = binding.contentText.html
                 for (picUrl in picUrlList) {
 
                     if (content.contains(picUrl.picUrl)) {
@@ -204,15 +172,7 @@ class EditInnerActivity : BaseActivity() {
     }
 
     private fun uploadArticle() {
-        var content = binding.contentText.text.toString()
-        Log.d("submitBtn", "onCreate: ${picUrlList.size} content: $content")
-        for (picUrl in picUrlList) {
-            if (content.contains(picUrl.picUrl)) {
-                content = content.replace(picUrl.picUrl, "<img>${picUrl.picUrl}<img>")
-                Log.d("submitBtn", "replace: $content")
-            }
-        }
-        Log.d("submitBtn", "content: $content")
+        val content = binding.contentText.html
         var articleImportant = ""
         if (binding.articleImportant.selectedItemPosition != -1) {
             articleImportant =
@@ -272,7 +232,8 @@ class EditInnerActivity : BaseActivity() {
                         articleTag.setText(item?.articleTag)
                         modifyDate.text = item?.modifyDate
                         item?.articleContent?.let {
-                            viewModel.handleContentDrawable(it)
+//                            viewModel.handleContentDrawable(it)
+                            binding.contentText.html = it
                         }
 
 
@@ -324,48 +285,16 @@ class EditInnerActivity : BaseActivity() {
                                 articleId = it.list.articleId
                                 val picName = it.picName
                                 binding.insertBtn.setOnClickListener {
-                                    Glide.with(this)
-                                        .asDrawable()
-                                        .load(cs)
-                                        .into(object : CustomTarget<Drawable>() {
-                                            override fun onLoadCleared(placeholder: Drawable?) {
+                                    picUrlList.add(
+                                        UrlDrawableResponse(
+                                            picUrl = cs,
+                                            picName = picName
+                                        )
+                                    )
+                                    binding.contentText.insertImage(
+                                        cs, picName
+                                    )
 
-                                            }
-
-                                            override fun onResourceReady(
-                                                resource: Drawable,
-                                                transition: com.bumptech.glide.request.transition.Transition<in Drawable>?
-                                            ) {
-                                                if (drawable != null) {
-                                                    picUrlList.add(
-                                                        UrlDrawableResponse(
-                                                            picUrl = cs, picName = picName
-                                                        )
-                                                    )
-                                                    Log.d(
-                                                        "onResourceReady", "onResourceReady: " +
-                                                                "${binding.contentText.selectionStart}"
-                                                    )
-                                                    binding.contentText.text.insert(
-                                                        binding.contentText.selectionStart, cs
-                                                    )
-                                                    Log.d(
-                                                        "onResourceReady",
-                                                        "onResourceReady11111: ${binding.contentText.text}"
-                                                    )
-                                                    binding.contentText.addImage(
-                                                        cs,
-                                                        drawable,
-                                                        binding.contentText,
-                                                        drawable.intrinsicWidth,
-                                                        drawable.intrinsicHeight
-                                                    )
-
-                                                }
-                                            }
-
-
-                                        })
                                 }
 
 
@@ -385,31 +314,7 @@ class EditInnerActivity : BaseActivity() {
 
     }
 
-    fun EditText.addImage(
-        atText: String, imgSrc: Drawable, textView: EditText, imgWidth: Int,
-        imgHeight: Int
-    ) {
-        val ssb = SpannableStringBuilder(this.text)
-        val start = text.indexOf(atText)
-        Log.d("onResourceReady", "addImage: $start end : ${start + atText.length}")
-        imgSrc.mutate()
-        imgSrc.setBounds(
-            0, 0,
-            imgWidth,
-            imgHeight
-        )
-        ssb.setSpan(
-            VerticalImageSpan(imgSrc),
-            start,
-            start + atText.length,
-            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
-        )
-        textView.setText(ssb, TextView.BufferType.SPANNABLE)
-        textView.setSelection(start + atText.length);
-        Log.d("onResourceReady", ": ${binding.contentText.text}")
-        showVisible(false, binding.bottomSheet)
 
-    }
 
     fun getFile(mContext: Context, documentUri: Uri): File {
         val inputStream = mContext?.contentResolver?.openInputStream(documentUri)

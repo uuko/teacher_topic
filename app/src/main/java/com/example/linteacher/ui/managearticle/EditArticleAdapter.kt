@@ -97,29 +97,8 @@ class EditArticleAdapter(private val context: Context, val listener: EditListene
                 binding.checkBox.isChecked = article.isChecked
             }
 
-            val mainView: LinearLayout = binding.contentView
-            mainView.removeAllViews()
-            for (content in handleContent(article.articleContent)) {
-                Log.d("splitString", "bind: \${content.data}  type \${content.type}")
-                if (content.type == Config.PIC) {
-                    val imageView = ImageView(context)
-                    val vp = LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
-                    )
-                    imageView.layoutParams = vp
-                    Glide.with(context)
-                        .load(GlideUrl(content.data))
-                        .into(imageView)
-                    mainView.addView(imageView)
-                } else if (content.type == Config.TEXTVIEW) {
-                    val textView = TextView(context)
-                    textView.setTextColor(Color.BLACK)
-                    textView.textSize = 20f
-                    textView.text = content.data
-                    mainView.addView(textView)
-                }
-            }
+            val mainView = binding.contentView
+            mainView.html = article.articleContent
 
             itemView.setOnClickListener {
                 listener.onItemClick(article.articleId)

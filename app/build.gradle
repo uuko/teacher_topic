@@ -83,4 +83,7 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:2.1.0"
     implementation("androidx.paging:paging-rxjava2:$paging_version") // For Kotlin use paging-rxjava2-ktx
 
+    //rich-editor
+    implementation 'jp.wasabeef:richeditor-android:2.0.0'
+
 }

@@ -45,32 +45,8 @@ class EditInnerViewModel(val dataModel: EditRepository) : ViewModel() {
         return dataModel.getBannerList()
     }
 
-    fun handleContentDrawable(articleContent: String) {
-        val contentLst = ArrayList<Content.ContentData>()
-        contentLst.clear()
-        if (articleContent.contains("<img>")) {
-            val splitString = articleContent.split("<img>")
-            val list = arrayListOf<UrlDrawableResponse>()
-            for (i in splitString.indices) {
-                if (i % 2 == 1) {
-                    list.add(UrlDrawableResponse(i, splitString[i], isDrawable = true))
-                } else {
-                    list.add(UrlDrawableResponse(i, splitString[i], isDrawable = false))
-                }
 
-            }
-            handleOneContentData(list, object : FinishedListener {
-                override fun isFinished(articleContent: ArrayList<UrlDrawableResponse>) {
-                    data.postValue(articleContent)
-                }
-            })
-        } else {
-            val list = arrayListOf<UrlDrawableResponse>()
-            list.add(UrlDrawableResponse(0, articleContent, isDrawable = false))
-            data.postValue(list)
-        }
 
-    }
 
     fun updateBanner(request: BannerUpdateRequest): MutableLiveData<ResponseContent> {
         return dataModel.updateBannerData(request)

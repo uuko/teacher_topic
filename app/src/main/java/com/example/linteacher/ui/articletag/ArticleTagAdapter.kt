@@ -94,29 +94,8 @@ class ArticleTagAdapter(private val context: Context, val listener: ArticleInner
                 listener.onItemClick(article.articleId)
             }
 
-            val mainView: LinearLayout = binding.contentView
-            mainView.removeAllViews()
-            for ((data, type) in handleContent(article.articleContent)) {
-                Log.d("splitString", "bind: \${content.data}  type \${content.type}")
-                if (type == Config.PIC) {
-                    val imageView = ImageView(context)
-                    val vp = LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
-                    )
-                    imageView.layoutParams = vp
-                    Glide.with(context)
-                        .load(GlideUrl(data))
-                        .into(imageView)
-                    mainView.addView(imageView)
-                } else if (type == Config.TEXTVIEW) {
-                    val textView = TextView(context)
-                    textView.setTextColor(Color.BLACK)
-                    textView.textSize = 20f
-                    textView.text = data
-                    mainView.addView(textView)
-                }
-            }
+            val mainView = binding.contentView
+            mainView.html = article.articleContent
         }
 
 
