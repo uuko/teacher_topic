@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".ui.login.LoginActivity">
 
 
@@ -13,78 +14,77 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/guideline9">
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="245dp"
+        <TextView
+                style="@style/emailText"
                 android:layout_height="wrap_content"
-                android:hint="@string/account"
-                >
+                android:layout_width="wrap_content"
+                android:text="Email" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/account"
-                    android:text="linlin@gmail.com"
-                    android:background="#2196F3"
-                    android:layout_width="245dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="30dp"
-
+        <EditText
+                android:id="@+id/account"
+                style="@style/inputText"
                 android:layout_width="245dp"
+                android:layout_height="50dp"
+                android:background="@drawable/white_round_text"
+                android:inputType="textEmailAddress"
+                android:text="linlin@gmail.com"
+
+                />
+
+        <TextView
+                style="@style/emailText"
                 android:layout_height="wrap_content"
-                android:hint="@string/content_description_end_icon"
-                app:endIconMode="password_toggle">
+                android:layout_width="wrap_content"
+                android:text="Password" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/passwd"
-                    android:text="5678"
-                    android:background="#2196F3"
-                    android:layout_width="245dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+                android:id="@+id/passwd"
+                style="@style/inputText"
+                android:layout_width="245dp"
+                android:layout_height="50dp"
+                android:background="@drawable/white_round_text"
+                android:inputType="textPassword"
+                android:text="5678"
+                android:textAlignment="center" />
 
 
         <Button
-                android:layout_marginTop="50dp"
-                android:layout_gravity="center_horizontal"
                 android:id="@+id/loginBtn"
                 android:layout_width="245dp"
                 android:layout_height="wrap_content"
-                android:text="submit" />
+                android:layout_gravity="center_horizontal"
+
+                android:background="@drawable/login_circle_btn"
+                android:text="Login" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <TextView
             android:id="@+id/guestBtn"
+            style="@style/bigText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="遊客"
-            android:layout_marginTop="50dp"
-            android:textSize="30dp"
+            android:text="遊客進入->"
+
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutCompat2"
-            app:layout_constraintStart_toStartOf="@+id/linearLayoutCompat2"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2" />
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutCompat2" />
 
     <TextView
-        android:id="@+id/forgetPasswordBtn"
+            android:id="@+id/forgetPasswordBtn"
+            style="@style/miniText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="忘記密碼"
-            android:textSize="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline11"
+            app:layout_constraintTop_toTopOf="@+id/guideline14" />
 
     <ProgressBar
             android:id="@+id/progressBar"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -92,4 +92,74 @@
             app:layout_constraintEnd_toEndOf="@+id/linearLayoutCompat2"
             app:layout_constraintStart_toStartOf="@+id/linearLayoutCompat2"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2" />
+
+    <View
+            style="@style/view"
+            android:layout_width="207dp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintEnd_toEndOf="@+id/textView9"
+            app:layout_constraintStart_toStartOf="@+id/textView9" />
+
+    <TextView
+            android:id="@+id/textView9"
+            style="@style/bigText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="臺中科技大學-教師資訊系統"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutCompat2"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutCompat2"
+            app:layout_constraintTop_toTopOf="@+id/guideline12" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.47" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.86" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.11" />
+
+    <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="148dp"
+            android:layout_height="148dp"
+            android:background="@drawable/school"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline13" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.80574554" />
 </androidx.constraintlayout.widget.ConstraintLayout>
