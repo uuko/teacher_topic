@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:id="@+id/mSwipeRefreshLayout"
         android:layout_height="match_parent"
+        android:background="@color/bgColor"
         tools:context=".ui.main.announce.AnnounceFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -29,7 +30,7 @@
                     android:id="@+id/important_linearlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/bgColor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/banner">
@@ -43,6 +44,7 @@
                         android:textSize="30sp" />
 
                 <LinearLayout
+                        android:layout_marginRight="48dp"
                         android:id="@+id/more_important_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -53,32 +55,42 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="查看全部"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/black" />
 
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_baseline_arrow_right_24" />
+
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                    android:id="@+id/important_content"
+                    android:id="@+id/important_out"
+                    android:background="@drawable/out_gray_bg"
+                    android:padding="38dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/important_linearlayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/important_linearlayout">
+
+                <LinearLayout
+                        android:id="@+id/important_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/important_linearlayout" />
+            </LinearLayout>
+
 
             <LinearLayout
                     android:id="@+id/all_article_linearlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/item_background"
-                    app:layout_constraintTop_toBottomOf="@+id/important_content">
+
+                    app:layout_constraintTop_toBottomOf="@+id/important_out">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -90,6 +102,7 @@
 
                 <LinearLayout
                         android:id="@+id/more_button"
+                        android:layout_marginRight="48dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom">
@@ -99,18 +112,16 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="查看全部"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/black" />
 
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_baseline_arrow_right_24" />
+
                 </LinearLayout>
 
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/content"
+                    android:layout_marginTop="14dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

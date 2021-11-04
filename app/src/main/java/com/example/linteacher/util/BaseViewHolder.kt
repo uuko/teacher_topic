@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.recyclerview.widget.RecyclerView
+import com.example.linteacher.api.pojo.ContentDataResult
 import com.example.linteacher.ui.main.announce.Content
 import java.text.SimpleDateFormat
 import java.util.*
@@ -23,6 +24,76 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             )[1]
         }"
 
+    }
+
+    fun handleCutStr(content: String): ContentDataResult {
+        content.replace("<br>", "，")
+        val list = mutableListOf<String>()
+        var second = ""
+        if (content.contains("<img src=\"")) {
+            val arr = content.split("<img src=\"")
+
+
+            val itemList = mutableListOf<String>()
+            for (a in arr) {
+                if (a.contains("alt=")) {
+                    val b = a.split("\" alt=\"[a-zA-Z0-9_.]*\">".toRegex())
+                    for (b1 in b) {
+                        if (b1.isNotEmpty()) {
+                            if (b1.matches("http://163.17.136.180:8080/article/downloadFile/[a-zA-Z0-9_.]*.jpg".toRegex())) {
+                                list.add(b1)
+                            }
+                            itemList.add(b1)
+                            second += b1
+                        }
+
+                    }
+                } else {
+                    itemList.add(a)
+                    second += a
+                }
+            }
+
+            for (s in list.indices) {
+                var lastItem = ""
+                for (i in itemList.indices) {
+                    if (itemList[i] == list[s]) {
+                        if (lastItem.matches("http://163.17.136.180:8080/article/downloadFile/[a-zA-Z0-9_.]*.jpg".toRegex())
+                            && lastItem.isNotEmpty()
+                        ) {
+                            second = second.replace(list[s], "")
+                        } else {
+                            second = if (i == itemList.size - 1) second.replace(list[s], "")
+                            else second.replace(list[s], "，")
+                        }
+                        break
+                    }
+                    lastItem = itemList[i]
+                }
+
+            }
+
+
+        } else second = content
+        var realStr = ""
+        var lastJ = '0'
+        for (j in second) {
+            realStr += if (lastJ == '，' && j == '，') {
+                ' '
+            } else j
+            lastJ = j
+        }
+        Log.d("TAG", "handleCutStr: $realStr")
+        return if (list.size > 0) {
+            if (realStr.length > 17) ContentDataResult(
+                picFirst = list[0],
+                content = "${realStr.subSequence(0, 16)}..."
+            )
+            else ContentDataResult(picFirst = list[0], content = realStr)
+        } else {
+            if (realStr.length > 22) ContentDataResult(content = "${realStr.subSequence(0, 21)}...")
+            else ContentDataResult(content = realStr)
+        }
     }
 
     fun handleContent(articleContent: String): List<Content.ContentData> {

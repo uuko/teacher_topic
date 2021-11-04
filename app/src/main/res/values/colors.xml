@@ -10,4 +10,8 @@
     <color name="red">#F60A0A</color>
     <color name="pink">#F16CAA</color>
     <color name="purple">#9C27B0</color>
+    <color name="gray">#B3000000</color>
+    <color name="bgColor">#F0F0F0</color>
+    <color name="oldGray">#E5E5E5</color>
+
 </resources>

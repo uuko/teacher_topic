@@ -1,22 +1,22 @@
 package com.example.linteacher.ui.main.announce
 
 import android.content.Context
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.request.RequestOptions
 import com.example.linteacher.databinding.ItemCarsoulInnerBinding
 import com.example.linteacher.util.BaseViewHolder
-import com.example.linteacher.util.Config
 import java.util.*
+import androidx.constraintlayout.widget.ConstraintSet
+
+import android.R
+import androidx.constraintlayout.widget.ConstraintLayout
+
 
 class ContentAdapter(
     private var list: ArrayList<Content.Response>
@@ -55,13 +55,38 @@ class ContentAdapter(
             with(binding) {
                 articleTitle.text = items.articleTitle
                 articleTag.text = items.articleTag
+                android.util.Log.d("articleTag", "bind: ${items.articleTag}")
                 binding.articleDate.text = pareDate(items.modifyDate)
 
                 itemView.setOnClickListener {
                     listener.onItemClick(items.articleId)
                 }
-                val mainView = binding.contentView
-                mainView.html = items.articleContent
+                val result = handleCutStr(items.articleContent)
+
+                if (result.picFirst.isNotEmpty()) {
+                    imageView.visibility = View.VISIBLE
+                    val params = contentText.layoutParams as ConstraintLayout.LayoutParams
+                    params.width = 176
+                    params.startToStart = guideline19.id
+                    params.topToTop = guideline21.id
+                    contentText.requestLayout()
+                    Glide.with(binding.root.context)
+                        .load(result.picFirst)
+                        .apply(RequestOptions().override(113, 113))
+                        .centerCrop()
+                        .into(imageView)
+                } else {
+
+
+                    val params = contentText.layoutParams as ConstraintLayout.LayoutParams
+                    params.width = ViewGroup.LayoutParams.MATCH_PARENT
+                    params.startToStart = guideline19.id
+                    params.topToTop = guideline21.id
+                    contentText.requestLayout()
+                    imageView.visibility = View.GONE
+                }
+                binding.contentText.text = result.content
+
             }
 
         }

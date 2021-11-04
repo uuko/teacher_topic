@@ -3,88 +3,100 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="179dp"
+        android:layout_margin="8dp"
         android:background="@drawable/item_background">
 
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+
+    <TextView
+            android:id="@+id/articleTag"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/btn_rounded"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="456"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline18"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
+    <TextView
+            android:id="@+id/articleDate"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:padding="4dp"
+            android:text="456"
 
-        <TextView
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/articleTag"
+            app:layout_constraintEnd_toStartOf="@+id/guideline20" />
 
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:id="@+id/articleTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:text="123" />
+    <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
+            android:src="@drawable/school"
+            app:layout_constraintEnd_toStartOf="@+id/guideline20"
+            app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
-        <LinearLayout
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_weight="3"
-                android:gravity="right"
-                android:orientation="vertical">
+    <TextView
 
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+            android:id="@+id/articleTitle"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:text="123"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline18"
+            app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
-                    >
+    <TextView
+            android:id="@+id/contentText"
+            android:layout_width="176dp"
+            android:layout_height="wrap_content"
+            android:text="1111"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/guideline19"
+            app:layout_constraintTop_toTopOf="@+id/guideline21" />
 
-                <TextView
-                        android:id="@+id/articleTag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/btn_rounded"
-                        android:padding="4dp"
-                        android:text="456"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.34" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:gravity="right">
-
-                <TextView
-                        android:id="@+id/articleDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="4dp"
-                        android:text="456"
-
-                        android:textColor="@color/purple"
-                        android:textSize="12sp" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <jp.wasabeef.richeditor.RichEditor
-            android:id="@+id/contentView"
-            android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline18"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            app:layout_constraintGuide_percent="0.0229" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.0334" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9771" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6815643" />
 </androidx.constraintlayout.widget.ConstraintLayout>
