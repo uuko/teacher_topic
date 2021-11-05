@@ -7,6 +7,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.res.Resources
+import android.graphics.Color
 import android.graphics.Point
 import android.util.Log
 import android.view.View
@@ -29,6 +30,7 @@ import android.os.Build
 import android.view.Display
 
 import android.view.WindowManager
+import android.widget.TextView
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -61,6 +63,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
             override fun onItemSelected(parent: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
                 spinner.setSelection(pos, false)
+                (parent?.getChildAt(0) as TextView).setTextColor(Color.BLACK)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {

@@ -83,16 +83,38 @@
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
-                <Spinner
-                        android:id="@+id/articleImportant"
-                        android:layout_width="wrap_content"
+
+                <RelativeLayout
+                        android:layout_width="66dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="29dp"
                         android:layout_toRightOf="@+id/articleTag"
-                        android:padding="4dp"
-                        android:text="456"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+
+                        android:background="@drawable/spinner_border"
+                        android:orientation="horizontal">
+
+                    <Spinner
+
+                            android:id="@+id/articleImportant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:spinnerMode="dropdown" />
+
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_arrow_drop_down_24" />
+
+                </RelativeLayout>
 
 
             </RelativeLayout>
