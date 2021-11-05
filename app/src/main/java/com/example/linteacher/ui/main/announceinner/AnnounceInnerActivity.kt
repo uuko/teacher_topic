@@ -27,9 +27,10 @@ import com.example.linteacher.ui.teacherdata.ui.experience.ExpRepository
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpViewModel
 import com.example.linteacher.ui.teacherdata.ui.experience.ExpViewModelFactory
 import com.example.linteacher.util.ActivityNavigator
+import com.example.linteacher.util.BaseActivity
 import com.example.linteacher.util.Config
 
-class AnnounceInnerActivity : AppCompatActivity() {
+class AnnounceInnerActivity : BaseActivity() {
     private lateinit var binding: ActivityAnnounceInnerBinding
     private val factory = AnnounceInnerViewModelFactory(AnnounceInnerRepository())
     private val viewModel: AnnounceInnerViewModel by viewModels {
@@ -40,6 +41,7 @@ class AnnounceInnerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAnnounceInnerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.contentView.isFocusable = false
         context = this
         val id = intent.getSerializableExtra("articleId") as String
         initData(id)
@@ -82,8 +84,11 @@ class AnnounceInnerActivity : AppCompatActivity() {
                             articleImportant.text = important
                         }
                         articleImportant.text = important
+                        date.text = pareDate(item!!.modifyDate)
+                        articleTag.chipBackgroundColor =
+                            ColorStateList.valueOf(resources.getColor(R.color.green))
                         articleTag.text = item?.articleTag
-                        modifyDate.text = item?.modifyDate
+
                         item?.articleContent?.let {
 
                             val mainView = binding.contentView

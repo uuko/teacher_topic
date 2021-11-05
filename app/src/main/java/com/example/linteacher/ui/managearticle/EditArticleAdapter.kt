@@ -1,6 +1,7 @@
 package com.example.linteacher.ui.managearticle
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,12 +10,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.request.RequestOptions
 import com.example.linteacher.api.pojo.artical.Response
 import com.example.linteacher.databinding.ItemCarsoulInnerBinding
 import com.example.linteacher.databinding.ItemEditArticleBinding
@@ -87,22 +90,57 @@ class EditArticleAdapter(private val context: Context, val listener: EditListene
         BaseViewHolder(binding.getRoot()) {
         private val binding: ItemEditArticleBinding
         private val contentLst: MutableList<Content.ContentData> = ArrayList()
-        fun bindTo(article: Response?) {
-            binding.articleTitle.text = article!!.articleTitle
-            binding.articleTag.text = article.articleTag
-            binding.modifyDate.text = pareDate(article.modifyDate)
-            binding.checkBox.isChecked = article.isChecked
+        fun bindTo(items: Response?) {
+            binding.articleTitle.text = items!!.articleTitle
+            binding.articleTag.text = items.articleTag
+            binding.modifyDate.text = pareDate(items.modifyDate)
+            binding.checkBox.isChecked = items.isChecked
             binding.checkBox.setOnClickListener {
-                article.isChecked = !article.isChecked
-                binding.checkBox.isChecked = article.isChecked
+                items.isChecked = !items.isChecked
+                binding.checkBox.isChecked = items.isChecked
             }
-
-            val mainView = binding.contentView
-            mainView.html = article.articleContent
-
             itemView.setOnClickListener {
-                listener.onItemClick(article.articleId)
+                listener.onItemClick(items.articleId)
             }
+            val result = handleCutStr(items.articleContent)
+
+            with(binding) {
+                var important = ""
+                if (items?.articleImportant == "U") {
+                    important = "重要"
+                    articleImportant.chipBackgroundColor = ColorStateList.valueOf(Color.RED)
+                    articleImportant.text = important
+                } else if (items?.articleImportant == "O") {
+                    important = "普通"
+                    articleImportant.chipBackgroundColor =
+                        ColorStateList.valueOf(Color.GREEN)
+                    articleImportant.text = important
+                }
+                if (result.picFirst.isNotEmpty()) {
+                    imageView.visibility = View.VISIBLE
+                    val params = contentText.layoutParams as ConstraintLayout.LayoutParams
+                    params.width = 350
+                    params.startToEnd = checkBox.id
+                    params.topToTop = guideline21.id
+                    contentText.requestLayout()
+                    Glide.with(binding.root.context)
+                        .load(result.picFirst)
+                        .apply(RequestOptions().override(113, 113))
+                        .centerCrop()
+                        .into(imageView)
+                } else {
+
+
+                    val params = contentText.layoutParams as ConstraintLayout.LayoutParams
+                    params.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                    params.startToEnd = checkBox.id
+                    params.topToTop = guideline21.id
+                    contentText.requestLayout()
+                    imageView.visibility = View.GONE
+                }
+            }
+
+            binding.contentText.text = result.content
         }
 
 

@@ -232,7 +232,7 @@ class EditInnerActivity : BaseActivity() {
                             this@EditInnerActivity
                         )
                         articleTag.setText(item?.articleTag)
-                        modifyDate.text = item?.modifyDate
+                        modifyDate.text = pareDate(item!!.modifyDate)
                         item?.articleContent?.let {
 //                            viewModel.handleContentDrawable(it)
                             binding.contentText.html = it

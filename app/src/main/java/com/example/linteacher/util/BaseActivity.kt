@@ -32,6 +32,16 @@ import android.view.WindowManager
 
 
 abstract class BaseActivity : AppCompatActivity() {
+    fun pareDate(data: String): String {
+
+        return "${data.split("T")[0]}-${data.split("T")[1].split(":")[0]}:${
+            data.split("T")[1].split(
+                ":"
+            )[1]
+        }"
+
+    }
+
     fun bindSpinnerAdapter(array: Int, spinner: Spinner, data: String, context: Context) {
         val adapter =
             ArrayAdapter.createFromResource(
