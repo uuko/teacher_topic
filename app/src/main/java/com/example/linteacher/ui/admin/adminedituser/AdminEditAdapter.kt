@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
+import com.example.linteacher.R
 import com.example.linteacher.api.pojo.admin.list.AdminListTeacherResponse
 import com.example.linteacher.databinding.ItemEdiitAdminBinding
 import com.example.linteacher.databinding.ItemTeacherlineBinding
@@ -53,6 +56,7 @@ class AdminEditAdapter(
 
             mNewList.add(n)
         }
+
         Log.d("isVisble", "onClick:2222 "+mNewList[position].isVisible+ items[position].isVisible)
         mNewList[position].isVisible=isVisible
         Log.d("isVisble", "onClick:33333 "+mNewList[position].isVisible + items[position].isVisible)
@@ -79,14 +83,21 @@ class AdminEditAdapter(
         ) {
             Glide.with(itemBinding.root)
                 .load(items.picUrl)
+                    .apply(RequestOptions.bitmapTransform( CircleCrop()))
                 .into(itemBinding.teacherTchPicUrl)
             itemBinding.teacherContent.text = items.teacherName
 
             if (items.isVisible){
-                itemView.setBackgroundColor(Color.parseColor("#79FF79"))
+                itemBinding.tchItemView.setBackgroundResource(R.drawable.tchlistitem_visible)
+
+//                itemBinding.tchItemView.setBackgroundColor(Color.parseColor("#FFFFFF"))
+//                itemView.setBackgroundColor(Color.parseColor("#FFFFFF"))
             }
             else{
-                itemView.setBackgroundColor(Color.parseColor("#BEBEBE"))
+                itemBinding.tchItemView.setBackgroundResource(R.drawable.tch_listitem_notvisible)
+
+//                itemBinding.tchItemView.setBackgroundColor(Color.parseColor("#BEBEBE"))
+//                itemView.setBackgroundColor(Color.parseColor("#BEBEBE"))
             }
             itemView.setOnClickListener(object : View.OnClickListener{
                 override fun onClick(v: View?) {
