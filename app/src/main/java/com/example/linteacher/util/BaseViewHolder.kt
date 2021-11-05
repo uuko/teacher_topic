@@ -26,8 +26,9 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }
 
-    fun handleCutStr(content: String): ContentDataResult {
-        content.replace("<br>", "，")
+    fun handleCutStr(input: String): ContentDataResult {
+        var content = input.replace("<br>", "，")
+        content = content.replace("&nbsp;", " ")
         val list = mutableListOf<String>()
         var second = ""
         if (content.contains("<img src=\"")) {
