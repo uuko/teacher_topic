@@ -6,6 +6,8 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.res.Resources
+import android.graphics.Point
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +24,11 @@ import com.example.linteacher.api.pojo.ContentDataResult
 import com.example.linteacher.ui.addarticle.UrlDrawableResponse
 import java.text.SimpleDateFormat
 import java.util.*
+import android.os.Build
+
+import android.view.Display
+
+import android.view.WindowManager
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -131,5 +138,32 @@ abstract class BaseActivity : AppCompatActivity() {
 
         } else return picUrlList
 
+    }
+
+    fun getWidth(): Int {
+        var Measuredwidth = 0
+        var Measuredheight = 0
+        val size = Point()
+        val w = windowManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            w.defaultDisplay.getSize(size)
+            Measuredwidth = size.x
+            Measuredheight = size.y
+        } else {
+            val d = w.defaultDisplay
+            Measuredwidth = d.width
+            Measuredheight = d.height
+        }
+
+        return Measuredwidth
+    }
+
+    open fun getScreenWidth(): Int {
+        return Resources.getSystem().getDisplayMetrics().widthPixels
+    }
+
+    open fun getScreenHeight(): Int {
+        return Resources.getSystem().getDisplayMetrics().heightPixels
     }
 }

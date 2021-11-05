@@ -33,6 +33,7 @@ import com.example.linteacher.ui.addarticle.UrlDrawableResponse
 import com.example.linteacher.util.BaseActivity
 import com.example.linteacher.util.Config
 import com.example.linteacher.util.VerticalImageSpan
+import com.example.linteacher.util.screenRectDp
 import java.io.File
 import java.io.FileOutputStream
 
@@ -293,8 +294,9 @@ class EditInnerActivity : BaseActivity() {
                                         )
                                     )
                                     binding.contentText.insertImage(
-                                        cs, picName
+                                        cs, picName, screenRectDp.width().toInt()
                                     )
+                                    binding.bottomSheet.visibility = View.GONE
 
                                 }
 

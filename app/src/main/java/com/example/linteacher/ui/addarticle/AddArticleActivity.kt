@@ -22,6 +22,7 @@ import com.example.linteacher.api.pojo.banner.BannerUpdateRequest
 import com.example.linteacher.databinding.ActivityAddArticleBinding
 import com.example.linteacher.util.BaseActivity
 import com.example.linteacher.util.Config
+import com.example.linteacher.util.screenRectDp
 import java.io.File
 import java.io.FileOutputStream
 
@@ -203,9 +204,10 @@ class AddArticleActivity : BaseActivity() {
                                     binding.contentText
                                     binding.contentText.insertImage(
                                         cs,
-                                        picName
+                                        picName,
+                                        screenRectDp.width().toInt()
                                     );
-
+                                    binding.bottomSheet.visibility = View.GONE
 
                                 }
 
