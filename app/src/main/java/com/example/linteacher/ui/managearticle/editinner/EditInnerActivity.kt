@@ -77,14 +77,15 @@ class EditInnerActivity : BaseActivity() {
     private fun getBannerList() {
         viewModel.getBannerList()
             .observe(this, {
-                val list = ArrayList<UrlDrawableResponse>()
-                val content = binding.contentText.html
-                for (picUrl in picUrlList) {
-
-                    if (content.contains(picUrl.picUrl)) {
-                        list.add(picUrl)
-                    }
-                }
+                var list = ArrayList<UrlDrawableResponse>()
+//                val content = binding.contentText.html
+                list = getPicList(binding.contentText.html)
+//                for (picUrl in picUrlList) {
+//
+//                    if (content.contains(picUrl.picUrl)) {
+//                        list.add(picUrl)
+//                    }
+//                }
                 if (it.totalCount >= 5 || list.size <= 0) {
                     uploadArticle()
                 } else {
