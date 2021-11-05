@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.linteacher.R
 import com.example.linteacher.databinding.FragmentProfileBinding
 import com.example.linteacher.ui.admin.adminedituser.AdminEditActivity
 import com.example.linteacher.ui.login.LoginActivity
@@ -60,14 +61,18 @@ class ProfileFragment : Fragment() {
 //
 //        }
 //        else
-        if (loginPreferences.getTeacherGrade().equals(Config.ADMIN)){
-            binding.gradeAArticle.visibility=View.VISIBLE
-            binding.gradeABanner.visibility=View.VISIBLE
-            binding.gradeAChoose.visibility=View.VISIBLE
-            //
-            binding.gradeBChoose.visibility=View.GONE
-            binding.logout.visibility=View.VISIBLE
+        if (loginPreferences.getTeacherGrade().equals(Config.ADMIN)) {
+            binding.gradeAArticle.visibility = View.VISIBLE
+            binding.gradeABanner.visibility = View.VISIBLE
+            binding.gradeAChoose.visibility = View.VISIBLE
 
+            //
+            binding.gradeBChoose.visibility = View.GONE
+            binding.logout.visibility = View.VISIBLE
+            binding.teacherCountry.text = "管理員"
+            binding.imageView.setBackgroundResource(
+                R.drawable.admin
+            )
 
         }
         else if (loginPreferences.getTeacherGrade().equals(Config.TEACHER)){
@@ -77,16 +82,19 @@ class ProfileFragment : Fragment() {
             //
             binding.gradeBChoose.visibility=View.VISIBLE
             binding.logout.visibility=View.VISIBLE
-        }else
-        {
-            binding.gradeAArticle.visibility=View.GONE
-            binding.gradeABanner.visibility=View.GONE
-            binding.gradeAChoose.visibility=View.GONE
+        }else {
+            binding.gradeAArticle.visibility = View.GONE
+            binding.gradeABanner.visibility = View.GONE
+            binding.gradeAChoose.visibility = View.GONE
             //
-            binding.gradeBChoose.visibility=View.GONE
-            binding.logout.visibility=View.GONE
+            binding.gradeBChoose.visibility = View.GONE
+            binding.logout.visibility = View.GONE
             //
-            binding.login.visibility=View.VISIBLE
+            binding.login.visibility = View.VISIBLE
+            binding.teacherCountry.text = "遊客"
+            binding.imageView.setBackgroundResource(
+                R.drawable.school
+            )
 
         }
 
@@ -132,18 +140,21 @@ class ProfileFragment : Fragment() {
             loginPreferences.setTeacherId("")
             loginPreferences.setLoginId("")
             //硬幹
-            binding.gradeAArticle.visibility=View.GONE
-            binding.gradeABanner.visibility=View.GONE
-            binding.gradeAChoose.visibility=View.GONE
+            binding.gradeAArticle.visibility = View.GONE
+            binding.gradeABanner.visibility = View.GONE
+            binding.gradeAChoose.visibility = View.GONE
             //
-            binding.gradeBChoose.visibility=View.GONE
-            binding.logout.visibility=View.GONE
+            binding.gradeBChoose.visibility = View.GONE
+            binding.logout.visibility = View.GONE
             //
-            binding.login.visibility=View.VISIBLE
+            binding.login.visibility = View.VISIBLE
+            binding.teacherCountry.text = "遊客"
+            binding.imageView.setBackgroundResource(
+                R.drawable.school
+            )
 
 
-
-        //如何刷新該framgent?
+            //如何刷新該framgent?
         }
 
 
