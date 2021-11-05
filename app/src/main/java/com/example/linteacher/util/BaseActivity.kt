@@ -109,8 +109,9 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
-    fun getPicList(content: String): ArrayList<UrlDrawableResponse> {
-        content.replace("<br>", "，")
+    fun getPicList(input: String): ArrayList<UrlDrawableResponse> {
+        var content = input.replace("<br>", "，")
+        content = content.replace("&nbsp;", " ")
         val list = mutableListOf<String>()
         val picUrlList: ArrayList<UrlDrawableResponse> = arrayListOf()
         var second = ""
@@ -121,7 +122,7 @@ abstract class BaseActivity : AppCompatActivity() {
             val itemList = mutableListOf<String>()
             for (a in arr) {
                 if (a.contains("alt=")) {
-                    val b = a.split("\" alt=\"[a-zA-Z0-9_.]*\">".toRegex())
+                    val b = a.split("\" alt=\"[a-zA-Z0-9_.]*\" width=\"[0-9]*\">".toRegex())
                     for (b1 in b) {
                         if (b1.isNotEmpty()) {
                             if (b1.matches("http://163.17.136.180:8080/article/downloadFile/[a-zA-Z0-9_.]*.jpg".toRegex())) {
