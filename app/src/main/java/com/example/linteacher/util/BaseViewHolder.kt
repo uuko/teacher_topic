@@ -37,7 +37,7 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val itemList = mutableListOf<String>()
             for (a in arr) {
                 if (a.contains("alt=")) {
-                    val b = a.split("\" alt=\"[a-zA-Z0-9_.]*\">".toRegex())
+                    val b = a.split("\" alt=\"[a-zA-Z0-9_.]*\" width=\"[0-9]*\">".toRegex())
                     for (b1 in b) {
                         if (b1.isNotEmpty()) {
                             if (b1.matches("http://163.17.136.180:8080/article/downloadFile/[a-zA-Z0-9_.]*.jpg".toRegex())) {
