@@ -16,6 +16,7 @@ import com.example.linteacher.ui.main.announceinner.AnnounceInnerActivity
 import com.example.linteacher.ui.main.listannounce.ListAnnounceActivity
 import com.example.linteacher.ui.main.listimportant.ListImportantActivity
 import com.example.linteacher.util.ActivityNavigator
+import com.example.linteacher.util.BaseFragment
 import com.example.linteacher.util.ImageAdapter
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.listener.OnBannerListener
@@ -31,7 +32,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [AnnounceFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AnnounceFragment : Fragment(), ContentListener.View {
+class AnnounceFragment : BaseFragment(), ContentListener.View {
 
     private var _binding: FragmentAnnounceBinding? = null
     private val binding get() = _binding!!
@@ -171,7 +172,8 @@ class AnnounceFragment : Fragment(), ContentListener.View {
                         val view: View = inflater.inflate(R.layout.item_carsoul, null)
                         view.findViewById<TextView>(R.id.articleTitle).text = a.articleTitle
                         view.findViewById<TextView>(R.id.articleTag).text = a.articleTag
-                        view.findViewById<TextView>(R.id.modifyDate).text = a.modifyDate
+                        view.findViewById<TextView>(R.id.modifyDate).text = pareDate(a.modifyDate)
+
                         view.setOnClickListener {
                             onItemClick(a.articleId)
                         }

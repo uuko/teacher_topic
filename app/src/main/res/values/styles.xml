@@ -7,6 +7,17 @@
 
     </style>
 
+    <style name="grayText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#5F5F5F</item>
+    </style>
+
+    <style name="bigthanText">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#000000</item>
+
+    </style>
+
     <style name="miniText">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#000000</item>
@@ -24,6 +35,8 @@
     </style>
 
     <style name="inputText">
+        <item name="android:layout_width">245dp</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:textAlignment">center</item>
         <item name="background">@drawable/white_round_text</item>
         <item name="android:textColor">#000000</item>

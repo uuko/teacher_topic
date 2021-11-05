@@ -5,6 +5,7 @@
         android:id="@+id/mSwipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bgColor"
         tools:context=".ui.articletag.ArticleTagActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout

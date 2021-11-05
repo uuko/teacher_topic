@@ -79,7 +79,7 @@ class ContentAdapter(
 
 
                     val params = contentText.layoutParams as ConstraintLayout.LayoutParams
-                    params.width = ViewGroup.LayoutParams.MATCH_PARENT
+                    params.width = ViewGroup.LayoutParams.WRAP_CONTENT
                     params.startToStart = guideline19.id
                     params.topToTop = guideline21.id
                     contentText.requestLayout()

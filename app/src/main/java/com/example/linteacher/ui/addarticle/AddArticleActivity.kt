@@ -27,7 +27,7 @@ import java.io.FileOutputStream
 
 
 class AddArticleActivity : BaseActivity() {
-    private val picUrlList: ArrayList<UrlDrawableResponse> = arrayListOf()
+    private var picUrlList: ArrayList<UrlDrawableResponse> = arrayListOf()
     private lateinit var binding: ActivityAddArticleBinding
     private val factory = AddArticleViewModelFactory(AddArticleRepository())
     private val viewModel: AddArticleViewModel by viewModels {
@@ -63,6 +63,7 @@ class AddArticleActivity : BaseActivity() {
     private fun getBannerList() {
         viewModel.getBannerList()
             .observe(this, {
+                picUrlList = getPicList(binding.contentText.html)
                 if (it.totalCount >= 5 || picUrlList.size <= 0) {
                     uploadArticle()
                 } else {

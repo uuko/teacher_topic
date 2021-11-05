@@ -12,6 +12,7 @@
     <color name="purple">#9C27B0</color>
     <color name="gray">#B3000000</color>
     <color name="bgColor">#F0F0F0</color>
+    <color name="newGray">#C4C4C4</color>
     <color name="oldGray">#E5E5E5</color>
 
 </resources>

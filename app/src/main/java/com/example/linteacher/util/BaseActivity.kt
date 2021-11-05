@@ -6,6 +6,7 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
@@ -17,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.transition.Fade
 import androidx.transition.TransitionManager
 import com.example.linteacher.R
+import com.example.linteacher.api.pojo.ContentDataResult
+import com.example.linteacher.ui.addarticle.UrlDrawableResponse
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -99,4 +102,34 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
+    fun getPicList(content: String): ArrayList<UrlDrawableResponse> {
+        content.replace("<br>", "，")
+        val list = mutableListOf<String>()
+        val picUrlList: ArrayList<UrlDrawableResponse> = arrayListOf()
+        var second = ""
+        if (content.contains("<img src=\"")) {
+            val arr = content.split("<img src=\"")
+
+
+            val itemList = mutableListOf<String>()
+            for (a in arr) {
+                if (a.contains("alt=")) {
+                    val b = a.split("\" alt=\"[a-zA-Z0-9_.]*\">".toRegex())
+                    for (b1 in b) {
+                        if (b1.isNotEmpty()) {
+                            if (b1.matches("http://163.17.136.180:8080/article/downloadFile/[a-zA-Z0-9_.]*.jpg".toRegex())) {
+                                picUrlList.add(UrlDrawableResponse(picUrl = b1))
+                            }
+
+                        }
+
+                    }
+                }
+            }
+
+            return picUrlList
+
+        } else return picUrlList
+
+    }
 }

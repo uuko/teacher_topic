@@ -55,8 +55,8 @@ class ForgetPasswordAcitivity: AppCompatActivity() {
                             binding.sendEmail.visibility=View.GONE
                             binding.checkToken.visibility=View.VISIBLE
                             binding.emailText.visibility=View.VISIBLE
-                            binding.emailText.text= emailName
-
+                            binding.emailText.text = emailName
+                            binding.emailpwText.text = emailName
 
                         } else {
                             Log.d("nextBtn", "onClick: a 無此信箱")

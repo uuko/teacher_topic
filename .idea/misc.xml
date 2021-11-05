@@ -15,9 +15,15 @@
         <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/drawable/item_background.xml" value="0.14583333333333334" />
         <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/drawable/login_circle_btn.xml" value="0.1" />
         <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/drawable/out_gray_bg.xml" value="0.14739583333333334" />
+        <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/drawable/white_black_border_view.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/drawable/white_round_text.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/layout/activity_add_article.xml" value="0.23052536231884058" />
+        <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/layout/activity_article_tag.xml" value="0.23052536231884058" />
+        <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/layout/activity_forgetpassword.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/layout/activity_list_announce.xml" value="0.14221014492753623" />
+        <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/layout/activity_list_important.xml" value="0.23052536231884058" />
         <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/layout/activity_login.xml" value="0.4" />
-        <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/layout/fragment_announce.xml" value="0.2" />
+        <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/layout/fragment_announce.xml" value="0.47327502429543244" />
         <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/layout/item_carsoul.xml" value="0.2" />
         <entry key="..\:/Users/uuko/Desktop/kotlin_git/linkt0928/teacher_topic/app/src/main/res/layout/item_carsoul_inner.xml" value="0.536" />
       </map>
