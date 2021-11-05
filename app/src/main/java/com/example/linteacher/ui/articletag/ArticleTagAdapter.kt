@@ -90,7 +90,7 @@ class ArticleTagAdapter(private val context: Context, val listener: ArticleInner
                 if (result.picFirst.isNotEmpty()) {
                     imageView.visibility = View.VISIBLE
                     val params = contentText.layoutParams as ConstraintLayout.LayoutParams
-                    params.width = 176
+                    params.width = 500
                     params.startToStart = guideline19.id
                     params.topToTop = guideline21.id
                     contentText.requestLayout()
