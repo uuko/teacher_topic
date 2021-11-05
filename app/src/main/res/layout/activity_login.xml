@@ -59,6 +59,8 @@
                 android:layout_gravity="center_horizontal"
 
                 android:background="@drawable/login_circle_btn"
+                android:textColor="@color/white"
+
                 android:text="Login" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
