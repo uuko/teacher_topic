@@ -3,16 +3,16 @@
     <item
             android:id="@+id/main"
             android:icon="@drawable/ic_launcher_foreground"
-            android:title="title_home" />
+            android:title="首頁公告" />
 
     <item
             android:id="@+id/chat"
             android:icon="@drawable/ic_launcher_background"
-            android:title="title_dashboard" />
+            android:title="師資陣容" />
 
     <item
             android:id="@+id/profile"
             android:icon="@drawable/ic_launcher_background"
-            android:title="title_notifications" />
+            android:title="我的" />
 
 </menu>

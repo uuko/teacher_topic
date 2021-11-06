@@ -8,32 +8,46 @@
         android:id="@+id/mSwipeRefreshLayout"
         tools:context=".ui.managearticle.EditArticleActivity">
 
-    <RelativeLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_feed"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="vertical">
+
+            <LinearLayout
                 android:id="@+id/footer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
-            <CheckBox
+                <CheckBox
                     android:id="@+id/all_check"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -42,7 +56,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+                <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -52,7 +66,7 @@
                     app:layout_constraintStart_toEndOf="@+id/all_check"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
+                <Button
                     android:id="@+id/delete_btn"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
@@ -63,7 +77,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/add_btn"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
+                <Button
                     android:id="@+id/add_btn"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
@@ -73,7 +87,12 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
