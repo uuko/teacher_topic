@@ -3,6 +3,7 @@ package com.example.linteacher.ui.teacherdata.ui.gov
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
 import com.example.linteacher.api.pojo.teacherdata.gov.GovAllOneResponse
 import com.example.linteacher.api.pojo.teacherdata.gov.GovAllResponse
 import com.example.linteacher.api.pojo.teacherdata.gov.GovPostRequest
@@ -40,5 +41,9 @@ class GovViewModel (var dataModel: GovRepository) : ViewModel() {
     }
 
     //共計2個request(一個吃awaid,一個吃loginid),2個response,1個Data viewType
+
+    fun changeVisible(request: AcademicChangeVisibleRequest): MutableLiveData<UnitResponse> {
+        return dataModel.changeVisible(request)
+    }
 
 }

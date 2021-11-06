@@ -1,6 +1,8 @@
 package com.example.linteacher.ui.teacherdata.ui.gov
 
 import android.content.Context
+import android.graphics.drawable.Icon
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -71,6 +73,9 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                 position: Int,
                 listener: GovInterface.View
         ) {
+            Log.d("chnageGovPublic", "OriginViewHolder 最初item public"+items.public)
+
+
             binding.govProjectName.text = items.govProjectName
             binding.govProjectType.text = items.govProjectType
             binding.govJobType.text = items.govJobType
@@ -78,6 +83,30 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
             binding.editButton.setOnClickListener {
                 listener.onEditClick(items.govId.toString(), position)
             }
+
+            //勾勾設定監聽按鈕
+            binding.tick.setOnClickListener {
+                Log.d("clickaaa", "click:tick ")
+                Log.d("chnageGovPublic", "click:tick 原本"+items.public)
+
+                items.public  = !items.public
+                Log.d("chnageGovPublic", "click:tick 改變"+items.public)
+
+                listener.onChangeVisibleClick(items, position)
+            }
+
+            if(items.public==true)
+            {
+                binding.tick.setImageIcon(Icon.createWithResource(context ,R.mipmap.ic_launcher))
+                Log.d("tickkkkkk", "勾勾 "+position)
+            }else
+            {
+                binding.tick.setImageIcon(Icon.createWithResource(context ,R.mipmap.ic_launcher2))
+                Log.d("tickkkkkk", "沒勾勾 "+position)
+
+            }
+
+
         }
 
     }

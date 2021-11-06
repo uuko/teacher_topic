@@ -144,6 +144,8 @@ object Config {
     const val POST_GOV = "/teacher/gov"
     const val GET_ONE_GOV = "/teacher/gov/govId/%s"
     const val UPDATE_GOV = "/teacher/update/gov"
+    const val CHANGE_VISIBLE_GOV = "/teacher/gov/changeVisible"
+
 
     //book
     const val GET_BOOK = "/teacher/book/loginId/%s"

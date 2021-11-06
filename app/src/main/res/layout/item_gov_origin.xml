@@ -4,7 +4,9 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
     <ImageView
+        android:id="@+id/tick"
         android:src="@mipmap/ic_launcher"
+        android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <LinearLayout

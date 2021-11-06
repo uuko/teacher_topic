@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linteacher.R
 import com.example.linteacher.api.pojo.UnitResponse
+import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
+import com.example.linteacher.api.pojo.teacherdata.adamic.data.AdemicEventBaseData
 import com.example.linteacher.api.pojo.teacherdata.gov.GovAllResponse
 import com.example.linteacher.api.pojo.teacherdata.gov.GovPostRequest
 import com.example.linteacher.api.pojo.teacherdata.gov.GovResponse
@@ -95,6 +97,7 @@ class GovFragment: Fragment(), GovInterface.View {
                                                 govSchAmount = r.govSchAmount,
                                                 govOthIn = r.govOthIn,
                                                 govToOth = r.govToOth,
+                                                public = r.public,
 
 
                                                 govId = r.govId,
@@ -103,6 +106,7 @@ class GovFragment: Fragment(), GovInterface.View {
                                 )
 
                             }
+
                             Log.d("theid", "onChanged: "+ t.list[0].govId)
                             adapter.setDataList(valueLst) //照理說就有植了
                         }
@@ -271,6 +275,7 @@ class GovFragment: Fragment(), GovInterface.View {
                                     govSchAmount = t.list.govSchAmount,
                                     govOthIn = t.list.govOthIn,
                                     govToOth = t.list.govToOth,
+                                    public = t.list.public,
 
 
                                     govId = t.list.govId,
@@ -291,6 +296,29 @@ class GovFragment: Fragment(), GovInterface.View {
         val list=adapter.getDataList() as ArrayList<GovBaseData>
         list.add(position,data)
         adapter.setOneData(list,position)
+    }
+
+    override fun onChangeVisibleClick(r: GovBaseData, position: Int) {
+
+            //request =LicEditData內容+loginId
+        Log.d("chnageGovPublic", "onChangeVisibleClick: 要變的:"+r.public)
+
+            val request=
+                    AcademicChangeVisibleRequest(
+                            id = r.govId,
+                            visible = r.public
+
+                    )
+
+            viewModel.changeVisible(request)
+                    .observe(viewLifecycleOwner,{
+                        t->
+                        if (t.result == Config.RESULT_OK){
+                            //打API成功->刷新
+                            viewModelObserveLst()
+                        }
+                    })
+
     }
 
 
