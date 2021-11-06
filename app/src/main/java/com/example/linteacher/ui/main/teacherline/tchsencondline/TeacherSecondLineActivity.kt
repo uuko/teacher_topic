@@ -50,6 +50,7 @@ class TeacherSecondLineActivity : AppCompatActivity() {
     private fun initData(response: Int) {
         viewModel.getTeacherLineData(response.toString())
             .observe(this, {
+                Log.d("lineOnetec", "initData: "+it.licList)
                 initBinding(it)
                 dynamicAddViews(it)
             })

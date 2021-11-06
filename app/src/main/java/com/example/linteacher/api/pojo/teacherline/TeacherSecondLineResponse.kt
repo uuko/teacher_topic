@@ -83,7 +83,7 @@ data class Tchinf(
     val infISBN: String,
     val infName: String,
     val infPublishHouse: String,
-    val infPubmainLicYear: Int
+    val infPubmainLicYear: String
 )
 
 data class The(
