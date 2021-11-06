@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.linteacher.api.pojo.teacherline.TeacherLineResponse
 import com.example.linteacher.databinding.ItemTeacherlineBinding
 
@@ -51,13 +53,17 @@ class TeacherLineAdapter constructor(
             if (items.tchPicUrl != "") {
                 Glide.with(itemBinding.root)
                     .load(items.tchPicUrl)
-                    .into(itemBinding.teacherTchPicUrl)
+                        .centerCrop()
+                        .into(itemBinding.teacherTchPicUrl)
             }
+
+
 
             itemBinding.tchName.text = items.tchName
             itemBinding.tchMainDepartment.text = items.tchMainDepartment
             itemBinding.tchRireRank.text = items.tchRireRank
             itemBinding.tchSchool.text = items.tchSchool
+            itemBinding.tchNameEN.text =items.tchNameEN
             itemBinding.tchDiploma.text = items.tchDiploma
             itemBinding.tchDepartment.text = items.tchDepartment
             itemView.setOnClickListener(object : View.OnClickListener {

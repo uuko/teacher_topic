@@ -57,9 +57,9 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
                     android:text="全選"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/all_check"
@@ -69,7 +69,8 @@
                 <Button
                     android:id="@+id/delete_btn"
                     style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
                     android:layout_height="wrap_content"
                     android:outlineAmbientShadowColor="@color/red"
                     android:text="刪除"
@@ -80,7 +81,8 @@
                 <Button
                     android:id="@+id/add_btn"
                     style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
                     android:layout_height="wrap_content"
                     android:text="新增"
                     app:layout_constraintBottom_toBottomOf="parent"
