@@ -1,187 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="30dp"
+    android:orientation="vertical"
+    >
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="40dp"
+                >
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@drawable/line_paper_pic"
+
+
+                    ></ImageView>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
-        <LinearLayout
+            <TextView
+                android:id="@+id/thePubmain_licationName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:text="發表之刊物名稱"></TextView>
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="刊物名稱:"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            <TextView
-                    android:id="@+id/thePubmain_licationName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="thePubmain_licationName"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="發表卷數:"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            <TextView
-                    android:id="@+id/theCoupons"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="theCoupons"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="發表期數  :"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            <TextView
-                    android:id="@+id/thePubmain_licatinNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="thePubmain_licatinNumber"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="發表年份 :"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            <TextView
+                <TextView
                     android:id="@+id/thePublishYear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="thePublishYear"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <TextView
+                    android:textSize="12dp"
+                    android:text="幾年"></TextView>
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="發表月份  :"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="12dp"
+                    android:text=" 年 | "></TextView>
 
-            <TextView
+                <TextView
                     android:id="@+id/thePublishMonth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="thePublishMonth"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-        </LinearLayout>
-
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black" />
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <TextView
+                    android:text="幾月"
+                    android:textSize="12dp"></TextView>
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="論文收錄分類 :"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="12dp"
+                    android:text=" 月 | "></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="第 "></TextView>
+                <TextView
+                    android:id="@+id/theCoupons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="卷數"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text=" 卷 | "></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="第 "></TextView>
+                <TextView
+                    android:id="@+id/thePubmain_licatinNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="期數"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text=" 期"></TextView>
+            </LinearLayout>
+
+
 
             <TextView
+                android:id="@+id/themain_thesisName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:text="論文名稱"></TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="right"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:text="收錄分類   "></TextView>
+                <TextView
                     android:id="@+id/theCollCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="theCollCategory"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <TextView
+                    android:textSize="14dp"
+                    android:text="分類"></TextView>
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="論文名稱 :"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="14dp"
+                    android:text="  "></TextView>
 
-            <TextView
-                    android:id="@+id/themain_thesisName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="themain_thesisName"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="作者順序 :"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            <TextView
+                <TextView
                     android:id="@+id/theAuthor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="theAuthor"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-        </LinearLayout>
+                    android:textSize="14dp"
+                    android:text="作者順序"></TextView>
 
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>
+

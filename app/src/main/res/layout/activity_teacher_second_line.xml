@@ -13,166 +13,259 @@
             android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
-                android:padding="20dp"
                 android:id="@+id/content_scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <LinearLayout
                     android:id="@+id/top_constraint"
                     android:orientation="vertical"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:src="@color/newGray"></ImageView>
+
 
                 <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                    <ImageView
-                            android:id="@+id/tch_pic_url"
-                            android:layout_width="wrap_content"
-                            android:layout_height="500dp"
-                            android:layout_weight="5"
-                            tools:srcCompat="@tools:sample/avatars" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="189dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_weight="5"
-                            android:orientation="vertical">
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            >
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="21dp"
+                                app:cardCornerRadius="5dp"
+                                >
+
+                                <ImageView
+                                    android:id="@+id/tch_pic_url"
+                                    android:layout_width="130dp"
+                                    android:layout_height="160dp"
+                                    android:layout_gravity="top|center"
+                                    android:src="#C4C4C4" />
+                            </androidx.cardview.widget.CardView>
+
+
+
+
+                            <!--    <LinearLayout-->
+                            <!--        android:layout_width="match_parent"-->
+                            <!--        android:layout_height="0dp"-->
+                            <!--        android:layout_weight="3"></LinearLayout>-->
+
+
+                        </LinearLayout>
+
+
+
 
                         <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="left|top"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_weight="7"
+                            android:orientation="vertical">
 
-                            <TextView
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
                                     android:id="@+id/tchName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:text="TextView"
-                                    android:textColor="@color/pink" />
+                                    android:textSize="24dp"
+                                    android:text="陳美美"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black" />
 
-                            <TextView
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:orientation="horizontal">
+                                <TextView
                                     android:id="@+id/tchNameEN"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="4dp"
-                                    android:layout_marginLeft="4dp"
-                                    android:layout_weight="5"
-                                    android:text="TextView"
-                                    android:textColor="@color/pink" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                            <TextView
-                                    android:id="@+id/tchSchool"
+                                    android:text="chen  meimei"
+                                    android:textSize="18dp"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/email"
+                                    android:visibility="gone"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="8"
-                                    android:text="TextView"
-                                    android:textColor="@color/pink" />
+                                    android:text="jum89898@gmail.com"
+                                    android:textSize="15dp"
+                                    />
+                            </LinearLayout>
 
-
-                            <TextView
-                                    android:id="@+id/tchDepartment"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/tchRireRank"
+                                    android:visibility="gone"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:text="TextView"
-                                    android:textColor="@color/pink" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                            <TextView
-                                    android:id="@+id/tchDiploma"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:text="TextView"
-                                    android:textColor="@color/pink" />
-
-
-                            <TextView
+                                    android:text="助理教授"
+                                    android:textSize="15dp"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:orientation="horizontal">
+                                <TextView
                                     android:id="@+id/tchMainDepartment"
+                                    android:visibility="gone"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:text="TextView"
-                                    android:textColor="@color/pink" />
+                                    android:text="主聘系所資工系"
+                                    android:textSize="15dp"
+                                    />
+                            </LinearLayout>
+
+
                         </LinearLayout>
+
                     </LinearLayout>
-                </LinearLayout>
 
-
-                <LinearLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    <TextView
-                            android:id="@+id/tchRireRank"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:text="TextView"
-                            android:textColor="@color/pink"
-                            app:layout_constraintBottom_toTopOf="@+id/guideline15"
-                            app:layout_constraintEnd_toStartOf="@+id/guideline8" />
-
-                    <TextView
-                            android:id="@+id/email"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:text="TextView"
-                            android:textColor="@color/pink"
-                            app:layout_constraintBottom_toTopOf="@+id/guideline15"
-                            app:layout_constraintStart_toStartOf="@+id/tchDepartment" />
-
-
-                </LinearLayout>
-
-
-                <TextView
-                        android:layout_gravity="center"
-                        android:id="@+id/introduce"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textColor="@color/pink"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline16"
-                        app:layout_constraintStart_toStartOf="@+id/tch_pic_url" />
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="left"
+                        android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/tchSchool"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18dp"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                android:text="哈佛大學"></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18dp"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                android:text=" | "></TextView>
+                            <TextView
+                                android:id="@+id/tchDepartment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18dp"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                android:text="資訊生物科技系"></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18dp"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                android:text=" | "></TextView>
+                            <TextView
+                                android:id="@+id/tchDiploma"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18dp"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                android:text=" 博士 "></TextView>
 
 
-                <View
-                        android:id="@+id/view"
+
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/pink"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/guideline16" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:text="關於這位老師"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/introduce"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"
+                            android:text="你害怕自我介紹嗎？自我介紹是把自己「銷售」出去的重要手段，一場面試，把自我介紹做好了，就成功了一半。那該如何做一個出色的自我介紹呢？自我介紹的方式五花八門，但一個精彩的自我介紹， 必須符合三個原則。"></TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+
+
 
                 <LinearLayout
                         android:id="@+id/innerContent"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:padding="20dp"
+                        android:background="@color/white"
                         app:layout_constraintTop_toBottomOf="@+id/view" />
 
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
         <Button
@@ -192,7 +285,8 @@
                 android:layout_toRightOf="@+id/button"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:visibility="gone"
+                android:visibility="visible"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/button">
 

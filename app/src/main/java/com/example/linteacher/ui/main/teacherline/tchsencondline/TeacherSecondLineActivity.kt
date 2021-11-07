@@ -220,11 +220,11 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             )
         }
         if (list.theList.isNotEmpty()) {
-            Log.d("dynamicAddViews", "期刊論文:: ")
+            Log.d("dynamicAddViews", "發表之期刊論文:: ")
             val vi =
                 applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val v: View = vi.inflate(R.layout.inner_dynamic_teacher_line, null)
-            v.findViewById<TextView>(R.id.title).text = "期刊論文"
+            v.findViewById<TextView>(R.id.title).text = "發表之期刊論文"
             val recycleView = v.findViewById<RecyclerView>(R.id.recyclerView)
             val layoutManager = LinearLayoutManager(this)
             layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -235,7 +235,7 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             recycleView.adapter = adapter
             val id = ViewCompat.generateViewId();
             v.id = id
-            relativeNameList.add(ViewRelativeName("期刊論文", id))
+            relativeNameList.add(ViewRelativeName("發表之期刊論文", id))
             innerContent.addView(
                 v,
                 ViewGroup.LayoutParams(
@@ -270,11 +270,11 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             )
         }
         if (list.disList.isNotEmpty()) {
-            Log.d("dynamicAddViews", "研討會:: ")
+            Log.d("dynamicAddViews", "舉行之研討會:: ")
             val vi =
                 applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val v: View = vi.inflate(R.layout.inner_dynamic_teacher_line, null)
-            v.findViewById<TextView>(R.id.title).text = "研討會"
+            v.findViewById<TextView>(R.id.title).text = "舉行之研討會"
             val recycleView = v.findViewById<RecyclerView>(R.id.recyclerView)
             val layoutManager = LinearLayoutManager(this)
             layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -285,7 +285,7 @@ class TeacherSecondLineActivity : AppCompatActivity() {
             adapter.setDataList(list.disList)
             val id = ViewCompat.generateViewId();
             v.id = id
-            relativeNameList.add(ViewRelativeName("研討會", id))
+            relativeNameList.add(ViewRelativeName("舉行之研討會", id))
             innerContent.addView(
                 v,
                 ViewGroup.LayoutParams(
@@ -349,6 +349,7 @@ class TeacherSecondLineActivity : AppCompatActivity() {
         if (response.tchPicUrl != "") {
             Glide.with(binding.root)
                 .load(response.tchPicUrl)
+                .centerCrop()
                 .into(binding.tchPicUrl)
         }
         binding.tchName.text = response.tchName

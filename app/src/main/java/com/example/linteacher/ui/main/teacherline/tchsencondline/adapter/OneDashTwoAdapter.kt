@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.linteacher.api.pojo.teacherline.OneDashTwo
 import com.example.linteacher.databinding.ItemOneDashTwoBinding
+
 import com.example.linteacher.ui.admin.adminedituser.AdminEditActivity
 import com.example.linteacher.ui.main.announce.Content
 import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondLineInterface
@@ -50,10 +51,13 @@ class OneDashTwoAdapter(
     class ViewHolder(val binding: ItemOneDashTwoBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(response: OneDashTwo) {
 
+            var startDate =response.expStartDate.substring(0,10)
+            var endDate = response.expStopDate.substring(0,10)
+
             binding.expMechanismName.text = response.expMechanismName
             binding.expJobtitle.text = response.expJobtitle
-            binding.expStartDate.text = response.expStartDate
-            binding.expStopDate.text = response.expStopDate
+            binding.expStartDate.text = startDate
+            binding.expStopDate.text = endDate
         }
 
     }
