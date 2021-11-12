@@ -29,16 +29,16 @@
 
         android:orientation="vertical">
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/navigationView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFCCCC"
-            app:itemIconTint="#FFFFFF"
-            app:itemTextColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/navigation_items" />
+                android:id="@+id/navigationView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                app:itemIconTint="@color/black"
+                app:itemTextColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:menu="@menu/navigation_items" />
     </LinearLayout>
 
 
