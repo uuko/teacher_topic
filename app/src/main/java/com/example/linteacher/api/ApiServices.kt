@@ -1,5 +1,6 @@
 package com.example.linteacher.api
 
+import com.example.linteacher.api.pojo.TeacherBaseResponse
 import com.example.linteacher.api.pojo.UnitResponse
 import com.example.linteacher.api.pojo.teacherline.TeacherLineResponse
 import com.example.linteacher.api.pojo.admin.addteacher.AddTeacherRequest
@@ -50,9 +51,11 @@ import retrofit2.http.*
 
 interface ApiServices {
     //   教師資料 第一層第二層
+    @GET
+    fun getTeacherBase(@Url string: String): Observable<TeacherBaseResponse>
+
     @GET("teacher/teacherLine/list")
     fun getTeacherLineList(): Observable<List<TeacherLineResponse>>
-
     @GET
     fun getTeacherLineInnerList(@Url string: String): Observable<TeacherSecondLineResponse>
 

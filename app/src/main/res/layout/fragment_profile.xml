@@ -63,8 +63,9 @@
                     android:orientation="horizontal">
 
                 <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="27dp"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="24dp"
                         android:src="@drawable/editprofile" />
 
                 <TextView

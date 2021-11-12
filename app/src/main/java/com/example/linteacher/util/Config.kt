@@ -49,7 +49,7 @@ object Config {
     const val UPDATE_TEACHER_PROFILE = "/teacher/update/%s/%s/%s"
     const val POST_ARTICLE_PIC = "/article/uploadFile"
     const val GET_TEACHER_LINE_INNER = "/teacher/teacherLine/%s"
-
+    const val GET_TEACHER_BASE = "/teacher/photo/%s"
 
     const val EDIT_TECHCHANGE=-1
     const val ADD_TECHCHANGE=0

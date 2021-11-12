@@ -8,13 +8,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
 import com.example.linteacher.R
 import com.example.linteacher.databinding.FragmentProfileBinding
 import com.example.linteacher.ui.admin.adminedituser.AdminEditActivity
 import com.example.linteacher.ui.login.LoginActivity
 import com.example.linteacher.ui.main.banneredit.BannerEditActivity
+import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondRepository
+import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondViewModel
+import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondViewModelFactory
 import com.example.linteacher.ui.managearticle.EditArticleActivity
 import com.example.linteacher.ui.teacherdata.TeacherInformationFirstActivity
 import com.example.linteacher.util.ActivityNavigator
@@ -37,6 +45,11 @@ class ProfileFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var binding: FragmentProfileBinding
+    private val factory = ProfileViewModelFactory(ProfileRepository())
+    private val viewModel: ProfileViewModel by viewModels {
+        factory
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -76,6 +89,7 @@ class ProfileFragment : Fragment() {
 
         }
         else if (loginPreferences.getTeacherGrade().equals(Config.TEACHER)){
+            getData(loginPreferences)
             binding.gradeAArticle.visibility=View.GONE
             binding.gradeABanner.visibility=View.GONE
             binding.gradeAChoose.visibility=View.GONE
@@ -99,6 +113,23 @@ class ProfileFragment : Fragment() {
         }
 
         adminChoose(loginPreferences)
+    }
+
+    private fun getData(loginPreferences: LoginPreferences) {
+        viewModel.getTeacherData(loginPreferences.getLoginId())
+            .observe(viewLifecycleOwner, {
+                binding.teacherCountry.text = it.tchName
+                if (it.picUrl.isNotEmpty()) {
+                    Glide.with(this)
+                        .load(it.picUrl)
+                        .apply(RequestOptions().override(100, 100))
+                        .transform(CircleCrop())
+                        .centerCrop()
+                        .into(binding.imageView)
+                } else {
+                    binding.imageView.setImageResource(R.drawable.account)
+                }
+            })
     }
 
     private fun adminChoose(loginPreferences: LoginPreferences) {
