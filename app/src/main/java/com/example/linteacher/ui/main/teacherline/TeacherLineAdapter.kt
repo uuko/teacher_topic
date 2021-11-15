@@ -54,7 +54,9 @@ class TeacherLineAdapter constructor(
             if (items.tchViewType == 1) {
                 itemBinding.viewContainer.visibility = View.VISIBLE
                 itemBinding.viewTitle.text = items.tchViewContent
+                itemBinding.innerViewContent.visibility = View.GONE
             } else {
+                itemBinding.innerViewContent.visibility = View.VISIBLE
                 itemBinding.viewContainer.visibility = View.GONE
                 if (items.tchPicUrl != "") {
                     Glide.with(itemBinding.root)

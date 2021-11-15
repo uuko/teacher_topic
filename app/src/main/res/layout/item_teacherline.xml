@@ -29,6 +29,7 @@
     </LinearLayout>
 
     <LinearLayout
+            android:id="@+id/innerViewContent"
             android:layout_width="match_parent"
             android:layout_height="189dp"
             android:layout_margin="10dp"
