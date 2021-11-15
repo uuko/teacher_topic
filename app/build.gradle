@@ -12,18 +12,18 @@ android {
     }
     defaultConfig {
         multiDexEnabled true
-        applicationId "com.example.linteacher"
+        applicationId "com.imac.linteacher"
         minSdkVersion 23
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 31
+        versionCode 99
+        versionName "99"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

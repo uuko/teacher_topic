@@ -126,7 +126,6 @@
                                     android:visibility="gone"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="jum89898@gmail.com"
                                     android:textSize="15dp"
                                     />
                             </LinearLayout>

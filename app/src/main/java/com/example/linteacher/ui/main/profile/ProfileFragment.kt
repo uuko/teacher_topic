@@ -7,9 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -20,9 +17,6 @@ import com.example.linteacher.databinding.FragmentProfileBinding
 import com.example.linteacher.ui.admin.adminedituser.AdminEditActivity
 import com.example.linteacher.ui.login.LoginActivity
 import com.example.linteacher.ui.main.banneredit.BannerEditActivity
-import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondRepository
-import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondViewModel
-import com.example.linteacher.ui.main.teacherline.tchsencondline.TeacherSecondViewModelFactory
 import com.example.linteacher.ui.managearticle.EditArticleActivity
 import com.example.linteacher.ui.teacherdata.TeacherInformationFirstActivity
 import com.example.linteacher.util.ActivityNavigator
@@ -107,7 +101,7 @@ class ProfileFragment : Fragment() {
             binding.login.visibility = View.VISIBLE
             binding.teacherCountry.text = "遊客"
             binding.imageView.setBackgroundResource(
-                R.drawable.school
+                R.drawable.apple
             )
 
         }
@@ -181,7 +175,7 @@ class ProfileFragment : Fragment() {
             binding.login.visibility = View.VISIBLE
             binding.teacherCountry.text = "遊客"
             binding.imageView.setBackgroundResource(
-                R.drawable.school
+                R.drawable.apple
             )
 
 
