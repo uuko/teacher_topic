@@ -40,7 +40,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:background="@drawable/out_gray_bg"
+                        android:background="@drawable/out_orange_bg"
                         android:orientation="vertical"
                         android:paddingLeft="38dp"
                         android:paddingTop="38dp"
@@ -58,14 +58,15 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                        android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="42dp"
                             android:background="@drawable/white_black_border_view"
+                            android:padding="5dp"
                             android:text="重要公告"
                             android:textColor="@color/black"
                             android:textSize="30sp" />
@@ -96,10 +97,11 @@
 
 
             <LinearLayout
+                    android:layout_marginTop="18dp"
                     android:id="@+id/all_article_linearlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/item_background"
+                    android:background="@drawable/out_orange_bg"
                     android:padding="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/important_linearlayout">
 
