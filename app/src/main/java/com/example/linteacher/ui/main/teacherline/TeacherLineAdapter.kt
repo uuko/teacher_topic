@@ -50,27 +50,35 @@ class TeacherLineAdapter constructor(
     }
     class ViewHolder(private val itemBinding: ItemTeacherlineBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(items: TeacherLineResponse, listener: TeacherFragment.OnItemClickListener) {
-            if (items.tchPicUrl != "") {
-                Glide.with(itemBinding.root)
-                    .load(items.tchPicUrl)
+
+            if (items.tchViewType == 1) {
+                itemBinding.viewContainer.visibility = View.VISIBLE
+                itemBinding.viewTitle.text = items.tchViewContent
+            } else {
+                itemBinding.viewContainer.visibility = View.GONE
+                if (items.tchPicUrl != "") {
+                    Glide.with(itemBinding.root)
+                        .load(items.tchPicUrl)
                         .centerCrop()
                         .into(itemBinding.teacherTchPicUrl)
+                }
+
+
+
+                itemBinding.tchName.text = items.tchName
+                itemBinding.tchMainDepartment.text = items.tchMainDepartment
+                itemBinding.tchRireRank.text = items.tchRireRank
+                itemBinding.tchSchool.text = items.tchSchool
+                itemBinding.tchNameEN.text = items.tchNameEN
+                itemBinding.tchDiploma.text = items.tchDiploma
+                itemBinding.tchDepartment.text = items.tchDepartment
+                itemView.setOnClickListener(object : View.OnClickListener {
+                    override fun onClick(v: View?) {
+                        listener.onItemClick(items)
+                    }
+                })
             }
 
-
-
-            itemBinding.tchName.text = items.tchName
-            itemBinding.tchMainDepartment.text = items.tchMainDepartment
-            itemBinding.tchRireRank.text = items.tchRireRank
-            itemBinding.tchSchool.text = items.tchSchool
-            itemBinding.tchNameEN.text =items.tchNameEN
-            itemBinding.tchDiploma.text = items.tchDiploma
-            itemBinding.tchDepartment.text = items.tchDepartment
-            itemView.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    listener.onItemClick(items)
-                }
-            })
 //            itemBinding.desc.text=items.description
 //            itemBinding.stars.text=items.forks_count.toString()
         }

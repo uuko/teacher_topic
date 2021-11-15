@@ -78,19 +78,76 @@ class TeacherFragment : Fragment() {
         viewModel.postTeacherList()
             .observe(viewLifecycleOwner, object : Observer<TeacherLineAllResponse> {
                 override fun onChanged(t: TeacherLineAllResponse?) {
+
                     viewModel.isLoading.value = (false)
                     if (t == null) {
                         teacherLineAdapter.swapItems(arrayListOf())
                         return
                     }
                     if (t.list.isNotEmpty()) {
-                        teacherLineAdapter.swapItems(t.list)
+
+                        val lResponse = handleList(t.list)
+                        teacherLineAdapter.swapItems(lResponse)
                     } else {
                         Toast.makeText(context, "連線發生錯誤", Toast.LENGTH_SHORT).show()
                     }
                 }
 
             })
+    }
+
+    private fun handleList(list: List<TeacherLineResponse>): ArrayList<TeacherLineResponse> {
+        val responseList = arrayListOf<TeacherLineResponse>()
+        val list1 = arrayListOf<TeacherLineResponse>()
+        val list2 = arrayListOf<TeacherLineResponse>()
+        val list3 = arrayListOf<TeacherLineResponse>()
+        val list5 = arrayListOf<TeacherLineResponse>()
+        val list4 = arrayListOf<TeacherLineResponse>()
+        for (t in list) {
+            if (t.tchRireRank != null) {
+                when (t.tchRireRank) {
+                    "教授" -> {
+                        list1.add(t)
+                    }
+                    "副教授" -> {
+                        list2.add(t)
+                    }
+                    "助理教授" -> {
+                        list3.add(t)
+                    }
+                    "講師" -> {
+                        list4.add(t)
+                    }
+                    "助教" -> {
+                        list5.add(t)
+                    }
+                }
+            }
+
+        }
+        if (list1.isNotEmpty()) {
+            responseList.add(TeacherLineResponse(tchViewType = 1, tchViewContent = "教授"))
+            responseList.addAll(list1)
+        }
+        if (list2.isNotEmpty()) {
+            responseList.add(TeacherLineResponse(tchViewType = 1, tchViewContent = "副教授"))
+            responseList.addAll(list2)
+        }
+        if (list3.isNotEmpty()) {
+            responseList.add(TeacherLineResponse(tchViewType = 1, tchViewContent = "助理教授"))
+            responseList.addAll(list3)
+        }
+        if (list4.isNotEmpty()) {
+            responseList.add(TeacherLineResponse(tchViewType = 1, tchViewContent = "講師"))
+            responseList.addAll(list4)
+        }
+        if (list5.isNotEmpty()) {
+            responseList.add(TeacherLineResponse(tchViewType = 1, tchViewContent = "助教"))
+            responseList.addAll(list5)
+        }
+
+        return responseList
+
     }
 
     private fun initRecycleView() {
