@@ -79,11 +79,10 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var realStr = ""
         var lastJ = '0'
         for (j in second) {
-            if (!(lastJ == '，' && j == '，')) {
+            if (!((lastJ == '，' || lastJ == '0') && j == '，')) {
                 realStr += j
-            }
+            } else lastJ = j
 
-            lastJ = j
         }
         Log.d("TAG", "handleCutStr: $realStr")
         return if (list.size > 0) {
