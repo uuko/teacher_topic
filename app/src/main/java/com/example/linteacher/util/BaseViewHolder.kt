@@ -78,12 +78,18 @@ open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         } else second = content
         var realStr = ""
         var lastJ = '0'
-        for (j in second) {
-            if (!((lastJ == '，' || lastJ == '0') && j == '，')) {
-                realStr += j
-            } else lastJ = j
+
+        // 如果前後不適逗號 並且不適第一個跟最後一個
+        for (j in second.indices) {
+
+            if (!((lastJ == '，' || lastJ == '0') && second[j] == '，')) {
+                realStr += second[j]
+            }
+            lastJ = second[j]
 
         }
+        if (realStr.isNotEmpty() && lastJ == '，') realStr =
+            realStr.substring(0, realStr.length - 1);
         Log.d("TAG", "handleCutStr: $realStr")
         return if (list.size > 0) {
             if (realStr.length > 17) ContentDataResult(
