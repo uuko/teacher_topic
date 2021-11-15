@@ -153,7 +153,7 @@
             android:id="@+id/imageView2"
             android:layout_width="148dp"
             android:layout_height="148dp"
-            android:background="@drawable/school"
+            android:background="@drawable/apple"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline13" />
