@@ -53,7 +53,11 @@ class ContentAdapter(
         ) {
 
             with(binding) {
-                articleTitle.text = items.articleTitle
+                var title = ""
+                title = if (items.articleTitle.length >= 29) {
+                    items.articleTitle.substring(0, 29) + "..."
+                } else items.articleTitle
+                articleTitle.text = title
                 articleTag.text = items.articleTag
                 android.util.Log.d("articleTag", "bind: ${items.articleTag}")
                 binding.articleDate.text = pareDate(items.modifyDate)
