@@ -116,7 +116,7 @@ class HomeFragment : BaseFragment() {
                         Log.d("tchPicUrl", "Glide: "+it.data.tchPicUrl)
                         Glide.with(view.context)
                             .load( GlideUrl(it.data.tchPicUrl))
-                            .apply(RequestOptions.bitmapTransform( CircleCrop()))
+                            .centerCrop()
                             .into(binding.imagePickButton)
                     }
                 }
