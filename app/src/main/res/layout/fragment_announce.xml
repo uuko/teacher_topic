@@ -58,7 +58,7 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -68,6 +68,7 @@
                             android:background="@drawable/white_black_border_view"
                             android:padding="5dp"
                             android:text="重要公告"
+                            android:textStyle="bold"
                             android:textColor="@color/black"
                             android:textSize="30sp" />
 
@@ -86,7 +87,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
                                 android:text="查看全部"
-                                android:textColor="@color/black" />
+                                android:textColor="#5A5A5A" />
 
 
                     </LinearLayout>
@@ -110,12 +111,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
                         android:text="最新公告"
+                    android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="30sp" />
 
                 <LinearLayout
                         android:id="@+id/more_button"
-                        android:layout_marginRight="48dp"
+                        android:layout_marginRight="25dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom">
@@ -125,7 +127,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="查看全部"
-                            android:textColor="@color/black" />
+                            android:textColor="#5A5A5A" />
 
 
                 </LinearLayout>
