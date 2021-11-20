@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:layout_margin="15dp"
+    android:layout_margin="15sp"
     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/tch_name_view"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="70sp"
         android:gravity="center"
         android:background="@drawable/home_item_orange"
         android:orientation="horizontal">
@@ -23,9 +23,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="10sp"
                 android:text="姓名"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@color/black"></TextView>
         </LinearLayout>
 
@@ -38,18 +38,18 @@
                 android:id="@+id/teacher_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="10sp"
                 android:text="姓名"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@color/black"></TextView>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/cycle"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_margin="15dp"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_marginLeft="20sp"
+            android:layout_margin="15sp"
             android:layout_alignParentRight="true"
             android:background="@drawable/home_item_while">
             <ImageView
@@ -65,7 +65,7 @@
         android:id="@+id/tch_inside_name_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="10sp">
 
         <LinearLayout
             android:gravity="left"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/cn_name"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/en_name"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,12 +93,11 @@
         </LinearLayout>
     </RelativeLayout>
 
-
     <RelativeLayout
-        android:id="@+id/tch_gender_view"
+        android:id="@+id/tch_introduce_view"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="70sp"
+        android:layout_marginTop="10sp"
         android:gravity="center"
         android:background="@drawable/home_item_orange"
         android:orientation="horizontal">
@@ -110,9 +109,72 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="10sp"
+                android:text="自我介紹"
+                android:textSize="20sp"
+                android:textColor="@color/black"></TextView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/cycle9"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_marginLeft="20sp"
+            android:layout_margin="15sp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/home_item_while">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home_item_cycle">
+
+            </ImageView>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/tch_inside_introduce_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10sp">
+
+        <LinearLayout
+            android:gravity="left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/introduce"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:minLines="6"
+                android:hint="請輸入自我介紹"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/tch_gender_view"
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        android:layout_marginTop="12sp"
+        android:gravity="center"
+        android:background="@drawable/home_item_orange"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
                 android:text="性別"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@color/black"></TextView>
         </LinearLayout>
 
@@ -125,18 +187,18 @@
                 android:id="@+id/teacher_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="10sp"
                 android:text="選擇性別"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@color/black"></TextView>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/cycle2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_margin="15dp"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_marginLeft="20sp"
+            android:layout_margin="15sp"
             android:layout_alignParentRight="true"
             android:background="@drawable/home_item_while">
             <ImageView
@@ -152,23 +214,23 @@
         android:id="@+id/tch_inside_gender_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="10sp">
 
         <LinearLayout
             android:gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="性別"/>
             <Spinner
                 android:id="@+id/tch_gender_spinner"
-                android:layout_width="150dp"
+                android:layout_width="150sp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="20sp"
                 android:textAlignment="center"
                 android:background="@drawable/spinner_back"/>
         </LinearLayout>
@@ -178,8 +240,8 @@
     <RelativeLayout
         android:id="@+id/tch_education_view"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="140sp"
+        android:layout_marginTop="12sp"
         android:gravity="center"
         android:background="@drawable/home_item_orange"
         android:orientation="horizontal">
@@ -195,9 +257,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="10sp"
                     android:text="最高學歷"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textColor="@color/black"></TextView>
             </LinearLayout>
 
@@ -215,18 +277,18 @@
                         android:id="@+id/teacher_education"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_margin="10sp"
                         android:text="請輸入最高學歷"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textColor="@color/black"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/cycle3"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_margin="15dp"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_marginLeft="20sp"
+                    android:layout_margin="15sp"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/home_item_while">
                     <ImageView
@@ -252,7 +314,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="10sp">
 
         <LinearLayout
             android:gravity="left"
@@ -263,16 +325,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textColor="#000000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="學校分類"/>
                 <Spinner
                     android:id="@+id/tch_education_spinner"
-                    android:layout_width="150dp"
+                    android:layout_width="150sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="20sp"
                     android:textAlignment="center"
                     android:background="@drawable/spinner_back"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -296,13 +358,13 @@
                     android:layout_height="wrap_content"
                     android:text="學校"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/tch_school"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="20sp"
                     android:hint="請填寫學校"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -317,16 +379,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textColor="#000000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="學位"/>
                 <Spinner
                     android:id="@+id/tch_phd_spinner"
-                    android:layout_width="150dp"
+                    android:layout_width="150sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="20sp"
                     android:textAlignment="center"
                     android:background="@drawable/spinner_back"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -348,7 +410,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textColor="#000000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -357,7 +419,7 @@
                     android:id="@+id/tch_depart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="20sp"
                     android:hint="請填寫科系"/>/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -371,12 +433,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="學術專長及研究:"
-                android:textSize="20dp"></TextView>
+                android:textSize="20sp"></TextView>
             <EditText
                 android:id="@+id/tch_expert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="20sp"
                 android:hint="學術專長及研究"/>/>
         </LinearLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -385,8 +447,8 @@
     <RelativeLayout
         android:id="@+id/tch_birthday_view"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="70sp"
+        android:layout_marginTop="12sp"
         android:gravity="center"
         android:background="@drawable/home_item_orange"
         android:orientation="horizontal">
@@ -398,9 +460,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="10sp"
                 android:text="生日"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@color/black"></TextView>
         </LinearLayout>
 
@@ -413,18 +475,18 @@
                 android:id="@+id/teacher_birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="10sp"
                 android:text="請輸入生日"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@color/black"></TextView>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/cycle4"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_margin="15dp"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_marginLeft="20sp"
+            android:layout_margin="15sp"
             android:layout_alignParentRight="true"
             android:background="@drawable/home_item_while">
             <ImageView
@@ -440,14 +502,14 @@
         android:id="@+id/tch_inside_birthday_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="10sp">
 
         <LinearLayout
             android:gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -460,7 +522,7 @@
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/tch_birthday_spinner"
-                android:layout_width="200dp"
+                android:layout_width="200sp"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
@@ -468,8 +530,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="140sp"
+        android:layout_marginTop="12sp"
         android:gravity="center"
         android:background="@drawable/home_item_orange"
         android:orientation="horizontal">
@@ -486,9 +548,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="10sp"
                     android:text="身份資訊"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textColor="@color/black"></TextView>
             </LinearLayout>
 
@@ -506,18 +568,18 @@
                         android:id="@+id/teacher_country"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_margin="10sp"
                         android:text="請輸入身份資訊"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textColor="@color/black"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/cycle5"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_margin="15dp"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_marginLeft="20sp"
+                    android:layout_margin="15sp"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/home_item_while">
                     <ImageView
@@ -543,7 +605,7 @@
         android:id="@+id/tch_person_inside_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="10sp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -554,16 +616,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textColor="#000000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="身份類型"/>
                 <Spinner
                     android:id="@+id/tch_person_spinner"
-                    android:layout_width="150dp"
+                    android:layout_width="150sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="20sp"
                     android:textAlignment="center"
                     android:background="@drawable/spinner_back"/>
             </LinearLayout>
@@ -571,7 +633,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="10sp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -587,11 +649,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="身分識別號"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textColor="@color/black"></TextView>
                     <EditText
                         android:id="@+id/tch_person_id"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textColor="#000000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -602,22 +664,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10sp">
             <LinearLayout
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textColor="#000000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="國籍"/>
                 <Spinner
                     android:id="@+id/tch_country_spinner"
-                    android:layout_width="200dp"
+                    android:layout_width="200sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="20sp"
                     android:textAlignment="center"
                     android:background="@drawable/spinner_back"/>
             </LinearLayout>
@@ -625,22 +687,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10sp">
             <LinearLayout
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textColor="#000000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="是否為原住民"/>
                 <Spinner
                     android:id="@+id/tch_abor_spinner"
-                    android:layout_width="150dp"
+                    android:layout_width="150sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="20sp"
                     android:textAlignment="center"
                     android:background="@drawable/spinner_back"/>
             </LinearLayout>
@@ -651,13 +713,13 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10sp">
             <LinearLayout
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textColor="#000000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -665,14 +727,52 @@
 
                 <Spinner
                     android:id="@+id/tch_clan_spinner"
-                    android:layout_width="150dp"
+                    android:layout_width="150sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="20sp"
                     android:textAlignment="center"
                     android:background="@drawable/spinner_back" />
             </LinearLayout>
 
         </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/tchMainDepartmentView"
+            android:layout_width="match_parent"
+            android:layout_height="70sp"
+            android:gravity="center"
+            android:background="@drawable/home_item_orange"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:text="任職資訊"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"></TextView>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_marginLeft="20sp"
+                android:layout_margin="15sp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/home_item_while">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_item_cycle">
+
+                </ImageView>
+            </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

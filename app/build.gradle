@@ -15,8 +15,8 @@ android {
         applicationId "com.imac.linteacher"
         minSdkVersion 23
         targetSdkVersion 31
-        versionCode 99
-        versionName "99"
+        versionCode 3
+        versionName "3.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -31,12 +31,12 @@ android {
         }
 
         debug {
-            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+
                 storeFile file(MYAPP_RELEASE_STORE_FILE)
                 storePassword MYAPP_RELEASE_STORE_PASSWORD
                 keyAlias MYAPP_RELEASE_KEY_ALIAS
                 keyPassword MYAPP_RELEASE_KEY_PASSWORD
-            }
+
         }
 
     }
@@ -44,7 +44,7 @@ android {
     buildTypes {
         release {
 
-            minifyEnabled true
+//            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }

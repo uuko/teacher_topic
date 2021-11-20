@@ -41,6 +41,8 @@ class ProfileSecondFragment : NestedBaseFragment() {
     }
     private var _binding: FragmentProfileSecondBinding? = null
     private val binding get() = _binding!!
+
+    var isTchIntroduceVisible=false
     var isTchNameVisible=false
     var isTchGenderVisible=false
     var isTchEduVisible=false
@@ -63,6 +65,8 @@ class ProfileSecondFragment : NestedBaseFragment() {
 
     override fun getSubmitData():TeacherProfileResponse {
         val result=response
+
+        if (binding.introduce.text.isNotEmpty()) result.introduce =binding.introduce.text.toString()
         if (binding.cnName.text.isNotEmpty()) result.tchName=binding.cnName.text.toString()
         if (binding.enName.text.isNotEmpty())  result.tchNameEN=binding.enName.text.toString()
 
@@ -144,6 +148,14 @@ class ProfileSecondFragment : NestedBaseFragment() {
         binding.teacherGender.text = "${response.sex}"
         binding.teacherBirthday.text=response.tchBirthday.toString().substringBefore("T")
         binding.teacherCountry.text="${response.tchIdNumberI.toString()}:${response.tchCountry}"
+
+
+        binding.tchIntroduceView.setOnClickListener {
+            isTchIntroduceVisible=!isTchIntroduceVisible
+            toggleView(R.id.tch_inside_name_view,isTchIntroduceVisible,binding.tchInsideIntroduceView)
+            setTchIntroduce(context)
+        }
+
         binding.tchNameView.setOnClickListener {
             isTchNameVisible=!isTchNameVisible
             toggleView(R.id.tch_inside_name_view,isTchNameVisible,binding.tchInsideNameView)
@@ -350,6 +362,15 @@ class ProfileSecondFragment : NestedBaseFragment() {
            val sex= getGender(binding.teacherGender.text.toString())
             val array= context?.resources?.getStringArray(R.array.exp_gender_array_en)
             binding.teacherGender.text = "${array?.get(sex)}"
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setTchIntroduce(context: Context) {
+
+        if(isTchIntroduceVisible) {
+            val introduce=response.introduce.toString()
+            binding.introduce.setText(response.introduce.toString())
         }
     }
 

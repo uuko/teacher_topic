@@ -4,7 +4,7 @@ import java.io.Serializable
 
 data class TeacherProfileResponse(
     val eMail: String="",
-    val introduce: Any?=null,
+    var introduce: String?=null,
     var sex: Any?=null,
     val tch106PaySalary: Any?=null,
     var tch107PaySalary: Any?=null,
