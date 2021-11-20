@@ -14,11 +14,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-            android:id="@+id/remove_banner_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="移除banner"
-            app:layout_constraintBottom_toBottomOf="@+id/banner_imageView"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/remove_banner_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15sp"
+        android:padding="7sp"
+        android:background="@drawable/home_item_orange"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        android:textColor="@color/black"
+        android:text="移除Banner"
+        app:layout_constraintBottom_toBottomOf="@+id/banner_imageView"
+        app:layout_constraintEnd_toEndOf="parent"></androidx.appcompat.widget.AppCompatButton>
 </androidx.constraintlayout.widget.ConstraintLayout>
