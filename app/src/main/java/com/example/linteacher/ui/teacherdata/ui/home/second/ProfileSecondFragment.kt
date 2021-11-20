@@ -369,8 +369,9 @@ class ProfileSecondFragment : NestedBaseFragment() {
     private fun setTchIntroduce(context: Context) {
 
         if(isTchIntroduceVisible) {
-            val introduce=response.introduce.toString()
-            binding.introduce.setText(response.introduce.toString())
+            var introduce=response.introduce.toString()
+            if(introduce.equals("null")) introduce=""
+            binding.introduce.setText(introduce)
         }
     }
 
