@@ -16,5 +16,7 @@ data class PaperUpdateRequest(
     val thePubmain_licationName: String,
     val theReviewer: String,
     val theTransCooperation: String,
-    val themain_thesisName: String
-)
+    val themain_thesisName: String,
+     var `public`: Boolean=false,
+
+    )

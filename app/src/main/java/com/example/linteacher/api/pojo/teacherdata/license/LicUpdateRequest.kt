@@ -6,5 +6,7 @@ data class LicUpdateRequest(
     val licNumber: Int,
     val licService: String,
     val licType: String,
-    val loginId: Int
-)
+    val loginId: Int,
+    var `public`: Boolean=false,
+
+    )

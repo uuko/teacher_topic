@@ -14,6 +14,8 @@ class BookUpdateRequest (open var   infCategory:String="",
                          open var  infPlan:String="",
                          open var  infCorreAuthor:String="",
                          open var infNumber:Int=0,
+                         open var `public`: Boolean=false,
+
 
                          var loginId:Int=0 //重點本人
  )

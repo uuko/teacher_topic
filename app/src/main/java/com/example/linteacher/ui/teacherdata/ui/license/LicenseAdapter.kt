@@ -151,6 +151,7 @@ class LicenseAdapter(
                         licType = items.licType,
                         licNumber = items.licNumber,
                         licId = items.licId,
+                        public = items.public
                     )
                     //如果View 不為空 就set 新的LicEditData
                     if (binding.licName.text.isNotEmpty()) {

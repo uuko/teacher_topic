@@ -15,6 +15,7 @@ class AcademicPostRequest (
         open var eveStudyCertificate  :String="",
         open var eveCertificateNumber  :String="",
         open var eveSchSubsidy   :String="",
+        open var `public`: Boolean=false,
 
 
 

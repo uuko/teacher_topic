@@ -170,6 +170,7 @@ class PaperFragment : Fragment(),PaperInterface.View {
                 thePubmain_licationName = name.thePubmain_licationName,
                 theReviewer = name.theReviewer,
                 theTransCooperation = name.theTransCooperation,
+                public = name.public,
                 themain_thesisName = name.themain_thesisName,
             )
 

@@ -223,9 +223,11 @@ class GovFragment: Fragment(), GovInterface.View {
                         govSchAmount = r.govSchAmount,
                         govOthIn = r.govOthIn,
                         govToOth = r.govToOth,
+                    public = r.public,
 
 
-                        govId = r.govId,
+
+                    govId = r.govId,
                         loginId = loginPreferences.getTeacherId().toInt(),
 
 

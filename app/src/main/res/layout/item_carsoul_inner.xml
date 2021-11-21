@@ -51,7 +51,7 @@
             android:id="@+id/imageView"
             android:layout_width="113dp"
             android:layout_height="113dp"
-            android:src="@drawable/apple"
+            android:src="@drawable/apple_png"
              />
     </androidx.cardview.widget.CardView>
 

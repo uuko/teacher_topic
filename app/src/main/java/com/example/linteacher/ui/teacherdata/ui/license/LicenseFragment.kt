@@ -161,6 +161,7 @@ class LicenseFragment : Fragment(),LicInterface.View {
                 licNumber = name.licNumber.toInt(),
                 licService = name.licService,
                 licType = name.licType,
+                public = name.public,
                 licId=name.licId
             )
 

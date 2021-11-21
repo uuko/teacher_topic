@@ -176,8 +176,9 @@ class JournalFragment : Fragment(), JournalInterface.View {
             disSeminarName = name.disSeminarName,
             dismainThesisName = name.dismain_thesisName,
             main_disYear = "",
-            public = false
-        )
+            public = name.public,
+
+            )
 
 
         viewModel.updateDisData(request)

@@ -132,7 +132,7 @@ class AwardFragment : Fragment(), AwardInterface.View {
                 awaCampus = name.awaCampus,
                 awaCountry = name.awaCountry,
                 awaDate = name.awaDate,
-                loginId = loginPreferences.getTeacherId().toInt(),
+            loginId = loginPreferences.getTeacherId().toInt(),
                 )
 
         //postData(request)->
@@ -181,7 +181,8 @@ class AwardFragment : Fragment(), AwardInterface.View {
                         awaCountry = name.awaCountry,
                         awaDate = name.awaDate,
                         loginId = loginPreferences.getTeacherId().toInt(),
-                        awaId = name.awaId
+                        public = name.public,
+                    awaId = name.awaId
 
                 )
 

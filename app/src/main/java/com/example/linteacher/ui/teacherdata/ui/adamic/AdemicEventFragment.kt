@@ -192,6 +192,7 @@ class AdemicEventFragment :  Fragment(), AdemicEventInterface.View {
                         eveStudyCertificate = r.eveStudyCertificate,
                         eveCertificateNumber = r.eveCertificateNumber,
                         eveSchSubsidy = r.eveSchSubsidy,
+                        public = r.public,
 
 
 

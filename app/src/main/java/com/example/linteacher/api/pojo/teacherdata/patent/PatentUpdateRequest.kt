@@ -14,6 +14,8 @@ class PatentUpdateRequest ( open var patProject:String="",
                             open var patEndDate:String="",
                             open var patmainLicensingAgency:String="",
                             open var patCertificateNumber:String="",
+                            open var `public`: Boolean=false,
+
 
 
                             open var patId:Int=0,

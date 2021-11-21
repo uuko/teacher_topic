@@ -193,8 +193,8 @@ class PatentFragment:Fragment(), PatentInterface.View {
                         patType = r.patType,
                         patProgressStatus = r.patProgressStatus,
                         patAppmainLicantType = r.patAppmainLicantType,
-
-                        patId = r.patId,
+                        public = r.public,
+                    patId = r.patId,
                         loginId = loginPreferences.getTeacherId().toInt(),
 
                 )

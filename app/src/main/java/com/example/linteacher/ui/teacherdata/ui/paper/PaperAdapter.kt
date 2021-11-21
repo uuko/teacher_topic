@@ -193,7 +193,9 @@ class PaperAdapter(
                         theReviewer = items.theReviewer,
                         theTransCooperation = items.theTransCooperation,
                         thePublishingcountry = items.thePublishingcountry,
-                    )
+                        public = items.public,
+
+                        )
 
                     if (binding.theProject.text.isNotEmpty()) {
                         itemData.theProject = binding.theProject.text.toString()

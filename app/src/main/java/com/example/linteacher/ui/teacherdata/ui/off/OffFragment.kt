@@ -168,7 +168,7 @@ class OffFragment : BaseFragment(), OffInterface.View {
                 proStartDate = item.proStartDate,
                 proStopDate = item.proStopDate,
                 proVendor = item.proVendor,
-                public = false,
+                public = item.public,
                 loginId = loginPreferences.getTeacherId().toInt()
             )
 

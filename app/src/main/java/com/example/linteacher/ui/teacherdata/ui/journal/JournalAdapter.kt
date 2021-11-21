@@ -170,7 +170,8 @@ class JournalAdapter(
                         disHostCity = items.disHostCity,
                         disHostCountry = items.disHostCountry,
                         disPublishY = items.disPublishY,
-                        disAuthor = items.disAuthor
+                        disAuthor = items.disAuthor,
+                        public = items.public
                     )
                     if (binding.disSeminarName.text.isNotEmpty()) {
                         itemData.disSeminarName = binding.disSeminarName.text.toString()

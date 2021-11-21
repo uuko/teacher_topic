@@ -230,4 +230,241 @@
         <item>第三作者</item>
         <item>第四(以上)作者</item>
     </string-array>
+
+
+<!--校外服務經驗-->
+    <string-array name="pro_pronature2_array_en">
+        <item>擔任學會行政職務</item>
+        <item>擔任專業考試命題委員(填報至107上)</item>
+        <item>擔任專業考試典試人員(107下適用)</item>
+        <item>擔任國內專業期刊編審及評審</item>
+        <item>擔任國外專業期刊編審及評審</item>
+        <item>擔任校外公民營機構顧問或委員</item>
+        <item>擔任政府機構專業委員會委員</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="normal_yes_no_array_en">
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+
+    <string-array name="normal_have_not_array_en">
+        <item>有</item>
+        <item>無</item>
+    </string-array>
+
+
+
+
+<!--    學術活動-->
+
+    <string-array name="eveCategory_array_en">
+        <item>學術研討會</item>
+        <item>作品發表會(含展覽)</item>
+        <item>研習</item>
+    </string-array>
+
+    <string-array name="eveSort_array_en">
+        <item>公開徵稿</item>
+        <item>其他形式</item>
+        <item>主辦</item>
+        <item>參加</item>
+    </string-array>
+
+
+<!--    獎項與榮譽-->
+
+    <string-array name="awaSort_array_en">
+        <item>獲全國性或國際性學術榮譽獎</item>
+        <item>獲全國性或國際性創作、競賽、展演等榮譽獎項</item>
+        <item>Fellow會士</item>
+        <item>院士</item>
+        <item>其他獎項</item>
+
+    </string-array>
+
+    <string-array name="awaCampus_array_en">
+        <item>校內</item>
+        <item>校外</item>
+
+    </string-array>
+
+    <string-array name="normal_country_array_en">
+        <item>中華民國</item>
+        <item>伊朗伊斯蘭共和國</item>
+    </string-array>
+
+<!--    計畫案產學-->
+
+    <string-array name="govProbjectType_array_en">
+        <item>教育部計畫型獎助案</item>
+        <item>政府產學計畫</item>
+        <item>政府合作基礎/環境建構之補助計畫</item>
+        <item>政府委訓計畫</item>
+        <item>政府學術研究計畫-科技部專題研究計畫</item>
+        <item>政府學術研究計畫-其他政府部會學術研究計畫(非科技部專題研究計畫</item>
+        <item>政府其他案件</item>
+        <item>企業產學計畫(含公營及私人企業)</item>
+        <item>企業產學合作基礎/環境建構之補助計畫</item>
+        <item>企業委訓計畫(含公營及私人企業)</item>
+        <item>企業其他案件(含公營及私人企業)</item>
+        <item>其他單位產學計畫</item>
+        <item>其他單位產學合作基礎/環境建構之補助計畫</item>
+        <item>其他單位委訓計畫</item>
+        <item>其他單位其他案件</item>
+        <item>校內補助案</item>
+    </string-array>
+
+    <string-array name="govProjectType_array_en">
+        <item>A1 專題研究</item>
+        <item>A2 物質交換</item>
+        <item>A3 檢測檢驗</item>
+        <item>A4 技術服務</item>
+        <item>A5 諮詢顧問</item>
+        <item>A6 專利申請</item>
+        <item>A7 技術移轉</item>
+        <item>A8 創新育成</item>
+        <item>A9 其他</item>
+        <item>B1 學生及合作機構人員各類教育培訓</item>
+        <item>B2 研習</item>
+        <item>B3 研討</item>
+        <item>B4 實習</item>
+        <item>B5 訓練</item>
+        <item>B6 其他</item>
+        <item>C 符合專科以上產學合作實施辦法第三條第3項</item>
+    </string-array>
+
+<!--    <string-array name="disAuthor_array_en">-->
+<!--        <item>B1 學生及合作機構人員各類教育培訓</item>-->
+<!--        <item>B2 研習</item>-->
+<!--        <item>B3 研討</item>-->
+<!--        <item>B4 實習</item>-->
+<!--        <item>B5 訓練</item>-->
+<!--        <item>B6 其他</item>-->
+
+<!--    </string-array>-->
+
+<!--    <string-array name="disAuthor_array_en">-->
+<!--        <item>C 符合專科以上產學合作實施辦法第三條第3項</item>-->
+<!--    </string-array>-->
+
+    <string-array name="govJobType_array_en">
+        <item>主持人</item>
+        <item>共同(協同)主持人</item>
+
+    </string-array>
+
+    <string-array name="govMoneyState_array_en">
+        <item>原核定</item>
+        <item>變更-增加經費</item>
+        <item>變更-刪減經費</item>
+    </string-array>
+
+    <string-array name="govMainfund_array_en">
+        <item>科技部</item>
+        <item>教育部</item>
+        <item>經濟部</item>
+        <item>勞動部</item>
+        <item>農委會</item>
+        <item>政府其他部會(不含科技部、教育部、經濟部、勞動部、農委會</item>
+        <item>企業(公營、民營、國外及私人企業)</item>
+        <item>其他單位(包含法人機構)</item>
+        <item>學校(係指本身所屬之學校，其他學校請選填其他單位)</item>
+    </string-array>
+
+
+<!--    期刊論文-->
+
+    <string-array name="normal_author_array_en">
+        <item>第一作者</item>
+        <item>第二作者</item>
+        <item>第三作者</item>
+        <item>第四(以上)作者</item>
+        <item>無佐證資料</item>
+
+    </string-array>
+
+<!--    <string-array name="theCollCategory_array_en">-->
+<!--        <item>SCI</item>-->
+<!--        <item>SSCI</item>-->
+<!--        <item>AHCI / A&amp;HCI (100年度起適用)</item>-->
+<!--        <item>AHCI / A&amp;HCI (100年度起適用)</item>-->
+<!--        <item>TSSCI</item>-->
+<!--        <item>EI</item>-->
+<!--        <item>SCIE (100年度起適用)</item>-->
+<!--        <item>SCIE (100年度起適用)</item>-->
+<!--        <item>其他</item>-->
+<!--    </string-array>-->
+
+<!--    <string-array name="thePublishType_array_en">-->
+<!--        <item>紙本</item>-->
+<!--        <item>電子期刊</item>-->
+<!--        <item>紙本及電子期刊</item>-->
+<!--    </string-array>-->
+
+    <string-array name="normal_TransCooperation_array_en">
+        <item>是(跨國合作)</item>
+        <item>是(大陸、港澳地區合作)</item>
+        <item>是(跨國及大陸、港澳地區合作)</item>
+        <item>否</item>
+    </string-array>
+
+<!--    研討會埨文-->
+
+<!--    教師專書篇章-->
+
+    <string-array name="infCategory_array_en">
+        <item>紙本</item>
+        <item>電子書</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="infLanguage_array_en">
+        <item>中文</item>
+        <item>外文</item>
+        <item>中文及外文</item>
+    </string-array>
+
+<!--    專利-->
+
+    <string-array name="patCountry_array_en">
+        <item>國內</item>
+        <item>大陸</item>
+        <item>美國</item>
+        <item>國外(不含美國)</item>
+    </string-array>
+
+    <string-array name="patType_array_en">
+        <item>發明專利</item>
+        <item>新型專利</item>
+        <item>新式樣專利</item>
+        <item>設計專利</item>
+        <item>新品種</item>
+    </string-array>
+
+    <string-array name="patProgressStatus_array_en">
+        <item>申請中</item>
+        <item>已核准</item>
+    </string-array>
+
+    <string-array name="patAppmain_licant_array_en">
+        <item>申請人</item>
+        <item>權利人</item>
+    </string-array>
+
+    <string-array name="patAppmain_licantType_array_en">
+        <item>一般個人</item>
+        <item>本校</item>
+        <item>企業</item>
+        <item>其他學校或機構</item>
+    </string-array>
+
+<!--    技術移轉授權-->
+
+    <string-array name="tecTransfer_array_en">
+        <item>技術轉移</item>
+        <item>授權</item>
+    </string-array>
+
 </resources>

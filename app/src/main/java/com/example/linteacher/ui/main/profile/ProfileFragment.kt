@@ -101,7 +101,7 @@ class ProfileFragment : Fragment() {
             binding.login.visibility = View.VISIBLE
             binding.teacherCountry.text = "遊客"
             binding.imageView.setBackgroundResource(
-                R.drawable.apple
+                R.drawable.apple_png
             )
 
         }
@@ -175,7 +175,7 @@ class ProfileFragment : Fragment() {
             binding.login.visibility = View.VISIBLE
             binding.teacherCountry.text = "遊客"
             binding.imageView.setBackgroundResource(
-                R.drawable.apple
+                R.drawable.apple_png
             )
 
 

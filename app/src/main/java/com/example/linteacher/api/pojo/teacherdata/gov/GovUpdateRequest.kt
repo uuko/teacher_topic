@@ -23,6 +23,8 @@ class GovUpdateRequest (
         open var govSchAmount:String="",
         open var govOthIn:String="",
         open var govToOth:String="",
+        open var `public`: Boolean=false,
+
 
 
         open var govId:Int=0,

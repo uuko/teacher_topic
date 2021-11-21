@@ -11,4 +11,5 @@ class AwardPostRequest( var awaPlan:String="",
                         var awaDate:String="",
                         var loginId:Int=0 //重點本人
 
+
 )

@@ -178,7 +178,7 @@ class ExpAdapter(
                         endDate=binding.expEndDate.text.toString(),
                         expType=getExpCateGory(binding.expCategory.selectedItem.toString()),
                         coopAgency=getExpMeachen(binding.expMechanismsort.selectedItem.toString()),
-                        public=false,
+                        public=items.public,
                         isPartTime=binding.expPftime.selectedItem.toString()
                     )
 

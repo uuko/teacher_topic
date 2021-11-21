@@ -190,7 +190,9 @@ class BookFragment : Fragment(), BookInterface.View{
                         infISBN = r.infISBN,
                         infPlan = r.infPlan,
                         infCorreAuthor = r.infCorreAuthor,
-                        loginId = loginPreferences.getTeacherId().toInt(),
+                    public = r.public,
+
+                    loginId = loginPreferences.getTeacherId().toInt(),
                         infNumber = r.infNumber
 
                 )

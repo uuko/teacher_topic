@@ -180,6 +180,7 @@ class OffAdapter(
 
                         proSign = items.proSign,
                         proContent = items.proContent,
+                        public = items.public,
                         proNature = binding.proVendor.text.toString(),
                     )
 

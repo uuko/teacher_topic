@@ -121,6 +121,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
         ) {
             //VIEW set list[positon]資料
             //7個
+
             binding.eveName.setText(items.eveName)
             binding.eveOrganizer.setText(items.eveOrganizer)
             binding.eveHours.setText(items.eveHours)
