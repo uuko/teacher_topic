@@ -7,10 +7,10 @@
         <item>深度實務研習</item>
     </string-array>
     <string-array name="exp_expcategory_array_en">
-        <item>WE</item>
-        <item>CP</item>
-        <item>SE</item>
-        <item>DE</item>
+        <item>業界專兼職工作經驗</item>
+        <item>產學合作計畫案</item>
+        <item>產業實地服務或研究</item>
+        <item>深度實務研習</item>
     </string-array>
 <string-array name="tch_person_array_en">
 
@@ -268,6 +268,9 @@
     <string-array name="eveSort_array_en">
         <item>公開徵稿</item>
         <item>其他形式</item>
+    </string-array>
+
+    <string-array name="eveParticimainpation_array_en">
         <item>主辦</item>
         <item>參加</item>
     </string-array>
@@ -425,6 +428,23 @@
         <item>外文</item>
         <item>中文及外文</item>
     </string-array>
+
+    <string-array name="normal_month_array_en">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+
 
 <!--    專利-->
 

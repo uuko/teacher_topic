@@ -111,19 +111,19 @@ class AwardAdapter(list: ArrayList<AwardBaseData>, private val listener: AwardIn
             binding.awaName.setText(items.awaName)
             binding.awaMechanismName.setText(items.awaMechanismName )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.awaSort_array_en,
                     binding.awaSort,
                     items.awaSort,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_country_array_en,
                     binding.awaCountry,
                     items.awaCountry,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.awaCampus_array_en,
                     binding.awaCampus,
                     items.awaCampus,
                     context
@@ -166,7 +166,7 @@ class AwardAdapter(list: ArrayList<AwardBaseData>, private val listener: AwardIn
                     if (binding.awaSort.selectedItemPosition != -1) {
                         itemData.awaSort =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.awaSort_array_en,
                                         binding.awaSort,
                                         context
                                 )
@@ -174,7 +174,7 @@ class AwardAdapter(list: ArrayList<AwardBaseData>, private val listener: AwardIn
                     if (binding.awaSort.selectedItemPosition != -1) {
                         itemData.awaCampus =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_country_array_en,
                                         binding.awaCampus,
                                         context
                                 )
@@ -182,7 +182,7 @@ class AwardAdapter(list: ArrayList<AwardBaseData>, private val listener: AwardIn
                     if (binding.awaCountry.selectedItemPosition != -1) {
                         itemData.awaCountry =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.awaCampus_array_en,
                                         binding.awaCountry,
                                         context
                                 )
@@ -221,19 +221,19 @@ class AwardAdapter(list: ArrayList<AwardBaseData>, private val listener: AwardIn
             binding.awaName.setText(items.awaName)
             binding.awaMechanismName.setText(items.awaMechanismName )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.awaSort_array_en,
                     binding.awaSort,
                     items.awaSort,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_country_array_en,
                     binding.awaCountry,
                     items.awaCountry,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.awaCampus_array_en,
                     binding.awaCampus,
                     items.awaCampus,
                     context
@@ -279,7 +279,7 @@ class AwardAdapter(list: ArrayList<AwardBaseData>, private val listener: AwardIn
                     if (binding.awaSort.selectedItemPosition != -1) {
                         itemData.awaSort =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.awaSort_array_en,
                                         binding.awaSort,
                                         context
                                 )
@@ -287,7 +287,7 @@ class AwardAdapter(list: ArrayList<AwardBaseData>, private val listener: AwardIn
                     if (binding.awaSort.selectedItemPosition != -1) {
                         itemData.awaCampus =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_country_array_en,
                                         binding.awaCampus,
                                         context
                                 )
@@ -295,7 +295,7 @@ class AwardAdapter(list: ArrayList<AwardBaseData>, private val listener: AwardIn
                     if (binding.awaCountry.selectedItemPosition != -1) {
                         itemData.awaCountry =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.awaCampus_array_en,
                                         binding.awaCountry,
                                         context
                                 )

@@ -117,37 +117,37 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
             binding.infISBN.setText(items.infISBN )
             //9
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.infCategory_array_en,
                     binding.infCategory,
                     items.infCategory ,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_author_array_en,
                     binding.infAuthorOrder,
                     items.infAuthorOrder,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.infCorreAuthor,
                     items.infCorreAuthor,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.infAudit,
                     items.infAudit,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.infLanguage_array_en,
                     binding.infLanguage,
                     items.infLanguage,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_TransCooperation_array_en,
                     binding.infCoop,
                     items.infCoop,
                     context
@@ -159,13 +159,13 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_month_array_en,
                     binding.infPubmainLicMonth,
                     items.infPubmainLicMonth,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.infWhemainTher,
                     items.infWhemainTher,
                     context
@@ -212,7 +212,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infCategory.selectedItemPosition != -1) {
                         itemData.infCategory =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.infCategory_array_en,
                                         binding.infCategory,
                                         context
                                 )
@@ -220,7 +220,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infAuthorOrder.selectedItemPosition != -1) {
                         itemData.infAuthorOrder =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_author_array_en,
                                         binding.infAuthorOrder,
                                         context
                                 )
@@ -228,7 +228,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infCorreAuthor.selectedItemPosition != -1) {
                         itemData.infCorreAuthor =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.infCorreAuthor,
                                         context
                                 )
@@ -236,7 +236,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infAudit.selectedItemPosition != -1) {
                         itemData.infAudit =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.infAudit,
                                         context
                                 )
@@ -244,7 +244,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infLanguage.selectedItemPosition != -1) {
                         itemData.infLanguage =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.infLanguage_array_en,
                                         binding.infLanguage,
                                         context
                                 )
@@ -252,7 +252,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infCoop.selectedItemPosition != -1) {
                         itemData.infCoop =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_TransCooperation_array_en,
                                         binding.infCoop,
                                         context
                                 )
@@ -268,7 +268,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infPubmainLicMonth.selectedItemPosition != -1) {
                         itemData.infPubmainLicMonth =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_month_array_en,
                                         binding.infPubmainLicMonth,
                                         context
                                 )
@@ -276,7 +276,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infWhemainTher.selectedItemPosition != -1) {
                         itemData.infWhemainTher =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.infWhemainTher,
                                         context
                                 )
@@ -315,37 +315,37 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
             binding.infISBN.setText(items.infISBN )
             //9
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.infCategory_array_en,
                     binding.infCategory,
                     items.infCategory ,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_author_array_en,
                     binding.infAuthorOrder,
                     items.infAuthorOrder,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.infCorreAuthor,
                     items.infCorreAuthor,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.infAudit,
                     items.infAudit,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.infLanguage_array_en,
                     binding.infLanguage,
                     items.infLanguage,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_TransCooperation_array_en,
                     binding.infCoop,
                     items.infCoop,
                     context
@@ -357,13 +357,13 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_month_array_en,
                     binding.infPubmainLicMonth,
                     items.infPubmainLicMonth,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.infWhemainTher,
                     items.infWhemainTher,
                     context
@@ -412,7 +412,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infCategory.selectedItemPosition != -1) {
                         itemData.infCategory =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.infCategory_array_en,
                                         binding.infCategory,
                                         context
                                 )
@@ -420,7 +420,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infAuthorOrder.selectedItemPosition != -1) {
                         itemData.infAuthorOrder =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_author_array_en,
                                         binding.infAuthorOrder,
                                         context
                                 )
@@ -428,7 +428,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infCorreAuthor.selectedItemPosition != -1) {
                         itemData.infCorreAuthor =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.infCorreAuthor,
                                         context
                                 )
@@ -436,7 +436,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infAudit.selectedItemPosition != -1) {
                         itemData.infAudit =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.infAudit,
                                         context
                                 )
@@ -444,7 +444,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infLanguage.selectedItemPosition != -1) {
                         itemData.infLanguage =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.infLanguage_array_en,
                                         binding.infLanguage,
                                         context
                                 )
@@ -452,7 +452,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infCoop.selectedItemPosition != -1) {
                         itemData.infCoop =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_TransCooperation_array_en,
                                         binding.infCoop,
                                         context
                                 )
@@ -468,7 +468,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infPubmainLicMonth.selectedItemPosition != -1) {
                         itemData.infPubmainLicMonth =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_month_array_en,
                                         binding.infPubmainLicMonth,
                                         context
                                 )
@@ -476,7 +476,7 @@ class BookAdapter(list: ArrayList<BookBaseData>, private val listener: BookInter
                     if (binding.infWhemainTher.selectedItemPosition != -1) {
                         itemData.infWhemainTher =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.infWhemainTher,
                                         context
                                 )

@@ -133,37 +133,37 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
 
             //6個
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.eveCategory_array_en,
                     binding.eveCategory,
                     items.eveCategory,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.eveSort_array_en,
                     binding.eveSort,
                     items.eveSort,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_country_array_en,
                     binding.eveLocation,
                     items.eveLocation,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.eveParticimainpation_array_en,
                     binding.eveParticimainPation,
                     items.eveParticimainPation,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.eveClassRelated,
                     items.eveClassRelated,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_have_not_array_en,
                     binding.eveStudyCertificate,
                     items.eveStudyCertificate,
                     context
@@ -218,7 +218,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
                     if (binding.eveCategory.selectedItemPosition != -1) {
                         itemData.eveCategory =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.eveCategory_array_en,
                                         binding.eveCategory,
                                         context
                                 )
@@ -226,7 +226,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
                     if (binding.eveSort.selectedItemPosition != -1) {
                         itemData.eveSort =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.eveSort_array_en,
                                         binding.eveSort,
                                         context
                                 )
@@ -234,7 +234,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
                     if (binding.eveLocation.selectedItemPosition != -1) {
                         itemData.eveLocation =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_country_array_en,
                                         binding.eveLocation,
                                         context
                                 )
@@ -242,7 +242,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
                     if (binding.eveParticimainPation.selectedItemPosition != -1) {
                         itemData.eveParticimainPation  =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.eveParticimainpation_array_en,
                                         binding.eveParticimainPation ,
                                         context
                                 )
@@ -250,7 +250,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
                     if (binding.eveClassRelated.selectedItemPosition != -1) {
                         itemData.eveClassRelated  =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.eveClassRelated,
                                         context
                                 )
@@ -258,7 +258,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
                     if (binding.eveStudyCertificate .selectedItemPosition != -1) {
                         itemData.eveStudyCertificate  =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_have_not_array_en,
                                         binding.eveLocation,
                                         context
                                 )
@@ -304,37 +304,37 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
 
             //6個
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.eveCategory_array_en,
                     binding.eveCategory,
                     items.eveCategory,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.eveSort_array_en,
                     binding.eveSort,
                     items.eveSort,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_country_array_en,
                     binding.eveLocation,
                     items.eveLocation,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.eveParticimainpation_array_en,
                     binding.eveParticimainPation,
                     items.eveParticimainPation,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.eveClassRelated,
                     items.eveClassRelated,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_have_not_array_en,
                     binding.eveStudyCertificate,
                     items.eveStudyCertificate,
                     context
@@ -392,7 +392,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
                     if (binding.eveCategory.selectedItemPosition != -1) {
                         itemData.eveCategory =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.eveCategory_array_en,
                                         binding.eveCategory,
                                         context
                                 )
@@ -400,7 +400,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
                     if (binding.eveSort.selectedItemPosition != -1) {
                         itemData.eveSort =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.eveSort_array_en,
                                         binding.eveSort,
                                         context
                                 )
@@ -408,7 +408,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
                     if (binding.eveLocation.selectedItemPosition != -1) {
                         itemData.eveLocation =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_country_array_en,
                                         binding.eveLocation,
                                         context
                                 )
@@ -416,7 +416,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
                     if (binding.eveParticimainPation.selectedItemPosition != -1) {
                         itemData.eveParticimainPation  =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.eveParticimainpation_array_en,
                                         binding.eveParticimainPation ,
                                         context
                                 )
@@ -424,7 +424,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
                     if (binding.eveClassRelated.selectedItemPosition != -1) {
                         itemData.eveClassRelated  =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.eveClassRelated,
                                         context
                                 )
@@ -432,7 +432,7 @@ class AdemicEventAdapter(list: ArrayList<AdemicEventBaseData>, private val liste
                     if (binding.eveStudyCertificate.selectedItemPosition != -1) {
                         itemData.eveStudyCertificate  =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_have_not_array_en,
                                         binding.eveLocation,
                                         context
                                 )

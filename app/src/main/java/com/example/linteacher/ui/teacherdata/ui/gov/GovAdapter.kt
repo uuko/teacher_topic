@@ -139,49 +139,49 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
             binding.govSchAmount.setText(items.govSchAmount)
             //8
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.govProbjectType_array_en,
                     binding.govProbjectType,
                     items.govProbjectType,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.govProjectType_array_en,
                     binding.govProjectType,
                     items.govProjectType,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.govProjectNature,
                     items.govProjectNature,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.govJobType_array_en,
                     binding.govJobType,
                     items.govJobType,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.govMoneyState_array_en,
                     binding.govMoneyState,
                     items.govMoneyState,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.govMainfund_array_en,
                     binding.govMainfund,
                     items.govMainfund,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.govOthIn,
                     items.govOthIn,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.govToOth,
                     items.govToOth,
                     context
@@ -260,7 +260,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govProbjectType.selectedItemPosition != -1) {
                         itemData.govProbjectType =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.govProbjectType_array_en,
                                         binding.govProbjectType,
                                         context
                                 )
@@ -268,7 +268,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govProjectType.selectedItemPosition != -1) {
                         itemData.govProjectType =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.govProjectType_array_en,
                                         binding.govProjectType,
                                         context
                                 )
@@ -276,7 +276,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govProjectNature.selectedItemPosition != -1) {
                         itemData.govProjectNature =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.govProjectNature,
                                         context
                                 )
@@ -284,7 +284,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govJobType.selectedItemPosition != -1) {
                         itemData.govJobType =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.govJobType_array_en,
                                         binding.govJobType,
                                         context
                                 )
@@ -292,7 +292,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govMoneyState.selectedItemPosition != -1) {
                         itemData.govMoneyState =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.govMoneyState_array_en,
                                         binding.govMoneyState,
                                         context
                                 )
@@ -300,7 +300,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govMainfund.selectedItemPosition != -1) {
                         itemData.govMainfund =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.govMainfund_array_en,
                                         binding.govMainfund,
                                         context
                                 )
@@ -308,7 +308,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govOthIn.selectedItemPosition != -1) {
                         itemData.govOthIn =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.govOthIn,
                                         context
                                 )
@@ -316,7 +316,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govToOth.selectedItemPosition != -1) {
                         itemData.govToOth =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.govToOth,
                                         context
                                 )
@@ -367,49 +367,49 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
             binding.govSchAmount.setText(items.govSchAmount)
             //8
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.govProbjectType_array_en,
                     binding.govProbjectType,
                     items.govProbjectType,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.govProjectType_array_en,
                     binding.govProjectType,
                     items.govProjectType,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.govProjectNature,
                     items.govProjectNature,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.govJobType_array_en,
                     binding.govJobType,
                     items.govJobType,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.govMoneyState_array_en,
                     binding.govMoneyState,
                     items.govMoneyState,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.govMainfund_array_en,
                     binding.govMainfund,
                     items.govMainfund,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.govOthIn,
                     items.govOthIn,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_yes_no_array_en,
                     binding.govToOth,
                     items.govToOth,
                     context
@@ -489,7 +489,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govProbjectType.selectedItemPosition != -1) {
                         itemData.govProbjectType =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.govProbjectType_array_en,
                                         binding.govProbjectType,
                                         context
                                 )
@@ -497,7 +497,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govProjectType.selectedItemPosition != -1) {
                         itemData.govProjectType =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.govProjectType_array_en,
                                         binding.govProjectType,
                                         context
                                 )
@@ -505,7 +505,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govProjectNature.selectedItemPosition != -1) {
                         itemData.govProjectNature =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.govProjectNature,
                                         context
                                 )
@@ -513,7 +513,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govJobType.selectedItemPosition != -1) {
                         itemData.govJobType =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.govJobType_array_en,
                                         binding.govJobType,
                                         context
                                 )
@@ -521,7 +521,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govMoneyState.selectedItemPosition != -1) {
                         itemData.govMoneyState =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.govMoneyState_array_en,
                                         binding.govMoneyState,
                                         context
                                 )
@@ -529,7 +529,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govMainfund.selectedItemPosition != -1) {
                         itemData.govMainfund =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.govMainfund_array_en,
                                         binding.govMainfund,
                                         context
                                 )
@@ -537,7 +537,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govOthIn.selectedItemPosition != -1) {
                         itemData.govOthIn =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.govOthIn,
                                         context
                                 )
@@ -545,7 +545,7 @@ class GovAdapter (list: ArrayList<GovBaseData>, private val listener: GovInterfa
                     if (binding.govToOth.selectedItemPosition != -1) {
                         itemData.govToOth =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_yes_no_array_en,
                                         binding.govToOth,
                                         context
                                 )

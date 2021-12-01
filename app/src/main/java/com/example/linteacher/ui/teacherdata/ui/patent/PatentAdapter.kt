@@ -106,31 +106,31 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
 
             //4
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_author_array_en,
                     binding.patAuthor,
                     items.patAuthor,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.patCountry_array_en,
                     binding.patCountry,
                     items.patCountry,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.patType_array_en,
                     binding.patType,
                     items.patType,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.patProgressStatus_array_en,
                     binding.patProgressStatus,
                     items.patProgressStatus,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.patAppmain_licantType_array_en,
                     binding.patAppmainLicantType,
                     items.patAppmainLicantType,
                     context
@@ -194,7 +194,7 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                     if (binding.patAuthor.selectedItemPosition != -1) {
                         itemData.patAuthor =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_author_array_en,
                                         binding.patAuthor,
                                         context
                                 )
@@ -202,7 +202,7 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                     if (binding.patCountry.selectedItemPosition != -1) {
                         itemData.patCountry =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.patCountry_array_en,
                                         binding.patCountry,
                                         context
                                 )
@@ -210,7 +210,7 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                     if (binding.patType.selectedItemPosition != -1) {
                         itemData.patType =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.patType_array_en,
                                         binding.patType,
                                         context
                                 )
@@ -218,7 +218,7 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                     if (binding.patProgressStatus.selectedItemPosition != -1) {
                         itemData.patProgressStatus =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.patProgressStatus_array_en,
                                         binding.patProgressStatus,
                                         context
                                 )
@@ -226,7 +226,7 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                     if (binding.patAppmainLicantType.selectedItemPosition != -1) {
                         itemData.patAppmainLicantType =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.patAppmain_licantType_array_en,
                                         binding.patAppmainLicantType,
                                         context
                                 )
@@ -273,31 +273,31 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
 
             //4
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.normal_author_array_en,
                     binding.patAuthor,
                     items.patAuthor,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.patCountry_array_en,
                     binding.patCountry,
                     items.patCountry,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.patType_array_en,
                     binding.patType,
                     items.patType,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.patProgressStatus_array_en,
                     binding.patProgressStatus,
                     items.patProgressStatus,
                     context
             )
             bindSpinnerAdapter(
-                    R.array.lic_lictype_array_en,
+                    R.array.patAppmain_licantType_array_en,
                     binding.patAppmainLicantType,
                     items.patAppmainLicantType,
                     context
@@ -362,7 +362,7 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                     if (binding.patAuthor.selectedItemPosition != -1) {
                         itemData.patAuthor =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.normal_author_array_en,
                                         binding.patAuthor,
                                         context
                                 )
@@ -370,7 +370,7 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                     if (binding.patCountry.selectedItemPosition != -1) {
                         itemData.patCountry =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.patCountry_array_en,
                                         binding.patCountry,
                                         context
                                 )
@@ -378,7 +378,7 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                     if (binding.patType.selectedItemPosition != -1) {
                         itemData.patType =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.patType_array_en,
                                         binding.patType,
                                         context
                                 )
@@ -386,7 +386,7 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                     if (binding.patProgressStatus.selectedItemPosition != -1) {
                         itemData.patProgressStatus =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.patProgressStatus_array_en,
                                         binding.patProgressStatus,
                                         context
                                 )
@@ -394,7 +394,7 @@ class PatentAdapter(list: ArrayList<PatentBaseData>, private val listener: Paten
                     if (binding.patAppmainLicantType.selectedItemPosition != -1) {
                         itemData.patAppmainLicantType =
                                 getResponseSpinner(
-                                        R.array.lic_lictype_array_en,
+                                        R.array.patAppmain_licantType_array_en,
                                         binding.patAppmainLicantType,
                                         context
                                 )
