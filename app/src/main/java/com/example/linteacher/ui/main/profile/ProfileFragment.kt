@@ -174,6 +174,9 @@ class ProfileFragment : Fragment() {
             //
             binding.login.visibility = View.VISIBLE
             binding.teacherCountry.text = "遊客"
+
+            Log.d("大頭貼", "換: ")
+
             binding.imageView.setBackgroundResource(
                 R.drawable.apple_png
             )
