@@ -35,7 +35,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/add" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

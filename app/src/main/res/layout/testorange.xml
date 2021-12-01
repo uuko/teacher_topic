@@ -57,7 +57,7 @@
                 android:gravity="center"
                 android:background="@drawable/home_item_while">
                 <TextView
-                    android:id="@+id/licName"
+                    android:id="@+id/tecTransferName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/home_item_while_20dp">
                     <TextView
-                        android:id="@+id/licService"
+                        android:id="@+id/tecNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10sp"
@@ -125,7 +125,7 @@
                         android:textSize="16sp"
                         android:textColor="@color/black"></TextView>
                     <TextView
-                        android:id="@+id/licType"
+                        android:id="@+id/tecTransfer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10sp"
