@@ -20,38 +20,38 @@
         <activity
             android:name=".ui.teacherdata.ui.technologytrans.editfirst.TechTransferEditActivity"
             android:exported="false" />
-        <activity android:name=".ui.articletag.ArticleTagActivity" />
-        <activity android:name=".ui.main.banneredit.BannerEditActivity" />
-        <activity android:name=".ui.managearticle.editinner.EditInnerActivity" />
-        <activity android:name=".ui.addarticle.AddArticleActivity" />
-        <activity android:name=".ui.editarticle.EditArticleActivity" />
-        <activity android:name=".ui.managearticle.EditArticleActivity" />
-        <activity android:name=".ui.main.listimportant.ListImportantActivity" />
-        <activity android:name=".ui.main.listannounce.ListAnnounceActivity" />
-        <activity android:name=".ui.main.announcelist.ListAnnounceActivity" />
+        <activity android:name=".ui.articletag.ArticleTagActivity" android:exported="false"/>
+        <activity android:name=".ui.main.banneredit.BannerEditActivity" android:exported="false"/>
+        <activity android:name=".ui.managearticle.editinner.EditInnerActivity" android:exported="false" />
+        <activity android:name=".ui.addarticle.AddArticleActivity" android:exported="false" />
+        <activity android:name=".ui.editarticle.EditArticleActivity" android:exported="false"/>
+        <activity android:name=".ui.managearticle.EditArticleActivity" android:exported="false" />
+        <activity android:name=".ui.main.listimportant.ListImportantActivity" android:exported="false"/>
+        <activity android:name=".ui.main.listannounce.ListAnnounceActivity" android:exported="false"/>
+        <activity android:name=".ui.main.announcelist.ListAnnounceActivity" android:exported="false"/>
         <activity
             android:name=".ui.main.announcelist.ListAnnouncectivity"
             android:label="@string/title_activity_list_announcectivity"
-            android:theme="@style/Theme.Linteacher.NoActionBar" />
-        <activity android:name=".ui.main.announceinner.AnnounceInnerActivity" />
+            android:theme="@style/Theme.Linteacher.NoActionBar" android:exported="false"/>
+        <activity android:name=".ui.main.announceinner.AnnounceInnerActivity" android:exported="false"/>
         <activity
             android:name=".ui.teacherdata.TeacherInformationFirstActivity"
             android:label="@string/title_activity_teacher_information_first"
-            android:theme="@style/Theme.Linteacher.NoActionBar" />
-        <activity android:name=".ui.main.teacherline.tchsencondline.TeacherSecondLineActivity" />
+            android:theme="@style/Theme.Linteacher.NoActionBar" android:exported="false"/>
+        <activity android:name=".ui.main.teacherline.tchsencondline.TeacherSecondLineActivity" android:exported="false"/>
         <activity
             android:name=".ui.main.teacherline.tchsencondline.FragmentSecondLine"
             android:label="@string/title_activity_fragment_second_line"
-            android:theme="@style/Theme.Linteacher.NoActionBar" />
-        <activity android:name=".ui.admin.adminaddteacher.AddTeacherActivity" />
+            android:theme="@style/Theme.Linteacher.NoActionBar" android:exported="false"/>
+        <activity android:name=".ui.admin.adminaddteacher.AddTeacherActivity" android:exported="false"/>
         <activity
             android:name=".api.pojo.admin.addteacher.AddTeacherActivity"
             android:label="@string/title_activity_add_teacher"
-            android:theme="@style/Theme.Linteacher.NoActionBar" />
-        <activity android:name=".ui.admin.adminedituser.AdminEditActivity" />
-        <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.forgetPassword.ForgetPasswordAcitivity"/>
-        <activity android:name=".ui.login.LoginActivity">
+            android:theme="@style/Theme.Linteacher.NoActionBar" android:exported="false"/>
+        <activity android:name=".ui.admin.adminedituser.AdminEditActivity" android:exported="false"/>
+        <activity android:name=".ui.main.MainActivity" android:exported="false"/>
+        <activity android:name=".ui.forgetPassword.ForgetPasswordAcitivity" android:exported="false"/>
+        <activity android:name=".ui.login.LoginActivity" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
