@@ -79,6 +79,7 @@ class LoginActivity : AppCompatActivity() {
                                     // 登入 loginId=使用者,teacherId = get 編輯資料 by teacherId,
                                     // grade="A",teacherId會變動(按teacherMore時)
                                     logiSharePreferences.setLoginId(t?.tchNumber.toString())
+                                    logiSharePreferences.setToken(t?.token.toString())
                                     ActivityNavigator.startActivity(
                                         MainActivity::class.java,
                                         this@LoginActivity

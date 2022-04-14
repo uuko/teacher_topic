@@ -17,7 +17,7 @@ class ForgetPasswordRepository {
     fun postSendMail(email: String): MutableLiveData<UnitResponse> {
         val data= MutableLiveData<UnitResponse>()
         RetrofitManager.compositeDisposable.add(
-            RetrofitManager.apiServices.postSendMail(Config.POST_SEND_EMAIL,email)
+            RetrofitManager.loginApiServices.postSendMail(Config.POST_SEND_EMAIL,email)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<Unit>(){
@@ -42,7 +42,7 @@ class ForgetPasswordRepository {
     fun postSavaPassword(savePasswordRequest: SavePasswordRequest): MutableLiveData<UnitResponse> {
         val data= MutableLiveData<UnitResponse>()
         RetrofitManager.compositeDisposable.add(
-            RetrofitManager.apiServices.postSavaPassword(Config.POST_SAVE_PASSWORD,savePasswordRequest)
+            RetrofitManager.loginApiServices.postSavaPassword(Config.POST_SAVE_PASSWORD,savePasswordRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<Unit>(){
@@ -66,7 +66,7 @@ class ForgetPasswordRepository {
     fun getCheckToken(token: String): MutableLiveData<UnitResponse> {
         val data= MutableLiveData<UnitResponse>()
         RetrofitManager.compositeDisposable.add(
-            RetrofitManager.apiServices.getCheckToken(Config.GET_CHECK_TOKEN,token)
+            RetrofitManager.loginApiServices.getCheckToken(Config.GET_CHECK_TOKEN,token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<Unit>(){
