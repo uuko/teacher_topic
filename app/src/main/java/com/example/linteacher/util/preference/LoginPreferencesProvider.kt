@@ -9,4 +9,7 @@ interface LoginPreferencesProvider {
 
     fun setTeacherGrade(mTeacherGrade: String)
     fun getTeacherGrade(): String
+
+    fun setToken(mToken:String)
+    fun getToken():String
 }

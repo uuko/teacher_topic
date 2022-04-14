@@ -14,12 +14,12 @@ class LoginRepository {
     fun login(request:LoginRequest): MutableLiveData<LoginAllResponse> {
         val data= MutableLiveData<LoginAllResponse>()
         RetrofitManager.compositeDisposable.add(
-            RetrofitManager.apiServices.login(Config.LOGIN_URL,request)
-                .subscribeOn(Schedulers.io())
+            RetrofitManager.loginApiServices.login(Config.LOGIN_URL,request)
+            .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<LoginResponse>(){
                     override fun onNext(t: LoginResponse) {
-                        data.value= LoginAllResponse(t.tchNumber,t.grade)
+                        data.value= LoginAllResponse(t.tchNumber,t.grade,token = t.token)
                     }
 
                     override fun onError(e: Throwable) {

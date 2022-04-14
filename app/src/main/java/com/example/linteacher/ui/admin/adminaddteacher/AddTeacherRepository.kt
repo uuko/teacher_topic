@@ -14,7 +14,7 @@ class AddTeacherRepository {
     fun registerTeacher(request: AddTeacherRequest): MutableLiveData<AddTeacherAllResponse> {
         val data= MutableLiveData<AddTeacherAllResponse>()
         RetrofitManager.compositeDisposable.add(
-            RetrofitManager.apiServices.adminRegisterTeacher(Config.ADMIN_REGISTER_,request)
+            RetrofitManager.loginApiServices.adminRegisterTeacher(Config.ADMIN_REGISTER_,request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<Unit>(){
