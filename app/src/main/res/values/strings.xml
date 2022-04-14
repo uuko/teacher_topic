@@ -36,4 +36,7 @@
     <string name="menu_book">專書</string>
     <string name="menu_techtransfer">技術轉移授權</string>
     <string name="title_activity_list_announcectivity">ListAnnouncectivity</string>
+
+    <string name="guest_login">guest</string>
+    <string name="guest_pwd">guest</string>
 </resources>
