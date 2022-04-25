@@ -15,8 +15,8 @@ android {
         applicationId "com.imac.linteacher"
         minSdkVersion 23
         targetSdkVersion 31
-        versionCode 6
-        versionName "6.0"
+        versionCode 8
+        versionName "8.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

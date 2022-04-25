@@ -36,7 +36,30 @@ class LoginActivity : BaseActivity() {
         logiSharePreferences.setTeacherId("")
         //記號 //遊客 =""
         logiSharePreferences.setLoginId("")
+        viewModel
+            .response
+            .observe(this@LoginActivity,
+                { t ->
+                    viewModel.isLoading.value = (false)
+                    if (t.error.isEmpty()) {
+                        logiSharePreferences.setTeacherGrade(t?.grade.toString())
+                        logiSharePreferences.setTeacherId(t?.tchNumber.toString())
+                        //記號
+                        // 登入 loginId=使用者,teacherId = get 編輯資料 by teacherId,
+                        // grade="A",teacherId會變動(按teacherMore時)
+                        logiSharePreferences.setLoginId(t?.tchNumber.toString())
+                        logiSharePreferences.setToken(t?.token.toString())
+                        ActivityNavigator.startActivity(
+                            MainActivity::class.java,
+                            this@LoginActivity
+                        )
+                        finish()
+                    } else {
 
+                    }
+
+
+                })
 
         viewModel.isLoading.observe(this, Observer {
             if (it) {
@@ -83,30 +106,8 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun handleLogin(email: String, pwd: String) {
-        viewModel
-            .postLogin(email, pwd)
-            .observe(this@LoginActivity,
-                { t ->
-                    viewModel.isLoading.value = (false)
-                    if (t.error.isEmpty()) {
-                        logiSharePreferences.setTeacherGrade(t?.grade.toString())
-                        logiSharePreferences.setTeacherId(t?.tchNumber.toString())
-                        //記號
-                        // 登入 loginId=使用者,teacherId = get 編輯資料 by teacherId,
-                        // grade="A",teacherId會變動(按teacherMore時)
-                        logiSharePreferences.setLoginId(t?.tchNumber.toString())
-                        logiSharePreferences.setToken(t?.token.toString())
-                        ActivityNavigator.startActivity(
-                            MainActivity::class.java,
-                            this@LoginActivity
-                        )
-                        finish()
-                    } else {
+        viewModel.postLogin(email, pwd)
 
-                    }
-
-
-                })
     }
 
     fun emailValidator(emailToText: String): Boolean {

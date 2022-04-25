@@ -69,6 +69,32 @@ class OffFragment : BaseFragment(), OffInterface.View {
             list.add(OffAddData())
             adapter.setDataList(list)
         }
+        viewModel.offData
+            .observe(viewLifecycleOwner, object : Observer<OffGetAllResponse> {
+                override fun onChanged(t: OffGetAllResponse) {
+
+                    if (t.list.isEmpty()) {
+
+                    } else {
+                        val valueLst = arrayListOf<OffBaseData>()
+                        for (r: OffGetResponse in t.list) {
+                            valueLst.add(
+                                OffOriginData(
+                                    proId = r.proId,
+                                    proVendor = r.proVendor,
+                                    proNature = r.proNature,
+                                    public = r.public,
+
+                                    )
+                            )
+                        }
+                        adapter.setDataList(valueLst)
+                    }
+
+
+                }
+
+            })
     }
 
     private fun initRecycleView() {
@@ -84,35 +110,10 @@ class OffFragment : BaseFragment(), OffInterface.View {
 
     private fun viewModelObserveLst() {
         viewModel.getList(loginPreferences.getTeacherId())
-            .observe(viewLifecycleOwner, object : Observer<OffGetAllResponse> {
-                override fun onChanged(t: OffGetAllResponse) {
-
-                    if (t.list.isEmpty()) {
-
-                    } else {
-                        val valueLst = arrayListOf<OffBaseData>()
-                        for (r: OffGetResponse in t.list) {
-                            valueLst.add(
-                                OffOriginData(
-                                    proId=r.proId,
-                                    proVendor = r.proVendor,
-                                    proNature = r.proNature,
-                                            public = r.public,
-
-                                    )
-                            )
-                        }
-                        adapter.setDataList(valueLst)
-                    }
-
-
-                }
-
-            })
     }
 
     override fun onSaveClick(item: OffAddData, position: Int) {
-        val request= OffPostRequest(
+        val request = OffPostRequest(
             loginId = loginPreferences.getTeacherId().toInt(),
             proCaseName = item.proCaseName,
             proCaseNumber = item.proCaseNumber,
@@ -127,12 +128,11 @@ class OffFragment : BaseFragment(), OffInterface.View {
         )
 
         viewModel.postData(request)
-            .observe(viewLifecycleOwner,object : Observer<UnitResponse> {
+            .observe(viewLifecycleOwner, object : Observer<UnitResponse> {
                 override fun onChanged(t: UnitResponse) {
-                    if (t.result != Config.RESULT_OK){
+                    if (t.result != Config.RESULT_OK) {
 
-                    }
-                    else{
+                    } else {
                         viewModelObserveLst()
                     }
                 }
@@ -156,7 +156,7 @@ class OffFragment : BaseFragment(), OffInterface.View {
     }
 
     override fun onEditSaveClick(item: OffEditData, position: Int) {
-        val request=
+        val request =
             OffUpdateRequest(
                 proId = item.proId,
                 proCaseName = item.proCaseName,
@@ -173,13 +173,12 @@ class OffFragment : BaseFragment(), OffInterface.View {
             )
 
 
-            viewModel.updateList(request)
-                .observe(viewLifecycleOwner,{
-                        t->
-                    if (t.result == Config.RESULT_OK){
-                        viewModelObserveLst()
-                    }
-                })
+        viewModel.updateList(request)
+            .observe(viewLifecycleOwner, { t ->
+                if (t.result == Config.RESULT_OK) {
+                    viewModelObserveLst()
+                }
+            })
 
     }
 
@@ -209,17 +208,17 @@ class OffFragment : BaseFragment(), OffInterface.View {
     }
 
     override fun onEditCancelClick(position: Int, r: OffEditData) {
-        val data= OffOriginData(
-            proId=r.proId,
+        val data = OffOriginData(
+            proId = r.proId,
             proVendor = r.proVendor,
             proNature = r.proNature,
             public = r.public,
 
             )
         adapter.getDataList().removeAt(position)
-        val list=adapter.getDataList()
-        list.add(position,data)
-        adapter.setOneData(list,position)
+        val list = adapter.getDataList()
+        list.add(position, data)
+        adapter.setOneData(list, position)
     }
 
     override fun onDestroyView() {
@@ -229,7 +228,7 @@ class OffFragment : BaseFragment(), OffInterface.View {
 
     override fun onChangeVisibleClick(r: OffOriginData, position: Int) {
         //request =LicEditData內容+loginId
-        val request=
+        val request =
             AcademicChangeVisibleRequest(
                 id = r.proId,
                 visible = r.public
@@ -237,9 +236,8 @@ class OffFragment : BaseFragment(), OffInterface.View {
             )
 
         viewModel.changeVisible(request)
-            .observe(viewLifecycleOwner,{
-                    t->
-                if (t.result == Config.RESULT_OK){
+            .observe(viewLifecycleOwner, { t ->
+                if (t.result == Config.RESULT_OK) {
                     //打API成功->刷新
                     viewModelObserveLst()
                 }

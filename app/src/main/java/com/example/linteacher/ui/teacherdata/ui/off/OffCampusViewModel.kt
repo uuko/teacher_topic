@@ -1,6 +1,8 @@
 package com.example.linteacher.ui.teacherdata.ui.off
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.linteacher.api.pojo.UnitResponse
 import com.example.linteacher.api.pojo.teacherdata.adamic.AcademicChangeVisibleRequest
@@ -11,10 +13,16 @@ import com.example.linteacher.api.pojo.teacherdata.off.OffUpdateRequest
 
 class OffCampusViewModel(var dataModel: OffCampusRepository) : ViewModel() {
 
-    fun getList( id:String):MutableLiveData<OffGetAllResponse>{
-        return dataModel.getData(id)
+    private val idLiveData = MutableLiveData<String>()
+    val offData: LiveData<OffGetAllResponse> =
+        Transformations.switchMap(idLiveData) { address -> dataModel.getData(address) }
+
+    fun getList(id: String) {
+        idLiveData.value = id
+//        return dataModel.getData(id)
     }
-    fun delete(expNumber: Int): MutableLiveData<UnitResponse>{
+
+    fun delete(expNumber: Int): MutableLiveData<UnitResponse> {
         return dataModel.deleteData(expNumber.toString())
     }
 
@@ -22,11 +30,11 @@ class OffCampusViewModel(var dataModel: OffCampusRepository) : ViewModel() {
         return dataModel.getOneData(loginId)
     }
 
-    fun postData(request: OffPostRequest): MutableLiveData<UnitResponse>{
+    fun postData(request: OffPostRequest): MutableLiveData<UnitResponse> {
         return dataModel.postData(request)
     }
 
-    fun updateList(request:OffUpdateRequest): MutableLiveData<UnitResponse>{
+    fun updateList(request: OffUpdateRequest): MutableLiveData<UnitResponse> {
         return dataModel.updateData(request)
     }
 

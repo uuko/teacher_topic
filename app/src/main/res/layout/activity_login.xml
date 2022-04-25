@@ -31,7 +31,8 @@
                 android:layout_height="50sp"
                 android:background="@drawable/white_round_text"
                 android:inputType="textEmailAddress"
-                android:text="linlin@gmail.com"
+                android:text=""
+                android:hint="@string/hint_account"
 
                 />
 
@@ -39,16 +40,16 @@
                 style="@style/emailText"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Password" />
+                android:text="" />
 
         <EditText
+            android:hint="@string/hint_pwd"
                 android:id="@+id/passwd"
                 style="@style/inputText"
                 android:layout_width="245sp"
                 android:layout_height="50sp"
                 android:background="@drawable/white_round_text"
                 android:inputType="textPassword"
-                android:text="5678"
                 android:textAlignment="center" />
 
 
