@@ -31,13 +31,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // fragment
-        manager = supportFragmentManager
-        transaction = manager.beginTransaction()
-        transaction.add(R.id.forFragment, announceFragment, Config.ANNOUNCE_FRAGMENT)
-        transaction.commit()
+        if (savedInstanceState == null) {
+            Log.e("MainActivity", "onCreate: ", )
+            manager = supportFragmentManager
+            transaction = manager.beginTransaction()
+            transaction.add(R.id.forFragment, announceFragment, Config.ANNOUNCE_FRAGMENT)
+            transaction.commit()
 //        hideFragment(fragment_1, fragment_2)
-        binding.navigationView.setOnItemSelectedListener(mOnNavigationItemSelectedListener)
-
+            binding.navigationView.setOnItemSelectedListener(mOnNavigationItemSelectedListener)
+        }
 
     }
 

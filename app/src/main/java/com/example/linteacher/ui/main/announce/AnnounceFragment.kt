@@ -44,6 +44,7 @@ class AnnounceFragment : BaseFragment(), ContentListener.View {
     }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -55,6 +56,142 @@ class AnnounceFragment : BaseFragment(), ContentListener.View {
     ): View? {
         _binding = FragmentAnnounceBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        getImportantData()
+        getBannerData()
+        getLatestData()
+
+    }
+
+    private fun getLatestData() {
+        viewModel.latestLiveData
+            .observe(
+                viewLifecycleOwner,
+                { t ->
+                    if (t.responses.isNotEmpty()) {
+                        binding.allArticleLinearlayout.visibility = View.VISIBLE
+                        val responseLst = arrayListOf<Content.Response>()
+                        for (item in t.responses) {
+                            responseLst.add(
+                                Content.Response(
+                                    articleContent = item.articleContent,
+                                    articleId = item.articleId,
+                                    articleImportant = item.articleImportant,
+                                    articleTag = item.articleTag,
+                                    articleTitle = item.articleTitle,
+                                    modifyDate = item.modifyDate,
+                                )
+                            )
+                        }
+                        contentAdapter.submitList(responseLst)
+                    } else {
+                        binding.allArticleLinearlayout.visibility = View.GONE
+                    }
+
+                }
+            )
+    }
+
+    private fun getBannerData() {
+        viewModel.bannerLiveData
+            .observe(
+                viewLifecycleOwner,
+                { t ->
+                    if (t.bannerResponseList.isNotEmpty()) {
+                        binding.banner.visibility = View.VISIBLE
+                        val bannerList = mutableListOf<Content.BannerResponse>()
+                        for (item in t.bannerResponseList) {
+                            bannerList.add(
+                                Content.BannerResponse(
+                                    articleId = item.articleId,
+                                    picUrl = item.picUrl,
+                                    picId = item.picId
+                                )
+                            )
+                        }
+
+                        binding.banner.apply {
+                            addBannerLifecycleObserver(activity)
+                            setIndicator(CircleIndicator(activity))
+                            setOnBannerListener(object : OnBannerListener<Content.BannerResponse> {
+                                override fun OnBannerClick(
+                                    data: Content.BannerResponse?,
+                                    position: Int
+                                ) {
+                                    val bundle = Bundle()
+                                    bundle.putSerializable("articleId", data?.articleId.toString())
+                                    Log.d("OnBannerClick", "OnBannerClick: ")
+                                    activity?.let {
+                                        ActivityNavigator.startActivityWithData(
+                                            AnnounceInnerActivity::class.java,
+                                            bundle,
+                                            it
+                                        )
+                                    }
+
+                                }
+
+                            })
+                            setAdapter(ImageAdapter(bannerList, this@AnnounceFragment))
+                        }
+
+
+                    } else {
+                        binding.banner.visibility = View.GONE
+                    }
+                }
+            )
+    }
+
+    private fun getImportantData() {
+        viewModel.importantLiveData
+            .observe(
+                viewLifecycleOwner,
+                { t ->
+                    if (t.responses.isNotEmpty()) {
+                        binding.importantLinearlayout.visibility = View.VISIBLE
+                        val importantLst = mutableListOf<Content.ImportantInnerAnnounce>()
+                        var count = 0
+                        for (item in t.responses) {
+                            if (count < 3) {
+                                importantLst.add(
+                                    Content.ImportantInnerAnnounce(
+                                        articleImportant = item.articleImportant,
+                                        articleTag = item.articleTag,
+                                        articleTitle = item.articleTitle,
+                                        articleContent = item.articleContent,
+                                        modifyDate = item.modifyDate,
+                                        articleId = item.articleId,
+                                    )
+                                )
+                            } else break
+
+                            count++
+                        }
+                        val mainView = binding.importantContent
+                        mainView.removeAllViews()
+                        for (a in importantLst) {
+                            val inflater = layoutInflater
+                            val view: View = inflater.inflate(R.layout.item_carsoul, null)
+                            view.findViewById<TextView>(R.id.articleTitle).text = a.articleTitle
+                            view.findViewById<TextView>(R.id.articleTag).text = a.articleTag
+                            view.findViewById<TextView>(R.id.modifyDate).text =
+                                pareDate(a.modifyDate)
+
+                            view.setOnClickListener {
+                                onItemClick(a.articleId)
+                            }
+                            mainView.addView(view)
+                        }
+                    } else {
+                        binding.importantLinearlayout.visibility = View.GONE
+                    }
+
+                }
+            )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -81,140 +218,32 @@ class AnnounceFragment : BaseFragment(), ContentListener.View {
         })
 
 
+
+
+
+
     }
 
     private fun initData() {
-        observeBannerList()
-        observeImportantList(0)
-        observeLatest(0)
+//        observeBannerList()
+//        observeImportantList(0)
+//        observeLatest(0)
     }
 
 
     private fun observeBannerList() {
-        viewModel.getBannerList().observe(
-            viewLifecycleOwner,
-            { t ->
-                if (t.bannerResponseList.isNotEmpty()) {
-                    binding.banner.visibility = View.VISIBLE
-                    val bannerList = mutableListOf<Content.BannerResponse>()
-                    for (item in t.bannerResponseList) {
-                        bannerList.add(
-                            Content.BannerResponse(
-                                articleId = item.articleId,
-                                picUrl = item.picUrl,
-                                picId = item.picId
-                            )
-                        )
-                    }
-
-                    binding.banner.apply {
-                        addBannerLifecycleObserver(activity)
-                        setIndicator(CircleIndicator(activity))
-                        setOnBannerListener(object : OnBannerListener<Content.BannerResponse> {
-                            override fun OnBannerClick(
-                                data: Content.BannerResponse?,
-                                position: Int
-                            ) {
-                                val bundle = Bundle()
-                                bundle.putSerializable("articleId", data?.articleId.toString())
-                                Log.d("OnBannerClick", "OnBannerClick: ")
-                                activity?.let {
-                                    ActivityNavigator.startActivityWithData(
-                                        AnnounceInnerActivity::class.java,
-                                        bundle,
-                                        it
-                                    )
-                                }
-
-                            }
-
-                        })
-                        setAdapter(ImageAdapter(bannerList, this@AnnounceFragment))
-                    }
-
-
-                } else {
-                    binding.banner.visibility = View.GONE
-                }
-            }
-        )
+        viewModel.getBannerList()
     }
 
     private fun observeImportantList(page: Int) {
 
-        viewModel.getImportantList(page).observe(
-            viewLifecycleOwner,
-            { t ->
-                if (t.responses.isNotEmpty()) {
-                    binding.importantLinearlayout.visibility = View.VISIBLE
-                    val importantLst = mutableListOf<Content.ImportantInnerAnnounce>()
-                    var count = 0
-                    for (item in t.responses) {
-                        if (count < 3) {
-                            importantLst.add(
-                                Content.ImportantInnerAnnounce(
-                                    articleImportant = item.articleImportant,
-                                    articleTag = item.articleTag,
-                                    articleTitle = item.articleTitle,
-                                    articleContent = item.articleContent,
-                                    modifyDate = item.modifyDate,
-                                    articleId = item.articleId,
-                                )
-                            )
-                        } else break
-
-                        count++
-                    }
-                    val mainView = binding.importantContent
-                    mainView.removeAllViews()
-                    for (a in importantLst) {
-                        val inflater = layoutInflater
-                        val view: View = inflater.inflate(R.layout.item_carsoul, null)
-                        view.findViewById<TextView>(R.id.articleTitle).text = a.articleTitle
-                        view.findViewById<TextView>(R.id.articleTag).text = a.articleTag
-                        view.findViewById<TextView>(R.id.modifyDate).text = pareDate(a.modifyDate)
-
-                        view.setOnClickListener {
-                            onItemClick(a.articleId)
-                        }
-                        mainView.addView(view)
-                    }
-                } else {
-                    binding.importantLinearlayout.visibility = View.GONE
-                }
-
-            }
-        )
+        viewModel.getImportantList(page)
 
     }
 
 
     private fun observeLatest(page: Int) {
-        viewModel.getLatestList(page).observe(
-            viewLifecycleOwner,
-            { t ->
-                if (t.responses.isNotEmpty()) {
-                    binding.allArticleLinearlayout.visibility = View.VISIBLE
-                    val responseLst = arrayListOf<Content.Response>()
-                    for (item in t.responses) {
-                        responseLst.add(
-                            Content.Response(
-                                articleContent = item.articleContent,
-                                articleId = item.articleId,
-                                articleImportant = item.articleImportant,
-                                articleTag = item.articleTag,
-                                articleTitle = item.articleTitle,
-                                modifyDate = item.modifyDate,
-                            )
-                        )
-                    }
-                    contentAdapter.submitList(responseLst)
-                } else {
-                    binding.allArticleLinearlayout.visibility = View.GONE
-                }
-
-            }
-        )
+        viewModel.getLatestList(page)
     }
 
     private fun initRecycleView() {

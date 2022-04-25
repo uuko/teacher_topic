@@ -33,4 +33,9 @@ class LoginViewModel constructor(var loginRepository: LoginRepository) : ViewMod
 //        val request = LoginRequest(account, pwd)
 //        return loginRepository.login(request)
     }
+
+    override fun onCleared() {
+        Log.e("LoginViewModel", "onCleared: " )
+        super.onCleared()
+    }
 }

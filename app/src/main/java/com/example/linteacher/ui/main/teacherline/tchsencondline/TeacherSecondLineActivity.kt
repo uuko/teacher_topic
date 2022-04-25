@@ -27,6 +27,7 @@ import com.example.linteacher.ui.main.teacherline.tchsencondline.adapter.*
 
 class TeacherSecondLineActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTeacherSecondLineBinding
+
     private val factory = TeacherSecondViewModelFactory(TeacherSecondRepository())
     private val viewModel: TeacherSecondViewModel by viewModels {
         factory
@@ -38,7 +39,9 @@ class TeacherSecondLineActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val response = intent.getSerializableExtra("item") as Int
+
         initData(response)
+        observeData()
         binding.mSwipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
             binding.mSwipeRefreshLayout.isRefreshing = false
             initData(response)
@@ -49,11 +52,16 @@ class TeacherSecondLineActivity : AppCompatActivity() {
 
     private fun initData(response: Int) {
         viewModel.getTeacherLineData(response.toString())
-            .observe(this, {
-                Log.d("lineOnetec", "initData: "+it.licList)
-                initBinding(it)
-                dynamicAddViews(it)
-            })
+
+    }
+
+    private fun observeData(){
+        viewModel.teacherLineLiveData
+        .observe(this, {
+            Log.d("lineOnetec", "initData: "+it.licList)
+            initBinding(it)
+            dynamicAddViews(it)
+        })
     }
 
     var dialogContentVisible = false

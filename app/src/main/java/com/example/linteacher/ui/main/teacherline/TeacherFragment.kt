@@ -58,24 +58,8 @@ class TeacherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecycleView()
-        initData()
-        viewModel.isLoading.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                _binding?.progressBar?.visibility = View.VISIBLE
-            } else _binding?.progressBar?.visibility = View.GONE
-
-        })
-
-        binding.mSwipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
-            binding.mSwipeRefreshLayout.isRefreshing = false
-            initData()
-        })
-
-
-    }
-
-    private fun initData() {
-        viewModel.postTeacherList()
+//        initData()
+        viewModel.teacherLiveData
             .observe(viewLifecycleOwner, object : Observer<TeacherLineAllResponse> {
                 override fun onChanged(t: TeacherLineAllResponse?) {
 
@@ -94,6 +78,24 @@ class TeacherFragment : Fragment() {
                 }
 
             })
+        viewModel.isLoading.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                _binding?.progressBar?.visibility = View.VISIBLE
+            } else _binding?.progressBar?.visibility = View.GONE
+
+        })
+
+        binding.mSwipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
+            binding.mSwipeRefreshLayout.isRefreshing = false
+            initData()
+        })
+
+
+    }
+
+    private fun initData() {
+        viewModel.postTeacherList()
+
     }
 
     private fun handleList(list: List<TeacherLineResponse>): ArrayList<TeacherLineResponse> {

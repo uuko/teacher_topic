@@ -11,6 +11,7 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
 class TeacherSecondRepository {
+
     fun getTeacherLineData(id: String): MutableLiveData<TeacherSecondLineResponse> {
         val data = MutableLiveData<TeacherSecondLineResponse>()
         val url = String.format(Config.GET_TEACHER_LINE_INNER, id)

@@ -63,11 +63,14 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val loginPreferences=LoginPreferences(view.context)
+        val loginPreferences = LoginPreferences(view.context)
 //        if ( (loginPreferences.getTeacherId()?.length)!! >0 ){
 //
 //        }
 //        else
+
+
+        observeData()
         if (loginPreferences.getTeacherGrade().equals(Config.ADMIN)) {
             binding.gradeAArticle.visibility = View.VISIBLE
             binding.gradeABanner.visibility = View.VISIBLE
@@ -81,16 +84,15 @@ class ProfileFragment : Fragment() {
                 R.drawable.admin
             )
 
-        }
-        else if (loginPreferences.getTeacherGrade().equals(Config.TEACHER)){
-            getData(loginPreferences)
-            binding.gradeAArticle.visibility=View.GONE
-            binding.gradeABanner.visibility=View.GONE
-            binding.gradeAChoose.visibility=View.GONE
+        } else if (loginPreferences.getTeacherGrade().equals(Config.TEACHER)) {
+//            getData(loginPreferences)
+            binding.gradeAArticle.visibility = View.GONE
+            binding.gradeABanner.visibility = View.GONE
+            binding.gradeAChoose.visibility = View.GONE
             //
-            binding.gradeBChoose.visibility=View.VISIBLE
-            binding.logout.visibility=View.VISIBLE
-        }else {
+            binding.gradeBChoose.visibility = View.VISIBLE
+            binding.logout.visibility = View.VISIBLE
+        } else {
             binding.gradeAArticle.visibility = View.GONE
             binding.gradeABanner.visibility = View.GONE
             binding.gradeAChoose.visibility = View.GONE
@@ -109,8 +111,8 @@ class ProfileFragment : Fragment() {
         adminChoose(loginPreferences)
     }
 
-    private fun getData(loginPreferences: LoginPreferences) {
-        viewModel.getTeacherData(loginPreferences.getLoginId())
+    private fun observeData() {
+        viewModel.teacherLiveData
             .observe(viewLifecycleOwner, {
                 binding.teacherCountry.text = it.tchName
                 if (it.picUrl.isNotEmpty()) {
@@ -124,6 +126,11 @@ class ProfileFragment : Fragment() {
                     binding.imageView.setImageResource(R.drawable.account)
                 }
             })
+    }
+
+    private fun getData(loginPreferences: LoginPreferences) {
+        viewModel.getTeacherData(loginPreferences.getLoginId())
+
     }
 
     private fun adminChoose(loginPreferences: LoginPreferences) {
