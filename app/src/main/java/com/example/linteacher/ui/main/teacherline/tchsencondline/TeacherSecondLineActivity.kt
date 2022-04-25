@@ -8,13 +8,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ScrollView
 import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -28,19 +27,22 @@ import com.example.linteacher.ui.main.teacherline.tchsencondline.adapter.*
 class TeacherSecondLineActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTeacherSecondLineBinding
 
-    private val factory = TeacherSecondViewModelFactory(TeacherSecondRepository())
-    private val viewModel: TeacherSecondViewModel by viewModels {
-        factory
-    }
+//    private val factory = TeacherSecondViewModelFactory(TeacherSecondRepository())
+//    private var viewModel: TeacherSecondViewModel by viewModels {
+//        factory
+//    }
 
+    private lateinit var viewModel:TeacherSecondViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTeacherSecondLineBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val response = intent.getSerializableExtra("item") as Int
+        val factory = TeacherSecondViewModelFactory(TeacherSecondRepository(),response)
+        viewModel = ViewModelProvider(this,factory).get(TeacherSecondViewModel::class.java)
 
-        initData(response)
+//        initData(response)
         observeData()
         binding.mSwipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
             binding.mSwipeRefreshLayout.isRefreshing = false
@@ -58,7 +60,7 @@ class TeacherSecondLineActivity : AppCompatActivity() {
     private fun observeData(){
         viewModel.teacherLineLiveData
         .observe(this, {
-            Log.d("lineOnetec", "initData: "+it.licList)
+            Log.d("lineOnetec", "initData: " + it.licList)
             initBinding(it)
             dynamicAddViews(it)
         })
